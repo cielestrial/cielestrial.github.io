@@ -1,0 +1,9 @@
+
+- animations
+
+- background visual
+- light & dark color schemes
+
+- layout
+- fill out all data
+- projects

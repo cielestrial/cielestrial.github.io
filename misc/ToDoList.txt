@@ -1,5 +1,4 @@
 
-- animations
 - projects live with preview images (light & dark themes where applicable)
 - fill out remaining data
 

@@ -4,6 +4,7 @@ import {
   BsArrowRightCircle,
   BsXCircle,
 } from "react-icons/bs";
+import { placeholderImage } from "../nav/Projects";
 
 type propsType = {
   link: string | undefined;
@@ -13,49 +14,168 @@ type propsType = {
 
 const ProjectView = (props: propsType) => {
   const [index, setIndex] = useState(0);
+  const [effect, setEffect] = useState<
+    "left" | "right" | "scale-down" | "none"
+  >("none");
+  const [sideEffect, setSideEffect] = useState<"fade-in" | "fade-out" | "none">(
+    "fade-in"
+  );
+  const [leftArrowEffect, setLeftArrowEffect] = useState<
+    "fade-in" | "fade-out" | "none"
+  >("none");
+  const [rightArrowEffect, setRightArrowEffect] = useState<
+    "fade-in" | "fade-out" | "none"
+  >("fade-in");
+
+  const [hideLeftArrow, setHideLeftArrow] = useState(true);
+  const [hideRightArrow, setHideRightArrow] = useState(false);
+
   return (
     <div className="h-full grid grid-cols-1 py-4 place-content-center">
       <div className="w-[39rem] place-self-center grid grid-col-1 ">
         <BsXCircle
-          onClick={() => props.setShowProjectView(false)}
+          onClick={() => {
+            setEffect("scale-down");
+            setSideEffect("fade-out");
+            setLeftArrowEffect("fade-out");
+            setRightArrowEffect("fade-out");
+          }}
           className={
-            "w-fit h-fit bg-transparent text-3xl " +
-            "align-self-center justify-self-end mx-4 cursor-pointer "
+            "w-fit h-fit rounded-full bg-transparent text-3xl origin-bottom-left " +
+            "align-self-center justify-self-end mx-4 " +
+            "z-40 drop-shadow-lg transition-all duration-75 custom-ease-out " +
+            "hover:bg-red-400/75 active:scale-95 active:bg-red-500/75 " +
+            "cursor-pointer " +
+            (sideEffect === "fade-in"
+              ? "animate-fade-in "
+              : sideEffect === "fade-out"
+              ? "animate-fade-out "
+              : "")
           }
+          onAnimationEnd={() => setSideEffect("none")}
         />
       </div>
       <div
         className={
           "flex flex-row flex-nowrap gap-x-6 " +
-          "place-content-center place-items-center"
+          "place-content-center place-items-center "
         }
       >
         <BsArrowLeftCircle
-          onClick={() => setIndex((prev) => (prev - 1 >= 0 ? prev - 1 : prev))}
+          onClick={() => {
+            if (!hideLeftArrow && index - 1 === 0)
+              setLeftArrowEffect("fade-out");
+            if (hideRightArrow && index - 1 === props.images.length - 2) {
+              setHideRightArrow(false);
+              setRightArrowEffect("fade-in");
+            }
+            if (effect === "none" && index - 1 > -1) setEffect("left");
+          }}
           className={
-            "w-fit h-fit bg-transparent text-5xl cursor-pointer " +
-            (index === 0 ? "invisible " : "")
+            "w-fit h-fit bg-transparent rounded-full text-5xl origin-left " +
+            "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
+            "hover:bg-yellow-200/75 active:scale-95 active:bg-yellow-300/75 " +
+            "cursor-pointer " +
+            (hideLeftArrow
+              ? "invisible "
+              : leftArrowEffect === "fade-in"
+              ? "animate-fade-in "
+              : leftArrowEffect === "fade-out"
+              ? "animate-fade-out "
+              : "")
           }
+          onAnimationEnd={() => {
+            if (leftArrowEffect === "fade-out") setHideLeftArrow(true);
+            setLeftArrowEffect("none");
+          }}
         />
         <img
-          src={
-            props.images.length > 0
-              ? props.images[index]
-              : "/src/assets/placeholder.png"
+          id={"current preview image"}
+          src={props.images.length > 0 ? props.images[index] : placeholderImage}
+          alt="current page preview"
+          className={
+            "h-72 justify-self-center drop-shadow-lg origin-top " +
+            (effect === "left"
+              ? "animate-fade-out-left "
+              : effect === "right"
+              ? "animate-fade-out-right "
+              : effect === "scale-down"
+              ? "animate-scale-down "
+              : "")
           }
-          alt="pages preview"
-          className="h-72 justify-self-center select-none "
+          onAnimationEnd={() => {
+            if (effect === "scale-down") {
+              setEffect("none");
+              props.setShowProjectView(false);
+            }
+          }}
+        />
+        <img
+          id={"previous preview image"}
+          src={
+            props.images.length > 0 && index - 1 > -1
+              ? props.images[index - 1]
+              : placeholderImage
+          }
+          alt="previous page preview"
+          className={
+            "h-72 justify-self-center absolute drop-shadow-lg origin-top " +
+            (props.images.length > 0 && index - 1 > -1 ? "" : "hidden ") +
+            (effect === "left" ? "animate-fade-in-left " : "hidden ")
+          }
+          onAnimationEnd={() => {
+            if (index - 1 > -1) setIndex(index - 1);
+            setEffect("none");
+          }}
+        />
+        <img
+          id={"next preview image"}
+          src={
+            props.images.length > 0 && index + 1 < props.images.length
+              ? props.images[index + 1]
+              : placeholderImage
+          }
+          alt="next page preview"
+          className={
+            "h-72 justify-self-center absolute drop-shadow-lg origin-top " +
+            (props.images.length > 0 && index + 1 < props.images.length
+              ? ""
+              : "hidden ") +
+            (effect === "right" ? "animate-fade-in-right " : "hidden ")
+          }
+          onAnimationEnd={() => {
+            if (index + 1 < props.images.length) setIndex(index + 1);
+            setEffect("none");
+          }}
         />
         <BsArrowRightCircle
-          onClick={() =>
-            setIndex((prev) =>
-              prev + 1 < props.images.length ? prev + 1 : prev
-            )
-          }
+          onClick={() => {
+            if (!hideRightArrow && index + 1 === props.images.length - 1)
+              setRightArrowEffect("fade-out");
+            if (hideLeftArrow && index + 1 === 1) {
+              setHideLeftArrow(false);
+              setLeftArrowEffect("fade-in");
+            }
+            if (effect === "none" && index + 1 < props.images.length)
+              setEffect("right");
+          }}
           className={
-            "w-fit h-fit bg-transparent text-5xl cursor-pointer " +
-            (index === props.images.length - 1 ? "invisible " : "")
+            "w-fit h-fit bg-transparent rounded-full text-5xl origin-right " +
+            "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
+            "hover:bg-sky-300/75 active:scale-95 active:bg-sky-400/75 " +
+            "cursor-pointer " +
+            (hideRightArrow
+              ? "invisible "
+              : rightArrowEffect === "fade-in"
+              ? "animate-fade-in "
+              : rightArrowEffect === "fade-out"
+              ? "animate-fade-out "
+              : "")
           }
+          onAnimationEnd={() => {
+            if (rightArrowEffect === "fade-out") setHideRightArrow(true);
+            setRightArrowEffect("none");
+          }}
         />
       </div>
       <a
@@ -63,8 +183,15 @@ const ProjectView = (props: propsType) => {
         target="_blank"
         rel="noreferrer noopener"
         className={
-          "text-center font-semibold underline " +
-          "w-fit h-fit place-self-center my-5"
+          "text-center font-semibold underline drop-shadow-md " +
+          "w-fit h-fit place-self-center my-5 origin-center " +
+          "transition-all duration-75 custom-ease-out " +
+          "hover:text-sky-500 hover:scale-105 active:scale-100 active:text-sky-600 " +
+          (sideEffect === "fade-in"
+            ? "animate-fade-in "
+            : sideEffect === "fade-out"
+            ? "animate-fade-out "
+            : "")
         }
       >
         {props.link}

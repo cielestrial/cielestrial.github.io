@@ -37,11 +37,11 @@ const Testimonials = () => {
   const [index, setIndex] = useState(0);
   const timer = useRef<NodeJS.Timer>();
   const waitTime = 5000;
-  const lastIndex = testimonies.length - 1;
+  const lastIndex = testimonies.length;
 
-  function circularize(i: number) {
-    if (i < 0) return lastIndex;
-    else if (i > lastIndex) return 0;
+  function circularize(i: number): number {
+    if (i < 0) return circularize(i + lastIndex);
+    else if (i >= lastIndex) return circularize(i - lastIndex);
     else return i;
   }
 
@@ -70,6 +70,10 @@ const Testimonials = () => {
         }
       >
         <TestimonialSideView
+          side={"far-left"}
+          testimony={testimonies[circularize(index - 2)]}
+        />
+        <TestimonialSideView
           side={"left"}
           testimony={testimonies[circularize(index - 1)]}
         />
@@ -77,6 +81,10 @@ const Testimonials = () => {
         <TestimonialSideView
           side={"right"}
           testimony={testimonies[circularize(index + 1)]}
+        />
+        <TestimonialSideView
+          side={"far-right"}
+          testimony={testimonies[circularize(index + 2)]}
         />
       </div>
     );

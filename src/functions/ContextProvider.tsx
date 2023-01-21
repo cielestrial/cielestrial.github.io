@@ -16,14 +16,18 @@ type StateProviderProps = {
 export function StateProvider({ children }: StateProviderProps) {
   const navigate = useRef(useNavigate());
   const [theme, setTheme] = useState<"light" | "dark">(
+    "light"
+    /*
     window.localStorage.getItem("theme") === "dark" ||
       (window.localStorage.getItem("theme") === null &&
         window.matchMedia("(prefers-color-scheme: dark)").matches)
       ? "dark"
       : "light"
+      */
   );
 
   useEffect(() => {
+    /*
     if (
       window.localStorage.getItem("theme") === "dark" ||
       (window.localStorage.getItem("theme") === null &&
@@ -31,15 +35,18 @@ export function StateProvider({ children }: StateProviderProps) {
     )
       document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
+    */
   }, []);
 
   const setAndSaveTheme = useCallback(
     (selectedTheme: "light" | "dark") => {
+      /*
       setTheme(selectedTheme);
       if (selectedTheme === "dark")
         document.documentElement.classList.add("dark");
       else document.documentElement.classList.remove("dark");
       window.localStorage.setItem("theme", selectedTheme);
+      */
     },
     [theme]
   );

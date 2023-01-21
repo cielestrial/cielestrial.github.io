@@ -1,9 +1,8 @@
 
 - animations
+- projects live with preview images (light & dark themes where applicable)
+- fill out remaining data
 
-- background visual
+
 - light & dark color schemes
-
-- layout
-- fill out all data
-- projects
+- light & dark mode games

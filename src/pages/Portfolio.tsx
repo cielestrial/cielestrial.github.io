@@ -18,6 +18,7 @@ const Portfolio = () => {
   const waitTime = 200;
   const timeout = useRef<NodeJS.Timeout>();
   const leading = useRef(true);
+
   useEffect(() => {
     return () => {
       clearTimeout(timeout.current);
@@ -86,11 +87,10 @@ const Portfolio = () => {
 
   return (
     <div
+      id="portfolio"
       className={
-        "flex flex-col h-screen justify-content-center content-start flex-nowrap " +
-        "divide-y-2 divide-solid " +
-        "bg-gradient-to-r from-cyan-500 to-blue-500 bg-no-repeat " +
-        "text-black dark:text-white"
+        "absolute flex flex-col h-screen justify-content-center content-start flex-nowrap " +
+        "text-black dark:text-white select-none "
       }
       onWheel={(event) => onScroll(event)}
     >

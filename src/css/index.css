@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Open Sans', Arial, Helvetica, system-ui, sans-serif;
+  font-family: Arial, Helvetica, system-ui, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -11,6 +11,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  overflow: clip;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,11 +23,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Tahoma, system-ui, sans-serif;
 }
 
-/*
-@layer base {
-  html {
-    
-  }
+
+@layer utilities {
 
 }
-*/

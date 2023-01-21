@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { StateContext } from "../functions/ContextProvider";
+import { BsCloudSun, BsFillMoonStarsFill } from "react-icons/bs"; //fill moon or stars or cloud or
 
 const Home = () => {
   const context = useContext(StateContext);
@@ -13,17 +14,29 @@ const Home = () => {
   }, [checked]);
 
   return (
-    <>
-      <div className="self-end">
+    <div className="flex flex-col h-full bg-gradient-to-bl from-yellow-200 to-slate-200 ">
+      <div className="self-end mx-4 invisible ">
         <div
           className={
-            "flex flex-nowrap border-2 border-double rounded-full w-14 h-7 m-2 " +
+            "grid border-2 border-double rounded-full w-14 h-8 m-2 p-[0.1rem] " +
             "cursor-pointer " +
-            (checked ? "justify-end bg-red-500 " : "justify-start ")
+            (checked
+              ? "transition-all duration-75 custom-ease-out justify-end " +
+                "content-center border-slate-100  bg-black "
+              : "transition-all duration-75 custom-ease-out justify-start " +
+                "content-center border-slate-300 bg-sky-300 ")
           }
           onClick={() => setChecked((prev) => !prev)}
         >
-          <div className="rounded-full w-6 h-6 mx-0.5 bg-white" />
+          <div
+            className={
+              "rounded-full w-6 h-6 grid place-content-center " +
+              "fill-current " +
+              (checked ? "bg-sky-900 text-xs " : "bg-white text-base ")
+            }
+          >
+            {checked ? <BsFillMoonStarsFill /> : <BsCloudSun />}
+          </div>
         </div>
       </div>
       <div className="h-full grid grid-cols-1">
@@ -31,15 +44,10 @@ const Home = () => {
           &#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Vestibulum maximus pulvinar pretium. Duis efficitur vestibulum dolor
           nec eleifend. Nunc tempor euismod ligula eget hendrerit. Praesent
-          fringilla lacinia metus non sollicitudin. Ut dignissim leo aliquet
-          ligula porta varius. Aenean tempor, diam a placerat ultricies, odio
-          est consequat ante, nec scelerisque ipsum risus in purus. Etiam et
-          molestie erat. Pellentesque rhoncus mauris eu augue vestibulum
-          faucibus. Donec sodales urna lacus, vel faucibus nisl finibus
-          quis.&#34;
+          fringilla lacinia metus non sollicitudin.&#34;
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

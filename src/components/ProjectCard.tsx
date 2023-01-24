@@ -7,7 +7,9 @@ type propsType = {
   title: string;
   images: string[];
   link: string | undefined;
+  description: string;
   status: statusType;
+  order: number;
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedProject: React.Dispatch<
     React.SetStateAction<JSX.Element | undefined>
@@ -17,23 +19,42 @@ type propsType = {
 
 const ProjectCard = (props: propsType) => {
   const label =
-    "text-center font-semibold bg-slate-200 border-[2.5px] border-solid border-black ";
-  const [effect, setEffect] = useState<"scale-up" | "none">("none");
+    "text-center font-semibold bg-slate-200 border-[2.5px] border-solid border-black " +
+    "whitespace-nowrap ";
+  const [effect, setEffect] = useState<"slide-in" | "none">("slide-in");
 
   return (
     <div
       onClick={() => {
-        setEffect("scale-up");
         props.setGridEffect("fade-out");
+        props.setSelectedProject(
+          <ProjectView
+            title={props.title}
+            link={props.link}
+            images={props.images}
+            description={props.description}
+            setShowProjectView={props.setShowProjectView}
+          />
+        );
       }}
       className={
         "h-full flex flex-col flex-nowrap " +
-        "place-content-center w-36 h-36 " +
+        "place-content-center min-w-[10rem] h-fit w-[20vw] " +
         "drop-shadow-md saturate-50 origin-top " +
         "transition-all duration-75 custom-ease-out " +
         "hover:saturate-150 active:scale-95 " +
-        "cursor-pointer "
+        "cursor-pointer transform-gpu " +
+        (effect === "slide-in"
+          ? props.order === 0
+            ? "animate-[fade-in-right_0.7s_cubic-bezier(.38,0,.64,1)_both] "
+            : props.order === 1
+            ? "animate-[fade-in-right_0.7s_.35s_cubic-bezier(.38,0,.64,1)_both] "
+            : props.order === 2
+            ? "animate-[fade-in-right_0.7s_.7s_cubic-bezier(.38,0,.64,1)_both] "
+            : "animate-[fade-in-right_0.7s_1.05s_cubic-bezier(.38,0,.64,1)_both] "
+          : "")
       }
+      onAnimationEnd={() => setEffect("none")}
     >
       <p className={label}>{props.title}</p>
       <img
@@ -42,19 +63,8 @@ const ProjectCard = (props: propsType) => {
         alt="yspm"
         className={
           "grow origin-top transition-all " +
-          "border-x-[2.5px] border-solid border-black " +
-          (effect === "scale-up" ? "animate-scale-up " : "")
+          "border-x-[2.5px] border-solid border-black "
         }
-        onAnimationEnd={() => {
-          props.setSelectedProject(
-            <ProjectView
-              link={props.link}
-              images={props.images}
-              setShowProjectView={props.setShowProjectView}
-            />
-          );
-          props.setShowProjectView(true);
-        }}
       />
       <p className={label}>{props.status}</p>
     </div>

@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col h-full bg-gradient-to-bl from-yellow-200 to-slate-200 ">
-      <div className="self-end mx-4 invisible ">
+      <div className="self-end mx-4 invisible fixed ">
         <div
           className={
             "grid border-2 border-double rounded-full w-14 h-8 m-2 p-[0.1rem] " +
@@ -39,13 +39,23 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="h-full grid grid-cols-1">
-        <p className="w-72 sm:w-96 py-2 place-self-center text-center">
-          &#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vestibulum maximus pulvinar pretium. Duis efficitur vestibulum dolor
-          nec eleifend. Nunc tempor euismod ligula eget hendrerit. Praesent
-          fringilla lacinia metus non sollicitudin.&#34;
-        </p>
+      <div className="h-full grid ">
+        <blockquote
+          className={
+            "w-96 py-2 place-self-center text-start text-2xl font-bold "
+          }
+        >
+          <p className="title -indent-0.5 text-slate-600 tracking-widest ">
+            The most damaging phrase in the language is&#58;&#32;
+            <q className="italic text-red-600 font-semibold ">
+              <span>It&#39;s always been done that way&#46;</span>
+            </q>
+          </p>
+
+          <p className="text-end italic pr-4 text-slate-800 tracking-wider ">
+            &#45; Grace Hopper
+          </p>
+        </blockquote>
       </div>
     </div>
   );

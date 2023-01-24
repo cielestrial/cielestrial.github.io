@@ -6,12 +6,12 @@ type propsType = {
 
 const TestimonialView = (props: propsType) => {
   return (
-    <div className="h-full grid grid-cols-1 place-self-center place-content-center">
+    <div className={"grid w-max "}>
       <div
         className={
-          "grid grid-cols-1 border-solid border-[3px] rounded-full overflow-clip " +
-          "w-36 h-36 place-content-center justify-self-center my-8 origin-center " +
-          "z-20 animate-center-testimonial "
+          "grid border-solid border-[3px] rounded-full overflow-clip " +
+          "w-36 h-36 place-self-center origin-bottom-left transform-gpu " +
+          "animate-center-testimonial "
         }
       >
         <img
@@ -20,7 +20,12 @@ const TestimonialView = (props: propsType) => {
           className="rotate-0"
         />
       </div>
-      <p className="h-36 w-72 sm:w-96 text-center justify-self-center animate-fade-in-out ">
+      <p
+        className={
+          "h-36 w-80 text-center pt-10 transform-gpu " +
+          "justify-self-center animate-fade-in-out "
+        }
+      >
         {props.testimony.testimony}
         {" - "}
         {props.testimony.name}

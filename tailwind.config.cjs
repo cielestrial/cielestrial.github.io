@@ -5,29 +5,29 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        "slide-up": "slide-up 1.5s ease both",
+        "slide-up": "slide-up .5s ease-out both",
 
-        "slide-down": "slide-down 1s ease-out both",
+        "slide-down": "slide-down .5s ease-out both",
 
-        "saturate-in": "saturate-in 1.25s ease-in-out both",
+        "saturate-in": "saturate-in 1.32s ease-in-out both",
 
-        "scale-up": "scale-up 0.5s cubic-bezier(.38,0,.64,1) both",
+        "scale-up": "scale-down .34s cubic-bezier(.38,0,.64,1) reverse both",
 
-        "scale-down": "scale-down 0.5s cubic-bezier(.38,0,.64,1) both",
+        "scale-down": "scale-down .5s cubic-bezier(.38,0,.64,1) both",
 
-        "fade-in": "fade-in 0.5s cubic-bezier(.38,0,.64,1) both",
+        "fade-in": "fade-in .67s cubic-bezier(.38,0,.64,1) both",
 
-        "fade-out": "fade-in 0.5s cubic-bezier(.38,0,.64,1) reverse both",
+        "fade-out": "fade-in .5s cubic-bezier(.38,0,.64,1) reverse both",
 
-        "fade-in-left": "fade-in-left 1.5s cubic-bezier(.38,0,.64,1) both",
+        "fade-in-left": "fade-in-left .7s cubic-bezier(.38,0,.64,1) both",
 
-        "fade-in-right": "fade-in-right 1.5s cubic-bezier(.38,0,.64,1) both",
+        "fade-in-right": "fade-in-right .7s cubic-bezier(.38,0,.64,1) both",
 
         "fade-out-left":
-          "fade-in-left 1.5s cubic-bezier(.38,0,.64,1) reverse both",
+          "fade-in-left .7s cubic-bezier(.38,0,.64,1) reverse both",
 
         "fade-out-right":
-          "fade-in-right 1.5s cubic-bezier(.38,0,.64,1) reverse both",
+          "fade-in-right .7s cubic-bezier(.38,0,.64,1) reverse both",
 
         "fade-in-out": "fade-in-out 5s cubic-bezier(.38,0,.64,1) infinite both",
 
@@ -46,14 +46,12 @@ module.exports = {
 
       keyframes: {
         "slide-up": {
-          "0%": { opacity: 0, transform: "translateY(100%)" },
-          "50%": { opacity: 0, transform: "translateY(50%)" },
+          "0%": { opacity: 0, transform: "translateY(25%)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
 
         "slide-down": {
-          "0%": { opacity: 0, transform: "translateY(-100%)" },
-          "50%": { opacity: 0, transform: "translateY(-50%)" },
+          "0%": { opacity: 0, transform: "translateY(-25%)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
 
@@ -67,27 +65,14 @@ module.exports = {
           "100%": { transform: "translateY(115%)" },
         },
 
-        "scale-up": {
-          "0%": {
-            position: "absolute",
-            "z-index": 20,
-            "border-style": "none",
-            transform: "scale(1) translateY(0)",
-          },
-          "100%": {
-            position: "absolute",
-            "z-index": 20,
-            "border-style": "none",
-            transform: "scale(3.33) translateY(-17.5%)",
-          },
-        },
-
         "scale-down": {
           "0%": {
-            transform: "scale(1) translateY(0)",
+            opacity: 1,
+            transform: "scale(100%)",
           },
           "100%": {
-            transform: "scale(0.33) translateY(35%)",
+            opacity: 0,
+            transform: "scale(50%)",
           },
         },
 
@@ -109,11 +94,13 @@ module.exports = {
 
         "fade-in-left": {
           "0%": { opacity: 0, transform: "translateX(-100%)" },
+          "67%": { opacity: 1 },
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
 
         "fade-in-right": {
           "0%": { opacity: 0, transform: "translateX(100%)" },
+          "67%": { opacity: 1 },
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
 
@@ -122,22 +109,27 @@ module.exports = {
             filter: "blur(0)",
             transform: "scale(1) translate(0, 0)",
           },
+          "95%": {
+            filter: "blur(6px)",
+          },
           "100%": {
             filter: "blur(6px)",
-            transform: "scale(.67) translate(-261%, 75%)",
+            transform: "scale(.65) translate(-17.6rem, 4.5rem)",
           },
         },
 
-        "far-right-testimonial": {
+        "right-testimonial": {
           "0%, 80%": {
             filter: "blur(4px)",
-            opacity: 0,
-            transform: "translateX(150%)",
+            opacity: 1,
+            transform: "translate(0, 0)",
+          },
+          "95%": {
+            filter: "blur(0px)",
           },
           "100%": {
-            filter: "blur(4px)",
-            opacity: 1,
-            transform: "translateX(-105%)",
+            filter: "blur(0)",
+            transform: "scale(1.516) translate(-9.6rem, -1.95rem)",
           },
         },
 
@@ -147,18 +139,19 @@ module.exports = {
             opacity: 1,
             transform: "translateX(0)",
           },
-          "100%": { opacity: 0, transform: "translateX(-250%)" },
+          "100%": { opacity: 0, transform: "translateX(-11.5rem)" },
         },
 
-        "right-testimonial": {
+        "far-right-testimonial": {
           "0%, 80%": {
+            filter: "blur(4px)",
+            opacity: 0,
+            transform: "translateX(13.5rem)",
+          },
+          "100%": {
             filter: "blur(4px)",
             opacity: 1,
             transform: "translateX(0)",
-          },
-          "100%": {
-            filter: "blur(0)",
-            transform: "scale(1.515) translate(-167%, -50%)",
           },
         },
       },

@@ -3,10 +3,15 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export const StateContext = createContext({} as stateContextType);
 
-type stateContextType = {
+export type stateContextType = {
   navigate: React.MutableRefObject<NavigateFunction>;
   theme: "light" | "dark";
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
+  scoreRef: React.MutableRefObject<number>;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+  highScore: number;
+  setAndSaveHighScore: (newScore: number) => void;
 };
 
 type StateProviderProps = {
@@ -24,6 +29,13 @@ export function StateProvider({ children }: StateProviderProps) {
       ? "dark"
       : "light"
       */
+  );
+
+  const scoreRef = useRef(0);
+  const [score, setScore] = useState(0);
+  const localScore = window.localStorage.getItem("highScore");
+  const [highScore, setHighScore] = useState(
+    localScore === null ? 0 : +localScore
   );
 
   useEffect(() => {
@@ -51,12 +63,26 @@ export function StateProvider({ children }: StateProviderProps) {
     [theme]
   );
 
+  const setAndSaveHighScore = useCallback((newScore: number) => {
+    setHighScore(newScore);
+    window.localStorage.setItem("highScore", "" + newScore);
+  }, []);
+
+  useEffect(() => {
+    console.log("Splat!", "\nScore:", score, "\nHigh Score:", highScore);
+  }, [score]);
+
   return (
     <StateContext.Provider
       value={{
         navigate,
         theme,
+        score,
+        setScore,
         setAndSaveTheme,
+        scoreRef,
+        highScore,
+        setAndSaveHighScore,
       }}
     >
       {children}

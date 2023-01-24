@@ -7,10 +7,6 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
   overflow: clip;
 
   font-synthesis: none;
@@ -19,11 +15,10 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-h1, h2, h3, h4, h5, h6 {
-  font-family: Tahoma, system-ui, sans-serif;
-}
 
 
 @layer utilities {
-
+  .title {
+    font-family: Tahoma, system-ui, sans-serif;
+  }
 }

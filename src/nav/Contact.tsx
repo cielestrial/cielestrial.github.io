@@ -1,8 +1,8 @@
 const Contact = () => {
   return (
-    <div className="h-full grid grid-cols-1 bg-gradient-to-b from-transparent via-transparent to-sky-400 ">
+    <div className="h-full grid  bg-gradient-to-b from-transparent via-transparent to-sky-400 ">
       <form
-        className="grid grid-cols-1 gap-y-4 py-4 place-self-center"
+        className="grid  gap-y-4 py-4 place-self-center"
         action="https://formspree.io/f/myyaynln"
         method="POST"
       >

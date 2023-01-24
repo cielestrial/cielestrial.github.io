@@ -89,7 +89,7 @@ const Portfolio = () => {
     <div
       id="portfolio"
       className={
-        "absolute flex flex-col h-screen justify-content-center content-start flex-nowrap " +
+        "fixed flex flex-col h-screen justify-content-center content-start flex-nowrap " +
         "text-black dark:text-white select-none "
       }
       onWheel={(event) => onScroll(event)}

@@ -1,7 +1,7 @@
 const LightModeSVG = () => {
   return (
     <svg
-      className="bg-no-repeat w-screen h-screen"
+      className="bg-no-repeat w-screen h-screen transform-gpu "
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -15,12 +15,12 @@ const LightModeSVG = () => {
         />
         <div
           id={"mouse-hitbox"}
-          className="absolute bg-red-300 w-24 h-24 rounded-full "
+          className="fixed bg-red-300 w-24 h-24 rounded-full "
         />
         <g id="raindrops" className="fill-sky-400 ">
           <g
             id="raindrop 7"
-            className="animate-[fall_1.5s_1s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_1s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -37,7 +37,7 @@ const LightModeSVG = () => {
           </g>
           <g
             id="raindrop 6"
-            className="animate-[fall_1.5s_3s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_3s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -55,7 +55,7 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 5"
-            className="animate-[fall_1.5s_2.25s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_2.25s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -73,7 +73,7 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 4"
-            className="animate-[fall_1.5s_1.66s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_1.66s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -90,7 +90,7 @@ const LightModeSVG = () => {
           </g>
           <g
             id="raindrop 3"
-            className="animate-[fall_1.5s_3.77s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_3.77s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -108,7 +108,7 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 2"
-            className="animate-[fall_1.5s_1.5s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_1.5s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -126,7 +126,7 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 1"
-            className="animate-[fall_1.5s_2.5s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_2.5s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -143,7 +143,7 @@ const LightModeSVG = () => {
           </g>
           <g
             id="raindrop 0"
-            className="animate-[fall_1.5s_0.6s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall_1.5s_0.6s_linear_infinite_backwards] blur "
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path

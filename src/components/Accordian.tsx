@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sections } from "../pages/Portfolio";
 
 type propsType = {
@@ -11,7 +11,16 @@ type propsType = {
 const Accordian = (props: propsType) => {
   const [effect, setEffect] = useState<
     "slide-up" | "slide-down" | "fade-in" | "saturate-in" | "none"
-  >("saturate-in");
+  >("none");
+
+  useEffect(() => {
+    if (props.label === "Home") setEffect("saturate-in");
+    else if (props.label === "About") setEffect("slide-down");
+    else if (props.label === "Projects" || props.label === "Testimonials")
+      setEffect("fade-in");
+    else if (props.label === "Contact") setEffect("slide-up");
+  }, [props.opened]);
+
   function displayLabel() {
     if (props.label === props.opened) return null;
     let gradient = "";
@@ -44,6 +53,7 @@ const Accordian = (props: propsType) => {
       default:
         gradient = "bg-slate-200/50 ";
     }
+
     return (
       <div
         className={
@@ -51,14 +61,7 @@ const Accordian = (props: propsType) => {
           "cursor-pointer " +
           gradient
         }
-        onClick={() => {
-          props.setOpened(props.label);
-          if (props.label === "Home") setEffect("saturate-in");
-          else if (props.label === "About") setEffect("slide-down");
-          else if (props.label === "Projects" || props.label === "Testimonials")
-            setEffect("fade-in");
-          else if (props.label === "Contact") setEffect("slide-up");
-        }}
+        onClick={() => props.setOpened(props.label)}
       >
         {props.label}
       </div>
@@ -70,7 +73,7 @@ const Accordian = (props: propsType) => {
       return (
         <div
           className={
-            "flex grow flex-col flex-nowrap " +
+            "flex grow flex-col flex-nowrap overflow-clip transform-gpu " +
             (effect === "slide-up"
               ? "animate-slide-up "
               : effect === "slide-down"

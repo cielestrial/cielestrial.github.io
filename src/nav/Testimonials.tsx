@@ -33,7 +33,7 @@ export const testimonies: testimonyType[] = [
 ];
 
 const Testimonials = () => {
-  const showTemplate = true;
+  const showTemplate = false;
   const [index, setIndex] = useState(0);
   const timer = useRef<NodeJS.Timer>();
   const waitTime = 5000;
@@ -57,35 +57,40 @@ const Testimonials = () => {
 
   if (!showTemplate)
     return (
-      <div className="h-full grid grid-cols-1">
-        <p className="place-self-center">Coming Soon&#33;</p>
+      <div className="h-full grid ">
+        <p
+          className={"title place-self-center text-current text-5xl font-bold "}
+        >
+          Coming Soon&#33;
+        </p>
       </div>
     );
   else
     return (
       <div
         className={
-          "h-full flex flex-row flex-nowrap gap-x-0.5 " +
-          "place-content-center place-items-center "
+          "h-full grid grid-flow-col-dense auto-cols-min justify-center "
         }
       >
-        <TestimonialSideView
-          side={"far-left"}
-          testimony={testimonies[circularize(index - 2)]}
-        />
-        <TestimonialSideView
-          side={"left"}
-          testimony={testimonies[circularize(index - 1)]}
-        />
-        <TestimonialView testimony={testimonies[circularize(index)]} />
-        <TestimonialSideView
-          side={"right"}
-          testimony={testimonies[circularize(index + 1)]}
-        />
-        <TestimonialSideView
-          side={"far-right"}
-          testimony={testimonies[circularize(index + 2)]}
-        />
+        <div className="grid order-1 h-full content-center justify-end ">
+          <TestimonialSideView
+            side={"left"}
+            testimony={testimonies[circularize(index - 1)]}
+          />
+        </div>
+        <div className="grid order-2 content-center h-full ">
+          <TestimonialView testimony={testimonies[circularize(index)]} />
+        </div>
+        <div className="grid order-3 h-full content-center justify-start ">
+          <TestimonialSideView
+            side={"right"}
+            testimony={testimonies[circularize(index + 1)]}
+          />
+          <TestimonialSideView
+            side={"far-right"}
+            testimony={testimonies[circularize(index + 2)]}
+          />
+        </div>
       </div>
     );
 };

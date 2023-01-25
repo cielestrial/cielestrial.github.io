@@ -4,7 +4,7 @@ import { sections } from "../pages/Portfolio";
 type propsType = {
   label: sections;
   opened: sections;
-  setOpened: React.Dispatch<React.SetStateAction<sections>>;
+  setOpened: (section: sections) => void;
   content: React.ReactNode;
 };
 

@@ -15,11 +15,7 @@
 ))
 
 - display scores (current score, +100, high score)
-- add favicon (crescent moon, cat, star)
 
-- Launch!
-
-- Scroll accordian with arrow keys(up & down)
 
 - add splash animation
 - sounds?

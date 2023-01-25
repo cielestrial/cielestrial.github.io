@@ -61,12 +61,6 @@ const Portfolio = () => {
         case "Contact":
           if (event.deltaY < 0) setOpened("Testimonials");
           break;
-
-        default:
-          if (event.deltaY < 0)
-            console.log("default scrolled up from", openedRef.current);
-          else if (event.deltaY > 0)
-            console.log("default scrolled down from", openedRef.current);
       }
       leading.current = false;
     }
@@ -77,43 +71,30 @@ const Portfolio = () => {
   };
 
   const onArrowKey = (event: KeyboardEvent) => {
-    if (leading.current) {
-      switch (openedRef.current) {
-        case "Home":
-          if (event.key === "ArrowDown") setOpened("About");
-          break;
+    switch (openedRef.current) {
+      case "Home":
+        if (event.key === "ArrowDown") setOpened("About");
+        break;
 
-        case "About":
-          if (event.key === "ArrowUp") setOpened("Home");
-          else if (event.key === "ArrowDown") setOpened("Projects");
-          break;
+      case "About":
+        if (event.key === "ArrowUp") setOpened("Home");
+        else if (event.key === "ArrowDown") setOpened("Projects");
+        break;
 
-        case "Projects":
-          if (event.key === "ArrowUp") setOpened("About");
-          else if (event.key === "ArrowDown") setOpened("Testimonials");
-          break;
+      case "Projects":
+        if (event.key === "ArrowUp") setOpened("About");
+        else if (event.key === "ArrowDown") setOpened("Testimonials");
+        break;
 
-        case "Testimonials":
-          if (event.key === "ArrowUp") setOpened("Projects");
-          else if (event.key === "ArrowDown") setOpened("Contact");
-          break;
+      case "Testimonials":
+        if (event.key === "ArrowUp") setOpened("Projects");
+        else if (event.key === "ArrowDown") setOpened("Contact");
+        break;
 
-        case "Contact":
-          if (event.key === "ArrowUp") setOpened("Testimonials");
-          break;
-
-        default:
-          if (event.key === "ArrowUp")
-            console.log("default scrolled up from", openedRef.current);
-          else if (event.key === "ArrowDown")
-            console.log("default scrolled down from", openedRef.current);
-          leading.current = false;
-      }
+      case "Contact":
+        if (event.key === "ArrowUp") setOpened("Testimonials");
+        break;
     }
-    clearTimeout(timeout.current);
-    timeout.current = setTimeout(() => {
-      leading.current = true;
-    }, waitTime);
   };
 
   return (

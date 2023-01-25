@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import TestimonialSideView from "../components/TestimonialSideView";
 import TestimonialView from "../components/TestimonialView";
-import { placeholderImage } from "./Projects";
+import placeholderImage from "../assets/general/placeholder_image.png";
 
 export type testimonyType = {
   name: string;

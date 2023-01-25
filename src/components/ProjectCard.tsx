@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { placeholderImage } from "../nav/Projects";
+import placeholderImage from "../assets/general/placeholder_image.png";
 import ProjectView from "./ProjectView";
 
 type statusType = "Completed" | "Work In Progress" | "Hiatus";
@@ -60,7 +60,7 @@ const ProjectCard = (props: propsType) => {
       <img
         id={props.title}
         src={props.images.length > 0 ? props.images[0] : placeholderImage}
-        alt="yspm"
+        alt={props.title + " preview image"}
         className={
           "grow origin-top transition-all " +
           "border-x-[2.5px] border-solid border-black "

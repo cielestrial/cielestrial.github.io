@@ -4,7 +4,7 @@ import {
   BsArrowRightCircle,
   BsXCircle,
 } from "react-icons/bs";
-import { placeholderImage } from "../nav/Projects";
+import placeholderImage from "../assets/general/placeholder_image.png";
 
 type propsType = {
   title: string;

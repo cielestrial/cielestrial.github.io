@@ -1,3 +1,5 @@
+import myPic from "../assets/general/profile2.jpg";
+
 const About = () => {
   return (
     <div className="h-full grid auto-cols-min place-self-center ">
@@ -14,11 +16,7 @@ const About = () => {
               "w-56 h-56 sm:w-64 sm:h-64 place-self-center place-content-center drop-shadow-xl "
             }
           >
-            <img
-              src="/src/assets/profile2.jpg"
-              alt="Me"
-              className="rotate-12 visible "
-            />
+            <img src={myPic} alt="Me" className="rotate-12 visible " />
           </div>
           <p
             className={

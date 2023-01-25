@@ -1,6 +1,28 @@
 import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 
+import yspm_light_1 from "../assets/yspm/yspm_landing_page_light_mode.jpg";
+import yspm_light_2 from "../assets/yspm/yspm_loading_page_light_mode.jpg";
+import yspm_light_3 from "../assets/yspm/yspm_playlists_page_light_mode.jpg";
+import yspm_light_4 from "../assets/yspm/yspm_genres_page_light_mode.jpg";
+
+import yspm_dark_1 from "../assets/yspm/yspm_landing_page_dark_mode.jpg";
+import yspm_dark_2 from "../assets/yspm/yspm_loading_page_dark_mode.jpg";
+import yspm_dark_3 from "../assets/yspm/yspm_playlists_page_dark_mode.jpg";
+import yspm_dark_4 from "../assets/yspm/yspm_genres_page_dark_mode.jpg";
+
+import dashboard_tab_1 from "../assets/ev-dashboard/ev-dashboard_tab1.jpg";
+
+import donkey_car_1 from "../assets/donkey-car/donkey-car_home.jpg";
+import donkey_car_2 from "../assets/donkey-car/donkey-car_test_cases.jpg";
+
+/*
+import wbtracker_1 from "../assets/wbtracker/wbtracker_home.jpg";
+import wbtracker_2 from "../assets/wbtracker/wbtracker_d_survey.jpg";
+import wbtracker_3 from "../assets/wbtracker/wbtracker_a_survey.jpg";
+import wbtracker_4 from "../assets/wbtracker/wbtracker_graphs.jpg";
+*/
+
 type propsType = {
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedProject: React.Dispatch<
@@ -36,16 +58,16 @@ const ProjectGrid = (props: propsType) => {
           title={"yspm"}
           images={[
             // light
-            "/src/assets/yspm/yspm_landing_page_light_mode.jpg",
-            "/src/assets/yspm/yspm_loading_page_light_mode.jpg",
-            "/src/assets/yspm/yspm_playlists_page_light_mode.jpg",
-            "/src/assets/yspm/yspm_genres_page_light_mode.jpg",
+            yspm_light_1,
+            yspm_light_2,
+            yspm_light_3,
+            yspm_light_4,
 
             // dark
-            "/src/assets/yspm/yspm_landing_page_dark_mode.jpg",
-            "/src/assets/yspm/yspm_loading_page_dark_mode.jpg",
-            "/src/assets/yspm/yspm_playlists_page_dark_mode.jpg",
-            "/src/assets/yspm/yspm_genres_page_dark_mode.jpg",
+            yspm_dark_1,
+            yspm_dark_2,
+            yspm_dark_3,
+            yspm_dark_4,
           ]}
           link={"https://yspm-ccnd.onrender.com"}
           status={"Work In Progress"}
@@ -62,7 +84,7 @@ const ProjectGrid = (props: propsType) => {
 
         <ProjectCard
           title={"ev-dashboard"}
-          images={["/src/assets/ev-dashboard/ev-dashboard_tab1.jpg"]}
+          images={[dashboard_tab_1]}
           link={"https://ev-dashboard.onrender.com"}
           status={"Hiatus"}
           description={
@@ -80,10 +102,7 @@ const ProjectGrid = (props: propsType) => {
 
         <ProjectCard
           title={"donkey-car"}
-          images={[
-            "/src/assets/donkey-car/donkey-car_home.jpg",
-            "/src/assets/donkey-car/donkey-car_test_cases.jpg",
-          ]}
+          images={[donkey_car_1, donkey_car_2]}
           link={"https://donkey-car.onrender.com"}
           status={"Hiatus"}
           description={
@@ -103,10 +122,10 @@ const ProjectGrid = (props: propsType) => {
           <ProjectCard
             title={"wbtracker"}
             images={[
-              "/src/assets/wbtracker/wbtracker_home.jpg",
-              "/src/assets/wbtracker/wbtracker_d_survey.jpg",
-              "/src/assets/wbtracker/wbtracker_a_survey.jpg",
-              "/src/assets/wbtracker/wbtracker_graphs.jpg",
+              wbtracker_1,
+              wbtracker_2,
+              wbtracker_3,
+              wbtracker_4,
             ]}
             link={"https://wbtracker.onrender.com"}
             status={"Completed"}

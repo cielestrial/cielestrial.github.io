@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { BsFillBucketFill } from "react-icons/bs";
-import DarkModeSVG from "../assets/DarkModeSVG";
-import LightModeSVG from "../assets/LightModeSVG";
+import DarkModeSVG from "../assets/svg/DarkModeSVG";
+import LightModeSVG from "../assets/svg/LightModeSVG";
 import { StateContext } from "../functions/ContextProvider";
 import { splatRaindrops } from "../functions/SplatRaindropsGame";
 

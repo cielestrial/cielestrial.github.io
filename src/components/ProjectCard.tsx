@@ -5,9 +5,9 @@ import ProjectView from "./ProjectView";
 type statusType = "Completed" | "Work In Progress" | "Hiatus";
 type propsType = {
   title: string;
+  description: string;
   images: string[];
   link: string | undefined;
-  description: string;
   status: statusType;
   order: number;
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,9 +30,9 @@ const ProjectCard = (props: propsType) => {
         props.setSelectedProject(
           <ProjectView
             title={props.title}
+            description={props.description}
             link={props.link}
             images={props.images}
-            description={props.description}
             setShowProjectView={props.setShowProjectView}
           />
         );

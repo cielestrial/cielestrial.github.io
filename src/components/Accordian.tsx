@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { StateContext } from "../functions/ContextProvider";
 import { sections } from "../pages/Portfolio";
 
 type propsType = {
@@ -9,6 +10,7 @@ type propsType = {
 };
 
 const Accordian = (props: propsType) => {
+  const context = useContext(StateContext);
   const [effect, setEffect] = useState<
     "slide-up" | "slide-down" | "fade-in" | "saturate-in" | "none"
   >("none");
@@ -86,10 +88,23 @@ const Accordian = (props: propsType) => {
           }
           onAnimationEnd={() => setEffect("none")}
         >
+          <div
+            className={
+              "fixed whitespace-nowrap ml-3 mt-0.5 " +
+              "title font-semibold text-sm " +
+              (!context.hideCursor ? "hidden " : "")
+            }
+          >
+            <p className="inline text-slate-600 ">Hi&#45;Score&#58;&#32;</p>
+            <p className="inline text-yellow-600 ">{context.highScore}</p>
+            <br />
+            <p className="inline text-slate-600 ">Score&#58;&#32;</p>
+            <p className="inline text-sky-500 ">{context.score}</p>
+          </div>
           {props.content}
         </div>
       );
-    return null;
+    else return null;
   }
 
   return (

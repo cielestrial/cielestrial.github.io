@@ -13,14 +13,11 @@ const LightModeSVG = () => {
           fill="url(#paint0_diamond_43_353)"
           fillOpacity="0.15"
         />
-        <div
-          id={"mouse-hitbox"}
-          className="fixed bg-red-300 w-24 h-24 rounded-full "
-        />
         <g id="raindrops" className="fill-sky-400 ">
           <g
             id="raindrop 7"
-            className="transform-gpu animate-[fall_1.5s_1s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_1s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -37,7 +34,8 @@ const LightModeSVG = () => {
           </g>
           <g
             id="raindrop 6"
-            className="transform-gpu animate-[fall_1.5s_3s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_3s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -55,7 +53,8 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 5"
-            className="transform-gpu animate-[fall_1.5s_2.25s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_2.25s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -73,7 +72,8 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 4"
-            className="transform-gpu animate-[fall_1.5s_1.66s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_1.66s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -90,7 +90,8 @@ const LightModeSVG = () => {
           </g>
           <g
             id="raindrop 3"
-            className="transform-gpu animate-[fall_1.5s_3.77s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_3.77s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -108,7 +109,8 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 2"
-            className="transform-gpu animate-[fall_1.5s_1.5s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_1.5s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -126,7 +128,8 @@ const LightModeSVG = () => {
 
           <g
             id="raindrop 1"
-            className="transform-gpu animate-[fall_1.5s_2.5s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_2.5s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path
@@ -143,7 +146,8 @@ const LightModeSVG = () => {
           </g>
           <g
             id="raindrop 0"
-            className="transform-gpu animate-[fall_1.5s_0.6s_linear_infinite_backwards] blur "
+            className="transform-gpu animate-[fall-down_1.5s_0.6s_linear_infinite_backwards] blur "
+            onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
             onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
           >
             <path

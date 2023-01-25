@@ -1,4 +1,5 @@
 
+Part 1:
 - display (about(
   column 1 & column 2
   about me: picture about me & p1
@@ -14,11 +15,9 @@
   also make projectview more responsive
 ))
 
-- display scores (current score, +100, high score)
 
-
+Part 2:
 - add splash animation
 - sounds?
-
 - dark color scheme
 - dark mode game  

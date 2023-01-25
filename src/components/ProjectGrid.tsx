@@ -1,15 +1,15 @@
 import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 
+import yspm_light_4 from "../assets/yspm/yspm_genres_page_light_mode.jpg";
 import yspm_light_1 from "../assets/yspm/yspm_landing_page_light_mode.jpg";
 import yspm_light_2 from "../assets/yspm/yspm_loading_page_light_mode.jpg";
 import yspm_light_3 from "../assets/yspm/yspm_playlists_page_light_mode.jpg";
-import yspm_light_4 from "../assets/yspm/yspm_genres_page_light_mode.jpg";
 
+import yspm_dark_4 from "../assets/yspm/yspm_genres_page_dark_mode.jpg";
 import yspm_dark_1 from "../assets/yspm/yspm_landing_page_dark_mode.jpg";
 import yspm_dark_2 from "../assets/yspm/yspm_loading_page_dark_mode.jpg";
 import yspm_dark_3 from "../assets/yspm/yspm_playlists_page_dark_mode.jpg";
-import yspm_dark_4 from "../assets/yspm/yspm_genres_page_dark_mode.jpg";
 
 import dashboard_tab_1 from "../assets/ev-dashboard/ev-dashboard_tab1.jpg";
 
@@ -55,7 +55,12 @@ const ProjectGrid = (props: propsType) => {
         }
       >
         <ProjectCard
-          title={"yspm"}
+          title={"YSPM"}
+          description={
+            "A Spotify playlist manager. The front-end was developed with " +
+            "React, Typescript. Styled with Mantine. The back-end " +
+            "was developed with Express."
+          }
           images={[
             // light
             yspm_light_1,
@@ -71,11 +76,6 @@ const ProjectGrid = (props: propsType) => {
           ]}
           link={"https://yspm-ccnd.onrender.com"}
           status={"Work In Progress"}
-          description={
-            "A Spotify playlist manager. The front-end was developed with " +
-            "React, Typescript. Styled with Mantine. The back-end " +
-            "was developed with Express."
-          }
           order={0}
           setGridEffect={setEffect}
           setShowProjectView={props.setShowProjectView}
@@ -83,10 +83,7 @@ const ProjectGrid = (props: propsType) => {
         />
 
         <ProjectCard
-          title={"ev-dashboard"}
-          images={[dashboard_tab_1]}
-          link={"https://ev-dashboard.onrender.com"}
-          status={"Hiatus"}
+          title={"EV-Dashboard"}
           description={
             "A collaborative project between University of Windsor " +
             "and Windsor-Essex Automobility Enterprises. I created a web-based " +
@@ -94,6 +91,9 @@ const ProjectGrid = (props: propsType) => {
             "built the web page. The front-end was designed with Figma and " +
             "developed with React, TypeScript, and SCSS."
           }
+          images={[dashboard_tab_1]}
+          link={"https://ev-dashboard.onrender.com"}
+          status={"Hiatus"}
           order={1}
           setGridEffect={setEffect}
           setShowProjectView={props.setShowProjectView}
@@ -101,10 +101,7 @@ const ProjectGrid = (props: propsType) => {
         />
 
         <ProjectCard
-          title={"donkey-car"}
-          images={[donkey_car_1, donkey_car_2]}
-          link={"https://donkey-car.onrender.com"}
-          status={"Hiatus"}
+          title={"Donkey-Car"}
           description={
             "A Chaos Engineering in a Cyber-Physical System project. Simply put: " +
             "our team introduces failures into the system of a miniature self-driving " +
@@ -112,6 +109,9 @@ const ProjectGrid = (props: propsType) => {
             "web page and the web server. The front-end was developed with " +
             "React and the back-end was developed with Spring Boot."
           }
+          images={[donkey_car_1, donkey_car_2]}
+          link={"https://donkey-car.onrender.com"}
+          status={"Hiatus"}
           order={2}
           setGridEffect={setEffect}
           setShowProjectView={props.setShowProjectView}
@@ -121,6 +121,11 @@ const ProjectGrid = (props: propsType) => {
         {/*
           <ProjectCard
             title={"wbtracker"}
+            description={
+              "A client-side web application that surveys, tracks, and " +
+              "graphs a users mental health over an extended period. " +
+              "It was developed with HTML, JS, bootstrap, and CSS."
+            }
             images={[
               wbtracker_1,
               wbtracker_2,
@@ -129,11 +134,6 @@ const ProjectGrid = (props: propsType) => {
             ]}
             link={"https://wbtracker.onrender.com"}
             status={"Completed"}
-            description={
-              "A client-side web application that surveys, tracks, and " +
-              "graphs a users mental health over an extended period. " +
-              "It was developed with HTML, JS, bootstrap, and CSS."
-            }
             order={3}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}

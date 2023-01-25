@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import { BsFillBucketFill } from "react-icons/bs";
 import DarkModeSVG from "../assets/svg/DarkModeSVG";
 import LightModeSVG from "../assets/svg/LightModeSVG";
@@ -11,7 +11,6 @@ type propsType = {
 
 const Background = (props: propsType) => {
   const context = useContext(StateContext);
-  const [hideCursor, setHideCursor] = useState(false);
   const timeout = useRef<NodeJS.Timeout>();
   const timer = useRef<NodeJS.Timer>();
   const canRun = useRef(true);
@@ -52,21 +51,45 @@ const Background = (props: propsType) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (context.hideCursor) {
+      mouse.current = document.getElementById("mouse-hitbox");
+      boundaries.current = mouse.current?.getBoundingClientRect();
+    } else {
+      mouse.current = null;
+      boundaries.current = undefined;
+      cleanupPoints();
+    }
+  }, [context.hideCursor]);
+
+  function cleanupPoints() {
+    let allPointDisplays = document.getElementsByClassName("points");
+    const totalStragglers = allPointDisplays.length;
+    for (let i = 0; i < totalStragglers; i++) {
+      allPointDisplays.item(0)?.remove();
+      allPointDisplays = document.getElementsByClassName("points");
+    }
+  }
+
   return (
     <div
+      id="the background"
       className={
         "w-screen h-screen grid bg-no-repeat bg-white transform-gpu " +
-        (hideCursor ? "cursor-none " : "cursor-default ")
-        //"bg-gradient-to-r from-sky-400 via-yellow-400 to-blue-600 "
+        //"bg-gradient-to-r from-sky-400 via-yellow-400 to-blue-600 " +
+        (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
-      onMouseDown={() => setHideCursor(true)}
-      onMouseUp={() => setHideCursor(false)}
+      onMouseDown={() => context.setHideCursor(true)}
+      onMouseUp={() => context.setHideCursor(false)}
     >
       <BsFillBucketFill
         id="mouse-hitbox"
         className={
-          "fixed fill-slate-400 w-fit h-fit text-7xl translate-x-[-50%] translate-y-[-50%] " +
-          (!hideCursor ? "hidden " : "")
+          "fixed w-fit h-fit text-7xl translate-x-[-50%] translate-y-[-50%] " +
+          (context.score < context.maxScore
+            ? "fill-slate-400 "
+            : "fill-amber-300 ") +
+          (!context.hideCursor ? "hidden " : "")
         }
       />
       {context.theme === "dark" ? <DarkModeSVG /> : <LightModeSVG />}

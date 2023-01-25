@@ -5,6 +5,8 @@ module.exports = {
   theme: {
     extend: {
       animation: {
+        "float-up": "float-up .55s cubic-bezier(.38,0,.64,1) both",
+
         "slide-up": "slide-up .5s ease-out both",
 
         "slide-down": "slide-down .5s ease-out both",
@@ -45,6 +47,11 @@ module.exports = {
       },
 
       keyframes: {
+        "float-up": {
+          "0%": { opacity: 1, transform: "translateY(0)" },
+          "100%": { opacity: 0, transform: "translateY(-150%)" },
+        },
+
         "slide-up": {
           "0%": { opacity: 0, transform: "translateY(25%)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
@@ -60,7 +67,7 @@ module.exports = {
           "100%": { filter: "saturate(100%)" },
         },
 
-        fall: {
+        "fall-down": {
           "0%": { transform: "translateY(-15%)" },
           "100%": { transform: "translateY(115%)" },
         },

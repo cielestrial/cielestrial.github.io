@@ -12,7 +12,7 @@ const About = () => {
         >
           <div
             className={
-              "grid  border-solid border-sky-300 border-[3px] rounded-full overflow-clip " +
+              "grid border-solid border-sky-300 border-[3px] rounded-full overflow-clip " +
               "w-56 h-56 sm:w-64 sm:h-64 place-self-center place-content-center drop-shadow-xl "
             }
           >

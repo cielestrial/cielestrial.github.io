@@ -31,7 +31,11 @@ const Bio = (props: propsType) => {
             "w-72 aspect-square place-self-center place-content-center drop-shadow-xl "
           }
         >
-          <img src={myPic} alt="Me" className="w-full rotate-12 visible " />
+          <img
+            src={myPic}
+            alt="Me"
+            className="w-full rotate-12 visible snap-center "
+          />
         </div>
         <p
           className={
@@ -41,6 +45,7 @@ const Bio = (props: propsType) => {
           My dad and I
         </p>
       </div>
+
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min " +
@@ -49,7 +54,7 @@ const Bio = (props: propsType) => {
       >
         <p className="text-lg underline underline-offset-4 pb-1.5 ">About Me</p>
         <div className="grid grid-flow-col-dense auto-cols-min gap-x-3 ">
-          <div className="w-52">
+          <div className="w-52 snap-center ">
             <p>
               A programmer interested in general software development, mobile
               application development, full-stack web development, and game
@@ -62,7 +67,7 @@ const Bio = (props: propsType) => {
             </p>
           </div>
 
-          <div className="w-52">
+          <div className="w-52 snap-center ">
             <p>
               big-data algorithms, vectors, set theory, propositional logic and
               first-order logic.

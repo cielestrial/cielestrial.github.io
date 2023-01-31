@@ -26,7 +26,7 @@ const Philosophy = (props: propsType) => {
       >
         <p className="text-lg underline underline-offset-4 pb-2 ">Philosophy</p>
         <div className="grid grid-flow-col-dense auto-cols-min gap-x-3 ">
-          <div className="w-52">
+          <div className="w-52 snap-center ">
             <p>
               I started out with game design, so my approach to UI has always
               been a minimalist one. Some questions I ask myself:
@@ -39,7 +39,7 @@ const Philosophy = (props: propsType) => {
             </blockquote>
           </div>
 
-          <div className="w-52">
+          <div className="w-52 snap-center ">
             <blockquote>
               <q>What information can be popped in to display when needed?</q>
             </blockquote>
@@ -51,6 +51,7 @@ const Philosophy = (props: propsType) => {
           </div>
         </div>
       </div>
+
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min " +
@@ -60,7 +61,7 @@ const Philosophy = (props: propsType) => {
         <p className="text-lg underline underline-offset-4 pb-2 ">
           Methodology
         </p>
-        <div className="w-56">
+        <div className="w-56 snap-center ">
           <p>
             I'm always looking to challenge myself and grow. My methodology is
             simple:

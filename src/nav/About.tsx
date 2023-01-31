@@ -9,6 +9,7 @@ const About = () => {
   const [opened, setOpenedState] = useState<aboutSections>(
     context.aboutOpenedRef.current
   );
+  const [snap, setSnap] = useState(false);
   const scrollPos = useRef<HTMLDivElement>(null);
 
   const btnClasses =
@@ -47,8 +48,9 @@ const About = () => {
               : "bg-slate-200 hover:bg-slate-300 ")
           }
           onClick={() => {
-            setOpened("Profile");
+            setSnap(false);
             scrollPos.current?.scrollTo(0, 0);
+            setOpened("Profile");
           }}
         >
           Profile
@@ -61,8 +63,9 @@ const About = () => {
               : "bg-slate-200 hover:bg-slate-300 ")
           }
           onClick={() => {
-            setOpened("Bio");
+            setSnap(false);
             scrollPos.current?.scrollTo(0, 0);
+            setOpened("Bio");
           }}
         >
           Bio
@@ -75,8 +78,9 @@ const About = () => {
               : "bg-slate-200 hover:bg-slate-300 ")
           }
           onClick={() => {
-            setOpened("Philosophy");
+            setSnap(false);
             scrollPos.current?.scrollTo(0, 0);
+            setOpened("Philosophy");
           }}
         >
           Philosophy
@@ -85,7 +89,11 @@ const About = () => {
 
       <div
         ref={scrollPos}
-        className={"w-full grid overflow-auto scroll-smooth pb-6 sm:pb-8 "}
+        className={
+          "w-full grid overflow-auto scroll-smooth pb-6 sm:pb-8 " +
+          (snap ? "snap-x snap-mandatory " : "")
+        }
+        onAnimationEnd={() => setSnap(true)}
         onWheel={(event) => {
           if (
             !(

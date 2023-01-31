@@ -20,14 +20,19 @@ const Profile = (props: propsType) => {
       }
       onAnimationEnd={() => setEffect("none")}
     >
-      <div className="grid grid-row-col-dense auto-rows-min justify-items-center gap-y-3 ">
+      <div
+        className={
+          "grid grid-row-col-dense auto-rows-min " +
+          "justify-items-center gap-y-3 "
+        }
+      >
         <div
           className={
             "border-solid border-black border-4 rounded-full overflow-clip " +
             "w-56 aspect-square drop-shadow-xl "
           }
         >
-          <img src={logo} alt="Me" className="w-full " />
+          <img src={logo} alt="Me" className="w-full snap-center " />
         </div>
         <div className="w-56 border-[2.5px] border-black p-3 ">
           <p className="text-lg underline underline-offset-4 pb-0.5 ">Name</p>
@@ -40,9 +45,10 @@ const Profile = (props: propsType) => {
           Codechef: cielestrial
         </div>
       </div>
+
       <div
         className={
-          "grid grid-flow-row-dense auto-rows-min " +
+          "grid grid-flow-row-dense auto-rows-min snap-center " +
           "border-[2.5px] border-black p-3 "
         }
       >

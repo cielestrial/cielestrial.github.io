@@ -121,12 +121,12 @@ const ProjectView = (props: propsType) => {
           )
             event.stopPropagation();
           /*
-          console.log(
+            console.log(
             Math.round(event.currentTarget.scrollTop),
             event.currentTarget.offsetHeight,
             event.currentTarget.scrollHeight
           );
-          */
+            */
         }}
       >
         <div
@@ -144,6 +144,13 @@ const ProjectView = (props: propsType) => {
               : "")
           }
           onAnimationEnd={() => {
+            if (effect === "scale-up")
+              scrollPos.current?.scrollTo(
+                (scrollPos.current?.scrollWidth -
+                  scrollPos.current?.offsetWidth) /
+                  2,
+                0
+              );
             if (effect === "scale-down") props.setShowProjectView(false);
             else setEffect("none");
           }}
@@ -194,7 +201,7 @@ const ProjectView = (props: propsType) => {
         <div
           id={"next"}
           className={
-            "w-max fixed transform-gpu place-content-center " +
+            "w-max fixed transform-gpu " +
             (props.images.length > 0 && index + 1 < actualLength
               ? ""
               : "hidden ") +
@@ -227,7 +234,12 @@ const ProjectView = (props: propsType) => {
               setRightArrowEffect("fade-in");
             }
             if (effect === "none" && index - 1 > -1) setEffect("left");
-            scrollPos.current?.scrollTo(0, 0);
+            scrollPos.current?.scrollTo(
+              (scrollPos.current?.scrollWidth -
+                scrollPos.current?.offsetWidth) /
+                2,
+              0
+            );
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-5xl origin-left " +
@@ -258,7 +270,13 @@ const ProjectView = (props: propsType) => {
             }
             if (effect === "none" && index + 1 < actualLength)
               setEffect("right");
-            scrollPos.current?.scrollTo(0, 0);
+            scrollPos.current?.scrollTo(
+              (scrollPos.current?.scrollWidth -
+                scrollPos.current?.offsetWidth) /
+                2,
+              0
+            );
+            // scrollPos.current?.scrollTo(0, 0);
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-5xl origin-right " +

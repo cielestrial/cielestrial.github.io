@@ -1,9 +1,6 @@
 
-Part 1:
-- about animations
-
 Part 2:
-- Fuzzy/scaling text in projectgrid
+- about animations
 - Mobile responsiveness (small & large screen scaling)
 - Redo svg as independent divs
 

@@ -12,16 +12,16 @@ type propsType = {
 const Accordian = (props: propsType) => {
   const context = useContext(StateContext);
   const [effect, setEffect] = useState<
-    "slide-up" | "slide-down" | "fade-in" | "saturate-in" | "none"
+    "slide-up" | "fade-in" | "saturate-in" | "none"
   >("none");
 
   useEffect(() => {
     context.setScrollable(false);
     if (props.label === "Home") setEffect("saturate-in");
-    else if (props.label === "About") setEffect("slide-down");
+    else if (props.label === "About" || props.label === "Contact")
+      setEffect("slide-up");
     else if (props.label === "Projects" || props.label === "Testimonials")
       setEffect("fade-in");
-    else if (props.label === "Contact") setEffect("slide-up");
   }, [props.opened]);
 
   function displayLabel() {
@@ -79,8 +79,6 @@ const Accordian = (props: propsType) => {
             "flex grow flex-col flex-nowrap transform-gpu scroll-smooth " +
             (effect === "slide-up"
               ? "animate-slide-up "
-              : effect === "slide-down"
-              ? "animate-slide-down "
               : effect === "fade-in"
               ? "animate-fade-in "
               : effect === "saturate-in"

@@ -1,4 +1,4 @@
-import { testimonyType } from "../nav/Testimonials";
+import { testimonyType } from "../../nav/Testimonials";
 
 type propsType = {
   testimony: testimonyType;

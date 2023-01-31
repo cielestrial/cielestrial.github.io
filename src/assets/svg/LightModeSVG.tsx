@@ -1,18 +1,11 @@
 const LightModeSVG = () => {
   return (
     <svg
-      className="bg-no-repeat w-screen h-screen transform-gpu "
+      className="transform-gpu h-screen w-screen"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="canvas" clipPath="url(#clip0_43_353)">
-        <rect
-          id="Fog"
-          width="100%"
-          height="100%"
-          fill="url(#paint0_diamond_43_353)"
-          fillOpacity="0.15"
-        />
         <g id="raindrops" className="fill-sky-400 ">
           <g
             id="raindrop 7"

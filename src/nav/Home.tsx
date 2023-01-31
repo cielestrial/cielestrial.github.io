@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { StateContext } from "../functions/ContextProvider";
+import { StateContext } from "../utils/ContextProvider";
 import { BsCloudSun, BsFillMoonStarsFill } from "react-icons/bs"; //fill moon or stars or cloud or
 
 const Home = () => {
@@ -14,7 +14,12 @@ const Home = () => {
   }, [checked]);
 
   return (
-    <div className="flex flex-col h-full bg-gradient-to-bl from-yellow-200 to-slate-200 ">
+    <div
+      className={
+        "flex flex-col h-full min-w-full w-max " +
+        "bg-gradient-to-bl from-amber-200 to-slate-200 "
+      }
+    >
       <div className="self-end mx-4 invisible fixed ">
         <div
           className={
@@ -42,18 +47,18 @@ const Home = () => {
       <div className="h-full grid ">
         <blockquote
           className={
-            "w-96 py-2 place-self-center text-start text-2xl font-bold "
+            "w-screen sm:w-[28rem] p-8 place-self-center text-start text-2xl font-bold "
           }
         >
           <p className="title -indent-0.5 text-slate-600 tracking-widest ">
-            The most damaging phrase in the language is&#58;&#32;
+            The most damaging phrase in the language is:&#32;
             <q className="italic text-red-600 font-semibold ">
-              <span>It&#39;s always been done that way&#46;</span>
+              <span>It's always been done that way.</span>
             </q>
           </p>
 
           <p className="text-end italic pr-4 text-slate-800 tracking-wider ">
-            &#45; Grace Hopper
+            - Grace Hopper
           </p>
         </blockquote>
       </div>

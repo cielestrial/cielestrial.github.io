@@ -1,5 +1,6 @@
-import { useState } from "react";
-import placeholderImage from "../assets/general/placeholder_image.png";
+import { useContext, useState } from "react";
+import placeholderImage from "../../assets/general/placeholder_image.png";
+import { StateContext } from "../../utils/ContextProvider";
 import ProjectView from "./ProjectView";
 
 type statusType = "Completed" | "Work In Progress" | "Hiatus";
@@ -18,13 +19,15 @@ type propsType = {
 };
 
 const ProjectCard = (props: propsType) => {
+  const context = useContext(StateContext);
+  const [effect, setEffect] = useState<"slide-in" | "none">("slide-in");
   const label =
     "text-center font-semibold bg-slate-200 border-[2.5px] border-solid border-black " +
     "whitespace-nowrap ";
-  const [effect, setEffect] = useState<"slide-in" | "none">("slide-in");
 
   return (
     <div
+      id={"project card " + props.order}
       onClick={() => {
         props.setGridEffect("fade-out");
         props.setSelectedProject(
@@ -54,17 +57,16 @@ const ProjectCard = (props: propsType) => {
             : "animate-[fade-in-right_0.7s_1.05s_cubic-bezier(.38,0,.64,1)_both] "
           : "")
       }
-      onAnimationEnd={() => setEffect("none")}
+      onAnimationEnd={() => {
+        setEffect("none");
+      }}
     >
       <p className={label}>{props.title}</p>
       <img
         id={props.title}
         src={props.images.length > 0 ? props.images[0] : placeholderImage}
         alt={props.title + " preview image"}
-        className={
-          "grow origin-top transition-all " +
-          "border-x-[2.5px] border-solid border-black "
-        }
+        className={"origin-top border-x-[2.5px] border-solid border-black "}
       />
       <p className={label}>{props.status}</p>
     </div>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import TestimonialSideView from "../components/TestimonialSideView";
-import TestimonialView from "../components/TestimonialView";
+import TestimonialSideView from "../components/testimonials/TestimonialSideView";
+import TestimonialView from "../components/testimonials/TestimonialView";
 import placeholderImage from "../assets/general/placeholder_image.png";
 
 export type testimonyType = {
@@ -57,11 +57,13 @@ const Testimonials = () => {
 
   if (!showTemplate)
     return (
-      <div className="h-full grid ">
+      <div className="h-full min-w-full w-max grid ">
         <p
-          className={"title place-self-center text-current text-5xl font-bold "}
+          className={
+            "title place-self-center text-current text-4xl sm:text-5xl font-bold "
+          }
         >
-          Coming Soon&#33;
+          Coming Soon!
         </p>
       </div>
     );

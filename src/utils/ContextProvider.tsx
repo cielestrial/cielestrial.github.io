@@ -9,13 +9,18 @@ export type stateContextType = {
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
   hideCursor: boolean;
   setHideCursor: React.Dispatch<React.SetStateAction<boolean>>;
+  scrollable: boolean;
+  setScrollable: React.Dispatch<React.SetStateAction<boolean>>;
   scoreRef: React.MutableRefObject<number>;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
   highScore: number;
   maxScore: 99999;
   setAndSaveHighScore: (newScore: number) => void;
+  aboutOpenedRef: React.MutableRefObject<aboutSections>;
 };
+
+export type aboutSections = "Profile" | "Bio" | "Philosophy";
 
 type StateProviderProps = {
   children: React.ReactNode;
@@ -36,6 +41,7 @@ export function StateProvider({ children }: StateProviderProps) {
       */
   );
   const [hideCursor, setHideCursor] = useState(false);
+  const [scrollable, setScrollable] = useState(false);
   const maxScore = 99999;
   const scoreRef = useRef(0);
   const [score, setScore] = useState(0);
@@ -43,6 +49,7 @@ export function StateProvider({ children }: StateProviderProps) {
   const [highScore, setHighScore] = useState(
     localScore === null ? 0 : +localScore
   );
+  const aboutOpenedRef = useRef<aboutSections>("Profile");
 
   const setAndSaveHighScore = useCallback((newScore: number) => {
     if (newScore > maxScore) newScore = maxScore;
@@ -92,6 +99,8 @@ export function StateProvider({ children }: StateProviderProps) {
         theme,
         hideCursor,
         setHideCursor,
+        scrollable,
+        setScrollable,
         score,
         setScore,
         setAndSaveTheme,
@@ -99,6 +108,7 @@ export function StateProvider({ children }: StateProviderProps) {
         highScore,
         maxScore,
         setAndSaveHighScore,
+        aboutOpenedRef,
       }}
     >
       {children}

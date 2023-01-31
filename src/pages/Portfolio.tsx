@@ -22,9 +22,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     document.addEventListener("keydown", onArrowKey);
-    document.addEventListener("wheel", onScroll);
     return () => {
-      document.removeEventListener("wheel", onScroll);
       document.removeEventListener("keydown", onArrowKey);
       clearTimeout(timeout.current);
       leading.current = true;
@@ -36,7 +34,7 @@ const Portfolio = () => {
     setOpenedState(section);
   }, []);
 
-  const onScroll = (event: WheelEvent) => {
+  const onScroll = (event: React.WheelEvent) => {
     if (leading.current) {
       switch (openedRef.current) {
         case "Home":
@@ -101,9 +99,10 @@ const Portfolio = () => {
     <div
       id="portfolio"
       className={
-        "fixed flex flex-col h-screen justify-content-center content-start flex-nowrap " +
-        "text-black dark:text-white select-none "
+        "fixed flex flex-col justify-content-center content-start flex-nowrap " +
+        "text-black dark:text-white select-none w-screen h-screen "
       }
+      onWheel={(event) => onScroll(event)}
     >
       <Accordian
         label={"Home"}

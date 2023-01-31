@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 import {
   BsArrowLeftCircle,
   BsArrowRightCircle,
   BsXCircle,
 } from "react-icons/bs";
-import placeholderImage from "../assets/general/placeholder_image.png";
+import placeholderImage from "../../assets/general/placeholder_image.png";
+import { StateContext } from "../../utils/ContextProvider";
 
 type propsType = {
   title: string;
@@ -15,6 +16,7 @@ type propsType = {
 };
 
 const ProjectView = (props: propsType) => {
+  const context = useContext(StateContext);
   const [index, setIndex] = useState(0);
   const actualLength = props.images.length + 1;
   const [effect, setEffect] = useState<
@@ -34,6 +36,7 @@ const ProjectView = (props: propsType) => {
   const [hideRightArrow, setHideRightArrow] = useState(false);
   const size = "aspect-video h-60 sm:h-64 md:h-72 ";
   const border = "border-[2.5px] border-slate-600 ";
+  const scrollPos = useRef<HTMLDivElement>(null);
 
   function displayDescription() {
     return (
@@ -54,8 +57,8 @@ const ProjectView = (props: propsType) => {
   return (
     <div
       className={
-        "h-full w-max grid grid-flow-row-dense auto-rows-min " +
-        "place-self-center place-content-center py-2 "
+        "h-full w-full grid grid-flow-row-dense auto-rows-min " +
+        "place-content-center justify-self-center py-2 overflow-clip "
       }
     >
       <div className="w-full grid place-self-center ">
@@ -88,7 +91,7 @@ const ProjectView = (props: propsType) => {
         target="_blank"
         rel="noreferrer noopener"
         className={
-          "text-center font-semibold underline underline-offset-2 mb-1 " +
+          "text-center font-medium underline underline-offset-2 mb-1 " +
           "w-fit h-fit place-self-center origin-center drop-shadow-md " +
           "transition-all duration-75 custom-ease-out transform-gpu " +
           "hover:text-sky-500 hover:scale-105 active:scale-100 active:text-sky-600 " +
@@ -101,7 +104,31 @@ const ProjectView = (props: propsType) => {
       >
         {props.link}
       </a>
-      <div className="grid place-content-center ">
+
+      <div
+        ref={scrollPos}
+        className="grid w-full pb-4 pt-2 grid overflow-auto scroll-smooth "
+        onWheel={(event) => {
+          if (
+            !(
+              (Math.round(event.currentTarget.scrollTop) === 0 &&
+                event.deltaY < 0) ||
+              (Math.round(event.currentTarget.scrollTop + 1) +
+                event.currentTarget.offsetHeight >=
+                event.currentTarget.scrollHeight &&
+                event.deltaY > 0)
+            )
+          )
+            event.stopPropagation();
+          /*
+          console.log(
+            Math.round(event.currentTarget.scrollTop),
+            event.currentTarget.offsetHeight,
+            event.currentTarget.scrollHeight
+          );
+          */
+        }}
+      >
         <div
           id={"current"}
           className={
@@ -200,11 +227,12 @@ const ProjectView = (props: propsType) => {
               setRightArrowEffect("fade-in");
             }
             if (effect === "none" && index - 1 > -1) setEffect("left");
+            scrollPos.current?.scrollTo(0, 0);
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-5xl origin-left " +
             "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
-            "hover:bg-yellow-200/75 active:scale-95 active:bg-yellow-300/75 " +
+            "hover:bg-amber-200/75 active:scale-95 active:bg-amber-300/75 " +
             "cursor-pointer transform-gpu " +
             (hideLeftArrow
               ? "invisible "
@@ -230,6 +258,7 @@ const ProjectView = (props: propsType) => {
             }
             if (effect === "none" && index + 1 < actualLength)
               setEffect("right");
+            scrollPos.current?.scrollTo(0, 0);
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-5xl origin-right " +

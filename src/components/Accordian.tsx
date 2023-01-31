@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { StateContext } from "../functions/ContextProvider";
+import { StateContext } from "../utils/ContextProvider";
 import { sections } from "../pages/Portfolio";
 
 type propsType = {
@@ -16,6 +16,7 @@ const Accordian = (props: propsType) => {
   >("none");
 
   useEffect(() => {
+    context.setScrollable(false);
     if (props.label === "Home") setEffect("saturate-in");
     else if (props.label === "About") setEffect("slide-down");
     else if (props.label === "Projects" || props.label === "Testimonials")
@@ -28,11 +29,11 @@ const Accordian = (props: propsType) => {
     let gradient = "";
     switch (props.label) {
       case "Home":
-        gradient = "bg-gradient-to-b from-yellow-100 to-slate-300";
+        gradient = "bg-gradient-to-b from-amber-100 to-slate-300";
         break;
       case "About":
         props.opened === "Home"
-          ? (gradient = "bg-gradient-to-b from-yellow-100 to-slate-200 ")
+          ? (gradient = "bg-gradient-to-b from-amber-100 to-slate-200 ")
           : (gradient = "bg-gradient-to-b from-slate-200 to-slate-300 ");
         break;
       case "Projects":
@@ -75,7 +76,7 @@ const Accordian = (props: propsType) => {
       return (
         <div
           className={
-            "flex grow flex-col flex-nowrap overflow-clip transform-gpu " +
+            "flex grow flex-col flex-nowrap transform-gpu scroll-smooth " +
             (effect === "slide-up"
               ? "animate-slide-up "
               : effect === "slide-down"
@@ -84,21 +85,26 @@ const Accordian = (props: propsType) => {
               ? "animate-fade-in "
               : effect === "saturate-in"
               ? "animate-saturate-in "
-              : "")
+              : "") +
+            (context.scrollable ? "overflow-auto " : "overflow-clip ")
           }
-          onAnimationEnd={() => setEffect("none")}
+          onAnimationEnd={() => {
+            setEffect("none");
+            if (props.opened !== "About" && props.opened !== "Projects")
+              context.setScrollable(true);
+          }}
         >
           <div
             className={
-              "fixed whitespace-nowrap ml-3 mt-0.5 " +
+              "fixed whitespace-nowrap m-3 " +
               "title font-semibold text-sm " +
               (!context.hideCursor ? "hidden " : "")
             }
           >
-            <p className="inline text-slate-600 ">Hi&#45;Score&#58;&#32;</p>
+            <p className="inline text-slate-600 ">Hi-Score:&#32;</p>
             <p className="inline text-yellow-600 ">{context.highScore}</p>
             <br />
-            <p className="inline text-slate-600 ">Score&#58;&#32;</p>
+            <p className="inline text-slate-600 ">Score:&#32;</p>
             <p className="inline text-sky-500 ">{context.score}</p>
           </div>
           {props.content}

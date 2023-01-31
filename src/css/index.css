@@ -8,7 +8,7 @@
   line-height: 24px;
   font-weight: 400;
   overflow: clip;
-
+ 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,5 +20,16 @@
 @layer utilities {
   .title {
     font-family: Tahoma, system-ui, sans-serif;
+  }
+  .bg-image {
+    background-size: cover;
+    background-image: url("../assets/general/so-white.png");
+  }
+  .bg-fog{
+    background-size: cover;
+    background: radial-gradient(73.98% 73.98% at 50% 50%,
+     rgba(255, 255, 255, 0.15) 0%,
+      rgba(0, 0, 0, 0.15) 100%);
+
   }
 }

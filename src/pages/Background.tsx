@@ -2,8 +2,8 @@ import { useCallback, useContext, useEffect, useRef } from "react";
 import { BsFillBucketFill } from "react-icons/bs";
 import DarkModeSVG from "../assets/svg/DarkModeSVG";
 import LightModeSVG from "../assets/svg/LightModeSVG";
-import { StateContext } from "../functions/ContextProvider";
-import { splatRaindrops } from "../functions/SplatRaindropsGame";
+import { StateContext } from "../utils/ContextProvider";
+import { splatRaindrops } from "../utils/SplatRaindropsGame";
 
 type propsType = {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const Background = (props: propsType) => {
   const timeout = useRef<NodeJS.Timeout>();
   const timer = useRef<NodeJS.Timer>();
   const canRun = useRef(true);
-  const targetFPS = 30;
+  const targetFPS = 60;
   const timestep = 1000 / targetFPS;
 
   const mouse = useRef(document.getElementById("mouse-hitbox"));
@@ -75,13 +75,13 @@ const Background = (props: propsType) => {
     <div
       id="the background"
       className={
-        "w-screen h-screen grid bg-no-repeat bg-white transform-gpu " +
-        //"bg-gradient-to-r from-sky-400 via-yellow-400 to-blue-600 " +
+        "w-screen h-screen grid bg-image transform-gpu overflow-clip " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
       onMouseDown={() => context.setHideCursor(true)}
       onMouseUp={() => context.setHideCursor(false)}
     >
+      <div className="fixed bg-fog h-screen w-screen " />
       <BsFillBucketFill
         id="mouse-hitbox"
         className={

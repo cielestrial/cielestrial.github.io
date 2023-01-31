@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProjectGrid from "../components/ProjectGrid";
+import ProjectGrid from "../components/projects/ProjectGrid";
 
 const Projects = () => {
   const [showProjectView, setShowProjectView] = useState(false);

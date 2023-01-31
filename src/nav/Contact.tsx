@@ -1,6 +1,11 @@
 const Contact = () => {
   return (
-    <div className="h-full grid bg-gradient-to-b from-transparent via-transparent to-sky-400 ">
+    <div
+      className={
+        "h-full min-w-full w-max grid " +
+        "bg-gradient-to-b from-transparent via-transparent to-sky-400 "
+      }
+    >
       <form
         className="grid gap-y-4 py-4 place-self-center"
         action="https://formspree.io/f/myyaynln"

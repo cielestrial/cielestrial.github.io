@@ -1,22 +1,13 @@
 
 Part 1:
-- display (about(
-  column 1 & column 2
-  about me: picture about me & p1
-  professional me: logo & ( names and links and goals)
-  philosphy: design philosophy & methodology
-  skills: 2 columns
-  soft skills?: Perseverance Goal-Setting
-              Problem-Solving Leadership Teamwork 
-
-
-), add description/details to projectview (
-  make preview 0 the description?
-  also make projectview more responsive
-))
-
+- about animations
 
 Part 2:
+- Fuzzy/scaling text in projectgrid
+- Mobile responsiveness (small & large screen scaling)
+- Redo svg as independent divs
+
+Part3:
 - add splash animation
 - sounds?
 - dark color scheme

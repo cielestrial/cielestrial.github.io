@@ -1,7 +1,6 @@
 
 Part 2:
 - about animations
-- Mobile responsiveness (small & large screen scaling)
 - Redo svg as independent divs
 
 Part3:

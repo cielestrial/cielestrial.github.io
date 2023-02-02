@@ -1,14 +1,8 @@
 import { useState } from "react";
-import { aboutSections } from "../../utils/ContextProvider";
 
 const logo = "/assets/logo-coloured/android-chrome-512x512.png";
 
-type propsType = {
-  direction: "left" | "right" | "none";
-  opened: aboutSections;
-};
-
-const Profile = (props: propsType) => {
+const Profile = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
 
   return (

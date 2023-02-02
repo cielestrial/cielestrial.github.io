@@ -1,13 +1,7 @@
 import { useState } from "react";
 import myPic from "../../assets/general/profile2.jpg";
-import { aboutSections } from "../../utils/ContextProvider";
 
-type propsType = {
-  direction: "left" | "right" | "none";
-  opened: aboutSections;
-};
-
-const Bio = (props: propsType) => {
+const Bio = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
 
   return (

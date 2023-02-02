@@ -1,12 +1,6 @@
 import { useState } from "react";
-import { aboutSections } from "../../utils/ContextProvider";
 
-type propsType = {
-  direction: "left" | "right" | "none";
-  opened: aboutSections;
-};
-
-const Philosophy = (props: propsType) => {
+const Philosophy = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
 
   return (

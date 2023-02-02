@@ -24,11 +24,11 @@ const About = () => {
   function displaySection() {
     switch (context.aboutOpenedRef.current) {
       case "Profile":
-        return <Profile direction={"none"} opened={"Profile"} />;
+        return <Profile />;
       case "Bio":
-        return <Bio direction={"none"} opened={"Bio"} />;
+        return <Bio />;
       case "Philosophy":
-        return <Philosophy direction={"none"} opened={"Philosophy"} />;
+        return <Philosophy />;
     }
   }
 

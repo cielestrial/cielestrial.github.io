@@ -85,7 +85,7 @@ const Background = (props: propsType) => {
       <BsFillBucketFill
         id="mouse-hitbox"
         className={
-          "fixed w-fit h-fit text-7xl translate-x-[-50%] translate-y-[-50%] " +
+          "fixed w-fit h-fit text-[10.125vmin] translate-x-[-50%] translate-y-[-50%] " +
           (context.score < context.maxScore
             ? "fill-slate-400 "
             : "fill-amber-300 ") +

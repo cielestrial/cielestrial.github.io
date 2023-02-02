@@ -1,9 +1,8 @@
 
 Part 2:
-- about animations
 - Redo svg as independent divs
 
-Part3:
+Part 3:
 - add splash animation
 - sounds?
 - dark color scheme

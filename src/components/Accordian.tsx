@@ -95,8 +95,8 @@ const Accordian = (props: propsType) => {
         >
           <div
             className={
-              "fixed whitespace-nowrap m-3 " +
-              "title font-semibold text-sm " +
+              "fixed whitespace-nowrap m-[3vmin] " +
+              "title font-semibold text-[3.5vmin] sm:text-[2.625vmin] " +
               (!context.hideCursor ? "hidden " : "")
             }
           >

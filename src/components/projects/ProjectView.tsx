@@ -34,22 +34,27 @@ const ProjectView = (props: propsType) => {
 
   const [hideLeftArrow, setHideLeftArrow] = useState(true);
   const [hideRightArrow, setHideRightArrow] = useState(false);
-  const size = "aspect-video h-60 sm:h-64 md:h-72 ";
-  const border = "border-[2.5px] border-slate-600 ";
+  const size = "aspect-video h-[48vmin] ";
+  const border = "border-[0.625vmin] border-slate-600 ";
   const scrollPos = useRef<HTMLDivElement>(null);
 
   function displayDescription() {
     return (
-      <div className={"grid gap-y-4 px-8 content-center " + size + border}>
+      <div
+        className={
+          "grid gap-y-[2vmin] px-[2vmin] content-center " + size + border
+        }
+      >
         <p
           className={
-            "title underline underline-offset-4 " +
-            "font-semibold text-lg text-center "
+            "text-[4.5vmin] sm:text-[3.375vmin] " +
+            "underline underline-offset-[0.25vmin] text-center " +
+            "decoration-from-font font-bold "
           }
         >
           {props.title}
         </p>
-        <p className="indent-8">{props.description}</p>
+        <p className="indent-[4vmin]">{props.description}</p>
       </div>
     );
   }
@@ -58,7 +63,7 @@ const ProjectView = (props: propsType) => {
     <div
       className={
         "h-full w-full grid grid-flow-row-dense auto-rows-min " +
-        "place-content-center justify-self-center py-2 overflow-clip "
+        "place-content-center justify-self-center overflow-clip "
       }
     >
       <div className="w-full grid place-self-center ">
@@ -70,8 +75,8 @@ const ProjectView = (props: propsType) => {
             setRightArrowEffect("fade-out");
           }}
           className={
-            "w-fit h-fit rounded-full bg-transparent text-3xl origin-bottom-left " +
-            "align-self-center justify-self-end mx-4 " +
+            "w-fit h-fit rounded-full bg-transparent text-[5vh] origin-bottom-left " +
+            "align-self-center justify-self-end -mb-[5vmin] " +
             "z-40 drop-shadow-lg transition-all duration-75 custom-ease-out " +
             "hover:bg-red-400/75 active:scale-95 active:bg-red-500/75 " +
             "cursor-pointer transform-gpu " +
@@ -91,10 +96,11 @@ const ProjectView = (props: propsType) => {
         target="_blank"
         rel="noreferrer noopener"
         className={
-          "text-center font-medium underline underline-offset-2 mb-1 " +
+          "text-center title underline underline-offset-[0.5vmin] " +
           "w-fit h-fit place-self-center origin-center drop-shadow-md " +
           "transition-all duration-75 custom-ease-out transform-gpu " +
-          "hover:text-sky-500 hover:scale-105 active:scale-100 active:text-sky-600 " +
+          "hover:text-sky-500 hover:scale-105 active:scale-100 " +
+          "active:text-sky-600 decoration-from-font " +
           (sideEffect === "fade-in"
             ? "animate-fade-in "
             : sideEffect === "fade-out"
@@ -107,7 +113,7 @@ const ProjectView = (props: propsType) => {
 
       <div
         ref={scrollPos}
-        className="grid w-full pb-4 pt-2 grid overflow-auto scroll-smooth "
+        className="grid w-full pb-[2vh] pt-[1.5vh] grid overflow-auto scroll-smooth "
         onWheel={(event) => {
           if (
             !(
@@ -224,7 +230,7 @@ const ProjectView = (props: propsType) => {
         </div>
       </div>
 
-      <div className="grid grid-flow-col-dense auto-cols-min justify-around mt-4 ">
+      <div className="grid grid-flow-col-dense auto-cols-min justify-around ">
         <BsArrowLeftCircle
           onClick={() => {
             if (!hideLeftArrow && index - 1 === 0)
@@ -242,7 +248,7 @@ const ProjectView = (props: propsType) => {
             );
           }}
           className={
-            "w-fit h-fit bg-transparent rounded-full text-5xl origin-left " +
+            "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
             "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
             "hover:bg-amber-200/75 active:scale-95 active:bg-amber-300/75 " +
             "cursor-pointer transform-gpu " +
@@ -279,7 +285,7 @@ const ProjectView = (props: propsType) => {
             // scrollPos.current?.scrollTo(0, 0);
           }}
           className={
-            "w-fit h-fit bg-transparent rounded-full text-5xl origin-right " +
+            "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-right " +
             "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
             "hover:bg-sky-300/75 active:scale-95 active:bg-sky-400/75 " +
             "cursor-pointer transform-gpu " +

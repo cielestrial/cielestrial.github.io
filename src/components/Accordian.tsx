@@ -60,8 +60,9 @@ const Accordian = (props: propsType) => {
     return (
       <div
         className={
-          "w-screen font-bold text-center py-3.5 bg-no-repeat drop-shadow-lg " +
-          "cursor-pointer " +
+          "w-screen font-bold drop-shadow-lg " +
+          "cursor-pointer grid place-content-center " +
+          "py-[2vmin] grow " +
           gradient
         }
         onClick={() => props.setOpened(props.label)}
@@ -76,7 +77,7 @@ const Accordian = (props: propsType) => {
       return (
         <div
           className={
-            "flex grow flex-col flex-nowrap transform-gpu scroll-smooth " +
+            "flex h-3/4 flex-col flex-nowrap transform-gpu scroll-smooth " +
             (effect === "slide-up"
               ? "animate-slide-up "
               : effect === "fade-in"

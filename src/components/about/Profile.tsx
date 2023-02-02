@@ -14,49 +14,72 @@ const Profile = (props: propsType) => {
   return (
     <div
       className={
-        "grid px-8 py-2 content-center justify-self-center gap-x-6 " +
-        "grid-flow-col-dense auto-cols-min font-semibold " +
+        "grid px-[6vmin] content-center justify-self-center gap-x-[4vmin] " +
+        "grid-flow-col-dense auto-cols-min " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
     >
       <div
         className={
-          "grid grid-row-col-dense auto-rows-min " +
-          "justify-items-center gap-y-3 "
+          "grid grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
+          "justify-items-center gap-y-[2vmin] gap-x-[4vmin] "
         }
       >
         <div
           className={
-            "border-solid border-black border-4 rounded-full overflow-clip " +
-            "w-56 aspect-square drop-shadow-xl "
+            "border-solid border-black border-[1vmin] rounded-full overflow-clip " +
+            "w-[48vmin] aspect-square drop-shadow-xl snap-center "
           }
         >
-          <img src={logo} alt="Me" className="w-full snap-center " />
+          <img src={logo} alt="Logo" className="w-full " />
         </div>
-        <div className="w-56 border-[2.5px] border-black p-3 ">
-          <p className="text-lg underline underline-offset-4 pb-0.5 ">Name</p>
-          Full: Boladale Ogunleye
+        <div
+          className={
+            "w-max border-[0.625vmin] border-black p-[3vmin] " +
+            "snap-center snap-always bg-image "
+          }
+        >
+          <p
+            className={
+              "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
+              "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
+              "decoration-from-font font-bold "
+            }
+          >
+            Name
+          </p>
+          <p className="inline">Full:&#32;</p>
+          <p className="inline font-semibold">Boladale Ogunleye</p>
           <br />
-          Preferred: Seun
+          <p className="inline">Preferred:&#32;</p>
+          <p className="inline font-semibold">Seun</p>
           <br />
-          Github: cielestrial
+          <p className="inline">Github:&#32;</p>
+          <p className="inline font-semibold">cielestrial</p>
           <br />
-          Codechef: cielestrial
+          <p className="inline">Codechef:&#32;</p>
+          <p className="inline font-semibold">cielestrial</p>
         </div>
       </div>
 
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min snap-center " +
-          "border-[2.5px] border-black p-3 "
+          "border-[0.625vmin] border-black p-[2vmin] bg-image "
         }
       >
-        <p className="text-lg underline underline-offset-4 indent-4 pb-1 ">
+        <p
+          className={
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
+            "underline underline-offset-[0.25vmin] indent-[1vmin] " +
+            "decoration-from-font font-bold "
+          }
+        >
           Skills
         </p>
-        <div className="grid grid-flow-col-dense auto-cols-min gap-x-3 ">
-          <ul className="w-max pl-8 list-disc ">
+        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[2vmin] ">
+          <ul className="w-max list-inside pl-[2vmin] list-disc ">
             <li>HTML5</li>
             <li>JavaScript</li>
             <li>TypeScript</li>
@@ -64,11 +87,9 @@ const Profile = (props: propsType) => {
             <li>CSS</li>
             <li>SASS/SCSS</li>
             <li>TailwindCSS</li>
-            <li>Mantine</li>
-            <li>Bootstrap</li>
           </ul>
 
-          <ul className="w-max pl-8 list-disc pr-4 ">
+          <ul className="w-max list-inside px-[2vmin] list-disc ">
             <li>Node.js</li>
             <li>Express</li>
             <li>REST APIs</li>

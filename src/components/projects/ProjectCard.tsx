@@ -22,7 +22,7 @@ const ProjectCard = (props: propsType) => {
   const context = useContext(StateContext);
   const [effect, setEffect] = useState<"slide-in" | "none">("slide-in");
   const label =
-    "text-center font-semibold bg-slate-200 border-[2.5px] border-solid border-black " +
+    "text-center font-semibold bg-slate-200 border-[0.625vmin] border-solid border-black " +
     "whitespace-nowrap ";
 
   return (
@@ -41,8 +41,8 @@ const ProjectCard = (props: propsType) => {
         );
       }}
       className={
-        "h-full flex flex-col flex-nowrap " +
-        "place-content-center min-w-[10rem] h-fit w-[20vw] " +
+        "h-full flex flex-col flex-nowrap w-[35.56vmin] " +
+        "place-content-center h-fit sm:w-[28.45vmin] " +
         "drop-shadow-md saturate-50 origin-top " +
         "transition-all duration-75 custom-ease-out " +
         "hover:saturate-150 active:scale-95 " +
@@ -66,7 +66,7 @@ const ProjectCard = (props: propsType) => {
         id={props.title}
         src={props.images.length > 0 ? props.images[0] : placeholderImage}
         alt={props.title + " preview image"}
-        className={"origin-top border-x-[2.5px] border-solid border-black "}
+        className={"origin-top border-x-[0.625vmin] border-solid border-black "}
       />
       <p className={label}>{props.status}</p>
     </div>

@@ -60,7 +60,7 @@ const Testimonials = () => {
       <div className="h-full min-w-full w-max grid ">
         <p
           className={
-            "title place-self-center text-current text-4xl sm:text-5xl font-bold "
+            "title place-self-center text-current text-[9vmin] font-bold "
           }
         >
           Coming Soon!

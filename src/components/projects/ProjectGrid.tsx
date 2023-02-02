@@ -33,10 +33,11 @@ const ProjectGrid = (props: propsType) => {
   const [effect, setEffect] = useState<"fade-out" | "none">("none");
 
   return (
-    <div className="h-full w-full grid content-start justify-content-center pt-4 ">
+    <div className="h-full w-full grid content-start justify-content-center ">
       <p
         className={
-          "text-center text-xl font-semibold mx-auto w-fit h-fit py-8 transform-gpu " +
+          "text-center text-[4.5vmin] sm:text-[3.375vmin] font-semibold " +
+          "mx-auto w-fit h-fit py-[8vh] transform-gpu " +
           (effect === "fade-out" ? "animate-fade-out " : "")
         }
         onAnimationEnd={() => {
@@ -48,7 +49,7 @@ const ProjectGrid = (props: propsType) => {
       </p>
 
       <div
-        className={"w-full pb-8 px-4 sm:px-8 grid overflow-auto scroll-smooth "}
+        className={"w-full px-[6vmin] grid overflow-auto scroll-smooth "}
         onWheel={(event) => {
           if (
             !(
@@ -72,8 +73,8 @@ const ProjectGrid = (props: propsType) => {
       >
         <div
           className={
-            "h-max w-max grid grid-rows-2 grid-cols-2 gap-5 " +
-            "md:grid-rows-1 md:grid-flow-col-dense md:gap-x-[4vw] " +
+            "h-max w-max grid grid-rows-2 grid-cols-2 gap-[5vmin] " +
+            "lg:grid-rows-1 lg:grid-flow-col-dense lg:gap-x-[10vmin] " +
             "place-self-center place-items-center " +
             (effect === "fade-out" ? "animate-fade-out " : "")
           }

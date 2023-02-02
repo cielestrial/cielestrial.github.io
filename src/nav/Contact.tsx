@@ -2,17 +2,20 @@ const Contact = () => {
   return (
     <div
       className={
-        "h-full min-w-full w-max grid " +
+        "min-h-full h-max min-w-full w-max grid " +
         "bg-gradient-to-b from-transparent via-transparent to-sky-400 "
       }
     >
       <form
-        className="grid gap-y-4 py-4 place-self-center"
+        className="grid gap-y-[5vmin] sm:gap-y-[4vmin] place-self-center "
         action="https://formspree.io/f/myyaynln"
         method="POST"
       >
         <input
-          className="w-72 sm:w-96 px-2 py-1 drop-shadow-xl "
+          className={
+            "w-[72vmin] px-[2vmin] py-[2vmin] sm:py-[1vmin] " +
+            "drop-shadow-xl mx-auto "
+          }
           type="text"
           id="name"
           name="name"
@@ -21,7 +24,10 @@ const Contact = () => {
           autoComplete="on"
         />
         <input
-          className="w-72 sm:w-96 px-2 py-1 drop-shadow-xl "
+          className={
+            "w-[72vmin] px-[2vmin] py-[2vmin] sm:py-[1vmin] " +
+            "drop-shadow-xl mx-auto "
+          }
           type="email"
           id="email"
           name="email"
@@ -30,7 +36,10 @@ const Contact = () => {
           autoComplete="on"
         />
         <textarea
-          className="w-72 sm:w-96 px-2 py-1 resize-none drop-shadow-xl "
+          className={
+            "w-[72vmin] px-[2vmin] py-[2vmin] sm:py-[1vmin] " +
+            "resize-none drop-shadow-xl mx-auto "
+          }
           id="message"
           name="message"
           placeholder="Message"
@@ -41,9 +50,10 @@ const Contact = () => {
         <button
           type="submit"
           className={
-            "w-36 sm:w-48 mx-auto font-medium drop-shadow-lg bg-slate-200 origin-bottom " +
-            "transition-all duration-75 custom-ease-out " +
-            "hover:bg-slate-300 active:scale-95 active:bg-slate-400 "
+            "mx-auto font-medium drop-shadow-lg bg-slate-200 " +
+            "transition-all duration-75 custom-ease-out origin-bottom " +
+            "hover:bg-slate-300 active:scale-95 active:bg-slate-400 " +
+            "w-[32vmin] h-max py-[1vmin] grid place-content-center "
           }
         >
           Submit

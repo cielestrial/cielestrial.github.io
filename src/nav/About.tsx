@@ -13,7 +13,7 @@ const About = () => {
   const scrollPos = useRef<HTMLDivElement>(null);
 
   const btnClasses =
-    "w-24 h-fit py-2 title font-medium origin-bottom " +
+    "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom " +
     "drop-shadow-lg transition-all duration-75 custom-ease-out ";
 
   function setOpened(section: aboutSections) {
@@ -33,19 +33,24 @@ const About = () => {
   }
 
   return (
-    <div className="h-full w-full overflow-clip grid grid-flow-row-dense content-start ">
+    <div
+      className={
+        "h-full w-full overflow-clip grid grid-flow-row-dense content-start "
+      }
+    >
       <div
         className={
-          "btn-group grid grid-flow-col-dense auto-cols-min " +
-          "justify-self-center py-6 sm:py-8 "
+          "grid grid-flow-col-dense auto-cols-min justify-self-center " +
+          "py-[4vh] divide-x-[0.5vmin] divide-slate-300 "
         }
       >
         <button
           className={
             btnClasses +
+            "rounded-l-full " +
             (opened === "Profile"
               ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 ")
+              : "bg-slate-200 hover:bg-slate-300 active:scale-95 ")
           }
           onClick={() => {
             setSnap(false);
@@ -60,7 +65,7 @@ const About = () => {
             btnClasses +
             (opened === "Bio"
               ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 ")
+              : "bg-slate-200 hover:bg-slate-300 active:scale-95 ")
           }
           onClick={() => {
             setSnap(false);
@@ -73,9 +78,10 @@ const About = () => {
         <button
           className={
             btnClasses +
+            "rounded-r-full " +
             (opened === "Philosophy"
               ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 ")
+              : "bg-slate-200 hover:bg-slate-300 active:scale-95 ")
           }
           onClick={() => {
             setSnap(false);
@@ -90,7 +96,7 @@ const About = () => {
       <div
         ref={scrollPos}
         className={
-          "w-full grid overflow-auto scroll-smooth pb-6 sm:pb-8 " +
+          "w-full grid overflow-auto scroll-smooth " +
           (snap ? "snap-x snap-mandatory " : "")
         }
         onAnimationEnd={() => setSnap(true)}

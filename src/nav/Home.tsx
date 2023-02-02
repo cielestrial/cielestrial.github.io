@@ -44,20 +44,27 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="h-full grid ">
+      <div className="h-full grid place-content-center ">
         <blockquote
           className={
-            "w-screen sm:w-[28rem] p-8 place-self-center text-start text-2xl font-bold "
+            "w-fit h-fit p-[8vmin] place-self-center font-bold " +
+            "text-start text-[6vmin] tracking-wider "
           }
         >
-          <p className="title -indent-0.5 text-slate-600 tracking-widest ">
-            The most damaging phrase in the language is:&#32;
+          <p className="title -indent-[0.22vmin] text-slate-600 ">
+            The most damaging&#32;
+          </p>
+          <p className="title text-slate-600 "> phrase in the language&#32;</p>
+          <p className="title text-slate-600 ">
+            is:&#32;
             <q className="italic text-red-600 font-semibold ">
-              <span>It's always been done that way.</span>
+              <span>It's always been&#32;</span>
+              <br />
+              <span>done that way.</span>
             </q>
           </p>
 
-          <p className="text-end italic pr-4 text-slate-800 tracking-wider ">
+          <p className="italic pt-[1vmin] pl-[27.5vmin] text-slate-800 ">
             - Grace Hopper
           </p>
         </blockquote>

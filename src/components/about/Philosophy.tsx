@@ -12,65 +12,97 @@ const Philosophy = (props: propsType) => {
   return (
     <div
       className={
-        "grid px-8 py-2 content-center justify-self-center gap-x-6 " +
-        "grid-flow-col-dense auto-cols-min font-semibold " +
+        "grid px-[6vmin] content-center justify-self-center gap-[4vmin] " +
+        "grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
     >
       <div
         className={
-          "grid grid-flow-row-dense auto-rows-min " +
-          "border-[2.5px] border-black py-3 px-6 "
+          "grid grid-flow-row-dense auto-rows-min bg-image " +
+          "border-[0.625vmin] border-black py-[2vmin] px-[4vmin] "
         }
       >
-        <p className="text-lg underline underline-offset-4 pb-2 ">Philosophy</p>
-        <div className="grid grid-flow-col-dense auto-cols-min gap-x-3 ">
-          <div className="w-52 snap-center ">
-            <p>
-              I started out with game design, so my approach to UI has always
-              been a minimalist one. Some questions I ask myself:
-            </p>
-            <br />
+        <p
+          className={
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
+            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
+            "decoration-from-font font-bold "
+          }
+        >
+          Philosophy
+        </p>
+        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[4vmin] ">
+          <div className="w-max snap-center space-y-[1.5vmin] ">
+            <div>
+              <p>I started out with game&#32;</p>
+              <p>design, so my approach&#32;</p>
+              <p>to UI has always been a&#32;</p>
+              <p>minimalist one. Some&#32;</p>
+              <p>questions I like to ask&#32;</p>
+              <p>myself are:&#32;</p>
+            </div>
             <blockquote>
               <q>
-                What information is so important it must ALWAYS be displayed?
+                <span>What information is so&#32;</span>
+                <br />
+                <span>important it must always&#32;</span>
+                <br />
+                <span>be displayed?</span>
               </q>
             </blockquote>
           </div>
 
-          <div className="w-52 snap-center ">
+          <div className="w-max snap-center snap-always space-y-[1.5vmin] ">
             <blockquote>
-              <q>What information can be popped in to display when needed?</q>
+              <q>
+                <span>What information can&#32;</span>
+                <br />
+                <span>be popped in to display&#32;</span>
+                <br />
+                <span>when needed?</span>
+              </q>
             </blockquote>
-            <br />
-            <p>
-              The end goal is to avoid clutter, keep it clean and simple, and
-              not bombard the user with a lot information or choices.
-            </p>
+            <div>
+              <p>The end goal is to avoid&#32;</p>
+              <p>clutter, keep it clean and&#32;</p>
+              <p>simple, and not bombard&#32;</p>
+              <p>the user with a lot of&#32;</p>
+              <p>information or choices.</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div
         className={
-          "grid grid-flow-row-dense auto-rows-min " +
-          "border-[2.5px] border-black py-3 px-6 "
+          "grid grid-flow-row-dense auto-rows-min bg-image " +
+          "border-[0.625vmin] border-black py-[2vmin] px-[4vmin] "
         }
       >
-        <p className="text-lg underline underline-offset-4 pb-2 ">
+        <p
+          className={
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
+            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
+            "decoration-from-font font-bold "
+          }
+        >
           Methodology
         </p>
-        <div className="w-56 snap-center ">
-          <p>
-            I'm always looking to challenge myself and grow. My methodology is
-            simple:
-          </p>
-          <br />
-          <p>
-            Every few months, I pick up something new, then produce a project
-            that applies what I've learned.
-          </p>
+        <div className="w-max snap-center space-y-[1.5vmin] ">
+          <div>
+            <p>I'm always looking to&#32;</p>
+            <p>challenge myself and&#32;</p>
+            <p>grow. My methodology&#32;</p>
+            <p>is simple:&#32;</p>
+          </div>
+          <div>
+            <p>Every few months, I pick&#32;</p>
+            <p>up something new, then&#32;</p>
+            <p>produce a project that&#32;</p>
+            <p>applies what I've learned.</p>
+          </div>
         </div>
       </div>
     </div>

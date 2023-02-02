@@ -100,7 +100,8 @@ const Portfolio = () => {
       id="portfolio"
       className={
         "fixed flex flex-col justify-content-center content-start flex-nowrap " +
-        "text-black dark:text-white select-none w-screen h-screen "
+        "text-black dark:text-white select-none w-screen h-screen " +
+        "text-[4vmin] sm:text-[3vmin] leading-snug "
       }
       onWheel={(event) => onScroll(event)}
     >

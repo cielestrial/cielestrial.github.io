@@ -85,7 +85,8 @@ const Accordian = (props: propsType) => {
               : effect === "saturate-in"
               ? "animate-saturate-in "
               : "") +
-            (context.scrollable ? "overflow-auto " : "overflow-clip ")
+            (context.scrollable ? "overflow-auto " : "overflow-clip ") +
+            (context.hideContent ? "invisible " : "")
           }
           onAnimationEnd={() => {
             setEffect("none");
@@ -97,7 +98,7 @@ const Accordian = (props: propsType) => {
             className={
               "fixed whitespace-nowrap m-[3vmin] " +
               "title font-semibold text-[3.5vmin] sm:text-[2.625vmin] " +
-              (!context.hideCursor ? "hidden " : "")
+              (!context.hideContent ? "invisible " : "visible ")
             }
           >
             <p className="inline text-slate-600 ">Hi-Score:&#32;</p>

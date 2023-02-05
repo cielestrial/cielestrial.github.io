@@ -1,6 +1,6 @@
 
 Part 2:
-- Redo svg as independent divs
+- Move game loop to web worker
 
 Part 3:
 - add splash animation

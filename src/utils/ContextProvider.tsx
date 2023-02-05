@@ -4,11 +4,14 @@ import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
 export const StateContext = createContext({} as stateContextType);
 
 export type stateContextType = {
+  debugMode: React.MutableRefObject<boolean>;
   navigate: React.MutableRefObject<NavigateFunction>;
   theme: "light" | "dark";
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
   hideCursor: boolean;
   setHideCursor: React.Dispatch<React.SetStateAction<boolean>>;
+  hideContent: boolean;
+  setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
   scrollable: boolean;
   setScrollable: React.Dispatch<React.SetStateAction<boolean>>;
   scoreRef: React.MutableRefObject<number>;
@@ -30,6 +33,7 @@ export function StateProvider({ children }: StateProviderProps) {
   const navigate = useRef(useNavigate());
   const params = useLocation();
 
+  const debugMode = useRef(false);
   const [theme, setTheme] = useState<"light" | "dark">(
     "light"
     /*
@@ -41,6 +45,7 @@ export function StateProvider({ children }: StateProviderProps) {
       */
   );
   const [hideCursor, setHideCursor] = useState(false);
+  const [hideContent, setHideContent] = useState(false);
   const [scrollable, setScrollable] = useState(false);
   const maxScore = 99999;
   const scoreRef = useRef(0);
@@ -76,6 +81,8 @@ export function StateProvider({ children }: StateProviderProps) {
       setAndSaveHighScore(0);
       navigate.current("/");
     }
+    if (params.search.includes("?debug")) debugMode.current = true;
+    else debugMode.current = false;
     /*
     // Set theme on page load
     if (
@@ -95,10 +102,13 @@ export function StateProvider({ children }: StateProviderProps) {
   return (
     <StateContext.Provider
       value={{
+        debugMode,
         navigate,
         theme,
         hideCursor,
         setHideCursor,
+        hideContent,
+        setHideContent,
         scrollable,
         setScrollable,
         score,

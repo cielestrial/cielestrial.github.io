@@ -50,7 +50,7 @@ const About = () => {
             "rounded-l-full " +
             (opened === "Profile"
               ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 active:scale-95 ")
+              : "bg-slate-200 hover:bg-slate-300 ")
           }
           onClick={() => {
             setSnap(false);
@@ -65,7 +65,7 @@ const About = () => {
             btnClasses +
             (opened === "Bio"
               ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 active:scale-95 ")
+              : "bg-slate-200 hover:bg-slate-300 ")
           }
           onClick={() => {
             setSnap(false);
@@ -81,7 +81,7 @@ const About = () => {
             "rounded-r-full " +
             (opened === "Philosophy"
               ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 active:scale-95 ")
+              : "bg-slate-200 hover:bg-slate-300 ")
           }
           onClick={() => {
             setSnap(false);

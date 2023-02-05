@@ -80,13 +80,13 @@ const Profile = () => {
             <li>React</li>
             <li>CSS</li>
             <li>SASS/SCSS</li>
-            <li>TailwindCSS</li>
+            <li>Tailwind&#32;CSS</li>
           </ul>
 
           <ul className="w-max list-inside px-[2vmin] list-disc ">
             <li>Node.js</li>
             <li>Express</li>
-            <li>REST APIs</li>
+            <li>REST&#32;APIs</li>
             <li>Figma</li>
             <li>Java</li>
             <li>C#</li>

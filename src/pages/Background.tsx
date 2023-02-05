@@ -12,10 +12,12 @@ type propsType = {
 const Background = (props: propsType) => {
   const context = useContext(StateContext);
   const timeout = useRef<NodeJS.Timeout>();
+  const countdown = useRef<NodeJS.Timeout>();
   const timer = useRef<NodeJS.Timer>();
   const canRun = useRef(true);
   const targetFPS = 60;
   const timestep = 1000 / targetFPS;
+  const gameStart = 3000;
 
   const mouse = useRef(document.getElementById("mouse-hitbox"));
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
@@ -58,11 +60,11 @@ const Background = (props: propsType) => {
     } else {
       mouse.current = null;
       boundaries.current = undefined;
-      cleanupPoints();
+      cleanUpPoints();
     }
   }, [context.hideCursor]);
 
-  function cleanupPoints() {
+  function cleanUpPoints() {
     let allPointDisplays = document.getElementsByClassName("points");
     const totalStragglers = allPointDisplays.length;
     for (let i = 0; i < totalStragglers; i++) {
@@ -78,14 +80,25 @@ const Background = (props: propsType) => {
         "w-screen h-screen grid bg-image transform-gpu overflow-clip " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
-      onMouseDown={() => context.setHideCursor(true)}
-      onMouseUp={() => context.setHideCursor(false)}
+      onMouseDown={() => {
+        clearTimeout(countdown.current);
+        countdown.current = setTimeout(() => {
+          context.setHideCursor(true);
+          context.setHideContent(true);
+        }, gameStart);
+      }}
+      onMouseUp={() => {
+        clearTimeout(countdown.current);
+        context.setHideCursor(false);
+        context.setHideContent(false);
+      }}
     >
       <div className="fixed bg-fog h-screen w-screen " />
       <BsFillBucketFill
         id="mouse-hitbox"
         className={
-          "fixed w-fit h-fit text-[10.125vmin] translate-x-[-50%] translate-y-[-50%] " +
+          "fixed w-fit h-fit text-[13.466vmin] sm:text-[10.125vmin] " +
+          "translate-x-[-50%] translate-y-[-50%] " +
           (context.score < context.maxScore
             ? "fill-slate-400 "
             : "fill-amber-300 ") +

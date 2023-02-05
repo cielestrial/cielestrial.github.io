@@ -68,8 +68,8 @@ module.exports = {
         },
 
         "fall-down": {
-          "0%": { transform: "translateY(-15%)" },
-          "100%": { transform: "translateY(115%)" },
+          "0%": { transform: "translateY(-200%)" },
+          "100%": { transform: "translateY(100vh)" },
         },
 
         "scale-down": {

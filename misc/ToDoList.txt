@@ -1,3 +1,6 @@
+Part 2: 
+- mobile background game
+
 Part 3:
 - add splash animation
 - sounds?

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { StateContext } from "../utils/ContextProvider";
 import { sections } from "../pages/Portfolio";
+import { StateContext } from "../utils/ContextProvider";
 
 type propsType = {
   label: sections;

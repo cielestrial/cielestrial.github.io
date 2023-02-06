@@ -4,8 +4,8 @@ import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
 export const StateContext = createContext({} as stateContextType);
 
 export type stateContextType = {
-  debugMode: React.MutableRefObject<boolean>;
   navigate: React.MutableRefObject<NavigateFunction>;
+  debugMode: React.MutableRefObject<boolean>;
   theme: "light" | "dark";
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
   hideCursor: boolean;

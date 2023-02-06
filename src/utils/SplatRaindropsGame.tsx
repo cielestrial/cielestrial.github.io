@@ -84,7 +84,7 @@ function displayPoints(x: number, y: number) {
   const points = document.createElement("div");
 
   points.className =
-    "points fixed bg-transparent " +
+    "clean fixed bg-transparent " +
     "whitespace-nowrap text-sky-500 animate-float-up " +
     "title font-semibold text-sm text-center ";
   points.appendChild(document.createTextNode("+" + raindropValue));
@@ -114,7 +114,7 @@ function displayHitbox(x: number, y: number, w: number, h: number) {
   hitbox = document.createElement("div");
   hitbox.id = "hitbox";
   hitbox.className =
-    "hitbox fixed bg-transparent border border-yellow-400 " +
+    "clean fixed bg-transparent border border-yellow-400 " +
     "translate-x-[-50%] translate-y-[-100%] border-[2.5px] ";
 
   hitbox.style.left = x + "px";
@@ -132,7 +132,7 @@ function displayFocalPoint(x: number, y: number) {
   focalPoint = document.createElement("div");
   focalPoint.id = "focalPoint";
   focalPoint.className =
-    "focalPoint fixed bg-transparent border border-red-400 " +
+    "clean fixed bg-transparent border border-red-400 " +
     "translate-x-[-50%] translate-y-[-50%] border-[2.5px] ";
 
   focalPoint.style.left = x + "px";

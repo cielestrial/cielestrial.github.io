@@ -12,10 +12,7 @@ const Contact = () => {
         method="POST"
       >
         <input
-          className={
-            "w-[72vmin] px-[2vmin] py-[2vmin] sm:py-[1vmin] " +
-            "drop-shadow-xl mx-auto "
-          }
+          className={"w-[70vmin] px-[2vmin] py-[1vmin] drop-shadow-xl mx-auto "}
           type="text"
           id="name"
           name="name"
@@ -24,10 +21,7 @@ const Contact = () => {
           autoComplete="on"
         />
         <input
-          className={
-            "w-[72vmin] px-[2vmin] py-[2vmin] sm:py-[1vmin] " +
-            "drop-shadow-xl mx-auto "
-          }
+          className={"w-[70vmin] px-[2vmin] py-[1vmin] drop-shadow-xl mx-auto "}
           type="email"
           id="email"
           name="email"
@@ -37,7 +31,7 @@ const Contact = () => {
         />
         <textarea
           className={
-            "w-[72vmin] px-[2vmin] py-[2vmin] sm:py-[1vmin] " +
+            "w-[70vmin] px-[2vmin] py-[1vmin] " +
             "resize-none drop-shadow-xl mx-auto "
           }
           id="message"
@@ -53,7 +47,7 @@ const Contact = () => {
             "mx-auto font-medium drop-shadow-lg bg-slate-200 " +
             "transition-all duration-75 custom-ease-out origin-bottom " +
             "hover:bg-slate-300 active:scale-95 active:bg-slate-400 " +
-            "w-[32vmin] h-max py-[1vmin] grid place-content-center "
+            "w-[28vmin] h-max py-[1vmin] grid place-content-center "
           }
         >
           Submit

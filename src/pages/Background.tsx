@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { BsFillBucketFill } from "react-icons/bs";
 import DarkModeSVG from "../assets/svg/DarkModeSVG";
 import LightModeSVG from "../assets/svg/LightModeSVG";
@@ -38,14 +38,12 @@ const Background = (props: propsType) => {
     }, timestep);
   }
 
-  const gamestep = useCallback(async () => {
-    if (boundaries.current !== undefined)
-      splatRaindrops(boundaries.current, context);
-  }, []);
-
   useEffect(() => {
     document.addEventListener("mousemove", (event) => trackMouse(event));
-    timer.current = setInterval(gamestep, timestep);
+    timer.current = setInterval(async () => {
+      if (boundaries.current !== undefined)
+        splatRaindrops(boundaries.current, context);
+    }, timestep);
     return () => {
       document.removeEventListener("mousemove", (event) => trackMouse(event));
       clearInterval(timer.current);
@@ -65,11 +63,11 @@ const Background = (props: propsType) => {
   }, [context.hideCursor]);
 
   function cleanUpPoints() {
-    let allPointDisplays = document.getElementsByClassName("points");
-    const totalStragglers = allPointDisplays.length;
+    let toClean = document.getElementsByClassName("clean");
+    const totalStragglers = toClean.length;
     for (let i = 0; i < totalStragglers; i++) {
-      allPointDisplays.item(0)?.remove();
-      allPointDisplays = document.getElementsByClassName("points");
+      toClean.item(0)?.remove();
+      toClean = document.getElementsByClassName("clean");
     }
   }
 

@@ -7,12 +7,14 @@ const Contact = () => {
       }
     >
       <form
-        className="grid gap-y-[5vmin] sm:gap-y-[4vmin] place-self-center "
+        className="grid gap-y-[5dvmin] sm:gap-y-[4dvmin] place-self-center "
         action="https://formspree.io/f/myyaynln"
         method="POST"
       >
         <input
-          className={"w-[70vmin] px-[2vmin] py-[1vmin] drop-shadow-xl mx-auto "}
+          className={
+            "w-[70dvmin] h-[7dvmin] px-[2dvmin] drop-shadow-xl mx-auto "
+          }
           type="text"
           id="name"
           name="name"
@@ -21,7 +23,9 @@ const Contact = () => {
           autoComplete="on"
         />
         <input
-          className={"w-[70vmin] px-[2vmin] py-[1vmin] drop-shadow-xl mx-auto "}
+          className={
+            "w-[70dvmin] h-[7dvmin] px-[2dvmin] drop-shadow-xl mx-auto "
+          }
           type="email"
           id="email"
           name="email"
@@ -31,7 +35,7 @@ const Contact = () => {
         />
         <textarea
           className={
-            "w-[70vmin] px-[2vmin] py-[1vmin] " +
+            "w-[70dvmin] h-[21dvmin] px-[2dvmin] py-[1.33dvmin] " +
             "resize-none drop-shadow-xl mx-auto "
           }
           id="message"
@@ -47,7 +51,7 @@ const Contact = () => {
             "mx-auto font-medium drop-shadow-lg bg-slate-200 " +
             "transition-all duration-75 custom-ease-out origin-bottom " +
             "hover:bg-slate-300 active:scale-95 active:bg-slate-400 " +
-            "w-[28vmin] h-max py-[1vmin] grid place-content-center "
+            "w-[26dvmin] sm:w-[24dvmin] py-[1.25dvmin] grid place-content-center "
           }
         >
           Submit

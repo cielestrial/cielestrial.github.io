@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ProjectCard from "./ProjectCard";
 
 import yspm_light_4 from "../../assets/yspm/yspm_genres_page_light_mode.jpg";
@@ -15,6 +15,7 @@ import dashboard_tab_1 from "../../assets/ev-dashboard/ev-dashboard_tab1.jpg";
 
 import donkey_car_1 from "../../assets/donkey-car/donkey-car_home.jpg";
 import donkey_car_2 from "../../assets/donkey-car/donkey-car_test_cases.jpg";
+import { StateContext } from "../../utils/ContextProvider";
 
 /*
 import wbtracker_1 from "../assets/wbtracker/wbtracker_home.jpg";
@@ -30,6 +31,7 @@ type propsType = {
   >;
 };
 const ProjectGrid = (props: propsType) => {
+  const context = useContext(StateContext);
   const [effect, setEffect] = useState<"fade-out" | "none">("none");
 
   return (
@@ -37,7 +39,7 @@ const ProjectGrid = (props: propsType) => {
       <p
         className={
           "text-center text-[4.5vmin] sm:text-[3.375vmin] font-semibold " +
-          "mx-auto w-fit h-fit py-[8vh] transform-gpu " +
+          "mx-auto w-fit h-fit py-[8dvh] transform-gpu " +
           (effect === "fade-out" ? "animate-fade-out " : "")
         }
         onAnimationEnd={() => {
@@ -49,7 +51,10 @@ const ProjectGrid = (props: propsType) => {
       </p>
 
       <div
-        className={"w-full px-[6vmin] grid overflow-auto scroll-smooth "}
+        className={"w-full px-[6dvmin] grid overflow-auto scroll-smooth "}
+        onScroll={() => {
+          context.touchStart.current = -1;
+        }}
         onWheel={(event) => {
           if (
             !(
@@ -73,8 +78,8 @@ const ProjectGrid = (props: propsType) => {
       >
         <div
           className={
-            "h-max w-max grid grid-rows-2 grid-cols-2 gap-[5vmin] " +
-            "lg:grid-rows-1 lg:grid-flow-col-dense lg:gap-x-[10vmin] " +
+            "h-max w-max grid grid-rows-2 grid-cols-2 gap-[5dvmin] " +
+            "lg:grid-rows-1 lg:grid-flow-col-dense lg:gap-x-[10dvmin] " +
             "place-self-center place-items-center " +
             (effect === "fade-out" ? "animate-fade-out " : "")
           }

@@ -4,6 +4,14 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      width: {
+        screen: "100dvw",
+      },
+
+      height: {
+        screen: "100dvh",
+      },
+
       animation: {
         "float-up": "float-up .55s cubic-bezier(.38,0,.64,1) both",
 
@@ -48,8 +56,8 @@ module.exports = {
 
       keyframes: {
         "float-up": {
-          "0%": { opacity: 1, transform: "translateY(0)" },
-          "100%": { opacity: 0, transform: "translateY(-150%)" },
+          "0%": { opacity: 1, transform: "translateY(-75%)" },
+          "100%": { opacity: 0, transform: "translateY(-225%)" },
         },
 
         "slide-up": {

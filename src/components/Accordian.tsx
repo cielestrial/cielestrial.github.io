@@ -62,7 +62,7 @@ const Accordian = (props: propsType) => {
         className={
           "w-screen font-bold drop-shadow-lg " +
           "cursor-pointer grid place-content-center " +
-          "py-[2vmin] grow " +
+          "py-[2dvmin] grow " +
           gradient
         }
         onClick={() => props.setOpened(props.label)}
@@ -96,7 +96,7 @@ const Accordian = (props: propsType) => {
         >
           <div
             className={
-              "fixed whitespace-nowrap m-[3vmin] " +
+              "fixed whitespace-nowrap m-[3dvmin] " +
               "title font-semibold text-[3.5vmin] sm:text-[2.625vmin] " +
               (!context.hideContent ? "invisible " : "visible ")
             }

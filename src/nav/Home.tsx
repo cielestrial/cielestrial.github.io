@@ -47,11 +47,11 @@ const Home = () => {
       <div className="h-full grid place-content-center ">
         <blockquote
           className={
-            "w-fit h-fit p-[8vmin] place-self-center font-bold " +
+            "w-fit h-fit p-[8dvmin] place-self-center font-bold " +
             "text-start text-[6vmin] tracking-wider "
           }
         >
-          <p className="title -indent-[0.22vmin] text-slate-600 ">
+          <p className="title -indent-[0.22dvmin] text-slate-600 ">
             The most damaging&#32;
           </p>
           <p className="title text-slate-600 "> phrase in the language&#32;</p>
@@ -64,7 +64,7 @@ const Home = () => {
             </q>
           </p>
 
-          <p className="italic pt-[1vmin] pl-[27.5vmin] text-slate-800 ">
+          <p className="italic pt-[1dvmin] pl-[27.5dvmin] text-slate-800 ">
             - Grace Hopper
           </p>
         </blockquote>

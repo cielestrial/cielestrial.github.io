@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import Accordian from "../components/Accordian";
 import About from "../nav/About";
 import Contact from "../nav/Contact";
 import Home from "../nav/Home";
 import Projects from "../nav/Projects";
 import Testimonials from "../nav/Testimonials";
+import { StateContext } from "../utils/ContextProvider";
 
 export type sections =
   | "Home"
@@ -14,6 +15,7 @@ export type sections =
   | "Contact";
 
 const Portfolio = () => {
+  const context = useContext(StateContext);
   const [opened, setOpenedState] = useState<sections>("Home");
   const openedRef = useRef<sections>("Home");
   const waitTime = 200;
@@ -104,6 +106,30 @@ const Portfolio = () => {
         "text-[4vmin] sm:text-[3vmin] leading-snug "
       }
       onWheel={(event) => onScroll(event)}
+      onTouchStart={(event) => {
+        if (!context.hideContent)
+          context.touchStart.current = event.touches[0].clientY;
+        else context.touchStart.current = -1;
+      }}
+      onTouchEnd={(event) => {
+        if (!context.hideContent && context.touchStart.current !== -1) {
+          context.touchEnd.current = event.changedTouches[0].clientY;
+          if (
+            context.touchStart.current >
+            context.touchEnd.current + context.deadzone * context.vmax
+          )
+            document.dispatchEvent(
+              new KeyboardEvent("keydown", { key: "ArrowDown" })
+            );
+          else if (
+            context.touchStart.current <
+            context.touchEnd.current - context.deadzone * context.vmax
+          )
+            document.dispatchEvent(
+              new KeyboardEvent("keydown", { key: "ArrowUp" })
+            );
+        }
+      }}
     >
       <Accordian
         label={"Home"}

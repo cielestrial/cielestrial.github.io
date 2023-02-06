@@ -6,7 +6,7 @@ const Philosophy = () => {
   return (
     <div
       className={
-        "grid px-[6vmin] content-center justify-self-center gap-[4vmin] " +
+        "grid px-[6dvmin] content-center justify-self-center gap-[4dvmin] " +
         "grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
@@ -15,20 +15,20 @@ const Philosophy = () => {
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min bg-image " +
-          "border-[0.625vmin] border-black py-[2vmin] px-[4vmin] "
+          "border-[0.625vmin] border-black py-[2dvmin] px-[4dvmin] "
         }
       >
         <p
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
-            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5dvmin] " +
+            "underline underline-offset-[0.25dvmin] -indent-[0.5dvmin] " +
             "decoration-from-font font-bold "
           }
         >
           Philosophy
         </p>
-        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[4vmin] ">
-          <div className="w-max snap-center space-y-[1.5vmin] ">
+        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[4dvmin] ">
+          <div className="w-max snap-center space-y-[1.5dvmin] ">
             <div>
               <p>I started out with game&#32;</p>
               <p>design, so my approach&#32;</p>
@@ -48,7 +48,7 @@ const Philosophy = () => {
             </blockquote>
           </div>
 
-          <div className="w-max snap-center snap-always space-y-[1.5vmin] ">
+          <div className="w-max snap-center snap-always space-y-[1.5dvmin] ">
             <blockquote>
               <q>
                 <span>What information can&#32;</span>
@@ -72,19 +72,19 @@ const Philosophy = () => {
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min bg-image " +
-          "border-[0.625vmin] border-black py-[2vmin] px-[4vmin] "
+          "border-[0.625vmin] border-black py-[2dvmin] px-[4dvmin] "
         }
       >
         <p
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
-            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5dvmin] " +
+            "underline underline-offset-[0.25dvmin] -indent-[0.5dvmin] " +
             "decoration-from-font font-bold "
           }
         >
           Methodology
         </p>
-        <div className="w-max snap-center space-y-[1.5vmin] ">
+        <div className="w-max snap-center space-y-[1.5dvmin] ">
           <div>
             <p>I'm always looking to&#32;</p>
             <p>challenge myself and&#32;</p>

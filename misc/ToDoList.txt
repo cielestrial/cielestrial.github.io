@@ -1,5 +1,5 @@
 Part 2: 
-- mobile background game
+- More focusable components
 
 Part 3:
 - add splash animation

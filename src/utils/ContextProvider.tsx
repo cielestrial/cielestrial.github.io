@@ -8,12 +8,18 @@ export type stateContextType = {
   debugMode: React.MutableRefObject<boolean>;
   theme: "light" | "dark";
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
+
   hideCursor: boolean;
   setHideCursor: React.Dispatch<React.SetStateAction<boolean>>;
   hideContent: boolean;
   setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
   scrollable: boolean;
   setScrollable: React.Dispatch<React.SetStateAction<boolean>>;
+  touchStart: React.MutableRefObject<number>;
+  touchEnd: React.MutableRefObject<number>;
+  deadzone: number;
+  vmax: number;
+
   scoreRef: React.MutableRefObject<number>;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
@@ -47,6 +53,11 @@ export function StateProvider({ children }: StateProviderProps) {
   const [hideCursor, setHideCursor] = useState(false);
   const [hideContent, setHideContent] = useState(false);
   const [scrollable, setScrollable] = useState(false);
+  const touchStart = useRef(-1);
+  const touchEnd = useRef(-1);
+  const deadzone = 0.1;
+  const vmax = Math.max(window.outerHeight, window.outerWidth);
+
   const maxScore = 99999;
   const scoreRef = useRef(0);
   const [score, setScore] = useState(0);
@@ -99,18 +110,28 @@ export function StateProvider({ children }: StateProviderProps) {
     if (score > 0) console.log("Splat!");
   }, [score]);
 
+  useEffect(() => {
+    touchStart.current = -1;
+  }, [hideContent]);
+
   return (
     <StateContext.Provider
       value={{
         debugMode,
         navigate,
         theme,
+
         hideCursor,
         setHideCursor,
         hideContent,
         setHideContent,
         scrollable,
         setScrollable,
+        touchStart,
+        touchEnd,
+        deadzone,
+        vmax,
+
         score,
         setScore,
         setAndSaveTheme,

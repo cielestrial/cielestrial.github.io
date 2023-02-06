@@ -7,7 +7,7 @@ const LightModeSVG = () => {
           "order-1 " +
           "fill-red-400 " +
           //"fill-sky-400 " +
-          "transform-gpu w-[4vmin] sm:w-[3vmin] rounded-full " +
+          "transform-gpu w-[4dvmin] sm:w-[3dvmin] rounded-full " +
           "animate-[fall-down_1.33s_1.33s_linear_infinite_backwards] blur-[2px] "
         }
         onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
@@ -29,7 +29,7 @@ const LightModeSVG = () => {
           "order-5 " +
           "fill-orange-400 " +
           //"fill-sky-400 " +
-          "transform-gpu w-[4vmin] sm:w-[3vmin] rounded-full " +
+          "transform-gpu w-[4dvmin] sm:w-[3dvmin] rounded-full " +
           "animate-[fall-down_1.33s_1.14s_linear_infinite_backwards] blur-[2px] "
         }
         onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
@@ -51,7 +51,7 @@ const LightModeSVG = () => {
           "order-2 " +
           "fill-yellow-400 " +
           //"fill-sky-400 " +
-          "transform-gpu w-[4vmin] sm:w-[3vmin] rounded-full " +
+          "transform-gpu w-[4dvmin] sm:w-[3dvmin] rounded-full " +
           "animate-[fall-down_1.33s_.95s_linear_infinite_backwards] blur-[2px] "
         }
         onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
@@ -73,7 +73,7 @@ const LightModeSVG = () => {
           "order-6 " +
           "fill-green-400 " +
           //"fill-sky-400 " +
-          "transform-gpu w-[4vmin] sm:w-[3vmin] rounded-full " +
+          "transform-gpu w-[4dvmin] sm:w-[3dvmin] rounded-full " +
           "animate-[fall-down_1.33s_.76s_linear_infinite_backwards] blur-[2px] "
         }
         onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
@@ -95,7 +95,7 @@ const LightModeSVG = () => {
           "order-3 " +
           "fill-blue-400 " +
           //"fill-sky-400 " +
-          "transform-gpu w-[4vmin] sm:w-[3vmin] rounded-full " +
+          "transform-gpu w-[4dvmin] sm:w-[3dvmin] rounded-full " +
           "animate-[fall-down_1.33s_.57s_linear_infinite_backwards] blur-[2px] "
         }
         onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
@@ -117,7 +117,7 @@ const LightModeSVG = () => {
           "order-7 " +
           "fill-indigo-400 " +
           //"fill-sky-400 " +
-          "transform-gpu w-[4vmin] sm:w-[3vmin] rounded-full " +
+          "transform-gpu w-[4dvmin] sm:w-[3dvmin] rounded-full " +
           "animate-[fall-down_1.33s_.38s_linear_infinite_backwards] blur-[2px] "
         }
         onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
@@ -139,7 +139,7 @@ const LightModeSVG = () => {
           "order-4 " +
           "fill-violet-400 " +
           //"fill-sky-400 " +
-          "transform-gpu w-[4vmin] sm:w-[3vmin] rounded-full " +
+          "transform-gpu w-[4dvmin] sm:w-[3dvmin] rounded-full " +
           "animate-[fall-down_1.33s_.19s_linear_infinite_backwards] blur-[2px] "
         }
         onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}

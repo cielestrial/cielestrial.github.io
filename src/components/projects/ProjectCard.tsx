@@ -41,8 +41,8 @@ const ProjectCard = (props: propsType) => {
         );
       }}
       className={
-        "h-full flex flex-col flex-nowrap w-[35.56vmin] " +
-        "place-content-center h-fit sm:w-[28.45vmin] " +
+        "h-full flex flex-col flex-nowrap w-[35.56dvmin] " +
+        "place-content-center h-fit sm:w-[28.45dvmin] " +
         "drop-shadow-md saturate-50 origin-top " +
         "transition-all duration-75 custom-ease-out " +
         "hover:saturate-150 active:scale-95 " +

@@ -8,7 +8,7 @@ const Profile = () => {
   return (
     <div
       className={
-        "grid px-[6vmin] content-center justify-self-center gap-x-[4vmin] " +
+        "grid px-[6dvmin] content-center justify-self-center gap-x-[4dvmin] " +
         "grid-flow-col-dense auto-cols-min " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
@@ -17,27 +17,27 @@ const Profile = () => {
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
-          "justify-items-center gap-y-[2vmin] gap-x-[4vmin] "
+          "justify-items-center gap-y-[2dvmin] gap-x-[4dvmin] "
         }
       >
         <div
           className={
             "border-solid border-black border-[1vmin] rounded-full overflow-clip " +
-            "w-[48vmin] aspect-square drop-shadow-xl snap-center "
+            "w-[48dvmin] aspect-square drop-shadow-xl snap-center "
           }
         >
           <img src={logo} alt="Logo" className="w-full " />
         </div>
         <div
           className={
-            "w-max border-[0.625vmin] border-black p-[3vmin] " +
+            "w-max border-[0.625vmin] border-black p-[3dvmin] " +
             "snap-center snap-always bg-image "
           }
         >
           <p
             className={
-              "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
-              "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
+              "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5dvmin] " +
+              "underline underline-offset-[0.25dvmin] -indent-[0.5dvmin] " +
               "decoration-from-font font-bold "
             }
           >
@@ -60,20 +60,20 @@ const Profile = () => {
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min snap-center " +
-          "border-[0.625vmin] border-black p-[2vmin] bg-image "
+          "border-[0.625vmin] border-black p-[2dvmin] bg-image "
         }
       >
         <p
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
-            "underline underline-offset-[0.25vmin] indent-[1vmin] " +
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[1dvmin] " +
+            "underline underline-offset-[0.25dvmin] indent-[1dvmin] " +
             "decoration-from-font font-bold "
           }
         >
           Skills
         </p>
-        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[2vmin] ">
-          <ul className="w-max list-inside pl-[2vmin] list-disc ">
+        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[2dvmin] ">
+          <ul className="w-max list-inside pl-[2dvmin] list-disc ">
             <li>HTML5</li>
             <li>JavaScript</li>
             <li>TypeScript</li>
@@ -83,7 +83,7 @@ const Profile = () => {
             <li>Tailwind&#32;CSS</li>
           </ul>
 
-          <ul className="w-max list-inside px-[2vmin] list-disc ">
+          <ul className="w-max list-inside px-[2dvmin] list-disc ">
             <li>Node.js</li>
             <li>Express</li>
             <li>REST&#32;APIs</li>

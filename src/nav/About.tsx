@@ -13,7 +13,7 @@ const About = () => {
   const scrollPos = useRef<HTMLDivElement>(null);
 
   const btnClasses =
-    "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom " +
+    "w-[28dvmin] h-fit p-[2dvmin] title font-medium origin-bottom " +
     "drop-shadow-lg transition-all duration-75 custom-ease-out ";
 
   function setOpened(section: aboutSections) {
@@ -41,7 +41,7 @@ const About = () => {
       <div
         className={
           "grid grid-flow-col-dense auto-cols-min justify-self-center " +
-          "py-[4vh] divide-x-[0.5vmin] divide-slate-300 "
+          "py-[4dvh] divide-x-[0.5vmin] divide-slate-300 "
         }
       >
         <button
@@ -100,6 +100,9 @@ const About = () => {
           (snap ? "snap-x snap-mandatory " : "")
         }
         onAnimationEnd={() => setSnap(true)}
+        onScroll={() => {
+          context.touchStart.current = -1;
+        }}
         onWheel={(event) => {
           if (
             !(

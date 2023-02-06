@@ -86,7 +86,7 @@ function displayPoints(x: number, y: number) {
   points.className =
     "clean fixed bg-transparent " +
     "whitespace-nowrap text-sky-500 animate-float-up " +
-    "title font-semibold text-sm text-center ";
+    "title font-semibold text-lg text-center ";
   points.appendChild(document.createTextNode("+" + raindropValue));
 
   points.style.left = x + "px";

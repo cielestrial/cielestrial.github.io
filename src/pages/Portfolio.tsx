@@ -105,7 +105,7 @@ const Portfolio = () => {
         "text-black dark:text-white select-none w-screen h-screen " +
         "text-[4vmin] sm:text-[3vmin] leading-snug "
       }
-      onWheel={(event) => onScroll(event)}
+      onWheel={onScroll}
       onTouchStart={(event) => {
         if (!context.hideContent)
           context.touchStart.current = event.touches[0].clientY;

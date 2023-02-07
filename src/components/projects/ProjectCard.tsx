@@ -28,6 +28,11 @@ const ProjectCard = (props: propsType) => {
   return (
     <div
       id={"project card " + props.order}
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === "Enter")
+          event.currentTarget.dispatchEvent(context.clickEvent);
+      }}
       onClick={() => {
         props.setGridEffect("fade-out");
         props.setSelectedProject(
@@ -43,9 +48,8 @@ const ProjectCard = (props: propsType) => {
       className={
         "h-full flex flex-col flex-nowrap w-[35.56dvmin] " +
         "place-content-center h-fit sm:w-[28.45dvmin] " +
-        "drop-shadow-md saturate-50 origin-top " +
-        "transition-all duration-75 custom-ease-out " +
-        "hover:saturate-150 active:scale-95 " +
+        "drop-shadow-md  transition-all duration-75 custom-ease-out " +
+        "hover:scale-95 focus-visible:scale-95 active:scale-90 " +
         "cursor-pointer transform-gpu " +
         (effect === "slide-in"
           ? props.order === 0

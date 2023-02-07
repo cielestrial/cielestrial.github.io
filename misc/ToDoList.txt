@@ -1,5 +1,6 @@
 Part 2: 
-- More focusable components
+- Improve event handling
+- Stronger keyboard only support?
 
 Part 3:
 - add splash animation

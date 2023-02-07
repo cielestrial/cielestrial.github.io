@@ -17,10 +17,28 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-@layer utilities {
+@layer base {
   .title {
     font-family: Tahoma, system-ui, sans-serif;
   }
+  .text {
+    font-family: Arial, Helvetica, system-ui, sans-serif;
+  }
+  blockquote.quote:before {
+    content: "\201C";
+  }
+  q {
+    quotes:  "\2018" "\2019" "\201C" "\201D"
+  }
+  .blue-highlight:focus-visible {
+    outline-color: #0891b2; /* cyan-600 */
+  }
+  :focus-visible {
+    outline-color: #f59e0b; /* amber-500 */
+  }
+}
+
+@layer utilities {  
   .bg-image {
     background-size: cover;
     background-image: url("../assets/general/so-white.png");

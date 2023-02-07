@@ -96,13 +96,12 @@ const About = () => {
       <div
         ref={scrollPos}
         className={
-          "w-full grid overflow-auto scroll-smooth " +
+          "w-full grid overflow-auto scroll-smooth pb-[3dvh] " +
           (snap ? "snap-x snap-mandatory " : "")
         }
         onAnimationEnd={() => setSnap(true)}
-        onScroll={() => {
-          context.touchStart.current = -1;
-        }}
+        onScroll={() => (context.touchStart.current = -1)}
+        onTouchMove={(event) => event.stopPropagation()}
         onWheel={(event) => {
           if (
             !(

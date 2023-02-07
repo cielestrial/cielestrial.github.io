@@ -62,9 +62,14 @@ const Accordian = (props: propsType) => {
         className={
           "w-screen font-bold drop-shadow-lg " +
           "cursor-pointer grid place-content-center " +
-          "py-[2dvmin] grow " +
+          "py-[2dvmin] grow blue-highlight " +
           gradient
         }
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === "Enter")
+            event.currentTarget.dispatchEvent(context.clickEvent);
+        }}
         onClick={() => props.setOpened(props.label)}
       >
         {props.label}

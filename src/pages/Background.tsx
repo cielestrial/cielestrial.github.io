@@ -22,8 +22,10 @@ const Background = (props: propsType) => {
   const mouse = useRef(document.getElementById("mouse-hitbox"));
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
 
-  async function trackMouse(event: PointerEvent) {
+  async function trackMouse(event: React.PointerEvent) {
+    event.preventDefault();
     if (!canRun.current) return;
+    console.log(event.pointerId);
     canRun.current = false;
     timeout.current = setTimeout(() => {
       mouse.current = document.getElementById("mouse-hitbox");
@@ -31,7 +33,7 @@ const Background = (props: propsType) => {
 
       if (mouse.current !== null && boundaries.current !== undefined) {
         mouse.current.style.left = event.pageX + "px";
-        mouse.current.style.top = event.pageY + "px";
+        mouse.current.style.top = event.pageY - event.height / 2 + "px";
         boundaries.current = mouse.current?.getBoundingClientRect();
       }
       canRun.current = true;
@@ -39,13 +41,16 @@ const Background = (props: propsType) => {
   }
 
   useEffect(() => {
-    document.addEventListener("pointermove", (event) => trackMouse(event));
+    document.addEventListener("touchmove", preventDefault, {
+      passive: false,
+    });
     timer.current = setInterval(async () => {
       if (boundaries.current !== undefined)
         splatRaindrops(boundaries.current, context);
     }, timestep);
     return () => {
-      document.removeEventListener("pointermove", (event) => trackMouse(event));
+      document.removeEventListener("touchmove", preventDefault);
+      clearTimeout(countdown.current);
       clearInterval(timer.current);
       clearTimeout(timeout.current);
     };
@@ -71,6 +76,10 @@ const Background = (props: propsType) => {
     }
   }
 
+  function preventDefault(event: Event) {
+    event.preventDefault();
+  }
+
   return (
     <div
       id="the background"
@@ -78,11 +87,13 @@ const Background = (props: propsType) => {
         "w-screen h-screen grid bg-image transform-gpu overflow-clip " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
+      // onPointerCancel={() => console.warn("Event canceled")}
+      onPointerMove={trackMouse}
       onPointerDown={(event) => {
         clearTimeout(countdown.current);
         countdown.current = setTimeout(() => {
-          context.setHideCursor(true);
           context.setHideContent(true);
+          context.setHideCursor(true);
         }, gameStart);
       }}
       onPointerUp={(event) => {
@@ -96,7 +107,7 @@ const Background = (props: propsType) => {
         id="mouse-hitbox"
         className={
           "fixed w-fit h-fit text-[13.466vmin] sm:text-[10.125vmin] " +
-          "translate-x-[-50%] translate-y-[-50%] " +
+          "translate-x-[-50%] translate-y-[-100%] " +
           (context.score < context.maxScore
             ? "fill-slate-400 "
             : "fill-amber-300 ") +

@@ -45,29 +45,32 @@ const Home = () => {
         </div>
       </div>
       <div className="h-full grid place-content-center ">
-        <blockquote
+        <div
           className={
-            "w-fit h-fit p-[8dvmin] place-self-center font-bold " +
-            "text-start text-[6vmin] tracking-wider "
+            "w-fit h-fit p-[8dvmin] place-self-center font-bold title " +
+            "text-start text-[6vmin] tracking-wider text-slate-600 -indent-[3dvmin] "
           }
         >
-          <p className="title -indent-[0.22dvmin] text-slate-600 ">
-            The most damaging&#32;
-          </p>
-          <p className="title text-slate-600 "> phrase in the language&#32;</p>
-          <p className="title text-slate-600 ">
-            is:&#32;
-            <q className="italic text-red-600 font-semibold ">
-              <span>It's always been&#32;</span>
-              <br />
-              <span>done that way.</span>
-            </q>
-          </p>
-
-          <p className="italic pt-[1dvmin] pl-[27.5dvmin] text-slate-800 ">
+          <blockquote className="quote ">
+            <p className="inline ">The most damaging&#32;</p>
+            <p className="indent-[0.22dvmin] ">phrase in the language&#32;</p>
+            <p className="inline ">
+              is:&#32;
+              <q className=" italic text-red-600 font-semibold ">
+                <span>It's always been&#32;</span>
+                <br />
+                <span>done that way.</span>
+              </q>
+            </p>
+          </blockquote>
+          <span
+            className={
+              "text italic text-slate-700 " + "pt-[1dvmin] pl-[27.5dvmin] "
+            }
+          >
             - Grace Hopper
-          </p>
-        </blockquote>
+          </span>
+        </div>
       </div>
     </div>
   );

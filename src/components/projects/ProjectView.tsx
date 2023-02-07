@@ -36,7 +36,7 @@ const ProjectView = (props: propsType) => {
   const [hideRightArrow, setHideRightArrow] = useState(false);
   const size = "aspect-video h-[48dvmin] ";
   const border = "border-[0.625vmin] border-slate-600 ";
-  const scrollPos = useRef<HTMLDivElement>(null);
+  //const scrollPos = useRef<HTMLDivElement>(null);
 
   function displayDescription() {
     return (
@@ -66,8 +66,34 @@ const ProjectView = (props: propsType) => {
         "place-content-center justify-self-center overflow-clip "
       }
     >
-      <div className="w-full grid place-self-center ">
+      <div className={"w-full grid grid-flow-col-dense place-self-center "}>
+        <a
+          href={props.link}
+          target="_blank"
+          rel="noreferrer noopener"
+          className={
+            "text-center title underline underline-offset-[0.5dvmin] " +
+            "w-max h-fit place-self-center origin-center drop-shadow-md " +
+            "transition-all duration-75 custom-ease-out transform-gpu " +
+            "hover:text-sky-500 hover:scale-105 active:scale-100 " +
+            "active:text-sky-600 decoration-from-font justify-self-end " +
+            "ml-[7dvmin] -mb-[2dvmin] " +
+            (sideEffect === "fade-in"
+              ? "animate-fade-in "
+              : sideEffect === "fade-out"
+              ? "animate-fade-out "
+              : "")
+          }
+        >
+          {props.link}
+        </a>
+
         <BsXCircle
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "Enter")
+              event.currentTarget.dispatchEvent(context.clickEvent);
+          }}
           onClick={() => {
             setEffect("scale-down");
             setSideEffect("fade-out");
@@ -75,8 +101,8 @@ const ProjectView = (props: propsType) => {
             setRightArrowEffect("fade-out");
           }}
           className={
-            "w-fit h-fit rounded-full bg-transparent text-[5dvh] origin-bottom-left " +
-            "align-self-center justify-self-end -mb-[5dvmin] " +
+            "w-fit h-fit rounded-full bg-transparent text-[5vh] " +
+            "justify-self-end origin-bottom-left " +
             "z-40 drop-shadow-lg transition-all duration-75 custom-ease-out " +
             "hover:bg-red-400/75 active:scale-95 active:bg-red-500/75 " +
             "cursor-pointer transform-gpu " +
@@ -91,52 +117,32 @@ const ProjectView = (props: propsType) => {
           }}
         />
       </div>
-      <a
-        href={props.link}
-        target="_blank"
-        rel="noreferrer noopener"
-        className={
-          "text-center title underline underline-offset-[0.5dvmin] " +
-          "w-fit h-fit place-self-center origin-center drop-shadow-md " +
-          "transition-all duration-75 custom-ease-out transform-gpu " +
-          "hover:text-sky-500 hover:scale-105 active:scale-100 " +
-          "active:text-sky-600 decoration-from-font " +
-          (sideEffect === "fade-in"
-            ? "animate-fade-in "
-            : sideEffect === "fade-out"
-            ? "animate-fade-out "
-            : "")
-        }
-      >
-        {props.link}
-      </a>
 
       <div
-        ref={scrollPos}
-        className="grid w-full pb-[2dvh] pt-[1.5dvh] grid overflow-auto scroll-smooth "
-        onScroll={() => {
-          context.touchStart.current = -1;
-        }}
-        onWheel={(event) => {
-          if (
-            !(
-              (Math.round(event.currentTarget.scrollTop) === 0 &&
-                event.deltaY < 0) ||
-              (Math.round(event.currentTarget.scrollTop + 1) +
-                event.currentTarget.offsetHeight >=
-                event.currentTarget.scrollHeight &&
-                event.deltaY > 0)
-            )
-          )
-            event.stopPropagation();
-          /*
+        //ref={scrollPos}
+        className={"grid w-full py-[1.5dvh] grid scroll-smooth "}
+        // onScroll={() => (context.touchStart.current = -1)}
+        // onTouchMove={(event) => event.stopPropagation()}
+        //  onWheel={(event) => {
+        //  if (
+        //   !(
+        //   (Math.round(event.currentTarget.scrollTop) === 0 &&
+        //      event.deltaY < 0) ||
+        //    (Math.round(event.currentTarget.scrollTop + 1) +
+        //      event.currentTarget.offsetHeight >=
+        //      event.currentTarget.scrollHeight &&
+        //      event.deltaY > 0)
+        //   )
+        //  )
+        //    event.stopPropagation();
+        /*
             console.log(
             Math.round(event.currentTarget.scrollTop),
             event.currentTarget.offsetHeight,
             event.currentTarget.scrollHeight
           );
             */
-        }}
+        //    }}
       >
         <div
           id={"current"}
@@ -153,6 +159,7 @@ const ProjectView = (props: propsType) => {
               : "")
           }
           onAnimationEnd={() => {
+            /*
             if (effect === "scale-up")
               scrollPos.current?.scrollTo(
                 (scrollPos.current?.scrollWidth -
@@ -160,6 +167,7 @@ const ProjectView = (props: propsType) => {
                   2,
                 0
               );
+              */
             if (effect === "scale-down") props.setShowProjectView(false);
             else setEffect("none");
           }}
@@ -235,6 +243,11 @@ const ProjectView = (props: propsType) => {
 
       <div className="grid grid-flow-col-dense auto-cols-min justify-around ">
         <BsArrowLeftCircle
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "Enter")
+              event.currentTarget.dispatchEvent(context.clickEvent);
+          }}
           onClick={() => {
             if (!hideLeftArrow && index - 1 === 0)
               setLeftArrowEffect("fade-out");
@@ -243,15 +256,17 @@ const ProjectView = (props: propsType) => {
               setRightArrowEffect("fade-in");
             }
             if (effect === "none" && index - 1 > -1) setEffect("left");
+            /*
             scrollPos.current?.scrollTo(
               (scrollPos.current?.scrollWidth -
                 scrollPos.current?.offsetWidth) /
                 2,
               0
             );
+            */
           }}
           className={
-            "w-fit h-fit bg-transparent rounded-full text-[6dvh] origin-left " +
+            "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
             "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
             "hover:bg-amber-200/75 active:scale-95 active:bg-amber-300/75 " +
             "cursor-pointer transform-gpu " +
@@ -270,6 +285,11 @@ const ProjectView = (props: propsType) => {
         />
 
         <BsArrowRightCircle
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "Enter")
+              event.currentTarget.dispatchEvent(context.clickEvent);
+          }}
           onClick={() => {
             if (!hideRightArrow && index + 1 === actualLength - 1)
               setRightArrowEffect("fade-out");
@@ -279,12 +299,15 @@ const ProjectView = (props: propsType) => {
             }
             if (effect === "none" && index + 1 < actualLength)
               setEffect("right");
+            /*
+            setScrollable(false);
             scrollPos.current?.scrollTo(
               (scrollPos.current?.scrollWidth -
                 scrollPos.current?.offsetWidth) /
                 2,
               0
             );
+            */
             // scrollPos.current?.scrollTo(0, 0);
           }}
           className={

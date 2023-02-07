@@ -27,6 +27,8 @@ export type stateContextType = {
   maxScore: 99999;
   setAndSaveHighScore: (newScore: number) => void;
   aboutOpenedRef: React.MutableRefObject<aboutSections>;
+
+  clickEvent: PointerEvent;
 };
 
 export type aboutSections = "Profile" | "Bio" | "Philosophy";
@@ -66,6 +68,8 @@ export function StateProvider({ children }: StateProviderProps) {
     localScore === null ? 0 : +localScore
   );
   const aboutOpenedRef = useRef<aboutSections>("Profile");
+
+  const clickEvent = new PointerEvent("click", { bubbles: true });
 
   const setAndSaveHighScore = useCallback((newScore: number) => {
     if (newScore > maxScore) newScore = maxScore;
@@ -140,6 +144,8 @@ export function StateProvider({ children }: StateProviderProps) {
         maxScore,
         setAndSaveHighScore,
         aboutOpenedRef,
+
+        clickEvent,
       }}
     >
       {children}

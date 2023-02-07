@@ -51,10 +51,11 @@ const ProjectGrid = (props: propsType) => {
       </p>
 
       <div
-        className={"w-full px-[6dvmin] grid overflow-auto scroll-smooth "}
-        onScroll={() => {
-          context.touchStart.current = -1;
-        }}
+        className={
+          "w-full pb-[3dvh] px-[6dvmin] grid overflow-auto scroll-smooth "
+        }
+        onScroll={() => (context.touchStart.current = -1)}
+        onTouchMove={(event) => event.stopPropagation()}
         onWheel={(event) => {
           if (
             !(

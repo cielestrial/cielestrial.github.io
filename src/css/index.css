@@ -8,6 +8,7 @@
   line-height: 24px;
   font-weight: 400;
   touch-action: none;
+  overflow: clip;
  
   font-synthesis: none;
   text-rendering: optimizeLegibility;

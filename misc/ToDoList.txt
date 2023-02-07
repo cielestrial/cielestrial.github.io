@@ -1,5 +1,4 @@
 Part 2: 
-- Improve event handling
 - Stronger keyboard only support?
 
 Part 3:

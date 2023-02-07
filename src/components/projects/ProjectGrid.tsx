@@ -55,7 +55,18 @@ const ProjectGrid = (props: propsType) => {
           "w-full pb-[3dvh] px-[6dvmin] grid overflow-auto scroll-smooth "
         }
         onScroll={() => (context.touchStart.current = -1)}
-        onTouchMove={(event) => event.stopPropagation()}
+        onTouchMove={(event) => {
+          // Conditional on there being overflow
+          if (
+            !(
+              event.currentTarget.offsetHeight ===
+                event.currentTarget.scrollHeight &&
+              event.currentTarget.offsetWidth ===
+                event.currentTarget.scrollWidth
+            )
+          )
+            clearTimeout(context.countdownToGameStart.current);
+        }}
         onWheel={(event) => {
           if (
             !(
@@ -68,14 +79,22 @@ const ProjectGrid = (props: propsType) => {
             )
           )
             event.stopPropagation();
-          /*
+        }}
+        /*
+        onClick={(event) => {
           console.log(
             Math.round(event.currentTarget.scrollTop),
             event.currentTarget.offsetHeight,
             event.currentTarget.scrollHeight
           );
-          */
+          console.log(
+            "Width:",
+            Math.round(event.currentTarget.scrollLeft),
+            event.currentTarget.offsetWidth,
+            event.currentTarget.scrollWidth
+          );
         }}
+        */
       >
         <div
           className={

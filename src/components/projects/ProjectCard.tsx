@@ -46,10 +46,14 @@ const ProjectCard = (props: propsType) => {
         );
       }}
       className={
-        "h-full flex flex-col flex-nowrap w-[35.56dvmin] " +
-        "place-content-center h-fit sm:w-[28.45dvmin] " +
-        "drop-shadow-md  transition-all duration-75 custom-ease-out " +
-        "hover:scale-95 focus-visible:scale-95 active:scale-90 " +
+        "flex flex-col flex-nowrap w-[35.56dvmin] h-fit " +
+        "place-content-center sm:w-[28.45dvmin] my-[1dvmin] " +
+        "drop-shadow-md transition-all duration-75 custom-ease-out " +
+        "saturate-[.75] active:scale-95 outline-none outline-[0.4vmin] " +
+        (!context.touchDevice.current
+          ? "focus-visible:saturate-150 focus-visible:outline-amber-500 " +
+            "hover:saturate-150 hover:outline-amber-500 "
+          : "") +
         "cursor-pointer transform-gpu " +
         (effect === "slide-in"
           ? props.order === 0
@@ -71,6 +75,7 @@ const ProjectCard = (props: propsType) => {
         src={props.images.length > 0 ? props.images[0] : placeholderImage}
         alt={props.title + " preview image"}
         className={"origin-top border-x-[0.625vmin] border-solid border-black "}
+        draggable="false"
       />
       <p className={label}>{props.status}</p>
     </div>

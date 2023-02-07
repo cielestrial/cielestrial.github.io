@@ -84,7 +84,7 @@ function displayPoints(x: number, y: number) {
   const points = document.createElement("div");
 
   points.className =
-    "clean fixed bg-transparent " +
+    "dirt fixed bg-transparent " +
     "whitespace-nowrap text-sky-500 animate-float-up " +
     "title font-semibold text-[4vmin] sm:text-[3vmin] text-center ";
   points.appendChild(document.createTextNode("+" + raindropValue));
@@ -93,16 +93,24 @@ function displayPoints(x: number, y: number) {
   points.style.top = y + "px";
 
   // listeners
-  points.addEventListener("animationcancel", () => {
-    points.onanimationend = null;
-    points.onanimationcancel = null;
-    points.remove();
-  });
-  points.addEventListener("animationend", () => {
-    points.onanimationend = null;
-    points.onanimationcancel = null;
-    points.remove();
-  });
+  points.addEventListener(
+    "animationcancel",
+    () => {
+      points.onanimationend = null;
+      points.onanimationcancel = null;
+      points.remove();
+    },
+    { once: true }
+  );
+  points.addEventListener(
+    "animationend",
+    () => {
+      points.onanimationend = null;
+      points.onanimationcancel = null;
+      points.remove();
+    },
+    { once: true }
+  );
 
   document.getElementById("the background")?.appendChild(points);
 }
@@ -114,7 +122,7 @@ function displayHitbox(x: number, y: number, w: number, h: number) {
   hitbox = document.createElement("div");
   hitbox.id = "hitbox";
   hitbox.className =
-    "clean fixed bg-transparent border border-yellow-400 " +
+    "dirt fixed bg-transparent border border-yellow-400 " +
     "translate-x-[-50%] translate-y-[-100%] border-[0.4vmin] ";
 
   hitbox.style.left = x + "px";
@@ -132,7 +140,7 @@ function displayFocalPoint(x: number, y: number) {
   focalPoint = document.createElement("div");
   focalPoint.id = "focalPoint";
   focalPoint.className =
-    "clean fixed bg-transparent border border-red-400 " +
+    "dirt fixed bg-transparent border border-red-400 " +
     "translate-x-[-50%] translate-y-[-50%] border-[0.4vmin] ";
 
   focalPoint.style.left = x + "px";

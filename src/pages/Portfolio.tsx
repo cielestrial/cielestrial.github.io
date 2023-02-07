@@ -21,6 +21,8 @@ const Portfolio = () => {
   const waitTime = 200;
   const timeout = useRef<NodeJS.Timeout>();
   const leading = useRef(true);
+  const arrowDownEvent = new KeyboardEvent("keydown", { key: "ArrowDown" });
+  const arrowUpEvent = new KeyboardEvent("keydown", { key: "ArrowUp" });
 
   useEffect(() => {
     document.addEventListener("keydown", onArrowKey);
@@ -105,31 +107,30 @@ const Portfolio = () => {
         "text-black dark:text-white select-none w-screen h-screen " +
         "text-[4vmin] sm:text-[3vmin] leading-snug "
       }
-      onWheel={onScroll}
+      onWheel={(event) => onScroll(event)}
       onTouchStart={(event) => {
         if (!context.hideContent)
-          context.touchStart.current = event.touches[0].clientY;
+          context.touchStart.current = event.changedTouches[0].pageY;
         else context.touchStart.current = -1;
       }}
       onTouchEnd={(event) => {
         if (!context.hideContent && context.touchStart.current !== -1) {
-          context.touchEnd.current = event.changedTouches[0].clientY;
+          context.touchEnd.current = event.changedTouches[0].pageY;
+          // Swipe up
           if (
             context.touchStart.current >
             context.touchEnd.current + context.deadzone * context.vmax
           )
-            document.dispatchEvent(
-              new KeyboardEvent("keydown", { key: "ArrowDown" })
-            );
+            onArrowKey(arrowDownEvent);
+          // Swipe down
           else if (
             context.touchStart.current <
             context.touchEnd.current - context.deadzone * context.vmax
           )
-            document.dispatchEvent(
-              new KeyboardEvent("keydown", { key: "ArrowUp" })
-            );
+            onArrowKey(arrowUpEvent);
         }
       }}
+      onTouchCancel={() => (context.touchStart.current = -1)}
     >
       <Accordian
         label={"Home"}

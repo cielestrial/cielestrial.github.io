@@ -12,72 +12,101 @@ type propsType = {
 const Background = (props: propsType) => {
   const context = useContext(StateContext);
   const timeout = useRef<NodeJS.Timeout>();
-  const countdown = useRef<NodeJS.Timeout>();
   const timer = useRef<NodeJS.Timer>();
   const canRun = useRef(true);
   const targetFPS = 60;
   const timestep = 1000 / targetFPS;
-  const gameStart = 3000;
+  const gameStart = 2000;
 
   const mouse = useRef(document.getElementById("mouse-hitbox"));
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
+  const lastKnownPos = useRef({ x: 0, y: 0 });
 
-  async function trackMouse(event: React.PointerEvent) {
-    event.preventDefault();
-    if (!canRun.current) return;
-    console.log(event.pointerId);
+  async function trackMouse(event: React.MouseEvent) {
+    //event.stopPropagation();
+    lastKnownPos.current = { x: event.pageX, y: event.pageY };
+
+    if (!canRun.current || context.touchDevice.current) return;
     canRun.current = false;
     timeout.current = setTimeout(() => {
       mouse.current = document.getElementById("mouse-hitbox");
-      boundaries.current = mouse.current?.getBoundingClientRect();
-
-      if (mouse.current !== null && boundaries.current !== undefined) {
+      if (mouse.current !== null) {
         mouse.current.style.left = event.pageX + "px";
-        mouse.current.style.top = event.pageY - event.height / 2 + "px";
-        boundaries.current = mouse.current?.getBoundingClientRect();
+        mouse.current.style.top = event.pageY + "px";
+        boundaries.current = mouse.current.getBoundingClientRect();
+      }
+      canRun.current = true;
+    }, timestep);
+  }
+
+  async function trackTouch(event: React.TouchEvent) {
+    //event.stopPropagation();
+    lastKnownPos.current = {
+      x: event.changedTouches[0].pageX,
+      y: event.changedTouches[0].pageY,
+    };
+
+    if (!canRun.current) return;
+    canRun.current = false;
+    timeout.current = setTimeout(() => {
+      mouse.current = document.getElementById("mouse-hitbox");
+      if (mouse.current !== null) {
+        mouse.current.style.left = event.changedTouches[0].pageX + "px";
+        mouse.current.style.top = event.changedTouches[0].pageY + "px";
+        boundaries.current = mouse.current.getBoundingClientRect();
       }
       canRun.current = true;
     }, timestep);
   }
 
   useEffect(() => {
-    document.addEventListener("touchmove", preventDefault, {
-      passive: false,
-    });
     timer.current = setInterval(async () => {
       if (boundaries.current !== undefined)
         splatRaindrops(boundaries.current, context);
     }, timestep);
     return () => {
-      document.removeEventListener("touchmove", preventDefault);
-      clearTimeout(countdown.current);
+      clearTimeout(context.countdownToGameStart.current);
       clearInterval(timer.current);
       clearTimeout(timeout.current);
+      canRun.current = true;
     };
   }, []);
 
-  useEffect(() => {
-    if (context.hideCursor) {
-      mouse.current = document.getElementById("mouse-hitbox");
-      boundaries.current = mouse.current?.getBoundingClientRect();
-    } else {
-      mouse.current = null;
-      boundaries.current = undefined;
-      cleanUpPoints();
-    }
-  }, [context.hideCursor]);
-
-  function cleanUpPoints() {
-    let toClean = document.getElementsByClassName("clean");
-    const totalStragglers = toClean.length;
-    for (let i = 0; i < totalStragglers; i++) {
-      toClean.item(0)?.remove();
-      toClean = document.getElementsByClassName("clean");
+  function initializeAt() {
+    mouse.current = document.getElementById("mouse-hitbox");
+    if (mouse.current !== null) {
+      mouse.current.style.left = lastKnownPos.current.x + "px";
+      mouse.current.style.top = lastKnownPos.current.y + "px";
+      boundaries.current = mouse.current.getBoundingClientRect();
     }
   }
 
-  function preventDefault(event: Event) {
-    event.preventDefault();
+  function cleanUp() {
+    mouse.current = null;
+    boundaries.current = undefined;
+
+    let yetToClean = document.getElementsByClassName("dirt");
+    const totalStragglers = yetToClean.length;
+    for (let i = 0; i < totalStragglers; i++) {
+      yetToClean.item(0)?.remove();
+      yetToClean = document.getElementsByClassName("dirt");
+    }
+  }
+
+  function switchToBackground() {
+    clearTimeout(context.countdownToGameStart.current);
+    context.countdownToGameStart.current = setTimeout(() => {
+      context.setHideCursor(true);
+      context.setHideContent(true);
+      initializeAt();
+    }, gameStart);
+  }
+
+  function switchToForeground() {
+    clearTimeout(context.countdownToGameStart.current);
+    context.setHideCursor(false);
+    cleanUp();
+    context.setHideContent(false);
   }
 
   return (
@@ -87,19 +116,29 @@ const Background = (props: propsType) => {
         "w-screen h-screen grid bg-image transform-gpu overflow-clip " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
-      // onPointerCancel={() => console.warn("Event canceled")}
-      onPointerMove={trackMouse}
-      onPointerDown={(event) => {
-        clearTimeout(countdown.current);
-        countdown.current = setTimeout(() => {
-          context.setHideContent(true);
-          context.setHideCursor(true);
-        }, gameStart);
+      onMouseDown={(event) => {
+        if (!context.touchDevice.current) {
+          lastKnownPos.current = { x: event.pageX, y: event.pageY };
+          switchToBackground();
+        }
       }}
-      onPointerUp={(event) => {
-        clearTimeout(countdown.current);
-        context.setHideCursor(false);
-        context.setHideContent(false);
+      onMouseMove={(event) => trackMouse(event)}
+      onMouseUp={() => {
+        if (!context.touchDevice.current) switchToForeground();
+      }}
+      onTouchStart={(event) => {
+        context.touchDevice.current = true;
+        lastKnownPos.current = {
+          x: event.changedTouches[0].pageX,
+          y: event.changedTouches[0].pageY,
+        };
+        switchToBackground();
+      }}
+      onTouchMove={(event) => trackTouch(event)}
+      onTouchEnd={switchToForeground}
+      onTouchCancel={() => {
+        console.warn("Touch event canceled");
+        clearTimeout(context.countdownToGameStart.current);
       }}
     >
       <div className="fixed bg-fog h-screen w-screen " />

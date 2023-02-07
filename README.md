@@ -2,7 +2,7 @@
 
 ## How To Play
 
-- Holding the mouse down for 3 seconds will switch to background game.
+- Holding the mouse down for 2 seconds will switch to background game.
 - Continue holding down the mouse to play.
 - Use the bucket to catch raindrops to earn points.
 

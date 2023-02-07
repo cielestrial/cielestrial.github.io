@@ -18,6 +18,7 @@ const TestimonialView = (props: propsType) => {
           src={props.testimony.image}
           alt={props.testimony.name}
           className="rotate-0"
+          draggable="false"
         />
       </div>
       <p

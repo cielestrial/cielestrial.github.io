@@ -26,7 +26,12 @@ const Bio = () => {
             "w-[48dvmin] aspect-square place-content-center drop-shadow-xl "
           }
         >
-          <img src={myPic} alt="My Dad and I" className="w-full rotate-12 " />
+          <img
+            src={myPic}
+            alt="My Dad and I"
+            className="w-full rotate-12 "
+            draggable="false"
+          />
         </div>
         <p
           className={

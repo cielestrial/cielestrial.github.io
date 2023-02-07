@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import {
   BsArrowLeftCircle,
   BsArrowRightCircle,
@@ -36,7 +36,6 @@ const ProjectView = (props: propsType) => {
   const [hideRightArrow, setHideRightArrow] = useState(false);
   const size = "aspect-video h-[48dvmin] ";
   const border = "border-[0.625vmin] border-slate-600 ";
-  //const scrollPos = useRef<HTMLDivElement>(null);
 
   function displayDescription() {
     return (
@@ -118,32 +117,7 @@ const ProjectView = (props: propsType) => {
         />
       </div>
 
-      <div
-        //ref={scrollPos}
-        className={"grid w-full py-[1.5dvh] grid scroll-smooth "}
-        // onScroll={() => (context.touchStart.current = -1)}
-        // onTouchMove={(event) => event.stopPropagation()}
-        //  onWheel={(event) => {
-        //  if (
-        //   !(
-        //   (Math.round(event.currentTarget.scrollTop) === 0 &&
-        //      event.deltaY < 0) ||
-        //    (Math.round(event.currentTarget.scrollTop + 1) +
-        //      event.currentTarget.offsetHeight >=
-        //      event.currentTarget.scrollHeight &&
-        //      event.deltaY > 0)
-        //   )
-        //  )
-        //    event.stopPropagation();
-        /*
-            console.log(
-            Math.round(event.currentTarget.scrollTop),
-            event.currentTarget.offsetHeight,
-            event.currentTarget.scrollHeight
-          );
-            */
-        //    }}
-      >
+      <div className={"grid w-full py-[1.5dvh] grid scroll-smooth "}>
         <div
           id={"current"}
           className={
@@ -159,15 +133,6 @@ const ProjectView = (props: propsType) => {
               : "")
           }
           onAnimationEnd={() => {
-            /*
-            if (effect === "scale-up")
-              scrollPos.current?.scrollTo(
-                (scrollPos.current?.scrollWidth -
-                  scrollPos.current?.offsetWidth) /
-                  2,
-                0
-              );
-              */
             if (effect === "scale-down") props.setShowProjectView(false);
             else setEffect("none");
           }}
@@ -184,6 +149,7 @@ const ProjectView = (props: propsType) => {
                   : placeholderImage
               }
               alt="current page preview"
+              draggable="false"
             />
           )}
         </div>
@@ -211,6 +177,7 @@ const ProjectView = (props: propsType) => {
                   : placeholderImage
               }
               alt="previous page preview"
+              draggable="false"
             />
           )}
         </div>
@@ -237,6 +204,7 @@ const ProjectView = (props: propsType) => {
                 : placeholderImage
             }
             alt="next page preview"
+            draggable="false"
           />
         </div>
       </div>
@@ -256,14 +224,6 @@ const ProjectView = (props: propsType) => {
               setRightArrowEffect("fade-in");
             }
             if (effect === "none" && index - 1 > -1) setEffect("left");
-            /*
-            scrollPos.current?.scrollTo(
-              (scrollPos.current?.scrollWidth -
-                scrollPos.current?.offsetWidth) /
-                2,
-              0
-            );
-            */
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
@@ -299,16 +259,6 @@ const ProjectView = (props: propsType) => {
             }
             if (effect === "none" && index + 1 < actualLength)
               setEffect("right");
-            /*
-            setScrollable(false);
-            scrollPos.current?.scrollTo(
-              (scrollPos.current?.scrollWidth -
-                scrollPos.current?.offsetWidth) /
-                2,
-              0
-            );
-            */
-            // scrollPos.current?.scrollTo(0, 0);
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-right " +

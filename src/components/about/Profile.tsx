@@ -26,7 +26,7 @@ const Profile = () => {
             "w-[48dvmin] aspect-square drop-shadow-xl snap-center "
           }
         >
-          <img src={logo} alt="Logo" className="w-full " />
+          <img src={logo} alt="Logo" className="w-full " draggable="false" />
         </div>
         <div
           className={

@@ -5,6 +5,7 @@ export const StateContext = createContext({} as stateContextType);
 
 export type stateContextType = {
   navigate: React.MutableRefObject<NavigateFunction>;
+  aboutOpenedRef: React.MutableRefObject<aboutSections>;
   debugMode: React.MutableRefObject<boolean>;
   theme: "light" | "dark";
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
@@ -26,9 +27,10 @@ export type stateContextType = {
   highScore: number;
   maxScore: 99999;
   setAndSaveHighScore: (newScore: number) => void;
-  aboutOpenedRef: React.MutableRefObject<aboutSections>;
+  countdownToGameStart: React.MutableRefObject<NodeJS.Timeout | undefined>;
 
-  clickEvent: PointerEvent;
+  clickEvent: MouseEvent;
+  touchDevice: React.MutableRefObject<boolean>;
 };
 
 export type aboutSections = "Profile" | "Bio" | "Philosophy";
@@ -40,6 +42,7 @@ type StateProviderProps = {
 export function StateProvider({ children }: StateProviderProps) {
   const navigate = useRef(useNavigate());
   const params = useLocation();
+  const aboutOpenedRef = useRef<aboutSections>("Profile");
 
   const debugMode = useRef(false);
   const [theme, setTheme] = useState<"light" | "dark">(
@@ -48,7 +51,7 @@ export function StateProvider({ children }: StateProviderProps) {
     window.localStorage.getItem("theme") === "dark" ||
       (window.localStorage.getItem("theme") === null &&
         window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ? "dark"
+        ? "dark"
       : "light"
       */
   );
@@ -67,9 +70,10 @@ export function StateProvider({ children }: StateProviderProps) {
   const [highScore, setHighScore] = useState(
     localScore === null ? 0 : +localScore
   );
-  const aboutOpenedRef = useRef<aboutSections>("Profile");
+  const countdownToGameStart = useRef<NodeJS.Timeout>();
 
-  const clickEvent = new PointerEvent("click", { bubbles: true });
+  const clickEvent = new MouseEvent("click", { bubbles: true });
+  const touchDevice = useRef(false);
 
   const setAndSaveHighScore = useCallback((newScore: number) => {
     if (newScore > maxScore) newScore = maxScore;
@@ -123,6 +127,7 @@ export function StateProvider({ children }: StateProviderProps) {
       value={{
         debugMode,
         navigate,
+        aboutOpenedRef,
         theme,
 
         hideCursor,
@@ -143,9 +148,10 @@ export function StateProvider({ children }: StateProviderProps) {
         highScore,
         maxScore,
         setAndSaveHighScore,
-        aboutOpenedRef,
+        countdownToGameStart,
 
         clickEvent,
+        touchDevice,
       }}
     >
       {children}

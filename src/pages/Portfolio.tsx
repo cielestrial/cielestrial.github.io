@@ -24,6 +24,11 @@ const Portfolio = () => {
   const arrowDownEvent = new KeyboardEvent("keydown", { key: "ArrowDown" });
   const arrowUpEvent = new KeyboardEvent("keydown", { key: "ArrowUp" });
 
+  const setOpened = useCallback((section: sections) => {
+    openedRef.current = section;
+    setOpenedState(section);
+  }, []);
+
   useEffect(() => {
     document.addEventListener("keydown", onArrowKey);
     return () => {
@@ -33,12 +38,7 @@ const Portfolio = () => {
     };
   }, []);
 
-  const setOpened = useCallback((section: sections) => {
-    openedRef.current = section;
-    setOpenedState(section);
-  }, []);
-
-  const onScroll = (event: React.WheelEvent) => {
+  function onScroll(event: React.WheelEvent) {
     if (leading.current) {
       switch (openedRef.current) {
         case "Home":
@@ -70,9 +70,9 @@ const Portfolio = () => {
     timeout.current = setTimeout(() => {
       leading.current = true;
     }, waitTime);
-  };
+  }
 
-  const onArrowKey = (event: KeyboardEvent) => {
+  function onArrowKey(event: KeyboardEvent) {
     switch (openedRef.current) {
       case "Home":
         if (event.key === "ArrowDown") setOpened("About");
@@ -97,7 +97,7 @@ const Portfolio = () => {
         if (event.key === "ArrowUp") setOpened("Testimonials");
         break;
     }
-  };
+  }
 
   return (
     <div

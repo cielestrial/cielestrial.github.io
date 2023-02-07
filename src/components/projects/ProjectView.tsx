@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   BsArrowLeftCircle,
   BsArrowRightCircle,
@@ -34,8 +34,30 @@ const ProjectView = (props: propsType) => {
 
   const [hideLeftArrow, setHideLeftArrow] = useState(true);
   const [hideRightArrow, setHideRightArrow] = useState(false);
+  const hideLeftArrowRef = useRef(true);
+  const hideRightArrowRef = useRef(false);
   const size = "aspect-video h-[48dvmin] ";
   const border = "border-[0.625vmin] border-slate-600 ";
+
+  useEffect(() => {
+    document.addEventListener("keydown", onArrowKey, { capture: true });
+    return () => {
+      document.removeEventListener("keydown", onArrowKey);
+    };
+  }, []);
+
+  function onArrowKey(event: KeyboardEvent) {
+    if (event.key === "ArrowLeft" && !hideLeftArrowRef.current)
+      document.getElementById("Left Arrow")?.dispatchEvent(context.clickEvent);
+    else if (event.key === "ArrowRight" && !hideRightArrowRef.current)
+      document.getElementById("Right Arrow")?.dispatchEvent(context.clickEvent);
+    else if (event.key === "Escape") {
+      event.stopPropagation();
+      document
+        .getElementById("Close Button")
+        ?.dispatchEvent(context.clickEvent);
+    }
+  }
 
   function displayDescription() {
     return (
@@ -88,16 +110,19 @@ const ProjectView = (props: propsType) => {
         </a>
 
         <BsXCircle
+          id="Close Button"
           tabIndex={0}
           onKeyDown={(event) => {
             if (event.key === "Enter")
               event.currentTarget.dispatchEvent(context.clickEvent);
           }}
           onClick={() => {
-            setEffect("scale-down");
-            setSideEffect("fade-out");
-            setLeftArrowEffect("fade-out");
-            setRightArrowEffect("fade-out");
+            if (sideEffect === "none") {
+              setEffect("scale-down");
+              setSideEffect("fade-out");
+              setLeftArrowEffect("fade-out");
+              setRightArrowEffect("fade-out");
+            }
           }}
           className={
             "w-fit h-fit rounded-full bg-transparent text-[5vh] " +
@@ -211,19 +236,23 @@ const ProjectView = (props: propsType) => {
 
       <div className="grid grid-flow-col-dense auto-cols-min justify-around ">
         <BsArrowLeftCircle
+          id="Left Arrow"
           tabIndex={0}
           onKeyDown={(event) => {
             if (event.key === "Enter")
               event.currentTarget.dispatchEvent(context.clickEvent);
           }}
           onClick={() => {
-            if (!hideLeftArrow && index - 1 === 0)
-              setLeftArrowEffect("fade-out");
-            if (hideRightArrow && index - 1 === actualLength - 2) {
-              setHideRightArrow(false);
-              setRightArrowEffect("fade-in");
+            if (leftArrowEffect === "none") {
+              if (!hideLeftArrow && index - 1 === 0)
+                setLeftArrowEffect("fade-out");
+              if (hideRightArrow && index - 1 === actualLength - 2) {
+                setHideRightArrow(false);
+                hideRightArrowRef.current = false;
+                setRightArrowEffect("fade-in");
+              }
+              if (effect === "none" && index - 1 > -1) setEffect("left");
             }
-            if (effect === "none" && index - 1 > -1) setEffect("left");
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
@@ -239,26 +268,33 @@ const ProjectView = (props: propsType) => {
               : "")
           }
           onAnimationEnd={() => {
-            if (leftArrowEffect === "fade-out") setHideLeftArrow(true);
+            if (leftArrowEffect === "fade-out") {
+              setHideLeftArrow(true);
+              hideLeftArrowRef.current = true;
+            }
             setLeftArrowEffect("none");
           }}
         />
 
         <BsArrowRightCircle
+          id="Right Arrow"
           tabIndex={0}
           onKeyDown={(event) => {
             if (event.key === "Enter")
               event.currentTarget.dispatchEvent(context.clickEvent);
           }}
           onClick={() => {
-            if (!hideRightArrow && index + 1 === actualLength - 1)
-              setRightArrowEffect("fade-out");
-            if (hideLeftArrow && index + 1 === 1) {
-              setHideLeftArrow(false);
-              setLeftArrowEffect("fade-in");
+            if (rightArrowEffect === "none") {
+              if (!hideRightArrow && index + 1 === actualLength - 1)
+                setRightArrowEffect("fade-out");
+              if (hideLeftArrow && index + 1 === 1) {
+                setHideLeftArrow(false);
+                hideLeftArrowRef.current = false;
+                setLeftArrowEffect("fade-in");
+              }
+              if (effect === "none" && index + 1 < actualLength)
+                setEffect("right");
             }
-            if (effect === "none" && index + 1 < actualLength)
-              setEffect("right");
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-right " +
@@ -274,7 +310,10 @@ const ProjectView = (props: propsType) => {
               : "")
           }
           onAnimationEnd={() => {
-            if (rightArrowEffect === "fade-out") setHideRightArrow(true);
+            if (rightArrowEffect === "fade-out") {
+              setHideRightArrow(true);
+              hideRightArrowRef.current = true;
+            }
             setRightArrowEffect("none");
           }}
         />

@@ -1,5 +1,5 @@
 Part 2: 
-- Stronger keyboard only support?
+- Stronger tab nav support?
 
 Part 3:
 - add splash animation

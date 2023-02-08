@@ -1,5 +1,5 @@
 Part 2: 
-- Stronger tab nav support?
+- Side swipe to switch tabs in about and pictures in project view
 
 Part 3:
 - add splash animation

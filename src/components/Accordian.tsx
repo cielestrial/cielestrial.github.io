@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { sections } from "../pages/Portfolio";
 import { StateContext } from "../utils/ContextProvider";
 
@@ -11,9 +11,17 @@ type propsType = {
 
 const Accordian = (props: propsType) => {
   const context = useContext(StateContext);
+  const openedRef = useRef(props.opened);
   const [effect, setEffect] = useState<
     "slide-up" | "fade-in" | "saturate-in" | "none"
   >("none");
+
+  useEffect(() => {
+    document.addEventListener("keydown", focusTrap);
+    return () => {
+      document.removeEventListener("keydown", focusTrap);
+    };
+  }, []);
 
   useEffect(() => {
     context.setScrollable(false);
@@ -22,7 +30,72 @@ const Accordian = (props: propsType) => {
       setEffect("slide-up");
     else if (props.label === "Projects" || props.label === "Testimonials")
       setEffect("fade-in");
+    openedRef.current = props.opened;
   }, [props.opened]);
+
+  function setFocus() {
+    switch (openedRef.current) {
+      case "Home":
+        document.getElementById("Grace Hopper Quote")?.focus();
+        break;
+      case "About":
+        document.getElementById("About Section Content")?.focus();
+        break;
+      case "Projects":
+        document.getElementById("Projects Section Content")?.focus();
+        break;
+      case "Testimonials":
+        document.getElementById("Testimonials Section Content")?.focus();
+        break;
+      case "Contact":
+        document.getElementById("Contact Section Content")?.focus();
+        break;
+    }
+  }
+
+  function focusTrap(event: KeyboardEvent) {
+    if (event.shiftKey && event.key === "Tab") {
+      if (openedRef.current !== "Home") {
+        if (
+          document.getElementById("Home Section Label") ===
+          document.activeElement
+        ) {
+          event.preventDefault();
+          if (openedRef.current === "Contact")
+            document.getElementById("Form Submit Button")?.focus();
+          else document.getElementById("Contact Section Label")?.focus();
+        }
+      } else {
+        if (
+          document.getElementById("Grace Hopper Quote") ===
+          document.activeElement
+        ) {
+          event.preventDefault();
+          document.getElementById("Contact Section Label")?.focus();
+        }
+      }
+    } else if (event.key === "Tab") {
+      if (openedRef.current !== "Contact") {
+        if (
+          document.getElementById("Contact Section Label") ===
+          document.activeElement
+        ) {
+          event.preventDefault();
+          if (openedRef.current === "Home")
+            document.getElementById("Grace Hopper Quote")?.focus();
+          else document.getElementById("Home Section Label")?.focus();
+        }
+      } else {
+        if (
+          document.getElementById("Form Submit Button") ===
+          document.activeElement
+        ) {
+          event.preventDefault();
+          document.getElementById("Home Section Label")?.focus();
+        }
+      }
+    }
+  }
 
   function displayLabel() {
     if (props.label === props.opened) return null;
@@ -59,13 +132,14 @@ const Accordian = (props: propsType) => {
 
     return (
       <div
+        id={props.label + " Section Label"}
+        tabIndex={0}
         className={
           "w-screen font-bold drop-shadow-lg " +
           "cursor-pointer grid place-content-center " +
           "py-[2dvmin] grow blue-highlight " +
           gradient
         }
-        tabIndex={0}
         onKeyDown={(event) => {
           if (event.key === "Enter")
             event.currentTarget.dispatchEvent(context.clickEvent);
@@ -81,8 +155,11 @@ const Accordian = (props: propsType) => {
     if (props.opened === props.label)
       return (
         <div
+          id={props.label + " Section Content"}
+          tabIndex={-1}
           className={
             "flex h-3/4 flex-col flex-nowrap transform-gpu scroll-smooth " +
+            "blue-highlight focus:outline-none " +
             (effect === "slide-up"
               ? "animate-slide-up "
               : effect === "fade-in"
@@ -93,6 +170,9 @@ const Accordian = (props: propsType) => {
             (context.scrollable ? "overflow-auto " : "overflow-clip ") +
             (context.hideContent ? "invisible " : "")
           }
+          onAnimationStart={(event) => {
+            if (event.target === event.currentTarget) setFocus();
+          }}
           onAnimationEnd={() => {
             setEffect("none");
             if (props.opened !== "About" && props.opened !== "Projects")

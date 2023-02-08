@@ -46,9 +46,11 @@ const Home = () => {
       </div>
       <div className="h-full grid place-content-center ">
         <div
+          id="Grace Hopper Quote"
+          tabIndex={0}
           className={
-            "w-fit h-fit p-[8dvmin] place-self-center font-bold title " +
-            "text-start text-[6vmin] tracking-wider text-slate-600 -indent-[3dvmin] "
+            "w-fit h-fit p-[8dvmin] place-self-center font-bold focus:outline-none " +
+            "title text-start text-[6vmin] tracking-wider text-slate-600 -indent-[3dvmin] "
           }
         >
           <blockquote className="quote ">

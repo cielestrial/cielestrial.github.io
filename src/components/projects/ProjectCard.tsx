@@ -50,9 +50,9 @@ const ProjectCard = (props: propsType) => {
         "place-content-center sm:w-[28.45dvmin] my-[1dvmin] " +
         "drop-shadow-md transition-all duration-75 custom-ease-out " +
         "saturate-[.75] active:scale-95 outline-none outline-[0.4vmin] " +
+        "focus-visible:saturate-150 focus-visible:outline-amber-500 " +
         (!context.touchDevice.current
-          ? "focus-visible:saturate-150 focus-visible:outline-amber-500 " +
-            "hover:saturate-150 hover:outline-amber-500 "
+          ? "hover:saturate-150 hover:outline-amber-500 "
           : "") +
         "cursor-pointer transform-gpu " +
         (effect === "slide-in"

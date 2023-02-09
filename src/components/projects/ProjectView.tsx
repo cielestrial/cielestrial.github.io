@@ -40,22 +40,17 @@ const ProjectView = (props: propsType) => {
   const border = "border-[0.625vmin] border-slate-600 ";
 
   useEffect(() => {
-    document.addEventListener("keydown", onArrowKey, { capture: true });
+    document.addEventListener("keydown", onArrowKey);
     return () => {
       document.removeEventListener("keydown", onArrowKey);
     };
   }, []);
 
   function onArrowKey(event: KeyboardEvent) {
-    if (event.key === "ArrowLeft" && !hideLeftArrowRef.current)
+    if (event.key === "ArrowLeft" && !hideLeftArrowRef.current) {
       document.getElementById("Left Arrow")?.dispatchEvent(context.clickEvent);
-    else if (event.key === "ArrowRight" && !hideRightArrowRef.current)
+    } else if (event.key === "ArrowRight" && !hideRightArrowRef.current) {
       document.getElementById("Right Arrow")?.dispatchEvent(context.clickEvent);
-    else if (event.key === "Escape") {
-      event.stopPropagation();
-      document
-        .getElementById("Close Button")
-        ?.dispatchEvent(context.clickEvent);
     }
   }
 

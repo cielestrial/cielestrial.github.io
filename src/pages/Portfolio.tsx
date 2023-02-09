@@ -6,6 +6,11 @@ import Home from "../nav/Home";
 import Projects from "../nav/Projects";
 import Testimonials from "../nav/Testimonials";
 import { StateContext } from "../utils/ContextProvider";
+import {
+  aboutSectionNavigation,
+  focusTrap,
+  sectionNavigation,
+} from "../utils/HelperFunctions";
 
 export type sections =
   | "Home"
@@ -30,7 +35,7 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    document.addEventListener("keydown", onArrowKey);
+    document.addEventListener("keydown", onArrowKey, { capture: true });
     return () => {
       document.removeEventListener("keydown", onArrowKey);
       clearTimeout(timeout.current);
@@ -73,30 +78,17 @@ const Portfolio = () => {
   }
 
   function onArrowKey(event: KeyboardEvent) {
-    switch (openedRef.current) {
-      case "Home":
-        if (event.key === "ArrowDown") setOpened("About");
-        break;
-
-      case "About":
-        if (event.key === "ArrowUp") setOpened("Home");
-        else if (event.key === "ArrowDown") setOpened("Projects");
-        break;
-
-      case "Projects":
-        if (event.key === "ArrowUp") setOpened("About");
-        else if (event.key === "ArrowDown") setOpened("Testimonials");
-        break;
-
-      case "Testimonials":
-        if (event.key === "ArrowUp") setOpened("Projects");
-        else if (event.key === "ArrowDown") setOpened("Contact");
-        break;
-
-      case "Contact":
-        if (event.key === "ArrowUp") setOpened("Testimonials");
-        break;
+    if (event.key === "Escape") {
+      event.stopPropagation();
+      if (openedRef.current === "Projects") {
+        document
+          .getElementById("Close Button")
+          ?.dispatchEvent(context.clickEvent);
+      }
     }
+    focusTrap(event, openedRef);
+    sectionNavigation(event, openedRef, setOpened);
+    aboutSectionNavigation(event, openedRef, context);
   }
 
   return (

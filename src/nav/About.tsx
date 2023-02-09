@@ -16,13 +16,6 @@ const About = () => {
     "w-[28dvmin] h-fit p-[2dvmin] title font-medium origin-bottom " +
     "drop-shadow-lg transition-all duration-75 custom-ease-out ";
 
-  useEffect(() => {
-    document.addEventListener("keydown", onArrowKey, { capture: true });
-    return () => {
-      document.removeEventListener("keydown", onArrowKey);
-    };
-  }, []);
-
   function setOpened(section: aboutSections) {
     context.aboutOpenedRef.current = section;
     setOpenedState(section);
@@ -36,43 +29,6 @@ const About = () => {
         return <Bio />;
       case "Philosophy":
         return <Philosophy />;
-    }
-  }
-
-  function onArrowKey(event: KeyboardEvent) {
-    switch (context.aboutOpenedRef.current) {
-      case "Profile":
-        if (event.key === "ArrowLeft")
-          document
-            .getElementById("Philosophy Button")
-            ?.dispatchEvent(context.clickEvent);
-        else if (event.key === "ArrowRight")
-          document
-            .getElementById("Bio Button")
-            ?.dispatchEvent(context.clickEvent);
-        break;
-
-      case "Bio":
-        if (event.key === "ArrowLeft")
-          document
-            .getElementById("Profile Button")
-            ?.dispatchEvent(context.clickEvent);
-        else if (event.key === "ArrowRight")
-          document
-            .getElementById("Philosophy Button")
-            ?.dispatchEvent(context.clickEvent);
-        break;
-
-      case "Philosophy":
-        if (event.key === "ArrowLeft")
-          document
-            .getElementById("Bio Button")
-            ?.dispatchEvent(context.clickEvent);
-        else if (event.key === "ArrowRight")
-          document
-            .getElementById("Profile Button")
-            ?.dispatchEvent(context.clickEvent);
-        break;
     }
   }
 

@@ -6,3 +6,5 @@ Part 3:
 - sounds?
 - dark color scheme
 - dark mode game  
+
+Bugs: 

@@ -17,13 +17,6 @@ const Accordian = (props: propsType) => {
   >("none");
 
   useEffect(() => {
-    document.addEventListener("keydown", focusTrap);
-    return () => {
-      document.removeEventListener("keydown", focusTrap);
-    };
-  }, []);
-
-  useEffect(() => {
     context.setScrollable(false);
     if (props.label === "Home") setEffect("saturate-in");
     else if (props.label === "About" || props.label === "Contact")
@@ -50,50 +43,6 @@ const Accordian = (props: propsType) => {
       case "Contact":
         document.getElementById("Contact Section Content")?.focus();
         break;
-    }
-  }
-
-  function focusTrap(event: KeyboardEvent) {
-    if (event.shiftKey && event.key === "Tab") {
-      if (openedRef.current !== "Home") {
-        if (
-          document.getElementById("Home Section Label") ===
-          document.activeElement
-        ) {
-          event.preventDefault();
-          if (openedRef.current === "Contact")
-            document.getElementById("Form Submit Button")?.focus();
-          else document.getElementById("Contact Section Label")?.focus();
-        }
-      } else {
-        if (
-          document.getElementById("Grace Hopper Quote") ===
-          document.activeElement
-        ) {
-          event.preventDefault();
-          document.getElementById("Contact Section Label")?.focus();
-        }
-      }
-    } else if (event.key === "Tab") {
-      if (openedRef.current !== "Contact") {
-        if (
-          document.getElementById("Contact Section Label") ===
-          document.activeElement
-        ) {
-          event.preventDefault();
-          if (openedRef.current === "Home")
-            document.getElementById("Grace Hopper Quote")?.focus();
-          else document.getElementById("Home Section Label")?.focus();
-        }
-      } else {
-        if (
-          document.getElementById("Form Submit Button") ===
-          document.activeElement
-        ) {
-          event.preventDefault();
-          document.getElementById("Home Section Label")?.focus();
-        }
-      }
     }
   }
 

@@ -15,7 +15,7 @@ const Philosophy = () => {
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min bg-image " +
-          "border-[0.625vmin] border-black py-[2dvmin] px-[4dvmin] "
+          "border-[0.625vmin] border-black py-[1.5dvmin] px-[4dvmin] "
         }
       >
         <p
@@ -72,7 +72,7 @@ const Philosophy = () => {
       <div
         className={
           "grid grid-flow-row-dense auto-rows-min bg-image " +
-          "border-[0.625vmin] border-black py-[2dvmin] px-[4dvmin] "
+          "border-[0.625vmin] border-black py-[1.5dvmin] px-[4dvmin] "
         }
       >
         <p

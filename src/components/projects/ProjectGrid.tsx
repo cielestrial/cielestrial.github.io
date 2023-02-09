@@ -52,9 +52,9 @@ const ProjectGrid = (props: propsType) => {
 
       <div
         className={
-          "w-full pb-[3dvh] px-[6dvmin] grid overflow-auto scroll-smooth "
+          "w-full pb-[3dvh] px-[4dvmin] grid overflow-auto scroll-smooth "
         }
-        onScroll={() => (context.touchStart.current = -1)}
+        onScroll={context.touchStartReset}
         onTouchMove={(event) => {
           // Conditional on there being overflow
           if (

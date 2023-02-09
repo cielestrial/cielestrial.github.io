@@ -6,7 +6,7 @@ const Philosophy = () => {
   return (
     <div
       className={
-        "grid px-[6dvmin] content-center justify-self-center gap-[4dvmin] " +
+        "grid px-[4dvmin] content-center justify-self-center gap-[4dvmin] " +
         "grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }

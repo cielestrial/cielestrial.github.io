@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { BsFillBucketFill } from "react-icons/bs";
 import DarkModeSVG from "../assets/svg/DarkModeSVG";
 import LightModeSVG from "../assets/svg/LightModeSVG";
-import { StateContext } from "../utils/ContextProvider";
+import { coordinate, StateContext } from "../utils/ContextProvider";
 import { splatRaindrops } from "../utils/SplatRaindropsGame";
 
 type propsType = {
@@ -20,7 +20,7 @@ const Background = (props: propsType) => {
 
   const mouse = useRef(document.getElementById("mouse-hitbox"));
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
-  const lastKnownPos = useRef({ x: 0, y: 0 });
+  const lastKnownPos = useRef<coordinate>({ x: 0, y: 0 });
 
   async function trackMouse(event: React.MouseEvent) {
     //event.stopPropagation();

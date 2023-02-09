@@ -1,4 +1,4 @@
-import { stateContextType } from "./ContextProvider";
+import { coordinate, stateContextType } from "./ContextProvider";
 
 export const raindropValue = 100;
 
@@ -20,11 +20,11 @@ async function checkCollision(
 ) {
   const raindrop = raindropElement.getBoundingClientRect();
   if (raindropElement.style.opacity === "1") {
-    const mouseBottomCenter = {
+    const mouseBottomCenter: coordinate = {
       x: mouse.x + mouse.width / 2,
       y: mouse.y + mouse.height,
     };
-    const raindropBottomCenter = {
+    const raindropBottomCenter: coordinate = {
       x: raindrop.x + raindrop.width / 2,
       y: raindrop.y + raindrop.height,
     };
@@ -45,19 +45,18 @@ async function checkCollision(
     ) {
       // Visuals
       raindropElement.style.opacity = "0";
-      displayPoints(raindrop.x, raindrop.y);
+      displayPoints({ x: raindrop.x, y: raindrop.y });
 
       // Debug
       if (context.debugMode.current) {
         // Bucket Hitbox
         displayHitbox(
-          mouseBottomCenter.x,
-          mouseBottomCenter.y,
+          mouseBottomCenter,
           upperXBound - lowerXBound,
           upperYBound - lowerYBound
         );
         // Raindrop Focal Point
-        displayFocalPoint(raindropBottomCenter.x, raindropBottomCenter.y);
+        displayFocalPoint(raindropBottomCenter);
       }
 
       // Score
@@ -80,7 +79,7 @@ function within(point: number, lowerBound: number, upperBound: number) {
   else return false;
 }
 
-function displayPoints(x: number, y: number) {
+function displayPoints(coord: coordinate) {
   const points = document.createElement("div");
 
   points.className =
@@ -89,8 +88,8 @@ function displayPoints(x: number, y: number) {
     "title font-semibold text-[4vmin] sm:text-[3vmin] text-center ";
   points.appendChild(document.createTextNode("+" + raindropValue));
 
-  points.style.left = x + "px";
-  points.style.top = y + "px";
+  points.style.left = coord.x + "px";
+  points.style.top = coord.y + "px";
 
   // listeners
   points.addEventListener(
@@ -115,7 +114,7 @@ function displayPoints(x: number, y: number) {
   document.getElementById("the background")?.appendChild(points);
 }
 
-function displayHitbox(x: number, y: number, w: number, h: number) {
+function displayHitbox(coord: coordinate, w: number, h: number) {
   let hitbox = document.getElementById("hitbox");
   if (hitbox !== null) hitbox.remove();
 
@@ -125,15 +124,15 @@ function displayHitbox(x: number, y: number, w: number, h: number) {
     "dirt fixed bg-transparent border border-yellow-400 " +
     "translate-x-[-50%] translate-y-[-100%] border-[0.4vmin] ";
 
-  hitbox.style.left = x + "px";
-  hitbox.style.top = y + "px";
+  hitbox.style.left = coord.x + "px";
+  hitbox.style.top = coord.y + "px";
   hitbox.style.width = w + "px";
   hitbox.style.height = h + "px";
 
   document.getElementById("the background")?.appendChild(hitbox);
 }
 
-function displayFocalPoint(x: number, y: number) {
+function displayFocalPoint(coord: coordinate) {
   let focalPoint = document.getElementById("focalPoint");
   if (focalPoint !== null) focalPoint.remove();
 
@@ -143,8 +142,8 @@ function displayFocalPoint(x: number, y: number) {
     "dirt fixed bg-transparent border border-red-400 " +
     "translate-x-[-50%] translate-y-[-50%] border-[0.4vmin] ";
 
-  focalPoint.style.left = x + "px";
-  focalPoint.style.top = y + "px";
+  focalPoint.style.left = coord.x + "px";
+  focalPoint.style.top = coord.y + "px";
   focalPoint.style.width = "1px";
   focalPoint.style.height = "1px";
 

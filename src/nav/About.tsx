@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Bio from "../components/about/Bio";
 import Philosophy from "../components/about/Philosophy";
 import Profile from "../components/about/Profile";
@@ -105,7 +105,7 @@ const About = () => {
           (snap ? "snap-x snap-mandatory " : "")
         }
         onAnimationEnd={() => setSnap(true)}
-        onScroll={() => (context.touchStart.current = -1)}
+        onScroll={context.touchStartReset}
         onTouchMove={(event) => {
           // Conditional on there being overflow
           if (

@@ -8,7 +8,7 @@ const Profile = () => {
   return (
     <div
       className={
-        "grid px-[6dvmin] content-center justify-self-center gap-x-[4dvmin] " +
+        "grid px-[4dvmin] content-center justify-self-center gap-x-[4dvmin] " +
         "grid-flow-col-dense auto-cols-min " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }

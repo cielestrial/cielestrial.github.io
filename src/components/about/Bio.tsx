@@ -7,7 +7,7 @@ const Bio = () => {
   return (
     <div
       className={
-        "grid px-[6dvmin] content-center justify-self-center gap-x-[4dvmin] gap-y-[3dvmin] " +
+        "grid px-[4dvmin] content-center justify-self-center gap-x-[4dvmin] gap-y-[3dvmin] " +
         "grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }

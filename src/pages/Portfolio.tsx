@@ -102,27 +102,62 @@ const Portfolio = () => {
       onWheel={(event) => onScroll(event)}
       onTouchStart={(event) => {
         if (!context.hideContent)
-          context.touchStart.current = event.changedTouches[0].pageY;
-        else context.touchStart.current = -1;
+          context.touchStart.current = {
+            x: event.changedTouches[0].pageX,
+            y: event.changedTouches[0].pageY,
+          };
+        else context.touchStartReset();
       }}
       onTouchEnd={(event) => {
-        if (!context.hideContent && context.touchStart.current !== -1) {
-          context.touchEnd.current = event.changedTouches[0].pageY;
-          // Swipe up
+        if (
+          !context.hideContent &&
+          (context.touchStart.current.x !== -1 ||
+            context.touchStart.current.y !== -1)
+        ) {
+          context.touchEnd.current = {
+            x: event.changedTouches[0].pageX,
+            y: event.changedTouches[0].pageY,
+          };
           if (
-            context.touchStart.current >
-            context.touchEnd.current + context.deadzone * context.vmax
-          )
-            onArrowKey(arrowDownEvent);
-          // Swipe down
-          else if (
-            context.touchStart.current <
-            context.touchEnd.current - context.deadzone * context.vmax
-          )
-            onArrowKey(arrowUpEvent);
+            Math.abs(
+              context.touchEnd.current.y - context.touchStart.current.y
+            ) >
+            Math.abs(context.touchEnd.current.x - context.touchStart.current.x)
+          ) {
+            if (
+              context.touchStart.current.y >
+              context.touchEnd.current.y + context.deadzoneY * context.vmax
+            )
+              // Swipe up
+              onArrowKey(arrowDownEvent);
+            // Swipe down
+            else if (
+              context.touchStart.current.y <
+              context.touchEnd.current.y - context.deadzoneY * context.vmax
+            )
+              onArrowKey(arrowUpEvent);
+          } else if (
+            Math.abs(
+              context.touchEnd.current.y - context.touchStart.current.y
+            ) <
+            Math.abs(context.touchEnd.current.x - context.touchStart.current.x)
+          ) {
+            // Swipe left
+            if (
+              context.touchStart.current.x >
+              context.touchEnd.current.x + context.deadzoneX * context.vmin
+            )
+              document.dispatchEvent(context.rightArrowEvent);
+            // Swipe right
+            else if (
+              context.touchStart.current.x <
+              context.touchEnd.current.x - context.deadzoneX * context.vmin
+            )
+              document.dispatchEvent(context.leftArrowEvent);
+          }
         }
       }}
-      onTouchCancel={() => (context.touchStart.current = -1)}
+      onTouchCancel={context.touchStartReset}
     >
       <Accordian
         label={"Home"}

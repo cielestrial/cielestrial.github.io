@@ -63,14 +63,14 @@ const ProjectView = (props: propsType) => {
       >
         <p
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] " +
+            "text-[3.375vmin] " +
             "underline underline-offset-[0.25dvmin] text-center " +
             "decoration-from-font font-bold "
           }
         >
           {props.title}
         </p>
-        <p className="indent-[4dvmin]">{props.description}</p>
+        <p className="text-[3vmin] indent-[4dvmin] ">{props.description}</p>
       </div>
     );
   }

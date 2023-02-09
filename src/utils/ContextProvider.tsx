@@ -16,10 +16,14 @@ export type stateContextType = {
   setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
   scrollable: boolean;
   setScrollable: React.Dispatch<React.SetStateAction<boolean>>;
-  touchStart: React.MutableRefObject<number>;
-  touchEnd: React.MutableRefObject<number>;
-  deadzone: number;
+
+  touchStart: React.MutableRefObject<coordinate>;
+  touchEnd: React.MutableRefObject<coordinate>;
+  touchStartReset(): void;
+  deadzoneX: number;
+  deadzoneY: number;
   vmax: number;
+  vmin: number;
 
   scoreRef: React.MutableRefObject<number>;
   score: number;
@@ -30,10 +34,13 @@ export type stateContextType = {
   countdownToGameStart: React.MutableRefObject<NodeJS.Timeout | undefined>;
 
   clickEvent: MouseEvent;
+  leftArrowEvent: KeyboardEvent;
+  rightArrowEvent: KeyboardEvent;
   touchDevice: React.MutableRefObject<boolean>;
 };
 
 export type aboutSections = "Profile" | "Bio" | "Philosophy";
+export type coordinate = { x: number; y: number };
 
 type StateProviderProps = {
   children: React.ReactNode;
@@ -58,10 +65,13 @@ export function StateProvider({ children }: StateProviderProps) {
   const [hideCursor, setHideCursor] = useState(false);
   const [hideContent, setHideContent] = useState(false);
   const [scrollable, setScrollable] = useState(false);
-  const touchStart = useRef(-1);
-  const touchEnd = useRef(-1);
-  const deadzone = 0.1;
+
+  const touchStart = useRef<coordinate>({ x: -1, y: -1 });
+  const touchEnd = useRef<coordinate>({ x: -1, y: -1 });
+  const deadzoneX = 0.05;
+  const deadzoneY = 0.1;
   const vmax = Math.max(window.outerHeight, window.outerWidth);
+  const vmin = Math.min(window.outerHeight, window.outerWidth);
 
   const maxScore = 99999;
   const scoreRef = useRef(0);
@@ -73,6 +83,14 @@ export function StateProvider({ children }: StateProviderProps) {
   const countdownToGameStart = useRef<NodeJS.Timeout>();
 
   const clickEvent = new MouseEvent("click", { bubbles: true });
+  const leftArrowEvent = new KeyboardEvent("keydown", {
+    key: "ArrowLeft",
+    bubbles: true,
+  });
+  const rightArrowEvent = new KeyboardEvent("keydown", {
+    key: "ArrowRight",
+    bubbles: true,
+  });
   const touchDevice = useRef(false);
 
   const setAndSaveHighScore = useCallback((newScore: number) => {
@@ -119,8 +137,12 @@ export function StateProvider({ children }: StateProviderProps) {
   }, [score]);
 
   useEffect(() => {
-    touchStart.current = -1;
+    touchStartReset();
   }, [hideContent]);
+
+  function touchStartReset() {
+    touchStart.current = { x: -1, y: -1 };
+  }
 
   return (
     <StateContext.Provider
@@ -136,10 +158,14 @@ export function StateProvider({ children }: StateProviderProps) {
         setHideContent,
         scrollable,
         setScrollable,
+
         touchStart,
         touchEnd,
-        deadzone,
+        touchStartReset,
+        deadzoneX,
+        deadzoneY,
         vmax,
+        vmin,
 
         score,
         setScore,
@@ -151,6 +177,8 @@ export function StateProvider({ children }: StateProviderProps) {
         countdownToGameStart,
 
         clickEvent,
+        leftArrowEvent,
+        rightArrowEvent,
         touchDevice,
       }}
     >

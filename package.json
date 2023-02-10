@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "private": true,
-  "version": "2.4.1",
+  "version": "2.4.2",
   "homepage": "https://cielestrial.github.io/",
   "type": "module",
   "scripts": {

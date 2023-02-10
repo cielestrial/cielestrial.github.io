@@ -1,6 +1,4 @@
 Part 3:
-- Fix up wbtracker
-- Host HZServer with Docker
 - Improve descriptions to higlight unique features to better illustrate capabilities
 
 Part 4:

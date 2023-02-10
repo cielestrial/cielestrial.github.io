@@ -15,14 +15,14 @@ import dashboard_tab_1 from "../../assets/ev-dashboard/ev-dashboard_tab1.jpg";
 
 import donkey_car_1 from "../../assets/donkey-car/donkey-car_home.jpg";
 import donkey_car_2 from "../../assets/donkey-car/donkey-car_test_cases.jpg";
-import { StateContext } from "../../utils/ContextProvider";
 
-/*
-import wbtracker_1 from "../assets/wbtracker/wbtracker_home.jpg";
-import wbtracker_2 from "../assets/wbtracker/wbtracker_d_survey.jpg";
-import wbtracker_3 from "../assets/wbtracker/wbtracker_a_survey.jpg";
-import wbtracker_4 from "../assets/wbtracker/wbtracker_graphs.jpg";
-*/
+import wbtracker_1 from "../../assets/wbtracker/wbtracker_home.png";
+import wbtracker_2 from "../../assets/wbtracker/wbtracker_d_survey.png";
+import wbtracker_3 from "../../assets/wbtracker/wbtracker_a_survey.png";
+import wbtracker_4 from "../../assets/wbtracker/wbtracker_graphs.png";
+import wbtracker_5 from "../../assets/wbtracker/wbtracker_404.png";
+
+import { StateContext } from "../../utils/ContextProvider";
 
 type propsType = {
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -169,10 +169,8 @@ const ProjectGrid = (props: propsType) => {
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
           />
-
-          {/*
           <ProjectCard
-            title={"wbtracker"}
+            title={"WB Tracker"}
             description={
               "A client-side web application that surveys, tracks, and " +
               "graphs a users mental health over an extended period. " +
@@ -183,6 +181,7 @@ const ProjectGrid = (props: propsType) => {
               wbtracker_2,
               wbtracker_3,
               wbtracker_4,
+              wbtracker_5,
             ]}
             link={"https://wbtracker.onrender.com"}
             status={"Completed"}
@@ -191,7 +190,6 @@ const ProjectGrid = (props: propsType) => {
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
           />
-          */}
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ type propsType = {
 
 const ProjectView = (props: propsType) => {
   const context = useContext(StateContext);
-  const [index, setIndex] = useState(0);
+  const index = useRef(0);
   const actualLength = props.images.length + 1;
   const [effect, setEffect] = useState<
     "left" | "right" | "scale-up" | "scale-down" | "none"
@@ -31,9 +31,6 @@ const ProjectView = (props: propsType) => {
   const [rightArrowEffect, setRightArrowEffect] = useState<
     "fade-in" | "fade-out" | "none"
   >("fade-in");
-
-  const [hideLeftArrow, setHideLeftArrow] = useState(true);
-  const [hideRightArrow, setHideRightArrow] = useState(false);
   const hideLeftArrowRef = useRef(true);
   const hideRightArrowRef = useRef(false);
   const size = "aspect-video h-[48dvmin] ";
@@ -111,8 +108,9 @@ const ProjectView = (props: propsType) => {
             if (event.key === "Enter")
               event.currentTarget.dispatchEvent(context.clickEvent);
           }}
-          onClick={() => {
+          onClick={(event) => {
             if (sideEffect === "none") {
+              event.currentTarget.blur();
               setEffect("scale-down");
               setSideEffect("fade-out");
               setLeftArrowEffect("fade-out");
@@ -123,7 +121,7 @@ const ProjectView = (props: propsType) => {
             "w-fit h-fit rounded-full bg-transparent text-[5vh] " +
             "justify-self-end origin-bottom-left " +
             "z-40 drop-shadow-lg transition-all duration-75 custom-ease-out " +
-            "hover:bg-red-400/75 active:scale-95 active:bg-red-500/75 " +
+            "hover:bg-red-400/75 active:bg-red-500/75 active:scale-95 " +
             "cursor-pointer transform-gpu " +
             (sideEffect === "fade-in"
               ? "animate-fade-in "
@@ -157,7 +155,7 @@ const ProjectView = (props: propsType) => {
             else setEffect("none");
           }}
         >
-          {index === 0 ? (
+          {index.current === 0 ? (
             displayDescription()
           ) : (
             <img
@@ -165,7 +163,7 @@ const ProjectView = (props: propsType) => {
               className={"drop-shadow-lg " + size}
               src={
                 props.images.length > 0
-                  ? props.images[index - 1]
+                  ? props.images[index.current - 1]
                   : placeholderImage
               }
               alt="current page preview"
@@ -178,22 +176,45 @@ const ProjectView = (props: propsType) => {
           id={"previous"}
           className={
             "w-max fixed transform-gpu " +
-            (props.images.length > 0 && index - 1 > -1 ? "" : "hidden ") +
+            (props.images.length > 0 && index.current - 1 > -1
+              ? ""
+              : "hidden ") +
             (effect === "left" ? "animate-fade-in-left " : "hidden ")
           }
-          onAnimationEnd={() => {
-            if (index - 1 > -1) setIndex(index - 1);
+          onAnimationEnd={(event) => {
+            if (
+              event.animationName === "fade-in-left" &&
+              index.current - 1 > -1
+            )
+              index.current--;
+            console.log(
+              event.animationName + " prev:",
+              "\nindex:",
+              index.current,
+              "\neffect:",
+              effect,
+              "\nsideEffect:",
+              sideEffect,
+              "\nleftArrowEffect:",
+              leftArrowEffect,
+              "\nrightArrowEffect:",
+              rightArrowEffect,
+              "\nhideLeftArrowRef.current:",
+              hideLeftArrowRef.current,
+              "\nhideRightArrowRef.current:",
+              hideRightArrowRef.current
+            );
           }}
         >
-          {index - 1 === 0 ? (
+          {index.current - 1 === 0 ? (
             displayDescription()
           ) : (
             <img
               id={"previous image"}
               className={"drop-shadow-lg " + size}
               src={
-                props.images.length > 0 && index - 1 > -1
-                  ? props.images[index - 2]
+                props.images.length > 0 && index.current - 1 > -1
+                  ? props.images[index.current - 2]
                   : placeholderImage
               }
               alt="previous page preview"
@@ -206,21 +227,42 @@ const ProjectView = (props: propsType) => {
           id={"next"}
           className={
             "w-max fixed transform-gpu " +
-            (props.images.length > 0 && index + 1 < actualLength
+            (props.images.length > 0 && index.current + 1 < actualLength
               ? ""
               : "hidden ") +
             (effect === "right" ? "animate-fade-in-right " : "hidden ")
           }
-          onAnimationEnd={() => {
-            if (index + 1 < actualLength) setIndex(index + 1);
+          onAnimationEnd={(event) => {
+            if (
+              event.animationName === "fade-in-right" &&
+              index.current + 1 < actualLength
+            )
+              index.current++;
+            console.log(
+              event.animationName + " next:",
+              "\nindex:",
+              index.current,
+              "\neffect:",
+              effect,
+              "\nsideEffect:",
+              sideEffect,
+              "\nleftArrowEffect:",
+              leftArrowEffect,
+              "\nrightArrowEffect:",
+              rightArrowEffect,
+              "\nhideLeftArrowRef.current:",
+              hideLeftArrowRef.current,
+              "\nhideRightArrowRef.current:",
+              hideRightArrowRef.current
+            );
           }}
         >
           <img
             id={"next image"}
             className={"drop-shadow-lg " + size}
             src={
-              props.images.length > 0 && index + 1 < actualLength
-                ? props.images[index]
+              props.images.length > 0 && index.current + 1 < actualLength
+                ? props.images[index.current]
                 : placeholderImage
             }
             alt="next page preview"
@@ -237,24 +279,28 @@ const ProjectView = (props: propsType) => {
             if (event.key === "Enter")
               event.currentTarget.dispatchEvent(context.clickEvent);
           }}
-          onClick={() => {
-            if (leftArrowEffect === "none") {
-              if (!hideLeftArrow && index - 1 === 0)
+          onClick={(event) => {
+            if (effect === "none") {
+              event.currentTarget.blur();
+              if (!hideLeftArrowRef.current && index.current - 1 === 0)
                 setLeftArrowEffect("fade-out");
-              if (hideRightArrow && index - 1 === actualLength - 2) {
-                setHideRightArrow(false);
+              if (
+                hideRightArrowRef.current &&
+                index.current - 1 === actualLength - 2
+              ) {
                 hideRightArrowRef.current = false;
                 setRightArrowEffect("fade-in");
               }
-              if (effect === "none" && index - 1 > -1) setEffect("left");
+              if (effect === "none" && index.current - 1 > -1)
+                setEffect("left");
             }
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
             "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
-            "hover:bg-amber-200/75 active:scale-95 active:bg-amber-300/75 " +
+            "hover:bg-amber-200/75 active:bg-amber-300/75 active:scale-95 " +
             "cursor-pointer transform-gpu " +
-            (hideLeftArrow
+            (hideLeftArrowRef.current
               ? "invisible "
               : leftArrowEffect === "fade-in"
               ? "animate-fade-in "
@@ -264,7 +310,6 @@ const ProjectView = (props: propsType) => {
           }
           onAnimationEnd={() => {
             if (leftArrowEffect === "fade-out") {
-              setHideLeftArrow(true);
               hideLeftArrowRef.current = true;
             }
             setLeftArrowEffect("none");
@@ -278,25 +323,28 @@ const ProjectView = (props: propsType) => {
             if (event.key === "Enter")
               event.currentTarget.dispatchEvent(context.clickEvent);
           }}
-          onClick={() => {
-            if (rightArrowEffect === "none") {
-              if (!hideRightArrow && index + 1 === actualLength - 1)
+          onClick={(event) => {
+            if (effect === "none") {
+              event.currentTarget.blur();
+              if (
+                !hideRightArrowRef.current &&
+                index.current + 1 === actualLength - 1
+              )
                 setRightArrowEffect("fade-out");
-              if (hideLeftArrow && index + 1 === 1) {
-                setHideLeftArrow(false);
+              if (hideLeftArrowRef.current && index.current + 1 === 1) {
                 hideLeftArrowRef.current = false;
                 setLeftArrowEffect("fade-in");
               }
-              if (effect === "none" && index + 1 < actualLength)
+              if (effect === "none" && index.current + 1 < actualLength)
                 setEffect("right");
             }
           }}
           className={
             "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-right " +
             "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
-            "hover:bg-sky-300/75 active:scale-95 active:bg-sky-400/75 " +
+            "hover:bg-sky-300/75 active:bg-sky-400/75 active:scale-95 " +
             "cursor-pointer transform-gpu " +
-            (hideRightArrow
+            (hideRightArrowRef.current
               ? "invisible "
               : rightArrowEffect === "fade-in"
               ? "animate-fade-in "
@@ -306,7 +354,6 @@ const ProjectView = (props: propsType) => {
           }
           onAnimationEnd={() => {
             if (rightArrowEffect === "fade-out") {
-              setHideRightArrow(true);
               hideRightArrowRef.current = true;
             }
             setRightArrowEffect("none");

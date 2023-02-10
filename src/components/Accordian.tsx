@@ -93,7 +93,10 @@ const Accordian = (props: propsType) => {
           if (event.key === "Enter")
             event.currentTarget.dispatchEvent(context.clickEvent);
         }}
-        onClick={() => props.setOpened(props.label)}
+        onClick={(event) => {
+          event.currentTarget.blur();
+          props.setOpened(props.label);
+        }}
       >
         {props.label}
       </div>

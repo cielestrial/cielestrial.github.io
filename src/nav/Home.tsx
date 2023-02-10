@@ -31,7 +31,10 @@ const Home = () => {
               : "transition-all duration-75 custom-ease-out justify-start " +
                 "content-center border-slate-300 bg-sky-300 ")
           }
-          onClick={() => setChecked((prev) => !prev)}
+          onClick={(event) => {
+            event.currentTarget.blur();
+            setChecked((prev) => !prev);
+          }}
         >
           <div
             className={

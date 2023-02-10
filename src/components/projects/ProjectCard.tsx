@@ -33,7 +33,8 @@ const ProjectCard = (props: propsType) => {
         if (event.key === "Enter")
           event.currentTarget.dispatchEvent(context.clickEvent);
       }}
-      onClick={() => {
+      onClick={(event) => {
+        event.currentTarget.blur();
         props.setGridEffect("fade-out");
         props.setSelectedProject(
           <ProjectView

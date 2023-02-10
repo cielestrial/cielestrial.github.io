@@ -9,5 +9,4 @@ Part 4:
 - dark color scheme
 - dark mode game  
 
-Bugs: 
-- Project view images go out of bounds?
+Known Bugs: 

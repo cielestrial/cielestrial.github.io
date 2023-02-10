@@ -53,7 +53,8 @@ const About = () => {
               ? "bg-slate-400 "
               : "bg-slate-200 hover:bg-slate-300 ")
           }
-          onClick={() => {
+          onClick={(event) => {
+            event.currentTarget.blur();
             setSnap(false);
             scrollPos.current?.scrollTo(0, 0);
             setOpened("Profile");
@@ -70,7 +71,8 @@ const About = () => {
               ? "bg-slate-400 "
               : "bg-slate-200 hover:bg-slate-300 ")
           }
-          onClick={() => {
+          onClick={(event) => {
+            event.currentTarget.blur();
             setSnap(false);
             scrollPos.current?.scrollTo(0, 0);
             setOpened("Bio");
@@ -88,7 +90,8 @@ const About = () => {
               ? "bg-slate-400 "
               : "bg-slate-200 hover:bg-slate-300 ")
           }
-          onClick={() => {
+          onClick={(event) => {
+            event.currentTarget.blur();
             setSnap(false);
             scrollPos.current?.scrollTo(0, 0);
             setOpened("Philosophy");

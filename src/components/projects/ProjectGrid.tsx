@@ -172,7 +172,7 @@ const ProjectGrid = (props: propsType) => {
               "A Chaos Engineering in a Cyber-Physical System project. Simply put: " +
               "our team introduces failures into the system of a miniature self-driving " +
               "vehicle and logs how well it responds. I built both the " +
-              "web page and the web server. Developed with React, Spring " +
+              "web page and the web server. Developed with React, auth0, Spring " +
               "Boot, and Hazelcast. Deployed with Docker."
             }
             images={[donkey_car_1, donkey_car_2]}

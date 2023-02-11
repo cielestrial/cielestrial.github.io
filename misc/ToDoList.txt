@@ -1,5 +1,3 @@
-Part 3:
-- Improve descriptions to higlight unique features to better illustrate capabilities
 
 Part 4:
 - add splash animation

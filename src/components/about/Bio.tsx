@@ -61,10 +61,10 @@ const Bio = () => {
         <div className="grid grid-flow-col-dense auto-cols-min gap-x-[4dvmin] ">
           <div className="w-max snap-center snap-always space-y-[1.5dvmin] ">
             <div>
-              <p>A programmer interested in&#32;</p>
-              <p>general software development,&#32;</p>
-              <p>mobile application development,&#32;</p>
-              <p>full-stack web development, and&#32;</p>
+              <p>A developer interested in &#32;</p>
+              <p>software development, mobile&#32;</p>
+              <p> application development, full-&#32;</p>
+              <p>stack web development, and&#32;</p>
               <p>game development.</p>
             </div>
             <div>
@@ -76,9 +76,9 @@ const Bio = () => {
 
           <div className="w-max snap-center space-y-[1.5dvmin] ">
             <div>
-              <p>big-data algorithms, vectors, set&#32;</p>
-              <p>theory, propositional logic and&#32;</p>
-              <p>first-order logic.</p>
+              <p>big-data algorithms, vectors,&#32;</p>
+              <p>set theory, propositional logic&#32;</p>
+              <p>and first-order logic.</p>
             </div>
             <div>
               <p>I also enjoy participating in&#32;</p>

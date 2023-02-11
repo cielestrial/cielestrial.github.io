@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
 
 import yspm_light_4 from "../../assets/yspm/yspm_genres_page_light_mode.jpg";
@@ -33,6 +33,8 @@ type propsType = {
 const ProjectGrid = (props: propsType) => {
   const context = useContext(StateContext);
   const [effect, setEffect] = useState<"fade-out" | "none">("none");
+  const [scrollable, setScrollable] = useState(false);
+  const cardCount = useRef(0);
 
   return (
     <div className="h-full w-full grid content-start justify-content-center ">
@@ -52,8 +54,17 @@ const ProjectGrid = (props: propsType) => {
 
       <div
         className={
-          "w-full pb-[3dvh] px-[4dvmin] grid overflow-auto scroll-smooth "
+          "w-full pb-[3dvh] px-[4dvmin] grid scroll-smooth " +
+          "overflow-y-auto " +
+          (scrollable ? "overflow-x-auto " : "overflow-x-hidden ")
         }
+        onAnimationEnd={(event) => {
+          if (event.animationName === "fade-in-right") cardCount.current++;
+          if (cardCount.current === 4) {
+            cardCount.current = 0;
+            setScrollable(true);
+          }
+        }}
         onScroll={context.touchStartReset}
         onTouchMove={(event) => {
           // Conditional on there being overflow
@@ -107,11 +118,13 @@ const ProjectGrid = (props: propsType) => {
           <ProjectCard
             title={"YSPM"}
             description={
-              "A Spotify playlist manager. The front-end was developed with " +
-              "React, Typescript. Styled with Mantine. The back-end " +
-              "was developed with Express. It is currently in quota mode, " +
-              "so users have to be manually aprroved by me. " +
-              "If you would like to request access, please contact me."
+              "A Spotify playlist manager. Developed with React, TypeScript, " +
+              "Mantine, and Express. Key utilities include REST API and a " +
+              "custom-made query api. Key features include creating genre-based " +
+              "playlists, playlist subscriptions, and light & dark mode themes. " +
+              "This application is currently in quota mode, so users have to be " +
+              "manually approved by me. If you would like to request access, " +
+              "please contact me."
             }
             images={[
               // light
@@ -139,9 +152,10 @@ const ProjectGrid = (props: propsType) => {
             description={
               "A collaborative project between University of Windsor " +
               "and Windsor-Essex Automobility Enterprises. I created a web-based " +
-              "dashboard for electric vehicles. I both designed and " +
-              "built the web page. The front-end was designed with Figma and " +
-              "developed with React, TypeScript, and SCSS."
+              "dashboard for electric vehicles. Designed with Figma and developed " +
+              "with React, TypeScript, and SCSS. Key features include gesture-based " +
+              "navigation and supports up to 20 smaller applications internally " +
+              "as widgets."
             }
             images={[dashboard_tab_1]}
             link={"https://ev-dashboard.onrender.com"}
@@ -158,8 +172,8 @@ const ProjectGrid = (props: propsType) => {
               "A Chaos Engineering in a Cyber-Physical System project. Simply put: " +
               "our team introduces failures into the system of a miniature self-driving " +
               "vehicle and logs how well it responds. I built both the " +
-              "web page and the web server. The front-end was developed with " +
-              "React and the back-end was developed with Spring Boot."
+              "web page and the web server. Developed with React, Spring " +
+              "Boot, and Hazelcast. Deployed with Docker."
             }
             images={[donkey_car_1, donkey_car_2]}
             link={"https://donkey-car.onrender.com"}

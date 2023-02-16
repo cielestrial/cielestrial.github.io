@@ -78,7 +78,7 @@ const Profile = () => {
             <li>JavaScript</li>
             <li>TypeScript</li>
             <li>ReactJS</li>
-            <li>CSS</li>
+            <li>CSS3</li>
             <li>SASS/SCSS</li>
             <li>Tailwind&#32;CSS</li>
           </ul>

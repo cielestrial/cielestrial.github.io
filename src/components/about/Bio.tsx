@@ -6,37 +6,41 @@ const Bio = () => {
 
   return (
     <div
+      id="bioTab"
+      role="tabpanel"
       className={
-        "grid px-[4dvmin] content-center justify-self-center gap-x-[4dvmin] gap-y-[3dvmin] " +
-        "grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
+        "flex flex-col px-[4vmin] space-x-0 space-y-[3vmin] " +
+        "m-auto lg:flex-row lg:space-x-[4vmin] lg:space-y-0 " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
     >
       <div
         className={
-          "justify-self-start self-center w-fit h-fit ml-[5dvmin] " +
-          "grid grid-flow-row-dense auto-rows-min lg:snap-center " +
-          "lg:justify-self-center lg:ml-0 "
+          "w-fit h-fit ml-[5vmin] flex flex-col lg:snap-center lg:ml-0 "
         }
       >
         <div
           className={
-            "grid border-solid border-black border-[1vmin] rounded-full overflow-clip " +
-            "w-[48dvmin] aspect-square place-content-center drop-shadow-xl "
+            "border-solid border-black border-[1vmin] overflow-clip " +
+            "w-[48vmin] aspect-square drop-shadow-xl rounded-full "
           }
         >
-          <img
-            src={myPic}
-            alt="My Dad and I"
-            className="w-full rotate-12 "
-            draggable="false"
-          />
+          <div className={"overflow-clip w-full aspect-square rotate-12 "}>
+            <img
+              src={myPic}
+              aria-label="A picture of My Dad and I."
+              alt="My Dad and I"
+              className="w-full overflow-clip"
+              draggable="false"
+            />
+          </div>
         </div>
         <p
+          aria-hidden="true"
           className={
-            "text-center self-end justify-self-center w-max h-fit mx-auto px-[3dvmin] " +
-            "-mt-[6dvmin] z-10 border-[0.625vmin] border-black bg-image "
+            "w-max h-fit px-[3vmin] " +
+            "-mt-[6vmin] mx-auto z-10 border-[0.625vmin] border-black bg-image "
           }
         >
           My dad and I
@@ -45,25 +49,28 @@ const Bio = () => {
 
       <div
         className={
-          "grid grid-flow-row-dense auto-rows-min bg-image " +
-          "border-[0.625vmin] border-black py-[2dvmin] px-[4dvmin] "
+          "flex flex-col bg-image " +
+          "border-[0.625vmin] border-black py-[2vmin] px-[4vmin] "
         }
       >
         <p
+          role="heading"
+          aria-level={2}
+          aria-label="About Me:"
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[1dvmin] " +
-            "underline underline-offset-[0.25dvmin] -indent-[0.5dvmin] " +
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
+            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
             "decoration-from-font font-bold "
           }
         >
           About Me
         </p>
-        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[4dvmin] ">
-          <div className="w-max snap-center snap-always space-y-[1.5dvmin] ">
+        <div className="flex flex-row space-x-[4vmin] ">
+          <div className="w-max snap-center snap-always space-y-[1.5vmin] ">
             <div>
               <p>A developer interested in &#32;</p>
               <p>software development, mobile&#32;</p>
-              <p> application development, full-&#32;</p>
+              <p> application development, full&#32;</p>
               <p>stack web development, and&#32;</p>
               <p>game development.</p>
             </div>
@@ -74,7 +81,7 @@ const Bio = () => {
             </div>
           </div>
 
-          <div className="w-max snap-center space-y-[1.5dvmin] ">
+          <div className="w-max snap-center space-y-[1.5vmin] ">
             <div>
               <p>big-data algorithms, vectors,&#32;</p>
               <p>set theory, propositional logic&#32;</p>

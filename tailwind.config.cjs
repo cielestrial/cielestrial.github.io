@@ -4,14 +4,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      width: {
-        screen: "100dvw",
-      },
-
-      height: {
-        screen: "100dvh",
-      },
-
       animation: {
         "float-up": "float-up .55s cubic-bezier(.38,0,.64,1) both",
 

@@ -30,7 +30,7 @@ const ProjectCard = (props: propsType) => {
       id={"project card " + props.order}
       tabIndex={0}
       onKeyDown={(event) => {
-        if (event.key === "Enter")
+        if (event.key === "Enter" || event.key === " ")
           event.currentTarget.dispatchEvent(context.clickEvent);
       }}
       onClick={(event) => {
@@ -47,9 +47,8 @@ const ProjectCard = (props: propsType) => {
         );
       }}
       className={
-        "flex flex-col flex-nowrap w-[35.56dvmin] h-fit " +
-        "place-content-center sm:w-[28.45dvmin] my-[1dvmin] " +
-        "drop-shadow-md transition-all duration-75 custom-ease-out " +
+        "flex flex-col flex-nowrap w-[35.56vmin] h-fit sm:w-[28.45vmin] " +
+        "drop-shadow-md transition-all duration-75 custom-ease-out m-[5vmin] " +
         "saturate-[.75] active:scale-95 outline-none outline-[0.4vmin] " +
         "focus-visible:saturate-150 focus-visible:outline-amber-500 " +
         (!context.touchDevice.current
@@ -70,15 +69,25 @@ const ProjectCard = (props: propsType) => {
         setEffect("none");
       }}
     >
-      <p className={label}>{props.title}</p>
+      <p
+        role="heading"
+        aria-level={2}
+        aria-label={props.title + "."}
+        className={label}
+      >
+        {props.title}
+      </p>
       <img
         id={props.title}
         src={props.images.length > 0 ? props.images[0] : placeholderImage}
+        aria-label="preview image."
         alt={props.title + " preview image"}
         className={"origin-top border-x-[0.625vmin] border-solid border-black "}
         draggable="false"
       />
-      <p className={label}>{props.status}</p>
+      <p aria-label={props.status + "."} className={label}>
+        {props.status}
+      </p>
     </div>
   );
 };

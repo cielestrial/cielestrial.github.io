@@ -82,15 +82,17 @@ const Accordian = (props: propsType) => {
     return (
       <div
         id={props.label + " Section Label"}
+        role="button"
+        aria-expanded={props.opened === props.label}
+        aria-controls={props.label + " Section Content"}
         tabIndex={0}
         className={
-          "w-screen font-bold drop-shadow-lg " +
-          "cursor-pointer grid place-content-center " +
-          "py-[2dvmin] grow blue-highlight " +
+          "view-width font-bold drop-shadow-lg py-[2vmin] " +
+          "cursor-pointer grow blue-highlight flex " +
           gradient
         }
         onKeyDown={(event) => {
-          if (event.key === "Enter")
+          if (event.key === "Enter" || event.key === " ")
             event.currentTarget.dispatchEvent(context.clickEvent);
         }}
         onClick={(event) => {
@@ -98,7 +100,9 @@ const Accordian = (props: propsType) => {
           props.setOpened(props.label);
         }}
       >
-        {props.label}
+        <p className="m-auto " role="heading" aria-level={1}>
+          {props.label}
+        </p>
       </div>
     );
   }
@@ -107,6 +111,8 @@ const Accordian = (props: propsType) => {
     if (props.opened === props.label)
       return (
         <div
+          role="region"
+          aria-label={props.label + " Section Label"}
           id={props.label + " Section Content"}
           tabIndex={-1}
           className={
@@ -133,7 +139,7 @@ const Accordian = (props: propsType) => {
         >
           <div
             className={
-              "fixed whitespace-nowrap m-[3dvmin] " +
+              "fixed whitespace-nowrap m-[3vmin] " +
               "title font-semibold text-[3.5vmin] sm:text-[2.625vmin] " +
               (!context.hideContent ? "invisible " : "visible ")
             }

@@ -5,30 +5,35 @@ const Philosophy = () => {
 
   return (
     <div
+      id="philosophyTab"
+      role="tabpanel"
       className={
-        "grid px-[4dvmin] content-center justify-self-center gap-[4dvmin] " +
-        "grid-flow-row-dense auto-rows-min lg:grid-flow-col-dense lg:auto-cols-min " +
+        "flex px-[4vmin] flex-col space-x-0 space-y-[4vmin] " +
+        "m-auto lg:flex-row lg:space-x-[4vmin] lg:space-y-0 " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
     >
       <div
         className={
-          "grid grid-flow-row-dense auto-rows-min bg-image " +
-          "border-[0.625vmin] border-black py-[1.5dvmin] px-[4dvmin] "
+          "flex flex-col bg-image " +
+          "border-[0.625vmin] border-black py-[1.5vmin] px-[4vmin] "
         }
       >
         <p
+          role="heading"
+          aria-level={2}
+          aria-label="Philosophy:"
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5dvmin] " +
-            "underline underline-offset-[0.25dvmin] -indent-[0.5dvmin] " +
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
+            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
             "decoration-from-font font-bold "
           }
         >
           Philosophy
         </p>
-        <div className="grid grid-flow-col-dense auto-cols-min gap-x-[4dvmin] ">
-          <div className="w-max snap-center space-y-[1.5dvmin] ">
+        <div className="flex flex-row space-x-[4vmin] ">
+          <div className="w-max snap-center space-y-[1.5vmin] ">
             <div>
               <p>I started out with game&#32;</p>
               <p>design, so my approach&#32;</p>
@@ -48,7 +53,7 @@ const Philosophy = () => {
             </blockquote>
           </div>
 
-          <div className="w-max snap-center snap-always space-y-[1.5dvmin] ">
+          <div className="w-max snap-center snap-always space-y-[1.5vmin] ">
             <blockquote>
               <q>
                 <span>What information can&#32;</span>
@@ -71,20 +76,23 @@ const Philosophy = () => {
 
       <div
         className={
-          "grid grid-flow-row-dense auto-rows-min bg-image " +
-          "border-[0.625vmin] border-black py-[1.5dvmin] px-[4dvmin] "
+          "flex flex-col bg-image " +
+          "border-[0.625vmin] border-black py-[1.5vmin] px-[4vmin] "
         }
       >
         <p
+          role="heading"
+          aria-level={2}
+          aria-label="Methodology:"
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5dvmin] " +
-            "underline underline-offset-[0.25dvmin] -indent-[0.5dvmin] " +
+            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
+            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
             "decoration-from-font font-bold "
           }
         >
           Methodology
         </p>
-        <div className="w-max snap-center space-y-[1.5dvmin] ">
+        <div className="w-max snap-center space-y-[1.5vmin] ">
           <div>
             <p>I'm always looking to&#32;</p>
             <p>challenge myself and&#32;</p>
@@ -92,7 +100,7 @@ const Philosophy = () => {
             <p>is simple:&#32;</p>
           </div>
           <div>
-            <p>Every few months, I pick&#32;</p>
+            <p>Every few months I pick&#32;</p>
             <p>up something new, then&#32;</p>
             <p>produce a project that&#32;</p>
             <p>applies what I've learned.</p>

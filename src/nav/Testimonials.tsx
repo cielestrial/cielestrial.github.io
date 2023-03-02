@@ -57,12 +57,8 @@ const Testimonials = () => {
 
   if (!showTemplate)
     return (
-      <div className="h-full min-w-full w-max grid ">
-        <p
-          className={
-            "title place-self-center text-current text-[9vmin] font-bold "
-          }
-        >
+      <div className="h-full min-w-full w-max flex flex-col ">
+        <p className={"title m-auto text-current text-[9vmin] font-bold "}>
           Coming Soon!
         </p>
       </div>

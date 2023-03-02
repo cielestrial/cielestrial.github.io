@@ -13,7 +13,7 @@ const About = () => {
   const scrollPos = useRef<HTMLDivElement>(null);
 
   const btnClasses =
-    "w-[28dvmin] h-fit p-[2dvmin] title font-medium origin-bottom " +
+    "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom " +
     "drop-shadow-lg transition-all duration-75 custom-ease-out ";
 
   function setOpened(section: aboutSections) {
@@ -33,19 +33,20 @@ const About = () => {
   }
 
   return (
-    <div
-      className={
-        "h-full w-full overflow-clip grid grid-flow-row-dense content-start "
-      }
-    >
+    <div className={"h-full w-full overflow-clip flex flex-col content-start "}>
       <div
+        role="tablist"
+        aria-label="Profile. Bio. Philosophy."
+        aria-orientation="horizontal"
         className={
-          "grid grid-flow-col-dense auto-cols-min justify-self-center " +
-          "py-[4dvh] divide-x-[0.5vmin] divide-slate-300 "
+          "flex flex-row mx-auto py-[4vh] divide-x-[0.5vmin] divide-slate-300 "
         }
       >
         <button
           id="Profile Button"
+          role="tab"
+          aria-controls="profileTab"
+          aria-selected={opened === "Profile"}
           className={
             btnClasses +
             "rounded-l-full " +
@@ -65,6 +66,9 @@ const About = () => {
 
         <button
           id="Bio Button"
+          role="tab"
+          aria-controls="bioTab"
+          aria-selected={opened === "Bio"}
           className={
             btnClasses +
             (opened === "Bio"
@@ -83,6 +87,9 @@ const About = () => {
 
         <button
           id="Philosophy Button"
+          role="tab"
+          aria-controls="philosophyTab"
+          aria-selected={opened === "Philosophy"}
           className={
             btnClasses +
             "rounded-r-full " +
@@ -103,12 +110,16 @@ const About = () => {
 
       <div
         ref={scrollPos}
+        tabIndex={0}
         className={
-          "w-full grid overflow-auto scroll-smooth pb-[3dvh] " +
+          "w-full flex flex-col overflow-auto scroll-smooth pb-[3vh] " +
           (snap ? "snap-x snap-mandatory " : "")
         }
         onAnimationEnd={() => setSnap(true)}
-        onScroll={context.touchStartReset}
+        onScroll={() => {
+          clearTimeout(context.countdownToGameStart.current);
+          context.touchStartReset;
+        }}
         onTouchMove={(event) => {
           // Conditional on there being overflow
           if (

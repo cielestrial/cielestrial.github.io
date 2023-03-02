@@ -112,8 +112,9 @@ const Background = (props: propsType) => {
   return (
     <div
       id="the background"
+      role="presentation"
       className={
-        "w-screen h-screen grid bg-image transform-gpu overflow-clip " +
+        "view-width view-height flex flex-col bg-image transform-gpu overflow-clip " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
       onMouseDown={(event) => {
@@ -141,7 +142,7 @@ const Background = (props: propsType) => {
         clearTimeout(context.countdownToGameStart.current);
       }}
     >
-      <div className="fixed bg-fog h-screen w-screen " />
+      <div className="fixed bg-fog view-width view-height " />
       <BsFillBucketFill
         id="mouse-hitbox"
         className={

@@ -1,8 +1,13 @@
-
 Part 4:
+- More comments
+
+Part 5?:
 - add splash animation
 - sounds?
 - dark color scheme
 - dark mode game  
+
+Testimonials: 
+- Carousel accesibility for Testimonials
 
 Known Bugs: 

@@ -23,7 +23,7 @@ const Home = () => {
       <div className="self-end mx-4 invisible fixed ">
         <div
           className={
-            "grid border-2 border-double rounded-full w-14 h-8 m-2 p-[0.1rem] " +
+            "flex flex-row border-2 border-double rounded-full w-14 h-8 m-2 p-[0.1rem] " +
             "cursor-pointer " +
             (checked
               ? "transition-all duration-75 custom-ease-out justify-end " +
@@ -38,7 +38,7 @@ const Home = () => {
         >
           <div
             className={
-              "rounded-full w-6 h-6 grid place-content-center " +
+              "rounded-full w-6 h-6 flex flex-row place-content-center " +
               "fill-current " +
               (checked ? "bg-sky-900 text-xs " : "bg-white text-base ")
             }
@@ -47,34 +47,41 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="h-full grid place-content-center ">
+      <div className="h-full flex flex-col place-content-center ">
         <div
           id="Grace Hopper Quote"
           tabIndex={0}
           className={
-            "w-fit h-fit p-[8dvmin] place-self-center font-bold focus:outline-none " +
-            "title text-start text-[6vmin] tracking-wider text-slate-600 -indent-[3dvmin] "
+            "w-fit h-fit p-[8vmin] place-self-center font-bold focus:outline-none " +
+            "title text-start text-[6vmin] tracking-wider text-slate-600 -indent-[3vmin] "
           }
         >
           <blockquote className="quote ">
-            <p className="inline ">The most damaging&#32;</p>
-            <p className="indent-[0.22dvmin] ">phrase in the language&#32;</p>
-            <p className="inline ">
+            <p role="presentation" className="inline ">
+              The most damaging&#32;
+            </p>
+            <p role="presentation" className="indent-[0.22vmin] ">
+              phrase in the language&#32;
+            </p>
+            <p role="presentation" className="inline ">
               is:&#32;
-              <q className=" italic text-red-600 font-semibold ">
+              <q
+                role="presentation"
+                className=" italic text-red-600 font-semibold "
+              >
                 <span>It's always been&#32;</span>
                 <br />
                 <span>done that way.</span>
               </q>
             </p>
           </blockquote>
-          <span
+          <p
             className={
-              "text italic text-slate-700 " + "pt-[1dvmin] pl-[27.5dvmin] "
+              "inline text italic text-slate-700 pt-[1vmin] pl-[27.5vmin] "
             }
           >
             - Grace Hopper
-          </span>
+          </p>
         </div>
       </div>
     </div>

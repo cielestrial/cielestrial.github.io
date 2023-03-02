@@ -37,11 +37,11 @@ const ProjectGrid = (props: propsType) => {
   const cardCount = useRef(0);
 
   return (
-    <div className="h-full w-full grid content-start justify-content-center ">
+    <div className="h-full w-full flex flex-col ">
       <p
         className={
           "text-center text-[4.5vmin] sm:text-[3.375vmin] font-semibold " +
-          "mx-auto w-fit h-fit py-[8dvh] transform-gpu " +
+          "mx-auto w-fit h-fit pt-[8vh] pb-[4vh] transform-gpu " +
           (effect === "fade-out" ? "animate-fade-out " : "")
         }
         onAnimationEnd={() => {
@@ -53,9 +53,9 @@ const ProjectGrid = (props: propsType) => {
       </p>
 
       <div
+        tabIndex={0}
         className={
-          "w-full pb-[3dvh] px-[4dvmin] grid scroll-smooth " +
-          "overflow-y-auto " +
+          "px-[4vmin] scroll-smooth flex flex-row overflow-y-auto " +
           (scrollable ? "overflow-x-auto " : "overflow-x-hidden ")
         }
         onAnimationEnd={(event) => {
@@ -65,7 +65,10 @@ const ProjectGrid = (props: propsType) => {
             setScrollable(true);
           }
         }}
-        onScroll={context.touchStartReset}
+        onScroll={() => {
+          clearTimeout(context.countdownToGameStart.current);
+          context.touchStartReset;
+        }}
         onTouchMove={(event) => {
           // Conditional on there being overflow
           if (
@@ -109,9 +112,7 @@ const ProjectGrid = (props: propsType) => {
       >
         <div
           className={
-            "h-max w-max grid grid-rows-2 grid-cols-2 gap-[5dvmin] " +
-            "lg:grid-rows-1 lg:grid-flow-col-dense lg:gap-x-[10dvmin] " +
-            "place-self-center place-items-center " +
+            "h-max w-max flex flex-row flex-wrap m-auto place-content-center " +
             (effect === "fade-out" ? "animate-fade-out " : "")
           }
         >

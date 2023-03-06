@@ -39,12 +39,6 @@ const Testimonials = () => {
   const waitTime = 5000;
   const lastIndex = testimonies.length;
 
-  function circularize(i: number): number {
-    if (i < 0) return circularize(i + lastIndex);
-    else if (i >= lastIndex) return circularize(i - lastIndex);
-    else return i;
-  }
-
   useEffect(() => {
     timer.current = setInterval(() => {
       setIndex((prev) => circularize(prev + 1));
@@ -54,6 +48,17 @@ const Testimonials = () => {
       clearInterval(timer.current);
     };
   }, []);
+
+  /**
+   * Turns the array into a circle buffer.
+   * @param i the given index.
+   * @returns integer, the new index.
+   */
+  function circularize(i: number): number {
+    if (i < 0) return circularize(i + lastIndex);
+    else if (i >= lastIndex) return circularize(i - lastIndex);
+    else return i;
+  }
 
   if (!showTemplate)
     return (

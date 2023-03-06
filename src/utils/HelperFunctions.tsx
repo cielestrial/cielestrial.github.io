@@ -1,6 +1,32 @@
 import { sections } from "../pages/Portfolio";
 import { stateContextType } from "./ContextProvider";
 
+/**
+ * Adds keyboard interaction for project view.
+ * @param event Keyboard event.
+ * @param openedRef Which accordion section is opened.
+ * @param context Global context object.
+ */
+export function exitProjectView(
+  event: KeyboardEvent,
+  openedRef: React.MutableRefObject<sections>,
+  context: stateContextType
+) {
+  if (event.key === "Escape") {
+    event.stopPropagation(); // Prevents modal not found error.
+    if (openedRef.current === "Projects") {
+      document
+        .getElementById("Close Button")
+        ?.dispatchEvent(context.clickEvent);
+    }
+  }
+}
+
+/**
+ * Keeps focus within the portfolio when utilizing tab navigation.
+ * @param event Keyboard event.
+ * @param openedRef Which accordion section is opened.
+ */
 export function focusTrap(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>
@@ -45,6 +71,12 @@ export function focusTrap(
   }
 }
 
+/**
+ * Navigates the accordion in response to keyboard events.
+ * @param event Keyboard event.
+ * @param openedRef Which accordion section is opened.
+ * @param setOpened A function that sets which accordion section is opened.
+ */
 export function sectionNavigation(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>,
@@ -89,7 +121,13 @@ export function sectionNavigation(
   }
 }
 
-export function aboutSectionNavigation(
+/**
+ * Navigates the about section tabs in response to keyboard events.
+ * @param event Keyboard event.
+ * @param openedRef Which accordion section is opened.
+ * @param context Global context object.
+ */
+export function aboutTabsNavigation(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>,
   context: stateContextType
@@ -134,25 +172,3 @@ export function aboutSectionNavigation(
     }
   }
 }
-/*
-export function ProjectViewNavigation(
-  event: KeyboardEvent,
-  openedRef: React.MutableRefObject<sections>,
-  context: stateContextType
-) {
-  if (openedRef.current === "Projects") {
-    if (event.key === "ArrowLeft" && !context.hideLeftArrowRef.current) {
-      document.getElementById("Left Arrow")?.dispatchEvent(context.clickEvent);
-    } else if (
-      event.key === "ArrowRight" &&
-      !context.hideRightArrowRef.current
-    ) {
-      document.getElementById("Right Arrow")?.dispatchEvent(context.clickEvent);
-    } else if (event.key === "Escape") {
-      document
-        .getElementById("Close Button")
-        ?.dispatchEvent(context.clickEvent);
-    }
-  }
-}
-*/

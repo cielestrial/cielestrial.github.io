@@ -26,6 +26,9 @@ const Accordian = (props: propsType) => {
     openedRef.current = props.opened;
   }, [props.opened]);
 
+  /**
+   * Sets focus to a nearby element when a section is opened.
+   */
   function setFocus() {
     switch (openedRef.current) {
       case "Home":
@@ -46,8 +49,11 @@ const Accordian = (props: propsType) => {
     }
   }
 
-  function displayLabel() {
-    if (props.label === props.opened) return null;
+  /**
+   * Adds gradient backgrounds to section labels.
+   * @returns string, gradient values.
+   */
+  function displayGradient() {
     let gradient = "";
     switch (props.label) {
       case "Home":
@@ -78,7 +84,17 @@ const Accordian = (props: propsType) => {
       default:
         gradient = "bg-slate-200/50 ";
     }
+    return gradient;
+  }
 
+  /**
+   * Generates section labels.
+   * Label passed in from parent.
+   * @returns JSX Element, label to be displayed.
+   */
+  function displayLabel() {
+    if (props.label === props.opened) return null;
+    const gradient = displayGradient();
     return (
       <div
         id={props.label + " Section Label"}
@@ -107,6 +123,11 @@ const Accordian = (props: propsType) => {
     );
   }
 
+  /**
+   * Displays section content.
+   * Content passed in from parent.
+   * @returns JSX Element, content to be displayed.
+   */
   function displayContent() {
     if (props.opened === props.label)
       return (

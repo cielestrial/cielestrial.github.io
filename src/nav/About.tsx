@@ -2,11 +2,11 @@ import { useContext, useRef, useState } from "react";
 import Bio from "../components/about/Bio";
 import Philosophy from "../components/about/Philosophy";
 import Profile from "../components/about/Profile";
-import { aboutSections, StateContext } from "../utils/ContextProvider";
+import { aboutTabs, StateContext } from "../utils/ContextProvider";
 
 const About = () => {
   const context = useContext(StateContext);
-  const [opened, setOpenedState] = useState<aboutSections>(
+  const [opened, setOpenedState] = useState<aboutTabs>(
     context.aboutOpenedRef.current
   );
   const [snap, setSnap] = useState(false);
@@ -16,11 +16,19 @@ const About = () => {
     "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom " +
     "drop-shadow-lg transition-all duration-75 custom-ease-out ";
 
-  function setOpened(section: aboutSections) {
-    context.aboutOpenedRef.current = section;
-    setOpenedState(section);
+  /**
+   * Sets which about section tab is opened.
+   * @param tab The tab label.
+   */
+  function setOpened(tab: aboutTabs) {
+    context.aboutOpenedRef.current = tab;
+    setOpenedState(tab);
   }
 
+  /**
+   * Displays tab content.
+   * @returns JSX Element, the tab content.
+   */
   function displaySection() {
     switch (context.aboutOpenedRef.current) {
       case "Profile":
@@ -133,6 +141,11 @@ const About = () => {
             clearTimeout(context.countdownToGameStart.current);
         }}
         onWheel={(event) => {
+          /*
+           * Blocks wheel event from triggering navigation when inside scrollable area.
+           * Navigation still triggers when an additional wheel event is detected at
+           *   the very top or bottom of the scroll area.
+           */
           if (
             !(
               (Math.round(event.currentTarget.scrollTop) === 0 &&

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { StateContext } from "../utils/ContextProvider";
-import { BsCloudSun, BsFillMoonStarsFill } from "react-icons/bs"; //fill moon or stars or cloud or
+import { BsCloudSun, BsFillMoonStarsFill } from "react-icons/bs"; //fill moon or stars or cloud
 
 const Home = () => {
   const context = useContext(StateContext);

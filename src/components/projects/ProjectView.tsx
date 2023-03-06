@@ -43,6 +43,13 @@ const ProjectView = (props: propsType) => {
     };
   }, []);
 
+  /**
+   * The second keyboard event handler.
+   * Local to the ProjectView component.
+   * Capture is false.
+   * Main keyboard event handler can be found in the Portfolio page.
+   * @param event Keyboard event.
+   */
   function onArrowKey(event: KeyboardEvent) {
     if (event.key === "ArrowLeft" && !hideLeftArrowRef.current) {
       document.getElementById("Left Arrow")?.dispatchEvent(context.clickEvent);
@@ -51,6 +58,10 @@ const ProjectView = (props: propsType) => {
     }
   }
 
+  /**
+   *
+   * @returns
+   */
   function displayDescription() {
     return (
       <div

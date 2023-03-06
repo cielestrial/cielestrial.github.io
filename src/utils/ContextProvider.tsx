@@ -5,7 +5,8 @@ export const StateContext = createContext({} as stateContextType);
 
 export type stateContextType = {
   navigate: React.MutableRefObject<NavigateFunction>;
-  aboutOpenedRef: React.MutableRefObject<aboutSections>;
+  aboutOpenedRef: React.MutableRefObject<aboutTabs>;
+  /**Displays hitbox during game mode.*/
   debugMode: React.MutableRefObject<boolean>;
   theme: "light" | "dark";
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
@@ -19,6 +20,7 @@ export type stateContextType = {
 
   touchStart: React.MutableRefObject<coordinate>;
   touchEnd: React.MutableRefObject<coordinate>;
+  /**Resets touchStart variable to default values.*/
   touchStartReset(): void;
   deadzoneX: number;
   deadzoneY: number;
@@ -36,10 +38,11 @@ export type stateContextType = {
   clickEvent: MouseEvent;
   leftArrowEvent: KeyboardEvent;
   rightArrowEvent: KeyboardEvent;
+  /**Whether the current device being used is a touch device.*/
   touchDevice: React.MutableRefObject<boolean>;
 };
 
-export type aboutSections = "Profile" | "Bio" | "Philosophy";
+export type aboutTabs = "Profile" | "Bio" | "Philosophy";
 export type coordinate = { x: number; y: number };
 
 type StateProviderProps = {
@@ -49,7 +52,7 @@ type StateProviderProps = {
 export function StateProvider({ children }: StateProviderProps) {
   const navigate = useRef(useNavigate());
   const params = useLocation();
-  const aboutOpenedRef = useRef<aboutSections>("Profile");
+  const aboutOpenedRef = useRef<aboutTabs>("Profile");
 
   const debugMode = useRef(false);
   const [theme, setTheme] = useState<"light" | "dark">(

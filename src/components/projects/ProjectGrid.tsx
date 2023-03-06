@@ -82,6 +82,11 @@ const ProjectGrid = (props: propsType) => {
             clearTimeout(context.countdownToGameStart.current);
         }}
         onWheel={(event) => {
+          /*
+           * Blocks wheel event from triggering navigation when inside scrollable area.
+           * Navigation still triggers when an additional wheel event is detected at
+           *   the very top or bottom of the scroll area.
+           */
           if (
             !(
               (Math.round(event.currentTarget.scrollTop) === 0 &&

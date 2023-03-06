@@ -1,7 +1,15 @@
 import { coordinate, stateContextType } from "./ContextProvider";
 
+/**
+ * Amount of points gained for catching a raindrop.
+ */
 export const raindropValue = 100;
 
+/**
+ * Checks all the raindrops for collision.
+ * @param mouseBoundaries Dimensions and position of the bucket.
+ * @param context Global context object.
+ */
 export async function splatRaindrops(
   mouseBoundaries: DOMRect,
   context: stateContextType
@@ -13,6 +21,13 @@ export async function splatRaindrops(
   }
 }
 
+/**
+ * Checks for collision.
+ * Runs additional game logic when a collision is detected.
+ * @param mouse Dimensions and position of the bucket.
+ * @param raindropElement Dimensions and position of the raindrop.
+ * @param context Global context object.
+ */
 async function checkCollision(
   mouse: DOMRect,
   raindropElement: HTMLElement,
@@ -74,11 +89,22 @@ async function checkCollision(
   }
 }
 
+/**
+ * Checks to see if a given point is within a given set of boundaries.
+ * @param point
+ * @param lowerBound
+ * @param upperBound
+ * @returns true, if point is within the bounds. Otherwise, false.
+ */
 function within(point: number, lowerBound: number, upperBound: number) {
   if (lowerBound <= point && point <= upperBound) return true;
   else return false;
 }
 
+/**
+ * Displays a visual effect when points are gained.
+ * @param coord The coordinates the effect will be displayed at.
+ */
 function displayPoints(coord: coordinate) {
   const points = document.createElement("div");
 
@@ -114,6 +140,12 @@ function displayPoints(coord: coordinate) {
   document.getElementById("the background")?.appendChild(points);
 }
 
+/**
+ * Displays a visual effect where a collision occured.
+ * @param coord The coordinates the effect will be displayed at.
+ * @param w The width of the hitbox.
+ * @param h The height of the hitbox.
+ */
 function displayHitbox(coord: coordinate, w: number, h: number) {
   let hitbox = document.getElementById("hitbox");
   if (hitbox !== null) hitbox.remove();

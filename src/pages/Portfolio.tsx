@@ -7,7 +7,8 @@ import Projects from "../nav/Projects";
 import Testimonials from "../nav/Testimonials";
 import { StateContext } from "../utils/ContextProvider";
 import {
-  aboutSectionNavigation,
+  aboutTabsNavigation,
+  exitProjectView,
   focusTrap,
   sectionNavigation,
 } from "../utils/HelperFunctions";
@@ -29,6 +30,10 @@ const Portfolio = () => {
   const arrowDownEvent = new KeyboardEvent("keydown", { key: "ArrowDown" });
   const arrowUpEvent = new KeyboardEvent("keydown", { key: "ArrowUp" });
 
+  /**
+   * Sets which accordion section is opened.
+   * @param section The section label.
+   */
   const setOpened = useCallback((section: sections) => {
     openedRef.current = section;
     setOpenedState(section);
@@ -43,6 +48,11 @@ const Portfolio = () => {
     };
   }, []);
 
+  /**
+   * Navigates the accordion in response to a scroll event.
+   * Navigation is throttled and leading is enabled.
+   * @param event Wheel event.
+   */
   function onScroll(event: React.WheelEvent) {
     if (leading.current) {
       switch (openedRef.current) {
@@ -77,19 +87,20 @@ const Portfolio = () => {
     }, waitTime);
   }
 
+  /**
+   * Main keyboard event handler.
+   * Capture is true.
+   * An additional keyboard event handler, where capture is false,
+   *  can be found in the ProjectView component.
+   * @param event Keyboard event.
+   */
   function onArrowKey(event: KeyboardEvent) {
-    if (event.key === "Escape") {
-      event.stopPropagation();
-      if (openedRef.current === "Projects") {
-        document
-          .getElementById("Close Button")
-          ?.dispatchEvent(context.clickEvent);
-      }
-    }
+    exitProjectView(event, openedRef, context);
     focusTrap(event, openedRef);
     sectionNavigation(event, openedRef, setOpened);
-    aboutSectionNavigation(event, openedRef, context);
+    aboutTabsNavigation(event, openedRef, context);
   }
+  context.setAndSaveHighScore;
 
   return (
     <div
@@ -125,11 +136,11 @@ const Portfolio = () => {
             ) >
             Math.abs(context.touchEnd.current.x - context.touchStart.current.x)
           ) {
+            // Swipe up
             if (
               context.touchStart.current.y >
               context.touchEnd.current.y + context.deadzoneY * context.vmax
             )
-              // Swipe up
               onArrowKey(arrowDownEvent);
             // Swipe down
             else if (

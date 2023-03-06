@@ -22,8 +22,27 @@ const Background = (props: propsType) => {
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
   const lastKnownPos = useRef<coordinate>({ x: 0, y: 0 });
 
+  useEffect(() => {
+    timer.current = setInterval(async () => {
+      if (boundaries.current !== undefined)
+        splatRaindrops(boundaries.current, context);
+    }, timestep);
+    return () => {
+      clearTimeout(context.countdownToGameStart.current);
+      clearInterval(timer.current);
+      clearTimeout(timeout.current);
+      canRun.current = true;
+    };
+  }, []);
+
+  /**
+   * Tracks the mouse position.
+   * Sets the bucket to the mouse position.
+   * Throttled and leading is enabled.
+   * @param event Mouse event.
+   * @returns Promise, empty.
+   */
   async function trackMouse(event: React.MouseEvent) {
-    //event.stopPropagation();
     lastKnownPos.current = { x: event.pageX, y: event.pageY };
 
     if (!canRun.current || context.touchDevice.current) return;
@@ -39,8 +58,14 @@ const Background = (props: propsType) => {
     }, timestep);
   }
 
+  /**
+   * Tracks touch locations.
+   * Sets the bucket to the recent touch location.
+   * Throttled and leading is enabled.
+   * @param event Touch event.
+   * @returns Promise, empty.
+   */
   async function trackTouch(event: React.TouchEvent) {
-    //event.stopPropagation();
     lastKnownPos.current = {
       x: event.changedTouches[0].pageX,
       y: event.changedTouches[0].pageY,
@@ -59,19 +84,36 @@ const Background = (props: propsType) => {
     }, timestep);
   }
 
-  useEffect(() => {
-    timer.current = setInterval(async () => {
-      if (boundaries.current !== undefined)
-        splatRaindrops(boundaries.current, context);
-    }, timestep);
-    return () => {
-      clearTimeout(context.countdownToGameStart.current);
-      clearInterval(timer.current);
-      clearTimeout(timeout.current);
-      canRun.current = true;
-    };
-  }, []);
+  /**
+   * Switches to game mode from portfolio mode.
+   * Hides part of foreground.
+   * Allows for interaction with the background.
+   */
+  function switchToBackground() {
+    clearTimeout(context.countdownToGameStart.current);
+    context.countdownToGameStart.current = setTimeout(() => {
+      context.setHideCursor(true);
+      context.setHideContent(true);
+      initializeAt();
+    }, gameStart);
+  }
 
+  /**
+   * Switches away from game mode back to portfolio mode.
+   * Disables interaction with the background.
+   * All foreground content is made visible again.
+   */
+  function switchToForeground() {
+    clearTimeout(context.countdownToGameStart.current);
+    context.setHideCursor(false);
+    cleanUp();
+    context.setHideContent(false);
+  }
+
+  /**
+   * Initializes the bucket at the last known mouse position
+   *  or touch location.
+   */
   function initializeAt() {
     mouse.current = document.getElementById("mouse-hitbox");
     if (mouse.current !== null) {
@@ -81,6 +123,10 @@ const Background = (props: propsType) => {
     }
   }
 
+  /**
+   * Removes all visual effects and leftovers from the game mode,
+   *  when switching back to the portfolio mode.
+   */
   function cleanUp() {
     mouse.current = null;
     boundaries.current = undefined;
@@ -91,22 +137,6 @@ const Background = (props: propsType) => {
       yetToClean.item(0)?.remove();
       yetToClean = document.getElementsByClassName("dirt");
     }
-  }
-
-  function switchToBackground() {
-    clearTimeout(context.countdownToGameStart.current);
-    context.countdownToGameStart.current = setTimeout(() => {
-      context.setHideCursor(true);
-      context.setHideContent(true);
-      initializeAt();
-    }, gameStart);
-  }
-
-  function switchToForeground() {
-    clearTimeout(context.countdownToGameStart.current);
-    context.setHideCursor(false);
-    cleanUp();
-    context.setHideContent(false);
   }
 
   return (

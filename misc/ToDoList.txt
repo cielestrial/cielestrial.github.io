@@ -1,5 +1,4 @@
 Part 4:
-- More comments
 - Google Analytics integration
 
 Part 5?:

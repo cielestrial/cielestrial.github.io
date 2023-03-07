@@ -141,13 +141,13 @@ const Portfolio = () => {
               context.touchStart.current.y >
               context.touchEnd.current.y + context.deadzoneY * context.vmax
             )
-              onArrowKey(arrowDownEvent);
+              document.dispatchEvent(arrowDownEvent);
             // Swipe down
             else if (
               context.touchStart.current.y <
               context.touchEnd.current.y - context.deadzoneY * context.vmax
             )
-              onArrowKey(arrowUpEvent);
+              document.dispatchEvent(arrowUpEvent);
           } else if (
             Math.abs(
               context.touchEnd.current.y - context.touchStart.current.y

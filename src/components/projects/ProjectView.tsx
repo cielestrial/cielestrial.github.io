@@ -59,10 +59,10 @@ const ProjectView = (props: propsType) => {
   }
 
   /**
-   *
-   * @returns
+   * Displays the project description as if it were a preview image.
+   * @returns JSX Element, project description formatted.
    */
-  function displayDescription() {
+  function displayDescriptionImage() {
     return (
       <div
         role="presentation"
@@ -91,6 +91,7 @@ const ProjectView = (props: propsType) => {
 
   return (
     <div
+      id="Project View"
       role="dialog"
       aria-label={props.title}
       aria-roledescription="carousel"
@@ -128,7 +129,7 @@ const ProjectView = (props: propsType) => {
             aria-roledescription="close icon"
             id="Close Button"
             tabIndex={0}
-            onKeyDown={(event) => {
+            onKeyUp={(event) => {
               if (event.key === "Enter" || event.key === " ")
                 event.currentTarget.dispatchEvent(context.clickEvent);
             }}
@@ -187,7 +188,7 @@ const ProjectView = (props: propsType) => {
             }}
           >
             {index.current === 0 ? (
-              displayDescription()
+              displayDescriptionImage()
             ) : (
               <img
                 id={"current image"}
@@ -252,7 +253,7 @@ const ProjectView = (props: propsType) => {
             }}
           >
             {index.current - 1 === 0 ? (
-              displayDescription()
+              displayDescriptionImage()
             ) : (
               <img
                 id={"previous image"}
@@ -327,7 +328,7 @@ const ProjectView = (props: propsType) => {
             aria-disabled={hideLeftArrowRef.current}
             id="Left Arrow"
             tabIndex={0}
-            onKeyDown={(event) => {
+            onKeyUp={(event) => {
               if (event.key === "Enter" || event.key === " ")
                 event.currentTarget.dispatchEvent(context.clickEvent);
             }}
@@ -375,7 +376,7 @@ const ProjectView = (props: propsType) => {
             aria-disabled={hideRightArrowRef.current}
             id="Right Arrow"
             tabIndex={0}
-            onKeyDown={(event) => {
+            onKeyUp={(event) => {
               if (event.key === "Enter" || event.key === " ")
                 event.currentTarget.dispatchEvent(context.clickEvent);
             }}

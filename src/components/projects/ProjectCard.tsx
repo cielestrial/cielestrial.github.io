@@ -29,7 +29,7 @@ const ProjectCard = (props: propsType) => {
     <div
       id={"project card " + props.order}
       tabIndex={0}
-      onKeyDown={(event) => {
+      onKeyUp={(event) => {
         if (event.key === "Enter" || event.key === " ")
           event.currentTarget.dispatchEvent(context.clickEvent);
       }}

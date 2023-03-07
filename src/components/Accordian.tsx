@@ -107,7 +107,7 @@ const Accordian = (props: propsType) => {
           "cursor-pointer grow blue-highlight flex " +
           gradient
         }
-        onKeyDown={(event) => {
+        onKeyUp={(event) => {
           if (event.key === "Enter" || event.key === " ")
             event.currentTarget.dispatchEvent(context.clickEvent);
         }}

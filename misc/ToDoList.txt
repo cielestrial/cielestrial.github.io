@@ -1,9 +1,13 @@
+Part 4:
+- Google Analytics integration
 
-- animations
+Part 5?:
+- add splash animation
+- sounds?
+- dark color scheme
+- dark mode game  
 
-- background visual
-- light & dark color schemes
+Testimonials: 
+- Carousel accesibility for Testimonials
 
-- layout
-- fill out all data
-- projects
+Known Bugs: 

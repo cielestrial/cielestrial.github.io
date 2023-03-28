@@ -62,7 +62,9 @@ const ProjectCard = (props: propsType) => {
             ? "animate-[fade-in-right_0.7s_.35s_cubic-bezier(.38,0,.64,1)_both] "
             : props.order === 2
             ? "animate-[fade-in-right_0.7s_.7s_cubic-bezier(.38,0,.64,1)_both] "
-            : "animate-[fade-in-right_0.7s_1.05s_cubic-bezier(.38,0,.64,1)_both] "
+            : props.order === 3
+            ? "animate-[fade-in-right_0.7s_1.05s_cubic-bezier(.38,0,.64,1)_both] "
+            : "animate-[fade-in-right_0.7s_1.4s_cubic-bezier(.38,0,.64,1)_both] "
           : "")
       }
       onAnimationEnd={() => {

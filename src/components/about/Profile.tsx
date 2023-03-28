@@ -161,26 +161,30 @@ const Profile = () => {
             role="presentation"
             className="w-max list-inside pl-[2vmin] list-disc "
           >
-            <li aria-label="HTML5,">HTML5</li>
+            <li aria-label="HTML,">HTML</li>
             <li aria-label="JavaScript,">JavaScript</li>
             <li aria-label="TypeScript,">TypeScript</li>
-            <li aria-label="ReactJS,">ReactJS</li>
-            <li aria-label="CSS3,">CSS3</li>
+            <li aria-label="React,">React</li>
+            <li aria-label="Redux,">Redux</li>
+            <li aria-label="CSS,">CSS</li>
             <li aria-label="SASS/SCSS,">SASS/SCSS</li>
             <li aria-label="Tailwind CSS,">Tailwind&#32;CSS</li>
+            <li aria-label="Material UI,">Material&#32;UI</li>
           </ul>
 
           <ul
             role="presentation"
             className="w-max list-inside px-[2vmin] list-disc "
           >
-            <li aria-label="Node.js,">Node.js</li>
-            <li aria-label="Express.js,">Express.js</li>
-            <li aria-label="REST APIs,">REST&#32;APIs</li>
+            <li aria-label="Express,">Express</li>
+            <li aria-label="Redis,">Redis</li>
             <li aria-label="Figma,">Figma</li>
+            <li aria-label="Docker,">Docker</li>
+            <li aria-label="Vitest,">Vitest</li>
+            <li aria-label="React Testing Library,">RTL</li>
+            <li aria-label="Web Content Accessibility Guidelines,">WCAG</li>
             <li aria-label="Java,">Java</li>
             <li aria-label="C Sharp,">C#</li>
-            <li aria-label="C,">C</li>
           </ul>
         </div>
       </div>

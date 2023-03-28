@@ -22,6 +22,8 @@ import wbtracker_3 from "../../assets/wbtracker/wbtracker_a_survey.png";
 import wbtracker_4 from "../../assets/wbtracker/wbtracker_graphs.png";
 import wbtracker_5 from "../../assets/wbtracker/wbtracker_404.png";
 
+import rightdrive_page_1 from "../../assets/rightdrive-dev-test/rightdrive-dev-test_page1.jpg";
+
 import { StateContext } from "../../utils/ContextProvider";
 
 type propsType = {
@@ -122,6 +124,25 @@ const ProjectGrid = (props: propsType) => {
           }
         >
           <ProjectCard
+            title={"RD Dev Test"}
+            description={
+              "A test application that displays information on the top 40 " +
+              "cryptocurrencies. Developed with React, Redux, TypeScript, " +
+              "Material UI, Serverless Express, and Redis. Tested with Vitest " +
+              "and React Testing Library. Key features include sleek design, " +
+              "screen reader friendly and adheres to the WCAG, serverless " +
+              "environment with cache, rate limiting and exponential backoff."
+            }
+            images={[rightdrive_page_1]}
+            link={"https://rightdrive-dev-test.netlify.app"}
+            status={"Completed"}
+            order={0}
+            setGridEffect={setEffect}
+            setShowProjectView={props.setShowProjectView}
+            setSelectedProject={props.setSelectedProject}
+          />
+
+          <ProjectCard
             title={"YSPM"}
             description={
               "A Spotify playlist manager. Developed with React, TypeScript, " +
@@ -147,7 +168,7 @@ const ProjectGrid = (props: propsType) => {
             ]}
             link={"https://yspm-ccnd.onrender.com"}
             status={"Work In Progress"}
-            order={0}
+            order={1}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
@@ -166,7 +187,7 @@ const ProjectGrid = (props: propsType) => {
             images={[dashboard_tab_1]}
             link={"https://ev-dashboard.onrender.com"}
             status={"Hiatus"}
-            order={1}
+            order={2}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
@@ -184,7 +205,7 @@ const ProjectGrid = (props: propsType) => {
             images={[donkey_car_1, donkey_car_2]}
             link={"https://donkey-car.onrender.com"}
             status={"Hiatus"}
-            order={2}
+            order={3}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
@@ -205,7 +226,7 @@ const ProjectGrid = (props: propsType) => {
             ]}
             link={"https://wbtracker.onrender.com"}
             status={"Completed"}
-            order={3}
+            order={4}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}

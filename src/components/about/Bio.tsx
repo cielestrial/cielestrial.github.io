@@ -1,5 +1,5 @@
 import { useState } from "react";
-import myPic from "../../assets/general/profile2.jpg";
+import myPic from "../../assets/general/profile1.jpg";
 
 const Bio = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
@@ -26,11 +26,11 @@ const Bio = () => {
             "w-[48vmin] aspect-square drop-shadow-xl rounded-full "
           }
         >
-          <div className={"overflow-clip w-full aspect-square rotate-12 "}>
+          <div className={"w-full translate-y-[-15%] aspect-square "}>
             <img
               src={myPic}
-              aria-label="A picture of My Dad and I."
-              alt="My Dad and I"
+              aria-label="A picture of myself."
+              alt="Me"
               className="w-full overflow-clip"
               draggable="false"
             />

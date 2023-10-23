@@ -71,6 +71,7 @@ const Portfolio = (props: propsType) => {
       const route: any = hashRoute.replace("#", "");
       if (sectionsArray.includes(route) && route !== openedRef.current)
         setOpened(route);
+      window.history.pushState(null, "", window.location.origin);
     }
   }
 

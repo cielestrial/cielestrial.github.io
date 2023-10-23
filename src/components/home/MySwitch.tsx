@@ -26,7 +26,7 @@ const MySwitch = () => {
     "text-black/90 dark:text-white/90 ";
 
   return (
-    <div className="h-fit w-fit m-4 absolute top-0 right-0 invisible">
+    <div className="h-fit w-fit m-4 absolute top-0 right-0 z-10 invisible">
       <button
         role="switch"
         aria-label="Dark Theme"

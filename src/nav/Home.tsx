@@ -8,8 +8,8 @@ const Home = () => {
         "bg-gradient-to-bl from-amber-200 to-slate-200 "
       }
     >
+      <MySwitch />
       <div className="h-full flex flex-col place-content-center animate-fade-in ">
-        <MySwitch />
         <div
           id="Grace Hopper Quote"
           tabIndex={0}

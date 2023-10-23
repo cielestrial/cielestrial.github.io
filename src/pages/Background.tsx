@@ -12,7 +12,7 @@ type propsType = {
 const Background = (props: propsType) => {
   const context = useContext(StateContext);
   const timeout = useRef<NodeJS.Timeout>();
-  const timer = useRef<NodeJS.Timer>();
+  const timer = useRef<NodeJS.Timeout>();
   const canRun = useRef(true);
   const targetFPS = 60;
   const timestep = 1000 / targetFPS;

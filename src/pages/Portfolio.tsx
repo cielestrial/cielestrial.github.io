@@ -33,6 +33,13 @@ const Portfolio = (props: propsType) => {
   const leading = useRef(true);
   const arrowDownEvent = new KeyboardEvent("keydown", { key: "ArrowDown" });
   const arrowUpEvent = new KeyboardEvent("keydown", { key: "ArrowUp" });
+  const sectionsArray: sections[] = [
+    "Home",
+    "About",
+    "Projects",
+    "Testimonials",
+    "Contact",
+  ];
 
   /**
    * Sets which accordion section is opened.
@@ -44,13 +51,28 @@ const Portfolio = (props: propsType) => {
   }, []);
 
   useEffect(() => {
+    routeToSection();
+    window.addEventListener("hashchange", routeToSection);
     document.addEventListener("keydown", onArrowKey, { capture: true });
     return () => {
+      window.removeEventListener("hashchange", routeToSection);
       document.removeEventListener("keydown", onArrowKey);
       clearTimeout(timeout.current);
       leading.current = true;
     };
   }, []);
+
+  /**
+   * Navigates the accordion to the section specified in the URL.
+   */
+  function routeToSection() {
+    const hashRoute = window.location.hash;
+    if (hashRoute !== "") {
+      const route: any = hashRoute.replace("#", "");
+      if (sectionsArray.includes(route) && route !== openedRef.current)
+        setOpened(route);
+    }
+  }
 
   /**
    * Navigates the accordion in response to a scroll event.

@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "version": "3.1.1",
-  "homepage": "https://cielestrial.github.io",
+  "homepage": "https://cielestrial.github.io/",
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 3000",

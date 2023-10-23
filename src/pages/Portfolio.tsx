@@ -20,10 +20,14 @@ export type sections =
   | "Testimonials"
   | "Contact";
 
-const Portfolio = () => {
+type propsType = {
+  section: sections;
+};
+
+const Portfolio = (props: propsType) => {
   const context = useContext(StateContext);
-  const [opened, setOpenedState] = useState<sections>("Home");
-  const openedRef = useRef<sections>("Home");
+  const [opened, setOpenedState] = useState<sections>(props.section);
+  const openedRef = useRef<sections>(props.section);
   const waitTime = 200;
   const timeout = useRef<NodeJS.Timeout>();
   const leading = useRef(true);

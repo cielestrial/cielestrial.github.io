@@ -33,39 +33,34 @@ export function focusTrap(
 ) {
   if (event.shiftKey && event.key === "Tab") {
     if (openedRef.current !== "Home") {
-      if (
-        document.getElementById("Home Section Label") === document.activeElement
-      ) {
+      if (document.getElementById("Home") === document.activeElement) {
         event.preventDefault();
         if (openedRef.current === "Contact")
           document.getElementById("Form Submit Button")?.focus();
-        else document.getElementById("Contact Section Label")?.focus();
+        else document.getElementById("Contact")?.focus();
       }
     } else {
       if (
         document.getElementById("Grace Hopper Quote") === document.activeElement
       ) {
         event.preventDefault();
-        document.getElementById("Contact Section Label")?.focus();
+        document.getElementById("Contact")?.focus();
       }
     }
   } else if (event.key === "Tab") {
     if (openedRef.current !== "Contact") {
-      if (
-        document.getElementById("Contact Section Label") ===
-        document.activeElement
-      ) {
+      if (document.getElementById("Contact") === document.activeElement) {
         event.preventDefault();
         if (openedRef.current === "Home")
           document.getElementById("Grace Hopper Quote")?.focus();
-        else document.getElementById("Home Section Label")?.focus();
+        else document.getElementById("Home")?.focus();
       }
     } else {
       if (
         document.getElementById("Form Submit Button") === document.activeElement
       ) {
         event.preventDefault();
-        document.getElementById("Home Section Label")?.focus();
+        document.getElementById("Home")?.focus();
       }
     }
   }

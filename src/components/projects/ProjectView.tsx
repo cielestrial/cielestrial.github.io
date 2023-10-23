@@ -109,7 +109,7 @@ const ProjectView = (props: propsType) => {
             className={
               "text-center title underline underline-offset-[0.5vmin] " +
               "w-max h-fit place-self-center origin-center drop-shadow-md " +
-              "transition-all duration-75 custom-ease-out transform-gpu " +
+              "transition-all duration-75 custom-ease-out " +
               "hover:text-sky-500 hover:scale-105 active:scale-100 grow " +
               "active:text-sky-600 decoration-from-font justify-self-end " +
               "ml-[7vmin] -mb-[2vmin] " +
@@ -147,7 +147,7 @@ const ProjectView = (props: propsType) => {
               "justify-self-end origin-bottom-left " +
               "z-40 drop-shadow-lg transition-all duration-75 custom-ease-out " +
               "hover:bg-red-400/75 active:bg-red-500/75 active:scale-95 " +
-              "cursor-pointer transform-gpu " +
+              "cursor-pointer " +
               (sideEffect === "fade-in"
                 ? "animate-fade-in "
                 : sideEffect === "fade-out"
@@ -171,7 +171,7 @@ const ProjectView = (props: propsType) => {
             id={"current"}
             role="presentation"
             className={
-              "w-max transform-gpu " +
+              "w-max " +
               (effect === "left"
                 ? "animate-fade-out-right "
                 : effect === "right"
@@ -219,7 +219,7 @@ const ProjectView = (props: propsType) => {
             id={"previous"}
             aria-hidden="true"
             className={
-              "w-max fixed transform-gpu " +
+              "w-max absolute " +
               (props.images.length > 0 && index.current - 1 > -1
                 ? ""
                 : "hidden ") +
@@ -273,7 +273,7 @@ const ProjectView = (props: propsType) => {
             id={"next"}
             aria-hidden="true"
             className={
-              "w-max fixed transform-gpu " +
+              "w-max absolute " +
               (props.images.length > 0 && index.current + 1 < actualLength
                 ? ""
                 : "hidden ") +
@@ -352,7 +352,7 @@ const ProjectView = (props: propsType) => {
               "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
               "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
               "hover:bg-amber-200/75 active:bg-amber-300/75 active:scale-95 " +
-              "cursor-pointer transform-gpu " +
+              "cursor-pointer " +
               (hideLeftArrowRef.current
                 ? "invisible "
                 : leftArrowEffect === "fade-in"
@@ -400,7 +400,7 @@ const ProjectView = (props: propsType) => {
               "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-right " +
               "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
               "hover:bg-sky-300/75 active:bg-sky-400/75 active:scale-95 " +
-              "cursor-pointer transform-gpu " +
+              "cursor-pointer " +
               (hideRightArrowRef.current
                 ? "invisible "
                 : rightArrowEffect === "fade-in"

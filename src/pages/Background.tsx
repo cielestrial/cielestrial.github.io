@@ -144,7 +144,7 @@ const Background = (props: propsType) => {
       id="the background"
       role="presentation"
       className={
-        "view-width view-height flex flex-col bg-image transform-gpu overflow-clip " +
+        "view-width view-height flex flex-col bg-image overflow-clip " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
       onMouseDown={(event) => {

@@ -35,7 +35,7 @@ export const testimonies: testimonyType[] = [
 const Testimonials = () => {
   const showTemplate = false;
   const [index, setIndex] = useState(0);
-  const timer = useRef<NodeJS.Timer>();
+  const timer = useRef<NodeJS.Timeout>();
   const waitTime = 5000;
   const lastIndex = testimonies.length;
 

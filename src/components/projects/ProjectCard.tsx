@@ -54,7 +54,7 @@ const ProjectCard = (props: propsType) => {
         (!context.touchDevice.current
           ? "hover:saturate-150 hover:outline-amber-500 "
           : "") +
-        "cursor-pointer transform-gpu " +
+        "cursor-pointer " +
         (effect === "slide-in"
           ? props.order === 0
             ? "animate-[fade-in-right_0.7s_cubic-bezier(.38,0,.64,1)_both] "

@@ -10,7 +10,7 @@ const TestimonialView = (props: propsType) => {
       <div
         className={
           "grid border-solid border-[3px] rounded-full overflow-clip " +
-          "w-36 h-36 place-self-center origin-bottom-left transform-gpu " +
+          "w-36 h-36 place-self-center origin-bottom-left " +
           "animate-center-testimonial "
         }
       >
@@ -23,7 +23,7 @@ const TestimonialView = (props: propsType) => {
       </div>
       <p
         className={
-          "h-36 w-80 text-center pt-10 transform-gpu " +
+          "h-36 w-80 text-center pt-10 " +
           "justify-self-center animate-fade-in-out "
         }
       >

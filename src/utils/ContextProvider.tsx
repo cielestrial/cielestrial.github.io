@@ -104,13 +104,11 @@ export function StateProvider({ children }: StateProviderProps) {
 
   const setAndSaveTheme = useCallback(
     (selectedTheme: "light" | "dark") => {
-      /*
       setTheme(selectedTheme);
       if (selectedTheme === "dark")
         document.documentElement.classList.add("dark");
       else document.documentElement.classList.remove("dark");
       window.localStorage.setItem("theme", selectedTheme);
-      */
     },
     [theme]
   );
@@ -123,7 +121,7 @@ export function StateProvider({ children }: StateProviderProps) {
     }
     if (params.search.includes("?debug")) debugMode.current = true;
     else debugMode.current = false;
-    /*
+
     // Set theme on page load
     if (
       window.localStorage.getItem("theme") === "dark" ||
@@ -132,7 +130,6 @@ export function StateProvider({ children }: StateProviderProps) {
     )
       document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
-    */
   }, []);
 
   useEffect(() => {

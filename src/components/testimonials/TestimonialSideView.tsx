@@ -11,14 +11,14 @@ const TestimonialSideView = (props: propsType) => {
       className={
         "grid self-center " +
         (props.side === "far-left" || props.side === "far-right"
-          ? "fixed "
+          ? "absolute "
           : "")
       }
     >
       <div
         id={"testimonial " + props.side}
         className={
-          "grid border-solid border-[3px] rounded-full overflow-clip transform-gpu " +
+          "grid border-solid border-[3px] rounded-full overflow-clip " +
           "w-24 h-24 place-content-center justify-self-center origin-bottom-left " +
           (props.side === "left"
             ? "animate-left-testimonial "

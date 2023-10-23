@@ -13,16 +13,15 @@ const Accordian = (props: propsType) => {
   const context = useContext(StateContext);
   const openedRef = useRef(props.opened);
   const [effect, setEffect] = useState<
-    "slide-up" | "fade-in" | "saturate-in" | "none"
+    "slide-up" | "fade-in" | "half-fade" | "none"
   >("none");
 
   useEffect(() => {
     context.setScrollable(false);
-    if (props.label === "Home") setEffect("saturate-in");
+    if (props.label === "Home") setEffect("none");
     else if (props.label === "About" || props.label === "Contact")
       setEffect("slide-up");
-    else if (props.label === "Projects" || props.label === "Testimonials")
-      setEffect("fade-in");
+    else setEffect("fade-in");
     openedRef.current = props.opened;
   }, [props.opened]);
 
@@ -35,16 +34,16 @@ const Accordian = (props: propsType) => {
         document.getElementById("Grace Hopper Quote")?.focus();
         break;
       case "About":
-        document.getElementById("About Section Content")?.focus();
+        document.getElementById("AboutSectionContent")?.focus();
         break;
       case "Projects":
-        document.getElementById("Projects Section Content")?.focus();
+        document.getElementById("ProjectsSectionContent")?.focus();
         break;
       case "Testimonials":
-        document.getElementById("Testimonials Section Content")?.focus();
+        document.getElementById("TestimonialsSectionContent")?.focus();
         break;
       case "Contact":
-        document.getElementById("Contact Section Content")?.focus();
+        document.getElementById("ContactSectionContent")?.focus();
         break;
     }
   }
@@ -97,10 +96,10 @@ const Accordian = (props: propsType) => {
     const gradient = displayGradient();
     return (
       <div
-        id={props.label + " Section Label"}
+        id={props.label}
         role="button"
         aria-expanded={props.opened === props.label}
-        aria-controls={props.label + " Section Content"}
+        aria-controls={props.label + "Content"}
         tabIndex={0}
         className={
           "view-width font-bold drop-shadow-lg py-[2vmin] " +
@@ -132,20 +131,14 @@ const Accordian = (props: propsType) => {
     if (props.opened === props.label)
       return (
         <div
+          id={props.label + "Content"}
           role="region"
-          aria-label={props.label + " Section Label"}
-          id={props.label + " Section Content"}
+          aria-label={props.label}
           tabIndex={-1}
           className={
-            "flex h-3/4 flex-col flex-nowrap transform-gpu scroll-smooth " +
+            "flex h-3/4 flex-col flex-nowrap scroll-smooth " +
             "blue-highlight focus:outline-none " +
-            (effect === "slide-up"
-              ? "animate-slide-up "
-              : effect === "fade-in"
-              ? "animate-fade-in "
-              : effect === "saturate-in"
-              ? "animate-saturate-in "
-              : "") +
+            (effect !== "none" ? `animate-${effect} ` : "") +
             (context.scrollable ? "overflow-auto " : "overflow-clip ") +
             (context.hideContent ? "invisible " : "")
           }
@@ -160,7 +153,7 @@ const Accordian = (props: propsType) => {
         >
           <div
             className={
-              "fixed whitespace-nowrap m-[3vmin] " +
+              "absolute whitespace-nowrap m-[3vmin] " +
               "title font-semibold text-[3.5vmin] sm:text-[2.625vmin] " +
               (!context.hideContent ? "invisible " : "visible ")
             }

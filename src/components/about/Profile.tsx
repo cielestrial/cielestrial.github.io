@@ -7,7 +7,7 @@ const Profile = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
   const iconLink =
     "text-[4.5vmin] sm:text-[3.375vmin] drop-shadow-md self-end " +
-    "transition-all duration-75 custom-ease-out transform-gpu " +
+    "transition-all duration-75 custom-ease-out " +
     "hover:text-sky-500 active:text-sky-600 ";
 
   return (
@@ -162,29 +162,29 @@ const Profile = () => {
             className="w-max list-inside pl-[2vmin] list-disc "
           >
             <li aria-label="HTML,">HTML</li>
-            <li aria-label="JavaScript,">JavaScript</li>
-            <li aria-label="TypeScript,">TypeScript</li>
+            <li aria-label="JavaScript and TypeScript,">JS & TS</li>
             <li aria-label="React,">React</li>
             <li aria-label="Redux,">Redux</li>
-            <li aria-label="CSS,">CSS</li>
-            <li aria-label="SASS/SCSS,">SASS/SCSS</li>
-            <li aria-label="Tailwind CSS,">Tailwind&#32;CSS</li>
-            <li aria-label="Material UI,">Material&#32;UI</li>
+            <li aria-label="Vue,">Vue</li>
+            <li aria-label="Nuxt,">Nuxt</li>
+            <li aria-label="Python,">Python</li>
+            <li aria-label="Java,">Java</li>
+            <li aria-label="C Sharp,">C#</li>
           </ul>
 
           <ul
             role="presentation"
             className="w-max list-inside px-[2vmin] list-disc "
           >
+            <li aria-label="CSS,">CSS</li>
+            <li aria-label="SASS/SCSS,">SASS/SCSS</li>
+            <li aria-label="Tailwind CSS,">Tailwind&#32;CSS</li>
+            <li aria-label="Material UI,">Material&#32;UI</li>
             <li aria-label="Express,">Express</li>
             <li aria-label="Redis,">Redis</li>
             <li aria-label="Figma,">Figma</li>
             <li aria-label="Docker,">Docker</li>
-            <li aria-label="Vitest,">Vitest</li>
-            <li aria-label="React Testing Library,">RTL</li>
             <li aria-label="Web Content Accessibility Guidelines,">WCAG</li>
-            <li aria-label="Java,">Java</li>
-            <li aria-label="C Sharp,">C#</li>
           </ul>
         </div>
       </div>

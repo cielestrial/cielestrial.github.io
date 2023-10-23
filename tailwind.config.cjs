@@ -11,8 +11,6 @@ module.exports = {
 
         "slide-down": "slide-down .5s ease-out both",
 
-        "saturate-in": "saturate-in 1.32s ease-in-out both",
-
         "scale-up": "scale-down .34s cubic-bezier(.38,0,.64,1) reverse both",
 
         "scale-down": "scale-down .5s cubic-bezier(.38,0,.64,1) both",
@@ -62,11 +60,6 @@ module.exports = {
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
 
-        "saturate-in": {
-          "0%, 20%": { filter: "saturate(20%)" },
-          "100%": { filter: "saturate(100%)" },
-        },
-
         "fall-down": {
           "0%": { transform: "translateY(-200%)" },
           "100%": { transform: "translateY(100vh)" },
@@ -85,7 +78,7 @@ module.exports = {
 
         "fade-in": {
           "0%": { opacity: 0, visibility: "hidden" },
-          "25%": { opacity: 0, visibility: "visible" },
+          "25%": { opacity: 0.1, visibility: "visible" },
           "100%": { opacity: 1, visibility: "visible" },
         },
 

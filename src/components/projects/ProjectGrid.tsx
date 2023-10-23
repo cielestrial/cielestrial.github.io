@@ -1,6 +1,9 @@
 import { useContext, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
 
+import junkyard_light from "../../assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.jpg";
+import junkyard_dark from "../../assets/junkyard-of-shangri-la/junkyard-of-shangri-la_dark_mode.jpg";
+
 import yspm_light_4 from "../../assets/yspm/yspm_genres_page_light_mode.jpg";
 import yspm_light_1 from "../../assets/yspm/yspm_landing_page_light_mode.jpg";
 import yspm_light_2 from "../../assets/yspm/yspm_loading_page_light_mode.jpg";
@@ -13,8 +16,10 @@ import yspm_dark_3 from "../../assets/yspm/yspm_playlists_page_dark_mode.jpg";
 
 import dashboard_tab_1 from "../../assets/ev-dashboard/ev-dashboard_tab1.jpg";
 
+/*
 import donkey_car_1 from "../../assets/donkey-car/donkey-car_home.jpg";
 import donkey_car_2 from "../../assets/donkey-car/donkey-car_test_cases.jpg";
+*/
 
 import wbtracker_1 from "../../assets/wbtracker/wbtracker_home.png";
 import wbtracker_2 from "../../assets/wbtracker/wbtracker_d_survey.png";
@@ -43,7 +48,7 @@ const ProjectGrid = (props: propsType) => {
       <p
         className={
           "text-center text-[4.5vmin] sm:text-[3.375vmin] font-semibold " +
-          "mx-auto w-fit h-fit pt-[8vh] pb-[4vh] transform-gpu " +
+          "mx-auto w-fit h-fit pt-[8vh] pb-[4vh] " +
           (effect === "fade-out" ? "animate-fade-out " : "")
         }
         onAnimationEnd={() => {
@@ -124,6 +129,27 @@ const ProjectGrid = (props: propsType) => {
           }
         >
           <ProjectCard
+            title={"Junkyard of SL"}
+            description={
+              "Web scraping demo project. Search for products from an " +
+              "online bookstore. Backend written in python with FastAPI " +
+              "framework. Frontend SSR with Nuxt framework utilizing " +
+              "Vue, written with TypeScript, and styled with Tailwind CSS. " +
+              "Follows the WCAG 2 to create a rich & accessible " +
+              "experience for a wide breadth of users. This is achieved " +
+              "through the utilization of aria labelling, support for keyboard " +
+              "interactions, focus traps, and many more techniques."
+            }
+            images={[junkyard_light, junkyard_dark]}
+            link={"https://junkyard-of-shangri-la.onrender.com"}
+            status={"Work In Progress"}
+            order={0}
+            setGridEffect={setEffect}
+            setShowProjectView={props.setShowProjectView}
+            setSelectedProject={props.setSelectedProject}
+          />
+
+          <ProjectCard
             title={"RD Dev Test"}
             description={
               "A test application that displays information on the top 40 " +
@@ -136,7 +162,7 @@ const ProjectGrid = (props: propsType) => {
             images={[rightdrive_page_1]}
             link={"https://rightdrive-dev-test.netlify.app"}
             status={"Completed"}
-            order={0}
+            order={1}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
@@ -168,7 +194,7 @@ const ProjectGrid = (props: propsType) => {
             ]}
             link={"https://yspm-ccnd.onrender.com"}
             status={"Work In Progress"}
-            order={1}
+            order={2}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
@@ -187,12 +213,13 @@ const ProjectGrid = (props: propsType) => {
             images={[dashboard_tab_1]}
             link={"https://ev-dashboard.onrender.com"}
             status={"Hiatus"}
-            order={2}
+            order={3}
             setGridEffect={setEffect}
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
           />
 
+          {/*
           <ProjectCard
             title={"Donkey-Car"}
             description={
@@ -210,6 +237,8 @@ const ProjectGrid = (props: propsType) => {
             setShowProjectView={props.setShowProjectView}
             setSelectedProject={props.setSelectedProject}
           />
+          */}
+
           <ProjectCard
             title={"WB Tracker"}
             description={

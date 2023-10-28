@@ -9,7 +9,7 @@
   font-weight: 400;
   touch-action: none;
   overflow: clip;
- 
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -22,48 +22,58 @@
   .title {
     font-family: Tahoma, system-ui, sans-serif;
   }
+
   .text {
     font-family: Arial, Helvetica, system-ui, sans-serif;
   }
+
   blockquote.quote:before {
     content: "\201C";
   }
+
   q {
-    quotes:  "\2018" "\2019" "\201C" "\201D"
+    quotes: "\2018""\2019""\201C""\201D";
   }
+
   .blue-highlight:focus-visible {
-    outline-color: #0891b2; /* cyan-600 */
+    outline-color: #0891b2;
+    /* cyan-600 */
   }
+
   :focus-visible {
-    outline-color: #f59e0b; /* amber-500 */
+    outline-color: #f59e0b;
+    /* amber-500 */
   }
 
   .view-width {
     width: 100vw;
   }
+
   .view-height {
     height: 100vh;
   }
-  @supports(height: 100dvh) {
+
+  @supports (height: 100dvh) {
     .view-width {
       width: 100dvw;
     }
+
     .view-height {
       height: 100dvh;
     }
   }
 }
 
-@layer utilities {  
+@layer utilities {
   .bg-image {
     background-size: cover;
-    background-image: url("../assets/general/so-white.png");
+    background-image: url("../general/so-white.png");
   }
-  .bg-fog{
+
+  .bg-fog {
     background-size: cover;
     background: radial-gradient(73.98% 73.98% at 50% 50%,
-     rgba(255, 255, 255, 0.15) 0%,
-      rgba(0, 0, 0, 0.15) 100%);
-
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(0, 0, 0, 0.15) 100%);
   }
 }

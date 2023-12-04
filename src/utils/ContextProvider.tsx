@@ -10,6 +10,7 @@ export type stateContextType = {
   debugMode: React.MutableRefObject<boolean>;
   theme: "light" | "dark";
   setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
+  season: seasonT;
 
   hideCursor: boolean;
   setHideCursor: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,6 +46,9 @@ export type stateContextType = {
 export type aboutTabs = "Profile" | "Bio" | "Philosophy";
 export type coordinate = { x: number; y: number };
 
+const seasons = ["Winter", "Spring", "Summer", "Fall"] as const;
+export type seasonT = (typeof seasons)[number];
+
 type StateProviderProps = {
   children: React.ReactNode;
 };
@@ -54,17 +58,24 @@ export function StateProvider({ children }: StateProviderProps) {
   const params = useLocation();
   const aboutOpenedRef = useRef<aboutTabs>("Profile");
 
-  const debugMode = useRef(false);
+  let season: seasonT;
+  const envSeason: any = import.meta.env.VITE_SEASON;
+  if (envSeason !== undefined && seasons.includes(envSeason))
+    season = envSeason;
+  else season = "Spring";
+
   const [theme, setTheme] = useState<"light" | "dark">(
     "light"
     /*
     window.localStorage.getItem("theme") === "dark" ||
-      (window.localStorage.getItem("theme") === null &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ? "dark"
-      : "light"
-      */
+    (window.localStorage.getItem("theme") === null &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ? "dark"
+    : "light"
+    */
   );
+
+  const debugMode = useRef(false);
   const [hideCursor, setHideCursor] = useState(false);
   const [hideContent, setHideContent] = useState(false);
   const [scrollable, setScrollable] = useState(false);
@@ -133,7 +144,18 @@ export function StateProvider({ children }: StateProviderProps) {
   }, []);
 
   useEffect(() => {
-    if (score > 0) console.log("Splat!");
+    if (score > 0) {
+      switch (season) {
+        case "Winter":
+          console.info("Plink.");
+          break;
+        case "Spring":
+          console.info("Splat!");
+          break;
+        default:
+          console.error("Invalid season");
+      }
+    }
   }, [score]);
 
   useEffect(() => {
@@ -151,6 +173,7 @@ export function StateProvider({ children }: StateProviderProps) {
         navigate,
         aboutOpenedRef,
         theme,
+        season,
 
         hideCursor,
         setHideCursor,

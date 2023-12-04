@@ -1,10 +1,10 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import Accordian from "../components/Accordian";
-import About from "../nav/About";
-import Contact from "../nav/Contact";
-import Home from "../nav/Home";
-import Projects from "../nav/Projects";
-import Testimonials from "../nav/Testimonials";
+import Accordian from "../components/accordian/Accordian";
+import About from "../components/accordian/sections/About";
+import Contact from "../components/accordian/sections/Contact";
+import Home from "../components/accordian/sections/Home";
+import Projects from "../components/accordian/sections/Projects";
+import Testimonials from "../components/accordian/sections/Testimonials";
 import { StateContext } from "../utils/ContextProvider";
 import {
   aboutTabsNavigation,

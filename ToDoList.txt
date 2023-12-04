@@ -1,4 +1,16 @@
-Performance: Replace all instances of transition-all with transition
+Done: 
+switched from transition-all to transition
+added ~/ absolute path aliases
+replaced drop-shadow with shadow
+Winter Scheme
+Snowflakes rotate clockwise then counter-clockwise
+Snowflakes sway on x axis as they fall
+Provider should get initial value from .env
+
+
+To Do:
+Implement react-transition-group
+Add copyright and policies to Home section
 
 Part 4:
 - Google Analytics integration
@@ -10,8 +22,6 @@ Part 5?:
 
 Testimonials: 
 - Carousel accesibility for Testimonials
-
-Known Bugs: 
 
 
 Dark Mode Experience (Requires 2 SVGs & Fonts):

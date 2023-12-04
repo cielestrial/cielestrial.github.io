@@ -1,12 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { BsCloudSun, BsFillMoonStarsFill } from "react-icons/bs";
-import { StateContext } from "../../utils/ContextProvider";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
+import { StateContext } from "~/utils/ContextProvider";
+import { myEndListener } from "~/utils/HelperFunctions";
 
 const MySwitch = () => {
   const context = useContext(StateContext);
   const [checked, setChecked] = useState(
     context.theme === "dark" ? true : false
   );
+
+  const moonRef = useRef<HTMLElement | null>(null);
+  const sunRef = useRef<HTMLElement | null>(null);
+  const nodeRef = checked ? moonRef : sunRef;
 
   useEffect(() => {
     if (checked) context.setAndSaveTheme("dark");
@@ -37,7 +43,7 @@ const MySwitch = () => {
     "text-black/90 dark:text-white/90 ";
 
   return (
-    <div className="m-4 absolute top-0 right-0 z-10 invisible">
+    <div className="m-4 absolute top-0 right-0 z-10 invisible ">
       <div
         role="switch"
         tabIndex={0}
@@ -48,9 +54,20 @@ const MySwitch = () => {
         onKeyDown={keyboardHandler}
       >
         <div className={inner}>
-          <span className="m-auto">
-            {checked ? <BsFillMoonStarsFill /> : <BsCloudSun />}
-          </span>
+          <SwitchTransition mode="out-in">
+            <CSSTransition
+              key={checked ? "Moon" : "Sun"}
+              nodeRef={nodeRef}
+              addEndListener={(done: () => void) =>
+                nodeRef.current?.addEventListener("transitionend", done, false)
+              }
+              classNames="switch"
+            >
+              <span ref={nodeRef} className="m-auto">
+                {checked ? <BsFillMoonStarsFill /> : <BsCloudSun />}
+              </span>
+            </CSSTransition>
+          </SwitchTransition>
         </div>
       </div>
     </div>

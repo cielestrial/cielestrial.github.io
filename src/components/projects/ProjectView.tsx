@@ -4,8 +4,8 @@ import {
   BsArrowRightCircle,
   BsXCircle,
 } from "react-icons/bs";
-import placeholderImage from "../../assets/general/placeholder_image.png";
-import { StateContext } from "../../utils/ContextProvider";
+import placeholderImage from "~/assets/general/placeholder_image.png";
+import { StateContext } from "~/utils/ContextProvider";
 
 type propsType = {
   title: string;
@@ -108,8 +108,8 @@ const ProjectView = (props: propsType) => {
             rel="noreferrer noopener"
             className={
               "text-center title underline underline-offset-[0.5vmin] " +
-              "w-max h-fit place-self-center origin-center drop-shadow-md " +
-              "transition-all duration-75 custom-ease-out " +
+              "w-max h-fit place-self-center origin-center " +
+              "transition duration-75 custom-ease-out " +
               "hover:text-sky-500 hover:scale-105 active:scale-100 grow " +
               "active:text-sky-600 decoration-from-font justify-self-end " +
               "ml-[7vmin] -mb-[2vmin] " +
@@ -145,7 +145,7 @@ const ProjectView = (props: propsType) => {
             className={
               "w-fit h-fit rounded-full bg-transparent text-[5vh] " +
               "justify-self-end origin-bottom-left " +
-              "z-40 drop-shadow-lg transition-all duration-75 custom-ease-out " +
+              "z-40 shadow transition duration-75 custom-ease-out " +
               "hover:bg-red-400/75 active:bg-red-500/75 active:scale-95 " +
               "cursor-pointer " +
               (sideEffect === "fade-in"
@@ -192,7 +192,7 @@ const ProjectView = (props: propsType) => {
             ) : (
               <img
                 id={"current image"}
-                className={"drop-shadow-lg " + size}
+                className={"shadow-md " + size}
                 src={
                   props.images.length > 0
                     ? props.images[index.current - 1]
@@ -257,7 +257,7 @@ const ProjectView = (props: propsType) => {
             ) : (
               <img
                 id={"previous image"}
-                className={"drop-shadow-lg " + size}
+                className={"shadow-md " + size}
                 src={
                   props.images.length > 0 && index.current - 1 > -1
                     ? props.images[index.current - 2]
@@ -308,7 +308,7 @@ const ProjectView = (props: propsType) => {
           >
             <img
               id={"next image"}
-              className={"drop-shadow-lg " + size}
+              className={"shadow-md " + size}
               src={
                 props.images.length > 0 && index.current + 1 < actualLength
                   ? props.images[index.current]
@@ -350,7 +350,7 @@ const ProjectView = (props: propsType) => {
             }}
             className={
               "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
-              "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
+              "z-40 shadow transition duration-75 custom-ease-out " +
               "hover:bg-amber-200/75 active:bg-amber-300/75 active:scale-95 " +
               "cursor-pointer " +
               (hideLeftArrowRef.current
@@ -398,7 +398,7 @@ const ProjectView = (props: propsType) => {
             }}
             className={
               "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-right " +
-              "z-40 drop-shadow-md transition-all duration-75 custom-ease-out " +
+              "z-40 shadow transition duration-75 custom-ease-out " +
               "hover:bg-sky-300/75 active:bg-sky-400/75 active:scale-95 " +
               "cursor-pointer " +
               (hideRightArrowRef.current

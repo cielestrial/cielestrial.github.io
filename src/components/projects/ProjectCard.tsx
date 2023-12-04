@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import placeholderImage from "../../assets/general/placeholder_image.png";
-import { StateContext } from "../../utils/ContextProvider";
+import placeholderImage from "~/assets/general/placeholder_image.png";
+import { StateContext } from "~/utils/ContextProvider";
 import ProjectView from "./ProjectView";
 
 type statusType = "Completed" | "Work In Progress" | "Hiatus";
@@ -48,7 +48,7 @@ const ProjectCard = (props: propsType) => {
       }}
       className={
         "flex flex-col flex-nowrap w-[35.56vmin] h-fit sm:w-[28.45vmin] " +
-        "drop-shadow-md transition-all duration-75 custom-ease-out m-[5vmin] " +
+        "shadow-md transition duration-75 custom-ease-out m-[5vmin] " +
         "saturate-[.75] active:scale-95 outline-none outline-[0.4vmin] " +
         "focus-visible:saturate-150 focus-visible:outline-amber-500 " +
         (!context.touchDevice.current

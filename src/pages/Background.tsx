@@ -144,7 +144,8 @@ const Background = (props: propsType) => {
       id="the background"
       role="presentation"
       className={
-        "view-width view-height flex flex-col bg-image overflow-clip " +
+        "view-width view-height flex flex-col overflow-clip " +
+        "bg-gradient-to-b from-[#F0FBFF] from-35% via-[#E7F5FF] via-65% to-[#A8B0BF] to-95% " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
       onMouseDown={(event) => {
@@ -177,7 +178,7 @@ const Background = (props: propsType) => {
         id="mouse-hitbox"
         className={
           "fixed w-fit h-fit text-[13.466vmin] sm:text-[10.125vmin] " +
-          "translate-x-[-50%] translate-y-[-100%] " +
+          "translate-x-[-50%] translate-y-[-100%] transform-gpu " +
           (context.score < context.maxScore
             ? "fill-slate-400 "
             : "fill-amber-300 ") +

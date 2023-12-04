@@ -6,8 +6,8 @@ const logo = "/assets/logo-coloured/android-chrome-512x512.png";
 const Profile = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
   const iconLink =
-    "text-[4.5vmin] sm:text-[3.375vmin] drop-shadow-md self-end " +
-    "transition-all duration-75 custom-ease-out " +
+    "text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end " +
+    "transition duration-75 custom-ease-out " +
     "hover:text-sky-500 active:text-sky-600 ";
 
   return (
@@ -15,7 +15,7 @@ const Profile = () => {
       id="profileTab"
       role="tabpanel"
       className={
-        "flex flex-row px-[4vmin] m-auto space-x-[4vmin] " +
+        "flex flex-row px-[4vmin] m-auto space-x-[4vmin] select-text " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
@@ -29,7 +29,7 @@ const Profile = () => {
         <div
           className={
             "border-solid border-black border-[1vmin] rounded-full mx-auto " +
-            "w-[48vmin] aspect-square drop-shadow-xl snap-center overflow-clip "
+            "w-[48vmin] aspect-square shadow-xl snap-center overflow-clip "
           }
         >
           <img
@@ -42,7 +42,7 @@ const Profile = () => {
         </div>
         <div
           className={
-            "flex flex-col grow py-[2vmin] px-[4vmin] bg-image select-text " +
+            "flex flex-col grow py-[2vmin] px-[4vmin] bg-image " +
             "border-[0.625vmin] border-black snap-center snap-always space-y-[.5vmin] "
           }
         >
@@ -141,7 +141,7 @@ const Profile = () => {
       <div
         className={
           "flex flex-col snap-center py-[2vmin] px-[3vmin] " +
-          "border-[0.625vmin] border-black bg-image "
+          "border-[0.625vmin] border-black bg-image select-text "
         }
       >
         <p

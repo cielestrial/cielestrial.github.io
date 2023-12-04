@@ -1,12 +1,26 @@
-import MySwitch from "../components/home/MySwitch";
+import { useContext } from "react";
+import MySwitch from "~/components/home/MySwitch";
+import { StateContext } from "~/utils/ContextProvider";
 
 const Home = () => {
+  const context = useContext(StateContext);
+  let seasonBG = "";
+
+  switch (context.season) {
+    case "Winter":
+      seasonBG =
+        "bg-gradient-to-b from-[#E1F5FF] from-60% to-[#F0FBFF]/95 to-90% ";
+      break;
+    case "Spring":
+      seasonBG = "bg-gradient-to-bl from-amber-200 to-slate-200 ";
+      break;
+    default:
+      console.error("Invalid season");
+  }
+
   return (
     <div
-      className={
-        "flex flex-col h-full min-w-full w-max relative " +
-        "bg-gradient-to-bl from-amber-200 to-slate-200 "
-      }
+      className={"flex flex-col h-full min-w-full w-max relative " + seasonBG}
     >
       <MySwitch />
       <div className="h-full flex flex-col place-content-center animate-fade-in ">
@@ -15,7 +29,7 @@ const Home = () => {
           tabIndex={0}
           className={
             "w-fit h-fit p-[8vmin] place-self-center font-bold focus:outline-none " +
-            "title text-start text-[6vmin] tracking-wider text-slate-600 -indent-[3vmin] "
+            "title text-start text-[6vmin] tracking-wider text-[#4d5258] -indent-[3vmin] "
           }
         >
           <blockquote className="quote ">
@@ -29,7 +43,7 @@ const Home = () => {
               is:&#32;
               <q
                 role="presentation"
-                className=" italic text-red-600 font-semibold "
+                className=" italic text-[#96060A] font-semibold "
               >
                 <span>It's always been&#32;</span>
                 <br />
@@ -39,7 +53,7 @@ const Home = () => {
           </blockquote>
           <p
             className={
-              "inline text italic text-slate-700 pt-[1vmin] pl-[27.5vmin] "
+              "inline text italic text-[#182b38] pt-[1vmin] pl-[27.5vmin] "
             }
           >
             - Grace Hopper

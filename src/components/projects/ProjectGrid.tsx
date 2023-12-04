@@ -1,35 +1,35 @@
 import { useContext, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
 
-import junkyard_light from "../../assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.jpg";
-import junkyard_dark from "../../assets/junkyard-of-shangri-la/junkyard-of-shangri-la_dark_mode.jpg";
+import junkyard_light from "~/assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.jpg";
+import junkyard_dark from "~/assets/junkyard-of-shangri-la/junkyard-of-shangri-la_dark_mode.jpg";
 
-import yspm_light_4 from "../../assets/yspm/yspm_genres_page_light_mode.jpg";
-import yspm_light_1 from "../../assets/yspm/yspm_landing_page_light_mode.jpg";
-import yspm_light_2 from "../../assets/yspm/yspm_loading_page_light_mode.jpg";
-import yspm_light_3 from "../../assets/yspm/yspm_playlists_page_light_mode.jpg";
+import yspm_light_4 from "~/assets/yspm/yspm_genres_page_light_mode.jpg";
+import yspm_light_1 from "~/assets/yspm/yspm_landing_page_light_mode.jpg";
+import yspm_light_2 from "~/assets/yspm/yspm_loading_page_light_mode.jpg";
+import yspm_light_3 from "~/assets/yspm/yspm_playlists_page_light_mode.jpg";
 
-import yspm_dark_4 from "../../assets/yspm/yspm_genres_page_dark_mode.jpg";
-import yspm_dark_1 from "../../assets/yspm/yspm_landing_page_dark_mode.jpg";
-import yspm_dark_2 from "../../assets/yspm/yspm_loading_page_dark_mode.jpg";
-import yspm_dark_3 from "../../assets/yspm/yspm_playlists_page_dark_mode.jpg";
+import yspm_dark_4 from "~/assets/yspm/yspm_genres_page_dark_mode.jpg";
+import yspm_dark_1 from "~/assets/yspm/yspm_landing_page_dark_mode.jpg";
+import yspm_dark_2 from "~/assets/yspm/yspm_loading_page_dark_mode.jpg";
+import yspm_dark_3 from "~/assets/yspm/yspm_playlists_page_dark_mode.jpg";
 
-import dashboard_tab_1 from "../../assets/ev-dashboard/ev-dashboard_tab1.jpg";
+import dashboard_tab_1 from "~/assets/ev-dashboard/ev-dashboard_tab1.jpg";
 
 /*
-import donkey_car_1 from "../../assets/donkey-car/donkey-car_home.jpg";
-import donkey_car_2 from "../../assets/donkey-car/donkey-car_test_cases.jpg";
+import donkey_car_1 from "~/assets/donkey-car/donkey-car_home.jpg";
+import donkey_car_2 from "~/assets/donkey-car/donkey-car_test_cases.jpg";
 */
 
-import wbtracker_1 from "../../assets/wbtracker/wbtracker_home.png";
-import wbtracker_2 from "../../assets/wbtracker/wbtracker_d_survey.png";
-import wbtracker_3 from "../../assets/wbtracker/wbtracker_a_survey.png";
-import wbtracker_4 from "../../assets/wbtracker/wbtracker_graphs.png";
-import wbtracker_5 from "../../assets/wbtracker/wbtracker_404.png";
+import wbtracker_1 from "~/assets/wbtracker/wbtracker_home.png";
+import wbtracker_2 from "~/assets/wbtracker/wbtracker_d_survey.png";
+import wbtracker_3 from "~/assets/wbtracker/wbtracker_a_survey.png";
+import wbtracker_4 from "~/assets/wbtracker/wbtracker_graphs.png";
+import wbtracker_5 from "~/assets/wbtracker/wbtracker_404.png";
 
-import rightdrive_page_1 from "../../assets/rightdrive-dev-test/rightdrive-dev-test_page1.jpg";
+import rightdrive_page_1 from "~/assets/rightdrive-dev-test/rightdrive-dev-test_page1.jpg";
 
-import { StateContext } from "../../utils/ContextProvider";
+import { StateContext } from "~/utils/ContextProvider";
 
 type propsType = {
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -203,12 +203,11 @@ const ProjectGrid = (props: propsType) => {
           <ProjectCard
             title={"EV-Dashboard"}
             description={
-              "A collaborative project between University of Windsor " +
-              "and Windsor-Essex Automobility Enterprises. I created a web-based " +
-              "dashboard for electric vehicles. Designed with Figma and developed " +
-              "with React, TypeScript, and SCSS. Key features include gesture-based " +
-              "navigation and supports up to 20 smaller applications internally " +
-              "as widgets."
+              "Developed a web-based dashboard for electric vehicles. " +
+              "Designed with Figma and developed with React, TypeScript, " +
+              "and SCSS. Key features include gesture-based navigation " +
+              "and supports up to 20 smaller applications internally as " +
+              "widgets."
             }
             images={[dashboard_tab_1]}
             link={"https://ev-dashboard.onrender.com"}

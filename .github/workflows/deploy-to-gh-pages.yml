@@ -10,7 +10,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: production
       url: https://cielestrial.github.io/
     steps:
       - name: Checkout 🛎️

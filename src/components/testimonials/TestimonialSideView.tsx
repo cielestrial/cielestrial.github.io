@@ -1,4 +1,4 @@
-import { testimonyType } from "../../nav/Testimonials";
+import { testimonyType } from "../accordian/sections/Testimonials";
 
 type propsType = {
   side: "left" | "right" | "far-left" | "far-right";

@@ -42,6 +42,8 @@ module.exports = {
 
         "right-testimonial":
           "right-testimonial 5s cubic-bezier(.38,0,.64,1) infinite both",
+
+        "feather-spin": "feather-spin 2s linear infinite",
       },
 
       keyframes: {
@@ -61,8 +63,43 @@ module.exports = {
         },
 
         "fall-down": {
-          "0%": { transform: "translateY(-200%)" },
+          "0%": { transform: "translateY(0)" },
           "100%": { transform: "translateY(100vh)" },
+        },
+
+        "feather-down": {
+          "0%": {
+            transform:
+              "rotate(0deg) translateX(6vw) rotate(0deg) translateY(0vh)",
+          },
+          "25%": {
+            transform:
+              "rotate(144deg) translateX(6vw) rotate(-144deg) translateY(25vh)",
+          },
+          "50%": {
+            transform:
+              "rotate(0deg) translateX(6vw) rotate(0deg) translateY(50vh)",
+          },
+          "75%": {
+            transform:
+              "rotate(144deg) translateX(6vw) rotate(-144deg) translateY(75vh)",
+          },
+          "100%": {
+            transform:
+              "rotate(0deg) translateX(6vw) rotate(0deg) translateY(100vh)",
+          },
+        },
+
+        "feather-spin": {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg)",
+          },
+          "100%": {
+            transform: "rotate(0deg)",
+          },
         },
 
         "scale-down": {

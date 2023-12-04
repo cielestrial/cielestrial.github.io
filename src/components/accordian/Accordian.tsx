@@ -1,6 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { sections } from "../pages/Portfolio";
-import { StateContext } from "../utils/ContextProvider";
+import { sections } from "~/pages/Portfolio";
+import { StateContext } from "~/utils/ContextProvider";
+import {
+  displaySpringGradient,
+  displayWinterGradient,
+} from "~/utils/HelperFunctions";
 
 type propsType = {
   label: sections;
@@ -54,34 +58,16 @@ const Accordian = (props: propsType) => {
    */
   function displayGradient() {
     let gradient = "";
-    switch (props.label) {
-      case "Home":
-        gradient = "bg-gradient-to-b from-amber-100 to-slate-300";
+
+    switch (context.season) {
+      case "Winter":
+        gradient = displayWinterGradient(props.label, props.opened);
         break;
-      case "About":
-        props.opened === "Home"
-          ? (gradient = "bg-gradient-to-b from-amber-100 to-slate-200 ")
-          : (gradient = "bg-gradient-to-b from-slate-200 to-slate-300 ");
-        break;
-      case "Projects":
-        props.opened === "Contact" || props.opened === "Testimonials"
-          ? (gradient = " bg-gradient-to-b from-slate-200 to-slate-300 ")
-          : props.opened === "Home"
-          ? (gradient =
-              "bg-gradient-to-b from-slate-200 via-slate-200/75 to-slate-300/50 ")
-          : (gradient = "bg-gradient-to-b from-slate-200/50 to-slate-300/50 ");
-        break;
-      case "Testimonials":
-        props.opened === "Contact"
-          ? (gradient = "bg-gradient-to-b from-slate-200 to-slate-300 ")
-          : (gradient = "bg-gradient-to-b from-slate-200/50 to-slate-300/50 ");
-        break;
-      case "Contact":
-        gradient =
-          "bg-gradient-to-b from-slate-200/50 via-slate-300/50 to-sky-400 ";
+      case "Spring":
+        gradient = displaySpringGradient(props.label, props.opened);
         break;
       default:
-        gradient = "bg-slate-200/50 ";
+        console.error("Invalid season");
     }
     return gradient;
   }

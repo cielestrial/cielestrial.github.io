@@ -1,8 +1,8 @@
 import { useContext, useRef, useState } from "react";
-import Bio from "../components/about/Bio";
-import Philosophy from "../components/about/Philosophy";
-import Profile from "../components/about/Profile";
-import { aboutTabs, StateContext } from "../utils/ContextProvider";
+import Bio from "~/components/about/Bio";
+import Philosophy from "~/components/about/Philosophy";
+import Profile from "~/components/about/Profile";
+import { aboutTabs, StateContext } from "~/utils/ContextProvider";
 
 const About = () => {
   const context = useContext(StateContext);
@@ -14,7 +14,7 @@ const About = () => {
 
   const btnClasses =
     "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom " +
-    "drop-shadow-lg transition-all duration-75 custom-ease-out ";
+    "shadow-md transition duration-75 custom-ease-out ";
 
   /**
    * Sets which about section tab is opened.
@@ -59,8 +59,8 @@ const About = () => {
             btnClasses +
             "rounded-l-full " +
             (opened === "Profile"
-              ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 ")
+              ? "bg-slate-500 "
+              : "bg-slate-300 hover:bg-slate-400 ")
           }
           onClick={(event) => {
             event.currentTarget.blur();
@@ -80,8 +80,8 @@ const About = () => {
           className={
             btnClasses +
             (opened === "Bio"
-              ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 ")
+              ? "bg-slate-500 "
+              : "bg-slate-300 hover:bg-slate-400 ")
           }
           onClick={(event) => {
             event.currentTarget.blur();
@@ -102,8 +102,8 @@ const About = () => {
             btnClasses +
             "rounded-r-full " +
             (opened === "Philosophy"
-              ? "bg-slate-400 "
-              : "bg-slate-200 hover:bg-slate-300 ")
+              ? "bg-slate-500 "
+              : "bg-slate-300 hover:bg-slate-400 ")
           }
           onClick={(event) => {
             event.currentTarget.blur();

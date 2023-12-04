@@ -31,6 +31,12 @@
     content: "\201C";
   }
 
+  /*
+  blockquote.quote:after {
+    content: "\201D";
+  }
+  */
+
   q {
     quotes: "\2018""\2019""\201C""\201D";
   }
@@ -72,8 +78,27 @@
 
   .bg-fog {
     background-size: cover;
-    background: radial-gradient(73.98% 73.98% at 50% 50%,
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(0, 0, 0, 0.15) 100%);
+    background: radial-gradient(
+      73.98% 73.98% at 50% 50%,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(0, 0, 0, 0.15) 100%
+    );
+  }
+
+  .switch-enter {
+    opacity: 0;
+  }
+  .switch-exit {
+    opacity: 1;
+  }
+  .fade-enter-active {
+    opacity: 1;
+  }
+  .switch-exit-active {
+    opacity: 0;
+  }
+  .switch-enter-active,
+  .switch-exit-active {
+    transition: opacity 50ms;
   }
 }

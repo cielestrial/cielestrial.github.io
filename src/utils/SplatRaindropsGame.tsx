@@ -109,8 +109,8 @@ function displayPoints(coord: coordinate) {
   const points = document.createElement("div");
 
   points.className =
-    "dirt fixed bg-transparent " +
-    "whitespace-nowrap text-sky-500 animate-float-up " +
+    "dirt fixed bg-transparent text-sky-500 " +
+    "whitespace-nowrap animate-float-up transform-gpu " +
     "title font-semibold text-[4vmin] sm:text-[3vmin] text-center ";
   points.appendChild(document.createTextNode("+" + raindropValue));
 

@@ -1,4 +1,4 @@
-import { testimonyType } from "../../nav/Testimonials";
+import { testimonyType } from "../accordian/sections/Testimonials";
 
 type propsType = {
   testimony: testimonyType;

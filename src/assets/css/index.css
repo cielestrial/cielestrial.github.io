@@ -73,7 +73,7 @@
 @layer utilities {
   .bg-image {
     background-size: cover;
-    background-image: url("../general/so-white.png");
+    background-image: url("../general/so_white.png");
   }
 
   .bg-fog {

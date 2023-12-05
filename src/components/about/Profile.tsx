@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SiCodechef, SiGithub, SiLinkedin } from "react-icons/si";
 
-import myLogo from "~/assets/general/my-logo.png";
+import myLogo from "~/assets/general/my_logo.png";
 
 const Profile = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");

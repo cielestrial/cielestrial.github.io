@@ -1,15 +1,6 @@
 Done: 
-switched from transition-all to transition
-added ~/ absolute path aliases
-replaced drop-shadow with shadow
-Winter Scheme
-Snowflakes rotate clockwise then counter-clockwise
-Snowflakes sway on x axis as they fall
-Provider should get initial value from .env
-
 
 To Do:
-Implement react-transition-group
 Add copyright and policies to Home section
 
 Part 4:

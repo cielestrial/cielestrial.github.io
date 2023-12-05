@@ -74,7 +74,7 @@ const ProjectGrid = (props: propsType) => {
         }}
         onScroll={() => {
           clearTimeout(context.countdownToGameStart.current);
-          context.touchStartReset;
+          context.touchStartReset();
         }}
         onTouchMove={(event) => {
           // Conditional on there being overflow

@@ -1,22 +1,29 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsCloudSun, BsFillMoonStarsFill } from "react-icons/bs";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { StateContext } from "~/utils/ContextProvider";
-import { myEndListener } from "~/utils/HelperFunctions";
 
 const MySwitch = () => {
   const context = useContext(StateContext);
   const [checked, setChecked] = useState(
     context.theme === "dark" ? true : false
   );
-
-  const moonRef = useRef<HTMLElement | null>(null);
-  const sunRef = useRef<HTMLElement | null>(null);
-  const nodeRef = checked ? moonRef : sunRef;
+  const [sunEffect, setSunEffect] = useState<
+    "switch-in" | "switch-out" | "none"
+  >("none");
+  const [moonEffect, setMoonEffect] = useState<
+    "switch-in" | "switch-out" | "none"
+  >("none");
+  const hideSun = useRef(false);
+  const hideMoon = useRef(true);
 
   useEffect(() => {
-    if (checked) context.setAndSaveTheme("dark");
-    else context.setAndSaveTheme("light");
+    if (checked) {
+      setSunEffect("switch-out");
+      context.setAndSaveTheme("dark");
+    } else {
+      setMoonEffect("switch-out");
+      context.setAndSaveTheme("light");
+    }
   }, [checked]);
 
   function toggle() {
@@ -54,20 +61,51 @@ const MySwitch = () => {
         onKeyDown={keyboardHandler}
       >
         <div className={inner}>
-          <SwitchTransition mode="out-in">
-            <CSSTransition
-              key={checked ? "Moon" : "Sun"}
-              nodeRef={nodeRef}
-              addEndListener={(done: () => void) =>
-                nodeRef.current?.addEventListener("transitionend", done, false)
+          <div
+            className={
+              "m-auto " +
+              (hideSun.current
+                ? "hidden "
+                : sunEffect === "switch-in"
+                ? "animate-switch-in "
+                : sunEffect === "switch-out"
+                ? "animate-switch-out "
+                : "")
+            }
+            onAnimationEnd={() => {
+              if (sunEffect === "switch-out") {
+                setMoonEffect("switch-in");
+                hideSun.current = true;
+                hideMoon.current = false;
               }
-              classNames="switch"
-            >
-              <span ref={nodeRef} className="m-auto">
-                {checked ? <BsFillMoonStarsFill /> : <BsCloudSun />}
-              </span>
-            </CSSTransition>
-          </SwitchTransition>
+              setSunEffect("none");
+            }}
+          >
+            <BsCloudSun />
+          </div>
+
+          <div
+            className={
+              "m-auto " +
+              (hideMoon.current
+                ? "hidden "
+                : moonEffect === "switch-in"
+                ? "animate-switch-in "
+                : moonEffect === "switch-out"
+                ? "animate-switch-out "
+                : "")
+            }
+            onAnimationEnd={() => {
+              if (moonEffect === "switch-out") {
+                setSunEffect("switch-in");
+                hideMoon.current = true;
+                hideSun.current = false;
+              }
+              setMoonEffect("none");
+            }}
+          >
+            <BsFillMoonStarsFill />
+          </div>
         </div>
       </div>
     </div>

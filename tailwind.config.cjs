@@ -44,6 +44,10 @@ module.exports = {
           "right-testimonial 5s cubic-bezier(.38,0,.64,1) infinite both",
 
         "feather-spin": "feather-spin 2s linear infinite",
+
+        "switch-in": "fade-in 9ms cubic-bezier(0.4, 0, 0.2, 1)",
+
+        "switch-out": "fade-in 9ms cubic-bezier(0.4, 0, 0.2, 1) reverse",
       },
 
       keyframes: {
@@ -114,9 +118,8 @@ module.exports = {
         },
 
         "fade-in": {
-          "0%": { opacity: 0, visibility: "hidden" },
-          "25%": { opacity: 0.1, visibility: "visible" },
-          "100%": { opacity: 1, visibility: "visible" },
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
         },
 
         "fade-in-out": {

@@ -168,9 +168,12 @@ export function aboutTabsNavigation(
   }
 }
 
-export const myEndListener = (node: HTMLElement, done: () => void) =>
-  node.addEventListener("transitionend", done, false);
-
+/**
+ * Display Winter gradient colors
+ * @param label current section label
+ * @param opened currently opened section
+ * @returns string, tailwind gradient
+ */
 export function displayWinterGradient(label: sections, opened: sections) {
   let gradient = "";
   switch (label) {
@@ -200,6 +203,12 @@ export function displayWinterGradient(label: sections, opened: sections) {
   return gradient;
 }
 
+/**
+ * Display Spring gradient colors
+ * @param label current section label
+ * @param opened currently opened section
+ * @returns string, tailwind gradient
+ */
 export function displaySpringGradient(label: sections, opened: sections) {
   let gradient = "";
   switch (label) {

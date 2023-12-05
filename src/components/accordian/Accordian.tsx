@@ -4,7 +4,8 @@ import { StateContext } from "~/utils/ContextProvider";
 import {
   displaySpringGradient,
   displayWinterGradient,
-} from "~/utils/HelperFunctions";
+} from "~/utils/GradientSelector";
+import { preloadImages } from "~/utils/ImagePreloader";
 
 type propsType = {
   label: sections;
@@ -19,6 +20,10 @@ const Accordian = (props: propsType) => {
   const [effect, setEffect] = useState<
     "slide-up" | "fade-in" | "half-fade" | "none"
   >("none");
+
+  useEffect(() => {
+    preloadImages();
+  }, []);
 
   useEffect(() => {
     context.setScrollable(false);

@@ -46,9 +46,7 @@ const About = () => {
         role="tablist"
         aria-label="Profile. Bio. Philosophy."
         aria-orientation="horizontal"
-        className={
-          "flex flex-row mx-auto py-[4vh] divide-x-[0.5vmin] divide-slate-300 "
-        }
+        className={"flex flex-row mx-auto py-[4vh] divide-x-[0.5vmin] "}
       >
         <button
           id="Profile Button"

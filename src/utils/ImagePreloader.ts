@@ -1,5 +1,5 @@
 // About Section
-import myLogo from "~/assets/general/my_logo.png";
+import myLogo from "~/assets/general/my-logo.png";
 import myPic from "~/assets/general/profile1.jpg";
 // Projects section
 import dashboard_tab_1 from "~/assets/ev-dashboard/ev-dashboard_tab1.jpg";

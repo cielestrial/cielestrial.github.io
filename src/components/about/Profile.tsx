@@ -160,7 +160,6 @@ const Profile = () => {
             role="presentation"
             className="w-max list-inside pl-[2vmin] list-disc "
           >
-            <li aria-label="HTML,">HTML</li>
             <li aria-label="JavaScript and TypeScript,">JS & TS</li>
             <li aria-label="React,">React</li>
             <li aria-label="Redux,">Redux</li>
@@ -175,10 +174,9 @@ const Profile = () => {
             role="presentation"
             className="w-max list-inside px-[2vmin] list-disc "
           >
-            <li aria-label="CSS,">CSS</li>
-            <li aria-label="SASS/SCSS,">SASS/SCSS</li>
+            <li aria-label="HTML,">HTML</li>
+            <li aria-label="CSS and SCSS,">CSS & SCSS</li>
             <li aria-label="Tailwind CSS,">Tailwind&#32;CSS</li>
-            <li aria-label="Material UI,">Material&#32;UI</li>
             <li aria-label="Express,">Express</li>
             <li aria-label="Redis,">Redis</li>
             <li aria-label="Figma,">Figma</li>

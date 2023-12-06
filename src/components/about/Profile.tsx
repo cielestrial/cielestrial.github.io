@@ -29,14 +29,13 @@ const Profile = () => {
         <div
           className={
             "border-solid border-black border-[1vmin] rounded-full mx-auto " +
-            "w-[48vmin] aspect-square shadow-xl snap-center overflow-clip "
+            "w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip "
           }
         >
           <img
             src={myLogo}
             aria-label="My Logo."
             alt="My Logo"
-            className="w-full"
             draggable="false"
           />
         </div>

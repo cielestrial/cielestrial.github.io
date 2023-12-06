@@ -23,15 +23,14 @@ const Bio = () => {
         <div
           className={
             "border-solid border-black border-[1vmin] overflow-clip " +
-            "w-[48vmin] aspect-square shadow-xl rounded-full "
+            "w-[48vmin] h-[48vmin] shadow-xl rounded-full "
           }
         >
-          <div className={"w-full translate-y-[-15%] aspect-square "}>
+          <div className={"w-full translate-y-[-15%] "}>
             <img
               src={myPic}
               aria-label="A selfie."
               alt="Me"
-              className="w-full overflow-clip"
               draggable="false"
             />
           </div>

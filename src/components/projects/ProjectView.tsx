@@ -33,7 +33,7 @@ const ProjectView = (props: propsType) => {
   >("fade-in");
   const hideLeftArrowRef = useRef(true);
   const hideRightArrowRef = useRef(false);
-  const size = "aspect-video h-[48vmin] ";
+  const size = "w-[85vmin] h-[48vmin] ";
   const border = "border-[0.625vmin] border-slate-600 ";
 
   useEffect(() => {

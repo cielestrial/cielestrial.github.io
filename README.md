@@ -2,12 +2,13 @@
 
 ## How To Play
 
-- Holding the mouse down for 2 seconds will switch to background game.
-- Continue holding down the mouse to play.
-- Use the bucket to catch raindrops or any other seasonal object to earn points.
+- Clicking on the play button will switch to the background game.
+- Clicking on the stop button will switch back to the foreground.
+- Use the bucket to catch snowflakes to earn points.
 
 ## Extras
 
+- Theme will change with the seasons
 - Query search "reset" will reset the high score.
 - Query search "debug" will run the game in debug mode.
 

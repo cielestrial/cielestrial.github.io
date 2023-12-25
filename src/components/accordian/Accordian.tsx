@@ -1,11 +1,12 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { BsPlayFill, BsStopFill } from "react-icons/bs";
 import { sections } from "~/pages/Portfolio";
 import { StateContext } from "~/utils/ContextProvider";
 import {
   displaySpringGradient,
   displayWinterGradient,
-} from "~/utils/GradientSelector";
-import { preloadImages } from "~/utils/ImagePreloader";
+} from "~/utils/gradientSelector";
+import { preloadImages } from "~/utils/imagePreloader";
 
 type propsType = {
   label: sections;
@@ -20,6 +21,8 @@ const Accordian = (props: propsType) => {
   const [effect, setEffect] = useState<
     "slide-up" | "fade-in" | "half-fade" | "none"
   >("none");
+
+  const transitionClass = "transition duration-75 custom-ease-out ";
 
   useEffect(() => {
     preloadImages();
@@ -40,7 +43,7 @@ const Accordian = (props: propsType) => {
   function setFocus() {
     switch (openedRef.current) {
       case "Home":
-        document.getElementById("Grace Hopper Quote")?.focus();
+        document.getElementById("GraceHopperQuote")?.focus();
         break;
       case "About":
         document.getElementById("AboutSectionContent")?.focus();
@@ -93,7 +96,7 @@ const Accordian = (props: propsType) => {
         aria-controls={props.label + "Content"}
         tabIndex={0}
         className={
-          "view-width font-bold drop-shadow-lg py-[2vmin] " +
+          "view-width font-bold drop-shadow-lg " +
           "cursor-pointer grow blue-highlight flex " +
           gradient
         }
@@ -106,9 +109,7 @@ const Accordian = (props: propsType) => {
           props.setOpened(props.label);
         }}
       >
-        <p className="m-auto " role="heading" aria-level={1}>
-          {props.label}
-        </p>
+        <h1 className="m-auto ">{props.label}</h1>
       </div>
     );
   }
@@ -155,6 +156,40 @@ const Accordian = (props: propsType) => {
             <p className="inline text-slate-600 ">Score:&#32;</p>
             <p className="inline text-sky-500 ">{context.score}</p>
           </div>
+
+          <button
+            type="button"
+            aria-label={!context.hideContent ? "Play" : "Stop"}
+            className={
+              "absolute right-0 z-10 m-[3vmin] text-[6vh] active:scale-95 " +
+              (props.opened === "Home" ? "invisible " : "visible ") +
+              transitionClass
+            }
+            onClick={(event) => {
+              event.currentTarget.blur();
+              !context.hideContent
+                ? context.switchToBackground()
+                : context.switchToForeground();
+            }}
+          >
+            {!context.hideContent ? (
+              <BsPlayFill
+                aria-hidden="true"
+                className={
+                  "text-green-800 hover:text-green-600 " + transitionClass
+                }
+              />
+            ) : (
+              <BsStopFill
+                aria-hidden="true"
+                className={
+                  "text-red-800 hover:text-red-600 cursor-none " +
+                  transitionClass
+                }
+              />
+            )}
+          </button>
+
           {props.content}
         </div>
       );

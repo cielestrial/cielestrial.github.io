@@ -21,8 +21,6 @@ const Philosophy = () => {
         }
       >
         <p
-          role="heading"
-          aria-level={2}
           aria-label="Philosophy:"
           className={
             "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
@@ -81,8 +79,6 @@ const Philosophy = () => {
         }
       >
         <p
-          role="heading"
-          aria-level={2}
           aria-label="Methodology:"
           className={
             "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +

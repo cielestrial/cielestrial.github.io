@@ -18,6 +18,8 @@ export type stateContextType = {
   setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
   scrollable: boolean;
   setScrollable: React.Dispatch<React.SetStateAction<boolean>>;
+  switchToBackground: () => void;
+  switchToForeground: () => void;
 
   touchStart: React.MutableRefObject<coordinate>;
   touchEnd: React.MutableRefObject<coordinate>;
@@ -34,7 +36,6 @@ export type stateContextType = {
   highScore: number;
   maxScore: 99999;
   setAndSaveHighScore: (newScore: number) => void;
-  countdownToGameStart: React.MutableRefObject<NodeJS.Timeout | undefined>;
 
   clickEvent: MouseEvent;
   leftArrowEvent: KeyboardEvent;
@@ -94,7 +95,6 @@ export function StateProvider({ children }: StateProviderProps) {
   const [highScore, setHighScore] = useState(
     localScore === null ? 0 : +localScore
   );
-  const countdownToGameStart = useRef<NodeJS.Timeout>();
 
   const clickEvent = new MouseEvent("click", { bubbles: true });
   const leftArrowEvent = new KeyboardEvent("keydown", {
@@ -106,6 +106,26 @@ export function StateProvider({ children }: StateProviderProps) {
     bubbles: true,
   });
   const touchDevice = useRef(false);
+
+  /**
+   * Switches to game mode from portfolio mode.
+   * Hides part of foreground.
+   * Allows for interaction with the background.
+   */
+  const switchToBackground = useCallback(() => {
+    setHideCursor(true);
+    setHideContent(true);
+  }, []);
+
+  /**
+   * Switches away from game mode back to portfolio mode.
+   * Disables interaction with the background.
+   * All foreground content is made visible again.
+   */
+  const switchToForeground = useCallback(() => {
+    setHideCursor(false);
+    setHideContent(false);
+  }, []);
 
   const setAndSaveHighScore = useCallback((newScore: number) => {
     if (newScore > maxScore) newScore = maxScore;
@@ -181,6 +201,8 @@ export function StateProvider({ children }: StateProviderProps) {
         setHideContent,
         scrollable,
         setScrollable,
+        switchToBackground,
+        switchToForeground,
 
         touchStart,
         touchEnd,
@@ -197,7 +219,6 @@ export function StateProvider({ children }: StateProviderProps) {
         highScore,
         maxScore,
         setAndSaveHighScore,
-        countdownToGameStart,
 
         clickEvent,
         leftArrowEvent,

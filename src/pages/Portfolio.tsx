@@ -7,11 +7,11 @@ import Projects from "../components/accordian/sections/Projects";
 import Testimonials from "../components/accordian/sections/Testimonials";
 import { StateContext } from "../utils/ContextProvider";
 import {
-  aboutTabsNavigation,
   exitProjectView,
-  focusTrap,
-  sectionNavigation,
-} from "../utils/HelperFunctions";
+  navigateAboutTabs,
+  navigateSections,
+  trapFocus,
+} from "../utils/helperFunctions";
 
 export type sections =
   | "Home"
@@ -46,8 +46,10 @@ const Portfolio = (props: propsType) => {
    * @param section The section label.
    */
   const setOpened = useCallback((section: sections) => {
-    openedRef.current = section;
-    setOpenedState(section);
+    requestAnimationFrame(() => {
+      openedRef.current = section;
+      setOpenedState(section);
+    });
   }, []);
 
   useEffect(() => {
@@ -123,9 +125,9 @@ const Portfolio = (props: propsType) => {
    */
   function onArrowKey(event: KeyboardEvent) {
     exitProjectView(event, openedRef, context);
-    focusTrap(event, openedRef);
-    sectionNavigation(event, openedRef, setOpened);
-    aboutTabsNavigation(event, openedRef, context);
+    trapFocus(event, openedRef);
+    navigateSections(event, openedRef, setOpened);
+    navigateAboutTabs(event, openedRef, context);
   }
   context.setAndSaveHighScore;
 
@@ -140,6 +142,7 @@ const Portfolio = (props: propsType) => {
       }
       onWheel={(event) => onScroll(event)}
       onTouchStart={(event) => {
+        context.touchDevice.current = true;
         if (!context.hideContent)
           context.touchStart.current = {
             x: event.changedTouches[0].pageX,

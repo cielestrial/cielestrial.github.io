@@ -35,15 +35,6 @@ const Bio = () => {
             />
           </div>
         </div>
-        <p
-          aria-hidden="true"
-          className={
-            "w-max h-fit px-[3vmin] " +
-            "-mt-[6vmin] mx-auto z-10 border-[0.625vmin] border-black bg-image "
-          }
-        >
-          Selfie
-        </p>
       </div>
 
       <div
@@ -53,8 +44,6 @@ const Bio = () => {
         }
       >
         <p
-          role="heading"
-          aria-level={2}
           aria-label="About Me:"
           className={
             "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +

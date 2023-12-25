@@ -3,6 +3,7 @@ import Bio from "~/components/about/Bio";
 import Philosophy from "~/components/about/Philosophy";
 import Profile from "~/components/about/Profile";
 import { aboutTabs, StateContext } from "~/utils/ContextProvider";
+import { trapScroll } from "~/utils/helperFunctions";
 
 const About = () => {
   const context = useContext(StateContext);
@@ -11,6 +12,7 @@ const About = () => {
   );
   const [snap, setSnap] = useState(false);
   const scrollPos = useRef<HTMLDivElement>(null);
+  const scrollBoundHit = useRef(false);
 
   const btnClasses =
     "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom " +
@@ -21,8 +23,10 @@ const About = () => {
    * @param tab The tab label.
    */
   function setOpened(tab: aboutTabs) {
-    context.aboutOpenedRef.current = tab;
-    setOpenedState(tab);
+    requestAnimationFrame(() => {
+      context.aboutOpenedRef.current = tab;
+      setOpenedState(tab);
+    });
   }
 
   /**
@@ -49,7 +53,7 @@ const About = () => {
         className={"flex flex-row mx-auto py-[4vh] divide-x-[0.5vmin] "}
       >
         <button
-          id="Profile Button"
+          id="profileButton"
           role="tab"
           aria-controls="profileTab"
           aria-selected={opened === "Profile"}
@@ -71,7 +75,7 @@ const About = () => {
         </button>
 
         <button
-          id="Bio Button"
+          id="bioButton"
           role="tab"
           aria-controls="bioTab"
           aria-selected={opened === "Bio"}
@@ -92,7 +96,7 @@ const About = () => {
         </button>
 
         <button
-          id="Philosophy Button"
+          id="philosophyButton"
           role="tab"
           aria-controls="philosophyTab"
           aria-selected={opened === "Philosophy"}
@@ -118,60 +122,12 @@ const About = () => {
         ref={scrollPos}
         tabIndex={0}
         className={
-          "w-full flex flex-col overflow-auto scroll-smooth pb-[3vh] " +
+          "w-full flex flex-col overflow-auto scroll-smooth pb-[    3vh] " +
           (snap ? "snap-x snap-mandatory " : "")
         }
         onAnimationEnd={() => setSnap(true)}
-        onScroll={() => {
-          clearTimeout(context.countdownToGameStart.current);
-          context.touchStartReset();
-        }}
-        onTouchMove={(event) => {
-          // Conditional on there being overflow
-          if (
-            !(
-              event.currentTarget.offsetHeight ===
-                event.currentTarget.scrollHeight &&
-              event.currentTarget.offsetWidth ===
-                event.currentTarget.scrollWidth
-            )
-          )
-            clearTimeout(context.countdownToGameStart.current);
-        }}
-        onWheel={(event) => {
-          /*
-           * Blocks wheel event from triggering navigation when inside scrollable area.
-           * Navigation still triggers when an additional wheel event is detected at
-           *   the very top or bottom of the scroll area.
-           */
-          if (
-            !(
-              (Math.round(event.currentTarget.scrollTop) === 0 &&
-                event.deltaY < 0) ||
-              (Math.round(event.currentTarget.scrollTop + 1) +
-                event.currentTarget.offsetHeight >=
-                event.currentTarget.scrollHeight &&
-                event.deltaY > 0)
-            )
-          )
-            event.stopPropagation();
-        }}
-        /*
-        onClick={(event) => {
-          console.log(
-            "Height:",
-            Math.round(event.currentTarget.scrollTop),
-            event.currentTarget.offsetHeight,
-            event.currentTarget.scrollHeight
-          );
-          console.log(
-            "Width:",
-            Math.round(event.currentTarget.scrollLeft),
-            event.currentTarget.offsetWidth,
-            event.currentTarget.scrollWidth
-          );
-        }}
-        */
+        onScroll={context.touchStartReset}
+        onWheel={(event) => trapScroll(event, scrollBoundHit)}
       >
         {displaySection()}
       </div>

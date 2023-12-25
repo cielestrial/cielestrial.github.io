@@ -4,40 +4,37 @@ import {
   BsArrowRightCircle,
   BsXCircle,
 } from "react-icons/bs";
-import placeholderImage from "~/assets/general/placeholder_image.png";
 import { StateContext } from "~/utils/ContextProvider";
+import { trapScroll } from "~/utils/helperFunctions";
 
-type propsType = {
+export type projectType = {
   title: string;
-  description: string;
+  technologies: string[];
+  description: string[];
   link: string | undefined;
-  images: string[];
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ProjectView = (props: propsType) => {
+const ProjectView = (props: projectType) => {
   const context = useContext(StateContext);
-  const index = useRef(0);
-  const actualLength = props.images.length + 1;
   const [effect, setEffect] = useState<
     "left" | "right" | "scale-up" | "scale-down" | "none"
   >("scale-up");
   const [sideEffect, setSideEffect] = useState<"fade-in" | "fade-out" | "none">(
     "fade-in"
   );
-  const [leftArrowEffect, setLeftArrowEffect] = useState<
-    "fade-in" | "fade-out" | "none"
-  >("none");
-  const [rightArrowEffect, setRightArrowEffect] = useState<
-    "fade-in" | "fade-out" | "none"
-  >("fade-in");
-  const hideLeftArrowRef = useRef(true);
-  const hideRightArrowRef = useRef(false);
+  const projectPage1Ref = useRef(true);
+  const projectPage2Ref = useRef(false);
+  const timeout = useRef<NodeJS.Timeout>();
+  const scrollBoundHit = useRef(false);
+
   const size = "w-[85vmin] h-[48vmin] ";
   const border = "border-[0.625vmin] border-slate-600 ";
+  const transitionClass = "transition duration-75 custom-ease-out ";
 
   useEffect(() => {
     document.addEventListener("keydown", onArrowKey);
+    endAnimation("start", 500);
     return () => {
       document.removeEventListener("keydown", onArrowKey);
     };
@@ -51,11 +48,43 @@ const ProjectView = (props: propsType) => {
    * @param event Keyboard event.
    */
   function onArrowKey(event: KeyboardEvent) {
-    if (event.key === "ArrowLeft" && !hideLeftArrowRef.current) {
-      document.getElementById("Left Arrow")?.dispatchEvent(context.clickEvent);
-    } else if (event.key === "ArrowRight" && !hideRightArrowRef.current) {
-      document.getElementById("Right Arrow")?.dispatchEvent(context.clickEvent);
+    if (event.repeat) return;
+    if (event.key === "ArrowLeft" && projectPage2Ref.current) {
+      document.getElementById("leftArrow")?.dispatchEvent(context.clickEvent);
+    } else if (event.key === "ArrowRight" && projectPage1Ref.current) {
+      document.getElementById("rightArrow")?.dispatchEvent(context.clickEvent);
     }
+  }
+
+  /*
+  function debugLog() {
+    console.log(
+      "\neffect:",
+      effect,
+      "\nsideEffect:",
+      sideEffect,
+      "\nprojectPage1Ref.current:",
+      projectPage1Ref.current,
+      "\nprojectPage2Ref.current:",
+      projectPage2Ref.current
+    );
+  }
+*/
+  function endAnimation(
+    button: "close" | "left" | "right" | "start",
+    duration: number
+  ) {
+    clearTimeout(timeout.current);
+    requestAnimationFrame(
+      () =>
+        (timeout.current = setTimeout(() => {
+          if (button === "right") projectPage1Ref.current = false;
+          else if (button === "left") projectPage2Ref.current = false;
+          else if (button === "close") props.setShowProjectView(false);
+          else setSideEffect("none");
+          setEffect("none");
+        }, duration))
+    );
   }
 
   /**
@@ -64,55 +93,61 @@ const ProjectView = (props: propsType) => {
    */
   function displayDescriptionImage() {
     return (
-      <div
-        role="presentation"
-        className={
-          "flex flex-col place-content-center space-y-[2vmin] px-[2vmin] " +
-          size +
-          border
-        }
-      >
-        <p
-          role="heading"
-          aria-level={2}
-          aria-label={props.title + ":"}
+      <div className={"px-[2vmin] py-[2vmin] " + size + border}>
+        <div
           className={
-            "text-[3.375vmin] " +
-            "underline underline-offset-[0.25vmin] text-center " +
-            "decoration-from-font font-bold "
+            "w-full h-full flex flex-col space-y-[2vmin] select-text " +
+            "scroll-smooth overflow-x-hidden overflow-y-auto "
           }
+          onScroll={context.touchStartReset}
+          onWheel={(event) => trapScroll(event, scrollBoundHit)}
         >
-          {props.title}
-        </p>
-        <p className="text-[3vmin] indent-[4vmin] ">{props.description}</p>
+          <p
+            aria-label={props.title + ":"}
+            className={
+              "text-[3.375vmin] " +
+              "underline underline-offset-[0.25vmin] text-center " +
+              "decoration-from-font font-bold "
+            }
+          >
+            {props.title}
+          </p>
+          <ul
+            className={
+              "flex flex-row flex-wrap justify-evenly " +
+              "text-[3vmin] list-inside list-disc "
+            }
+          >
+            {props.technologies.map((tech, i) => (
+              <li key={i}>
+                <span>{tech}</span>
+              </li>
+            ))}
+          </ul>
+          {props.description.map((segment, i) => (
+            <p key={i} className="text-[3vmin] indent-[4vmin] ">
+              - {segment}
+            </p>
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
     <div
-      id="Project View"
+      id="projectView"
       role="dialog"
       aria-label={props.title}
-      aria-roledescription="carousel"
       className={"h-full w-full flex flex-col "}
     >
-      <div
-        role="presentation"
-        className={"flex flex-col m-auto overflow-clip "}
-      >
-        <div className={"w-full flex flex-row select-text "}>
-          <a
-            href={props.link}
-            target="_blank"
-            rel="noreferrer noopener"
+      <div className={"flex flex-col m-auto overflow-clip "}>
+        <div className={"w-full flex flex-row "}>
+          <div
             className={
-              "text-center title underline underline-offset-[0.5vmin] " +
-              "w-max h-fit place-self-center origin-center " +
-              "transition duration-75 custom-ease-out " +
-              "hover:text-sky-500 hover:scale-105 active:scale-100 grow " +
-              "active:text-sky-600 decoration-from-font justify-self-end " +
-              "ml-[7vmin] -mb-[2vmin] " +
+              "text-center title grow place-self-center " +
+              "select-text ml-[7vmin] -mb-[2vmin] " +
+              transitionClass +
               (sideEffect === "fade-in"
                 ? "animate-fade-in "
                 : sideEffect === "fade-out"
@@ -120,302 +155,156 @@ const ProjectView = (props: propsType) => {
                 : "")
             }
           >
-            {props.link}
-          </a>
-
-          <BsXCircle
-            role="button"
-            aria-label="Close"
-            aria-roledescription="close icon"
-            id="Close Button"
-            tabIndex={0}
-            onKeyUp={(event) => {
-              if (event.key === "Enter" || event.key === " ")
-                event.currentTarget.dispatchEvent(context.clickEvent);
-            }}
-            onClick={(event) => {
-              if (sideEffect === "none") {
-                event.currentTarget.blur();
-                setEffect("scale-down");
-                setSideEffect("fade-out");
-                setLeftArrowEffect("fade-out");
-                setRightArrowEffect("fade-out");
+            <a
+              href={props.link}
+              target="_blank"
+              rel="noopener"
+              referrerPolicy="strict-origin-when-cross-origin"
+              className={
+                "underline underline-offset-[0.5vmin] decoration-from-font " +
+                "hover:text-sky-500 active:text-sky-700 " +
+                transitionClass
               }
-            }}
+            >
+              {props.link}
+            </a>
+          </div>
+
+          <button
+            id="closeButton"
+            type="button"
+            aria-label="Close"
             className={
-              "w-fit h-fit rounded-full bg-transparent text-[5vh] " +
-              "justify-self-end origin-bottom-left " +
-              "z-40 shadow transition duration-75 custom-ease-out " +
+              "rounded-full origin-bottom-left text-[5vh] z-40 shadow " +
               "hover:bg-red-400/75 active:bg-red-500/75 active:scale-95 " +
-              "cursor-pointer " +
+              transitionClass +
               (sideEffect === "fade-in"
                 ? "animate-fade-in "
                 : sideEffect === "fade-out"
                 ? "animate-fade-out "
                 : "")
             }
-            onAnimationEnd={() => {
-              if (sideEffect !== "fade-out") setSideEffect("none");
+            onClick={(event) => {
+              event.currentTarget.blur();
+              if (sideEffect === "none") {
+                setEffect("scale-down");
+                setSideEffect("fade-out");
+                endAnimation("close", 500);
+              }
             }}
-          />
+          >
+            <BsXCircle aria-hidden="true" className="rounded-full" />
+          </button>
         </div>
 
         <div
           role="group"
-          aria-roledescription="slide"
           aria-atomic="false"
           aria-live="polite"
-          className={"flex flex-col w-full py-[1.5vh] scroll-smooth "}
+          className={
+            "flex flex-col my-[1.5vh] scroll-smooth relative " +
+            size +
+            (effect === "scale-up"
+              ? "animate-scale-up "
+              : effect === "scale-down"
+              ? "animate-scale-down "
+              : "")
+          }
+          //onClick={debugLog}
         >
           <div
-            id={"current"}
-            role="presentation"
+            id="projectPage1"
             className={
-              "w-max " +
+              "absolute " +
+              (!projectPage1Ref.current ? "invisible " : "") +
+              (effect === "left"
+                ? "animate-fade-in-left "
+                : effect === "right"
+                ? "animate-fade-out-left "
+                : "")
+            }
+          >
+            {displayDescriptionImage()}
+          </div>
+
+          <div
+            id="projectPage2"
+            className={
+              "absolute " +
+              (!projectPage2Ref.current ? "invisible " : "") +
               (effect === "left"
                 ? "animate-fade-out-right "
                 : effect === "right"
-                ? "animate-fade-out-left "
-                : effect === "scale-up"
-                ? "animate-scale-up "
-                : effect === "scale-down"
-                ? "animate-scale-down "
+                ? "animate-fade-in-right "
                 : "")
             }
-            onAnimationEnd={() => {
-              if (effect === "scale-down") props.setShowProjectView(false);
-              else setEffect("none");
-            }}
           >
-            {index.current === 0 ? (
-              displayDescriptionImage()
-            ) : (
-              <img
-                id={"current image"}
-                className={"shadow-md " + size}
-                src={
-                  props.images.length > 0
-                    ? props.images[index.current - 1]
-                    : placeholderImage
-                }
-                alt={
-                  "current page preview " +
-                  index.current +
-                  " of " +
-                  props.images.length
-                }
-                aria-label={
-                  "webpage preview " +
-                  index.current +
-                  " of " +
-                  props.images.length
-                }
-                draggable="false"
-              />
-            )}
-          </div>
-
-          <div
-            id={"previous"}
-            aria-hidden="true"
-            className={
-              "w-max absolute " +
-              (props.images.length > 0 && index.current - 1 > -1
-                ? ""
-                : "hidden ") +
-              (effect === "left" ? "animate-fade-in-left " : "hidden ")
-            }
-            onAnimationEnd={(event) => {
-              if (
-                event.animationName === "fade-in-left" &&
-                index.current - 1 > -1
-              )
-                index.current--;
-              /*
-            console.log(
-              event.animationName + " prev:",
-              "\nindex:",
-              index.current,
-              "\neffect:",
-              effect,
-              "\nsideEffect:",
-              sideEffect,
-              "\nleftArrowEffect:",
-              leftArrowEffect,
-              "\nrightArrowEffect:",
-              rightArrowEffect,
-              "\nhideLeftArrowRef.current:",
-              hideLeftArrowRef.current,
-              "\nhideRightArrowRef.current:",
-              hideRightArrowRef.current
-            );
-            */
-            }}
-          >
-            {index.current - 1 === 0 ? (
-              displayDescriptionImage()
-            ) : (
-              <img
-                id={"previous image"}
-                className={"shadow-md " + size}
-                src={
-                  props.images.length > 0 && index.current - 1 > -1
-                    ? props.images[index.current - 2]
-                    : placeholderImage
-                }
-                alt="previous page preview"
-                draggable="false"
-              />
-            )}
-          </div>
-
-          <div
-            id={"next"}
-            aria-hidden="true"
-            className={
-              "w-max absolute " +
-              (props.images.length > 0 && index.current + 1 < actualLength
-                ? ""
-                : "hidden ") +
-              (effect === "right" ? "animate-fade-in-right " : "hidden ")
-            }
-            onAnimationEnd={(event) => {
-              if (
-                event.animationName === "fade-in-right" &&
-                index.current + 1 < actualLength
-              )
-                index.current++;
-              /*
-            console.log(
-              event.animationName + " next:",
-              "\nindex:",
-              index.current,
-              "\neffect:",
-              effect,
-              "\nsideEffect:",
-              sideEffect,
-              "\nleftArrowEffect:",
-              leftArrowEffect,
-              "\nrightArrowEffect:",
-              rightArrowEffect,
-              "\nhideLeftArrowRef.current:",
-              hideLeftArrowRef.current,
-              "\nhideRightArrowRef.current:",
-              hideRightArrowRef.current
-            );
-            */
-            }}
-          >
-            <img
-              id={"next image"}
+            <iframe
               className={"shadow-md " + size}
-              src={
-                props.images.length > 0 && index.current + 1 < actualLength
-                  ? props.images[index.current]
-                  : placeholderImage
-              }
-              alt="next page preview"
-              draggable="false"
-            />
+              src={props.link}
+              title={props.title}
+              loading="eager"
+              sandbox="allow-same-origin allow-scripts"
+              referrerPolicy="strict-origin-when-cross-origin"
+              onLoad={(e) => (e.currentTarget.style.background = "none")}
+            ></iframe>
           </div>
         </div>
 
         <div className="flex flex-row justify-around ">
-          <BsArrowLeftCircle
-            role="button"
+          <button
+            id="leftArrow"
+            type="button"
             aria-label="previous"
-            aria-roledescription="previous slide control"
-            aria-disabled={hideLeftArrowRef.current}
-            id="Left Arrow"
-            tabIndex={0}
-            onKeyUp={(event) => {
-              if (event.key === "Enter" || event.key === " ")
-                event.currentTarget.dispatchEvent(context.clickEvent);
-            }}
-            onClick={(event) => {
-              if (effect === "none") {
-                event.currentTarget.blur();
-                if (!hideLeftArrowRef.current && index.current - 1 === 0)
-                  setLeftArrowEffect("fade-out");
-                if (
-                  hideRightArrowRef.current &&
-                  index.current - 1 === actualLength - 2
-                ) {
-                  hideRightArrowRef.current = false;
-                  setRightArrowEffect("fade-in");
-                }
-                if (effect === "none" && index.current - 1 > -1)
-                  setEffect("left");
-              }
-            }}
+            disabled={projectPage1Ref.current}
             className={
-              "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-left " +
-              "z-40 shadow transition duration-75 custom-ease-out " +
+              "rounded-full text-[6vh] origin-left z-40 shadow " +
               "hover:bg-amber-200/75 active:bg-amber-300/75 active:scale-95 " +
-              "cursor-pointer " +
-              (hideLeftArrowRef.current
-                ? "invisible "
-                : leftArrowEffect === "fade-in"
+              transitionClass +
+              (projectPage1Ref.current && effect ? "invisible " : "") +
+              (sideEffect === "fade-in"
                 ? "animate-fade-in "
-                : leftArrowEffect === "fade-out"
+                : sideEffect === "fade-out"
                 ? "animate-fade-out "
                 : "")
             }
-            onAnimationEnd={() => {
-              if (leftArrowEffect === "fade-out") {
-                hideLeftArrowRef.current = true;
-              }
-              setLeftArrowEffect("none");
-            }}
-          />
-
-          <BsArrowRightCircle
-            role="button"
-            aria-label="next"
-            aria-roledescription="next slide control"
-            aria-disabled={hideRightArrowRef.current}
-            id="Right Arrow"
-            tabIndex={0}
-            onKeyUp={(event) => {
-              if (event.key === "Enter" || event.key === " ")
-                event.currentTarget.dispatchEvent(context.clickEvent);
-            }}
             onClick={(event) => {
-              if (effect === "none") {
-                event.currentTarget.blur();
-                if (
-                  !hideRightArrowRef.current &&
-                  index.current + 1 === actualLength - 1
-                )
-                  setRightArrowEffect("fade-out");
-                if (hideLeftArrowRef.current && index.current + 1 === 1) {
-                  hideLeftArrowRef.current = false;
-                  setLeftArrowEffect("fade-in");
-                }
-                if (effect === "none" && index.current + 1 < actualLength)
-                  setEffect("right");
-              }
+              event.currentTarget.blur();
+              if (effect !== "none") return;
+              projectPage1Ref.current = true;
+              setEffect("left");
+              endAnimation("left", 700);
             }}
+          >
+            <BsArrowLeftCircle aria-hidden="true" className="rounded-full" />
+          </button>
+
+          <button
+            id="rightArrow"
+            type="button"
+            aria-label="next"
+            disabled={projectPage2Ref.current}
             className={
-              "w-fit h-fit bg-transparent rounded-full text-[6vh] origin-right " +
-              "z-40 shadow transition duration-75 custom-ease-out " +
+              "rounded-full text-[6vh] origin-right z-40 shadow " +
               "hover:bg-sky-300/75 active:bg-sky-400/75 active:scale-95 " +
-              "cursor-pointer " +
-              (hideRightArrowRef.current
-                ? "invisible "
-                : rightArrowEffect === "fade-in"
+              transitionClass +
+              (projectPage2Ref.current && effect ? "invisible " : "") +
+              (sideEffect === "fade-in"
                 ? "animate-fade-in "
-                : rightArrowEffect === "fade-out"
+                : sideEffect === "fade-out"
                 ? "animate-fade-out "
                 : "")
             }
-            onAnimationEnd={() => {
-              if (rightArrowEffect === "fade-out") {
-                hideRightArrowRef.current = true;
-              }
-              setRightArrowEffect("none");
+            onClick={(event) => {
+              event.currentTarget.blur();
+              if (effect !== "none") return;
+              projectPage2Ref.current = true;
+              setEffect("right");
+              endAnimation("right", 700);
             }}
-          />
+          >
+            <BsArrowRightCircle aria-hidden="true" className="rounded-full" />
+          </button>
         </div>
       </div>
     </div>

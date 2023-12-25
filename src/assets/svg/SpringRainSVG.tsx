@@ -5,7 +5,7 @@ const SpringRainSVG = () => {
       className="view-width view-height flex flex-row justify-around items-start "
     >
       <svg
-        id="raindrop 1"
+        id="particle1"
         aria-hidden="true"
         className={
           "order-1 " +
@@ -28,7 +28,7 @@ const SpringRainSVG = () => {
       </svg>
 
       <svg
-        id="raindrop 2"
+        id="particle2"
         aria-hidden="true"
         className={
           "order-2 " +
@@ -51,7 +51,7 @@ const SpringRainSVG = () => {
       </svg>
 
       <svg
-        id="raindrop 3"
+        id="particle3"
         aria-hidden="true"
         className={
           "order-3 " +
@@ -74,7 +74,7 @@ const SpringRainSVG = () => {
       </svg>
 
       <svg
-        id="raindrop 4"
+        id="particle4"
         aria-hidden="true"
         className={
           "order-4 " +
@@ -97,7 +97,7 @@ const SpringRainSVG = () => {
       </svg>
 
       <svg
-        id="raindrop 5"
+        id="particle5"
         aria-hidden="true"
         className={
           "order-5 " +
@@ -120,7 +120,7 @@ const SpringRainSVG = () => {
       </svg>
 
       <svg
-        id="raindrop 6"
+        id="particle6"
         aria-hidden="true"
         className={
           "order-6 " +
@@ -143,7 +143,7 @@ const SpringRainSVG = () => {
       </svg>
 
       <svg
-        id="raindrop 7"
+        id="particle7"
         aria-hidden="true"
         className={
           "order-7 " +

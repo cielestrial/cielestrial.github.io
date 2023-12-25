@@ -25,7 +25,7 @@ export function displayWinterGradient(label: sections, opened: sections) {
     case "Testimonials":
       opened === "Contact"
         ? (gradient = "bg-gradient-to-b from-[#C3E6FF]/90 to-[#B4E3FF]/90 ")
-        : (gradient = "bg-gradient-to-b from-[#D2E9FF]/90 to-[#C3E6FF]/90 ");
+        : (gradient = "bg-gradient-to-b from-[#D2E9FF]/90 to-[#C3E6FF]/95 ");
 
       break;
     case "Contact":

@@ -1,24 +1,19 @@
 import { useContext, useState } from "react";
-import placeholderImage from "~/assets/general/placeholder_image.png";
 import { StateContext } from "~/utils/ContextProvider";
-import ProjectView from "./ProjectView";
+import ProjectView, { projectType } from "./ProjectView";
 
 type statusType = "Completed" | "Work In Progress" | "Hiatus";
-type propsType = {
-  title: string;
-  description: string;
-  images: string[];
-  link: string | undefined;
+export type cardType = projectType & {
+  image: string;
   status: statusType;
   order: number;
-  setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedProject: React.Dispatch<
     React.SetStateAction<JSX.Element | undefined>
   >;
   setGridEffect: React.Dispatch<React.SetStateAction<"fade-out" | "none">>;
 };
 
-const ProjectCard = (props: propsType) => {
+const ProjectCard = (props: cardType) => {
   const context = useContext(StateContext);
   const [effect, setEffect] = useState<"slide-in" | "none">("slide-in");
   const label =
@@ -27,7 +22,7 @@ const ProjectCard = (props: propsType) => {
 
   return (
     <div
-      id={"project card " + props.order}
+      id={"projectCard" + props.order}
       tabIndex={0}
       onKeyUp={(event) => {
         if (event.key === "Enter" || event.key === " ")
@@ -39,15 +34,15 @@ const ProjectCard = (props: propsType) => {
         props.setSelectedProject(
           <ProjectView
             title={props.title}
+            technologies={props.technologies}
             description={props.description}
             link={props.link}
-            images={props.images}
             setShowProjectView={props.setShowProjectView}
           />
         );
       }}
       className={
-        "flex flex-col flex-nowrap w-[35.56vmin] h-fit sm:w-[28.45vmin] " +
+        "flex flex-col flex-nowrap w-[35.56vmin] sm:w-[28.45vmin] " +
         "shadow-md transition duration-75 custom-ease-out m-[5vmin] " +
         "saturate-[.75] active:scale-95 outline-none outline-[0.4vmin] " +
         "focus-visible:saturate-150 focus-visible:outline-amber-500 " +
@@ -71,20 +66,18 @@ const ProjectCard = (props: propsType) => {
         setEffect("none");
       }}
     >
-      <p
-        role="heading"
-        aria-level={2}
-        aria-label={props.title + "."}
-        className={label}
-      >
+      <p aria-label={props.title + "."} className={label}>
         {props.title}
       </p>
       <img
         id={props.title}
-        src={props.images.length > 0 ? props.images[0] : placeholderImage}
         aria-label="preview image."
+        src={props.image}
+        loading="eager"
         alt={props.title + " preview image"}
-        className={"origin-top border-x-[0.625vmin] border-solid border-black "}
+        className={
+          "origin-top aspect-video border-x-[0.625vmin] border-solid border-black "
+        }
         draggable="false"
       />
       <p aria-label={props.status + "."} className={label}>

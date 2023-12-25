@@ -1,14 +1,25 @@
-Done: 
+[Done] 
 
-To Do:
-Add copyright and policies to Home section
+[ToDo]
+
+[Upcoming]
+- Manual Carousel Navbar at top
+- Clean up unused images in assets folder
+
+[Other Sites]
+- Create loading animation svg with my-logo & figma
+- Update CV with new project view format and descriptions
+- Update Linkedin with Featured projects
+- Update rel links to noopener and terms of service/others where applicable
+- Add referrer policies to links
+- Clean up EV-Dashboard project
 
 Part 4:
 - Google Analytics integration
 
 Part 5?:
-- add splash animation
-- sounds?
+- Add more svgs to background
+  (Winter Example: snowman, snow covered ground at footer, christmas reefs hanging from top)
 - dark mode experience
 
 Testimonials: 

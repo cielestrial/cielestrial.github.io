@@ -3,7 +3,7 @@ import { BsFillBucketFill } from "react-icons/bs";
 import DarkModeSVG from "../assets/svg/DarkModeSVG";
 import LightModeSVG from "../assets/svg/LightModeSVG";
 import { coordinate, StateContext } from "../utils/ContextProvider";
-import { splatRaindrops } from "../utils/SplatRaindropsGame";
+import { catchParticles } from "~/utils/particleGames";
 
 type propsType = {
   children: React.ReactNode;
@@ -11,29 +11,31 @@ type propsType = {
 
 const Background = (props: propsType) => {
   const context = useContext(StateContext);
-  const timeout = useRef<NodeJS.Timeout>();
-  const timer = useRef<NodeJS.Timeout>();
   const canRun = useRef(true);
-  const targetFPS = 60;
-  const timestep = 1000 / targetFPS;
-  const gameStart = 2000;
+  // const targetFPS = 60;
+  // const timestep = 1000 / targetFPS;
 
   const mouse = useRef(document.getElementById("mouse-hitbox"));
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
   const lastKnownPos = useRef<coordinate>({ x: 0, y: 0 });
 
   useEffect(() => {
-    timer.current = setInterval(async () => {
-      if (boundaries.current !== undefined)
-        splatRaindrops(boundaries.current, context);
-    }, timestep);
+    gameloop();
     return () => {
-      clearTimeout(context.countdownToGameStart.current);
-      clearInterval(timer.current);
-      clearTimeout(timeout.current);
       canRun.current = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (context.hideCursor) initializeAt();
+    else cleanUp();
+  }, [context.hideCursor]);
+
+  function gameloop() {
+    requestAnimationFrame(gameloop);
+    if (boundaries.current !== undefined)
+      catchParticles(boundaries.current, context);
+  }
 
   /**
    * Tracks the mouse position.
@@ -47,7 +49,7 @@ const Background = (props: propsType) => {
 
     if (!canRun.current || context.touchDevice.current) return;
     canRun.current = false;
-    timeout.current = setTimeout(() => {
+    requestAnimationFrame(() => {
       mouse.current = document.getElementById("mouse-hitbox");
       if (mouse.current !== null) {
         mouse.current.style.left = event.pageX + "px";
@@ -55,7 +57,7 @@ const Background = (props: propsType) => {
         boundaries.current = mouse.current.getBoundingClientRect();
       }
       canRun.current = true;
-    }, timestep);
+    });
   }
 
   /**
@@ -73,7 +75,7 @@ const Background = (props: propsType) => {
 
     if (!canRun.current) return;
     canRun.current = false;
-    timeout.current = setTimeout(() => {
+    requestAnimationFrame(() => {
       mouse.current = document.getElementById("mouse-hitbox");
       if (mouse.current !== null) {
         mouse.current.style.left = event.changedTouches[0].pageX + "px";
@@ -81,33 +83,7 @@ const Background = (props: propsType) => {
         boundaries.current = mouse.current.getBoundingClientRect();
       }
       canRun.current = true;
-    }, timestep);
-  }
-
-  /**
-   * Switches to game mode from portfolio mode.
-   * Hides part of foreground.
-   * Allows for interaction with the background.
-   */
-  function switchToBackground() {
-    clearTimeout(context.countdownToGameStart.current);
-    context.countdownToGameStart.current = setTimeout(() => {
-      context.setHideCursor(true);
-      context.setHideContent(true);
-      initializeAt();
-    }, gameStart);
-  }
-
-  /**
-   * Switches away from game mode back to portfolio mode.
-   * Disables interaction with the background.
-   * All foreground content is made visible again.
-   */
-  function switchToForeground() {
-    clearTimeout(context.countdownToGameStart.current);
-    context.setHideCursor(false);
-    cleanUp();
-    context.setHideContent(false);
+    });
   }
 
   /**
@@ -141,44 +117,21 @@ const Background = (props: propsType) => {
 
   return (
     <div
-      id="the background"
-      role="presentation"
+      id="theBackground"
       className={
         "view-width view-height flex flex-col overflow-clip " +
         "bg-gradient-to-b from-[#F0FBFF] from-35% via-[#E7F5FF] via-65% to-[#A8B0BF] to-95% " +
         (context.hideCursor ? "cursor-none " : "cursor-default ")
       }
-      onMouseDown={(event) => {
-        if (!context.touchDevice.current) {
-          lastKnownPos.current = { x: event.pageX, y: event.pageY };
-          switchToBackground();
-        }
-      }}
       onMouseMove={(event) => trackMouse(event)}
-      onMouseUp={() => {
-        if (!context.touchDevice.current) switchToForeground();
-      }}
-      onTouchStart={(event) => {
-        context.touchDevice.current = true;
-        lastKnownPos.current = {
-          x: event.changedTouches[0].pageX,
-          y: event.changedTouches[0].pageY,
-        };
-        switchToBackground();
-      }}
       onTouchMove={(event) => trackTouch(event)}
-      onTouchEnd={switchToForeground}
-      onTouchCancel={() => {
-        console.warn("Touch event canceled");
-        clearTimeout(context.countdownToGameStart.current);
-      }}
     >
       <div className="fixed bg-fog view-width view-height " />
       <BsFillBucketFill
         id="mouse-hitbox"
         className={
           "fixed w-fit h-fit text-[13.466vmin] sm:text-[10.125vmin] " +
-          "translate-x-[-50%] translate-y-[-100%] transform-gpu " +
+          "translate-x-[-50%] translate-y-[-50%] transform-gpu " +
           (context.score < context.maxScore
             ? "fill-slate-400 "
             : "fill-amber-300 ") +

@@ -16,7 +16,7 @@ const TestimonialSideView = (props: propsType) => {
       }
     >
       <div
-        id={"testimonial " + props.side}
+        id={"testimonial" + props.side}
         className={
           "grid border-solid border-[3px] rounded-full overflow-clip " +
           "w-24 h-24 place-content-center justify-self-center origin-bottom-left " +

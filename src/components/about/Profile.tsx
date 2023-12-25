@@ -46,8 +46,6 @@ const Profile = () => {
           }
         >
           <p
-            role="heading"
-            aria-level={2}
             aria-label="Name & Links:"
             className={
               "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
@@ -59,12 +57,7 @@ const Profile = () => {
           </p>
 
           <div className="whitespace-nowrap">
-            <p
-              role="heading"
-              aria-level={3}
-              aria-label="Full Name:"
-              className="inline"
-            >
+            <p aria-label="Full Name:" className="inline">
               Full:&#32;
             </p>
             <p aria-label="Boladale Ogunleye," className="inline font-semibold">
@@ -73,13 +66,8 @@ const Profile = () => {
           </div>
 
           <div className="whitespace-nowrap">
-            <p
-              role="heading"
-              aria-level={3}
-              aria-label="Alias:"
-              className="inline"
-            >
-              Alias:&#32;
+            <p aria-label="Preferred:" className="inline">
+              Preferred:&#32;
             </p>
             <p aria-label="Shaun," className="inline font-semibold">
               Seun (Shaun)
@@ -87,12 +75,7 @@ const Profile = () => {
           </div>
 
           <div className="whitespace-nowrap">
-            <p
-              role="heading"
-              aria-level={3}
-              aria-label="Pseudonym:"
-              className="inline"
-            >
+            <p aria-label="Pseudonym:" className="inline">
               Pseudonym:&#32;
             </p>
             <p aria-label="cielestrial," className="inline font-semibold">
@@ -102,36 +85,39 @@ const Profile = () => {
 
           <div className="flex flex-row flex-nowrap grow pt-[1.5vmin] justify-around ">
             <a
-              id="Github"
-              aria-label="Github profile,"
+              id="github"
+              aria-label="GitHub profile,"
               href="https://github.com/cielestrial"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
+              referrerPolicy="strict-origin-when-cross-origin"
               className={iconLink}
             >
-              <SiGithub role="link" aria-labelledby="Github" />
+              <SiGithub />
             </a>
 
             <a
-              id="LinkedIn"
+              id="linkedin"
               aria-label="LinkedIn profile,"
               href="https://www.linkedin.com/in/boladale-ogunleye-089937186/"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
+              referrerPolicy="strict-origin-when-cross-origin"
               className={iconLink}
             >
-              <SiLinkedin role="link" aria-labelledby="LinkedIn" />
+              <SiLinkedin />
             </a>
 
             <a
-              id="Codechef"
+              id="codechef"
               aria-label="Codechef profile,"
               href="https://www.codechef.com/users/cielestrial"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
+              referrerPolicy="strict-origin-when-cross-origin"
               className={iconLink}
             >
-              <SiCodechef role="link" aria-labelledby="Codechef" />
+              <SiCodechef />
             </a>
           </div>
         </div>
@@ -144,8 +130,6 @@ const Profile = () => {
         }
       >
         <p
-          role="heading"
-          aria-level={2}
           aria-label="Skills:"
           className={
             "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
@@ -155,33 +139,61 @@ const Profile = () => {
         >
           Skills
         </p>
-        <div role="presentation" className="flex flex-row space-x-[2vmin] ">
-          <ul
-            role="presentation"
-            className="w-max list-inside pl-[2vmin] list-disc "
-          >
-            <li aria-label="JavaScript and TypeScript,">JS & TS</li>
-            <li aria-label="React,">React</li>
-            <li aria-label="Redux,">Redux</li>
-            <li aria-label="Vue,">Vue</li>
-            <li aria-label="Nuxt,">Nuxt</li>
-            <li aria-label="Python,">Python</li>
-            <li aria-label="Java,">Java</li>
-            <li aria-label="C Sharp,">C#</li>
+        <div className="flex flex-row space-x-[2vmin] ">
+          <ul className="w-max list-inside pl-[2vmin] list-disc ">
+            <li>
+              <span aria-label="JavaScript and TypeScript,">JS & TS</span>
+            </li>
+            <li>
+              <span aria-label="React,">React</span>
+            </li>
+            <li>
+              <span aria-label="Redux,">Redux</span>
+            </li>
+            <li>
+              <span aria-label="Vue,">Vue</span>
+            </li>
+            <li>
+              <span aria-label="Nuxt,">Nuxt</span>
+            </li>
+            <li>
+              <span aria-label="Python,">Python</span>
+            </li>
+            <li>
+              <span aria-label="Java,">Java</span>
+            </li>
+            <li>
+              <span aria-label="C Sharp,">C#</span>
+            </li>
           </ul>
 
-          <ul
-            role="presentation"
-            className="w-max list-inside px-[2vmin] list-disc "
-          >
-            <li aria-label="HTML,">HTML</li>
-            <li aria-label="CSS and SCSS,">CSS & SCSS</li>
-            <li aria-label="Tailwind CSS,">Tailwind&#32;CSS</li>
-            <li aria-label="Express,">Express</li>
-            <li aria-label="Redis,">Redis</li>
-            <li aria-label="Figma,">Figma</li>
-            <li aria-label="Docker,">Docker</li>
-            <li aria-label="Web Content Accessibility Guidelines,">WCAG</li>
+          <ul className="w-max list-inside px-[2vmin] list-disc ">
+            <li>
+              <span aria-label="HTML,">HTML</span>
+            </li>
+            <li>
+              <span aria-label="CSS and SCSS,">CSS & SCSS</span>
+            </li>
+            <li>
+              <span aria-label="Tailwind,">Tailwind</span>
+            </li>
+            <li>
+              <span aria-label="Express,">Express</span>
+            </li>
+            <li>
+              <span aria-label="Redis,">Redis</span>
+            </li>
+            <li>
+              <span aria-label="Figma,">Figma</span>
+            </li>
+            <li>
+              <span aria-label="Docker,">Docker</span>
+            </li>
+            <li>
+              <span aria-label="Web Content Accessibility Guidelines,">
+                WCAG
+              </span>
+            </li>
           </ul>
         </div>
       </div>

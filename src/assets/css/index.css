@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: Arial, Helvetica, system-ui, sans-serif;
+  --text-font: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", system-ui,
+    sans-serif;
+  --title-font: Tahoma, sans-serif;
+
+  font-family: var(--text-font);
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -20,11 +24,16 @@
 
 @layer base {
   .title {
-    font-family: Tahoma, system-ui, sans-serif;
+    font-family: var(--title-font);
   }
 
   .text {
-    font-family: Arial, Helvetica, system-ui, sans-serif;
+    font-family: var(--text-font);
+  }
+
+  li span {
+    position: relative;
+    left: -0.625rem;
   }
 
   blockquote.quote:before {
@@ -72,16 +81,23 @@
 
 @layer utilities {
   .bg-image {
-    background-size: cover;
     background-image: url("../general/so-white.png");
+    background-size: cover;
   }
 
   .bg-fog {
-    background-size: cover;
     background: radial-gradient(
       73.98% 73.98% at 50% 50%,
       rgba(255, 255, 255, 0.1) 0%,
       rgba(0, 0, 0, 0.1) 100%
     );
+    background-size: cover;
+  }
+
+  #projectPage2 {
+    background-image: url("../general/my-logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 }

@@ -1,23 +1,23 @@
 import { coordinate, stateContextType } from "./ContextProvider";
 
 /**
- * Amount of points gained for catching a raindrop.
+ * Amount of points gained for catching a particle.
  */
-export const raindropValue = 100;
+export const particleValue = 100;
 
 /**
- * Checks all the raindrops for collision.
+ * Checks all the particles for collision.
  * @param mouseBoundaries Dimensions and position of the bucket.
  * @param context Global context object.
  */
-export async function splatRaindrops(
+export async function catchParticles(
   mouseBoundaries: DOMRect,
   context: stateContextType
 ) {
   for (let i = 7; i > 0; i--) {
-    const raindrop = document.getElementById("raindrop " + i);
-    if (raindrop !== null)
-      await checkCollision(mouseBoundaries, raindrop, context);
+    const particle = document.getElementById("particle" + i);
+    if (particle !== null)
+      await checkCollision(mouseBoundaries, particle, context);
   }
 }
 
@@ -25,23 +25,23 @@ export async function splatRaindrops(
  * Checks for collision.
  * Runs additional game logic when a collision is detected.
  * @param mouse Dimensions and position of the bucket.
- * @param raindropElement Dimensions and position of the raindrop.
+ * @param particleElement Dimensions and position of the particle.
  * @param context Global context object.
  */
 async function checkCollision(
   mouse: DOMRect,
-  raindropElement: HTMLElement,
+  particleElement: HTMLElement,
   context: stateContextType
 ) {
-  const raindrop = raindropElement.getBoundingClientRect();
-  if (raindropElement.style.opacity === "1") {
+  const particle = particleElement.getBoundingClientRect();
+  if (particleElement.style.opacity === "1") {
     const mouseBottomCenter: coordinate = {
       x: mouse.x + mouse.width / 2,
       y: mouse.y + mouse.height,
     };
-    const raindropBottomCenter: coordinate = {
-      x: raindrop.x + raindrop.width / 2,
-      y: raindrop.y + raindrop.height,
+    const particleBottomCenter: coordinate = {
+      x: particle.x + particle.width / 2,
+      y: particle.y + particle.height,
     };
     // left
     const lowerXBound = mouseBottomCenter.x - mouse.width / 3;
@@ -54,13 +54,13 @@ async function checkCollision(
 
     if (
       // x
-      within(raindropBottomCenter.x, lowerXBound, upperXBound) &&
+      within(particleBottomCenter.x, lowerXBound, upperXBound) &&
       // y
-      within(raindropBottomCenter.y, lowerYBound, upperYBound)
+      within(particleBottomCenter.y, lowerYBound, upperYBound)
     ) {
       // Visuals
-      raindropElement.style.opacity = "0";
-      displayPoints({ x: raindrop.x, y: raindrop.y });
+      particleElement.style.opacity = "0";
+      displayPoints({ x: particle.x, y: particle.y });
 
       // Debug
       if (context.debugMode.current) {
@@ -70,15 +70,15 @@ async function checkCollision(
           upperXBound - lowerXBound,
           upperYBound - lowerYBound
         );
-        // Raindrop Focal Point
-        displayFocalPoint(raindropBottomCenter);
+        // Particle Focal Point
+        displayFocalPoint(particleBottomCenter);
       }
 
       // Score
       if (context.scoreRef.current < context.maxScore) {
         // Add score
-        if (context.scoreRef.current + raindropValue < context.maxScore)
-          context.scoreRef.current += raindropValue;
+        if (context.scoreRef.current + particleValue < context.maxScore)
+          context.scoreRef.current += particleValue;
         else context.scoreRef.current = context.maxScore;
         // Update scores
         context.setScore(context.scoreRef.current);
@@ -109,10 +109,10 @@ function displayPoints(coord: coordinate) {
   const points = document.createElement("div");
 
   points.className =
-    "dirt fixed bg-transparent text-sky-500 " +
+    "dirt fixed bg-transparent text-sky-500 select-none " +
     "whitespace-nowrap animate-float-up transform-gpu " +
     "title font-semibold text-[4vmin] sm:text-[3vmin] text-center ";
-  points.appendChild(document.createTextNode("+" + raindropValue));
+  points.appendChild(document.createTextNode("+" + particleValue));
 
   points.style.left = coord.x + "px";
   points.style.top = coord.y + "px";
@@ -137,7 +137,7 @@ function displayPoints(coord: coordinate) {
     { once: true }
   );
 
-  document.getElementById("the background")?.appendChild(points);
+  document.getElementById("theBackground")?.appendChild(points);
 }
 
 /**
@@ -161,7 +161,7 @@ function displayHitbox(coord: coordinate, w: number, h: number) {
   hitbox.style.width = w + "px";
   hitbox.style.height = h + "px";
 
-  document.getElementById("the background")?.appendChild(hitbox);
+  document.getElementById("theBackground")?.appendChild(hitbox);
 }
 
 function displayFocalPoint(coord: coordinate) {
@@ -179,5 +179,5 @@ function displayFocalPoint(coord: coordinate) {
   focalPoint.style.width = "1px";
   focalPoint.style.height = "1px";
 
-  document.getElementById("the background")?.appendChild(focalPoint);
+  document.getElementById("theBackground")?.appendChild(focalPoint);
 }

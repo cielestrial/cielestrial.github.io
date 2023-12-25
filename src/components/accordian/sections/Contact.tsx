@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import MyFooter from "~/components/footer/MyFooter";
 import { StateContext } from "~/utils/ContextProvider";
 
 const Contact = () => {
@@ -19,11 +20,9 @@ const Contact = () => {
   }
 
   return (
-    <div
-      className={"min-h-full h-max min-w-full w-max flex flex-col " + seasonBG}
-    >
+    <div className={"h-full full flex flex-col " + seasonBG}>
       <form
-        className="flex flex-col space-y-[5vmin] sm:space-y-[4vmin] m-auto "
+        className="flex flex-col space-y-[5vmin] sm:space-y-[4vmin] pt-[1.33vmin] m-auto "
         action="https://formspree.io/f/myyaynln"
         method="POST"
       >
@@ -31,7 +30,7 @@ const Contact = () => {
           className={"w-[70vmin] h-[7vmin] px-[2vmin] shadow-xl "}
           type="text"
           id="name"
-          name="name."
+          name="name"
           placeholder="Name"
           aria-required="true"
           required
@@ -62,7 +61,6 @@ const Contact = () => {
           cols={80}
         />
         <button
-          id="Form Submit Button"
           type="submit"
           className={
             "mx-auto font-medium shadow-lg bg-slate-200 " +
@@ -74,6 +72,7 @@ const Contact = () => {
           Submit
         </button>
       </form>
+      <MyFooter />
     </div>
   );
 };

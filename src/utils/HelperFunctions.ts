@@ -15,9 +15,7 @@ export function exitProjectView(
   if (event.key === "Escape") {
     event.stopPropagation(); // Prevents modal not found error.
     if (openedRef.current === "Projects") {
-      document
-        .getElementById("Close Button")
-        ?.dispatchEvent(context.clickEvent);
+      document.getElementById("closeButton")?.dispatchEvent(context.clickEvent);
     }
   }
 }
@@ -27,7 +25,7 @@ export function exitProjectView(
  * @param event Keyboard event.
  * @param openedRef Which accordion section is opened.
  */
-export function focusTrap(
+export function trapFocus(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>
 ) {
@@ -36,12 +34,12 @@ export function focusTrap(
       if (document.getElementById("Home") === document.activeElement) {
         event.preventDefault();
         if (openedRef.current === "Contact")
-          document.getElementById("Form Submit Button")?.focus();
+          document.getElementById("finalTab")?.focus();
         else document.getElementById("Contact")?.focus();
       }
     } else {
       if (
-        document.getElementById("Grace Hopper Quote") === document.activeElement
+        document.getElementById("GraceHopperQuote") === document.activeElement
       ) {
         event.preventDefault();
         document.getElementById("Contact")?.focus();
@@ -52,18 +50,42 @@ export function focusTrap(
       if (document.getElementById("Contact") === document.activeElement) {
         event.preventDefault();
         if (openedRef.current === "Home")
-          document.getElementById("Grace Hopper Quote")?.focus();
+          document.getElementById("GraceHopperQuote")?.focus();
         else document.getElementById("Home")?.focus();
       }
     } else {
-      if (
-        document.getElementById("Form Submit Button") === document.activeElement
-      ) {
+      if (document.getElementById("finalTab") === document.activeElement) {
         event.preventDefault();
         document.getElementById("Home")?.focus();
       }
     }
   }
+}
+
+/*
+ * Blocks wheel event from triggering navigation when inside scrollable area.
+ * Navigation still triggers when an additional wheel event is detected at
+ *   the very top or bottom of the scroll area.
+ */
+export function trapScroll(
+  event: React.WheelEvent<HTMLElement>,
+  scrollBoundHit: React.MutableRefObject<boolean>
+) {
+  if (
+    !(
+      (Math.round(event.currentTarget.scrollTop) === 0 && event.deltaY < 0) ||
+      (Math.round(event.currentTarget.scrollTop + 1) +
+        event.currentTarget.offsetHeight >=
+        event.currentTarget.scrollHeight &&
+        event.deltaY > 0)
+    )
+  ) {
+    scrollBoundHit.current = false;
+    event.stopPropagation();
+  } else if (!scrollBoundHit.current) {
+    scrollBoundHit.current = true;
+    event.stopPropagation();
+  } else scrollBoundHit.current = false;
 }
 
 /**
@@ -72,7 +94,7 @@ export function focusTrap(
  * @param openedRef Which accordion section is opened.
  * @param setOpened A function that sets which accordion section is opened.
  */
-export function sectionNavigation(
+export function navigateSections(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>,
   setOpened: (section: sections) => void
@@ -122,7 +144,7 @@ export function sectionNavigation(
  * @param openedRef Which accordion section is opened.
  * @param context Global context object.
  */
-export function aboutTabsNavigation(
+export function navigateAboutTabs(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>,
   context: stateContextType
@@ -132,11 +154,11 @@ export function aboutTabsNavigation(
       case "Profile":
         if (event.key === "ArrowLeft") {
           document
-            .getElementById("Philosophy Button")
+            .getElementById("philosophyButton")
             ?.dispatchEvent(context.clickEvent);
         } else if (event.key === "ArrowRight") {
           document
-            .getElementById("Bio Button")
+            .getElementById("bioButton")
             ?.dispatchEvent(context.clickEvent);
         }
         break;
@@ -144,11 +166,11 @@ export function aboutTabsNavigation(
       case "Bio":
         if (event.key === "ArrowLeft") {
           document
-            .getElementById("Profile Button")
+            .getElementById("profileButton")
             ?.dispatchEvent(context.clickEvent);
         } else if (event.key === "ArrowRight") {
           document
-            .getElementById("Philosophy Button")
+            .getElementById("philosophyButton")
             ?.dispatchEvent(context.clickEvent);
         }
         break;
@@ -156,11 +178,11 @@ export function aboutTabsNavigation(
       case "Philosophy":
         if (event.key === "ArrowLeft") {
           document
-            .getElementById("Bio Button")
+            .getElementById("bioButton")
             ?.dispatchEvent(context.clickEvent);
         } else if (event.key === "ArrowRight") {
           document
-            .getElementById("Profile Button")
+            .getElementById("profileButton")
             ?.dispatchEvent(context.clickEvent);
         }
         break;

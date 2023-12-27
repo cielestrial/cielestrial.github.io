@@ -1,8 +1,10 @@
 import { SiGithub, SiLinkedin } from "react-icons/si";
+import { transitionClass } from "~/utils/gradientSelector";
 
 const MyFooter = () => {
   const iconSize = "1.5em";
-  const link = "transition p-0.5 rounded active:scale-95 hover:animate-pulse ";
+  const link =
+    "p-0.5 rounded active:scale-95 hover:animate-pulse " + transitionClass;
 
   return (
     <footer

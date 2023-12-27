@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsCloudSun, BsFillMoonStarsFill } from "react-icons/bs";
 import { StateContext } from "~/utils/ContextProvider";
+import { transitionClass } from "~/utils/gradientSelector";
 
 const MySwitch = () => {
   const context = useContext(StateContext);
@@ -39,15 +40,16 @@ const MySwitch = () => {
 
   const outer =
     "relative flex border-4 box-content rounded-full w-14 h-8 " +
-    "transition bg-sky-300 border-gray-600 " +
-    "dark:bg-gray-900 dark:border-gray-400 ";
+    "bg-sky-300 border-gray-600 dark:bg-gray-900 dark:border-gray-400 " +
+    transitionClass;
 
   const inner =
     "rounded-full box-content w-6 h-6 flex self-center my-auto " +
-    "border-2 transition border-gray-700 translate-x-[0.1rem] " +
+    "border-2 border-gray-700 translate-x-[0.1rem] " +
     "dark:border-gray-300 dark:translate-x-[1.65rem] " +
     "bg-white dark:bg-sky-700 fill-current text-base dark:text-xs " +
-    "text-black/90 dark:text-white/90 ";
+    "text-black/90 dark:text-white/90 " +
+    transitionClass;
 
   return (
     <div className="m-4 absolute top-0 right-0 z-10 invisible ">

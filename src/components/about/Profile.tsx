@@ -1,48 +1,52 @@
 import { useState } from "react";
 import { SiCodechef, SiGithub, SiLinkedin } from "react-icons/si";
-
 import myLogo from "~/assets/general/my-logo.png";
+import { transitionClass } from "~/utils/gradientSelector";
+import { skills } from "~/utils/skillsList";
 
 const Profile = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
   const iconLink =
     "text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end " +
-    "transition duration-75 custom-ease-out " +
-    "hover:text-sky-500 active:text-sky-600 ";
+    "hover:text-sky-500 active:text-sky-600 " +
+    transitionClass;
+  const height = "h-[90vmin] sm:h-[85vmin] ";
 
   return (
     <div
       id="profileTab"
       role="tabpanel"
       className={
-        "flex flex-row px-[4vmin] m-auto space-x-[4vmin] select-text " +
+        "flex h-fit px-[4vmin] w-max mx-auto space-x-[4vmin] " +
+        "select-text justify-center " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
     >
       <div
-        className={
-          "flex flex-col space-x-0 space-y-[2vmin] " +
-          "lg:flex-row lg:space-x-[4vmin] lg:space-y-0 "
-        }
+        className={"space-y-[2vmin] " + height}
+        onClick={(event) => console.log(event.currentTarget.clientHeight)}
       >
         <div
           className={
             "border-solid border-black border-[1vmin] rounded-full mx-auto " +
-            "w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip "
+            "w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip select-none "
           }
         >
           <img
+            className="w-fit h-fit"
             src={myLogo}
             aria-label="My Logo."
             alt="My Logo"
             draggable="false"
           />
         </div>
+
         <div
           className={
-            "flex flex-col grow py-[2vmin] px-[4vmin] bg-image " +
-            "border-[0.625vmin] border-black snap-center snap-always space-y-[.5vmin] "
+            "flex flex-col py-[2vmin] px-[4vmin] bg-image " +
+            "border-[0.625vmin] border-black space-y-[.5vmin] " +
+            "snap-center snap-always w-full h-[40vmin] sm:h-[35vmin] "
           }
         >
           <p
@@ -83,7 +87,7 @@ const Profile = () => {
             </p>
           </div>
 
-          <div className="flex flex-row flex-nowrap grow pt-[1.5vmin] justify-around ">
+          <div className="flex flex-row flex-nowrap grow justify-around ">
             <a
               id="github"
               aria-label="GitHub profile,"
@@ -125,75 +129,34 @@ const Profile = () => {
 
       <div
         className={
-          "flex flex-col snap-center py-[2vmin] px-[3vmin] " +
-          "border-[0.625vmin] border-black bg-image select-text "
+          "snap-center py-[2vmin] px-[3vmin] w-fit " +
+          "border-[0.625vmin] border-black bg-image " +
+          height
         }
       >
         <p
           aria-label="Skills:"
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
+            "w-fit h-fit text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
             "underline underline-offset-[0.25vmin] indent-[1vmin] " +
             "decoration-from-font font-bold "
           }
         >
           Skills
         </p>
-        <div className="flex flex-row space-x-[2vmin] ">
-          <ul className="w-max list-inside pl-[2vmin] list-disc ">
-            <li>
-              <span aria-label="JavaScript and TypeScript,">JS & TS</span>
-            </li>
-            <li>
-              <span aria-label="React,">React</span>
-            </li>
-            <li>
-              <span aria-label="Redux,">Redux</span>
-            </li>
-            <li>
-              <span aria-label="Vue,">Vue</span>
-            </li>
-            <li>
-              <span aria-label="Nuxt,">Nuxt</span>
-            </li>
-            <li>
-              <span aria-label="Python,">Python</span>
-            </li>
-            <li>
-              <span aria-label="Java,">Java</span>
-            </li>
-            <li>
-              <span aria-label="C Sharp,">C#</span>
-            </li>
-          </ul>
 
-          <ul className="w-max list-inside px-[2vmin] list-disc ">
-            <li>
-              <span aria-label="HTML,">HTML</span>
-            </li>
-            <li>
-              <span aria-label="CSS and SCSS,">CSS & SCSS</span>
-            </li>
-            <li>
-              <span aria-label="Tailwind,">Tailwind</span>
-            </li>
-            <li>
-              <span aria-label="Express,">Express</span>
-            </li>
-            <li>
-              <span aria-label="Redis,">Redis</span>
-            </li>
-            <li>
-              <span aria-label="Figma,">Figma</span>
-            </li>
-            <li>
-              <span aria-label="Docker,">Docker</span>
-            </li>
-            <li>
-              <span aria-label="Web Content Accessibility Guidelines,">
-                WCAG
-              </span>
-            </li>
+        <div className="w-fit h-full">
+          <ul
+            className={
+              "flex flex-col flex-wrap h-[90%] " +
+              "pl-[2vmin] gap-x-[2vmin] list-inside list-disc "
+            }
+          >
+            {skills.map((skill, i) => (
+              <li key={i}>
+                <span aria-label={`${skill},`}>{skill}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -10,40 +10,36 @@ const Profile = () => {
     "text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end " +
     "hover:text-sky-500 active:text-sky-600 " +
     transitionClass;
-  const height = "h-[90vmin] sm:h-[85vmin] ";
+  const height = "h-[92vmin] sm:h-[82vmin] lg:h-[48vmin] ";
 
   return (
     <div
       id="profileTab"
       role="tabpanel"
       className={
-        "flex h-fit px-[4vmin] w-max mx-auto space-x-[4vmin] " +
+        "flex h-fit px-[4vmin] w-max mx-auto gap-x-[4vmin] " +
         "select-text justify-center " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
     >
-      <div className={"space-y-[2vmin] " + height}>
-        <div
+      <div className={"flex flex-col gap-[4vmin] lg:flex-row " + height}>
+        <img
           className={
             "border-solid border-black border-[1vmin] rounded-full mx-auto " +
             "w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip select-none "
           }
-        >
-          <img
-            className="w-fit h-fit"
-            src={myLogo}
-            aria-label="My Logo."
-            alt="My Logo"
-            draggable="false"
-          />
-        </div>
+          src={myLogo}
+          aria-label="My Logo."
+          alt="My Logo"
+          draggable="false"
+        />
 
         <div
           className={
             "flex flex-col py-[2vmin] px-[4vmin] bg-image " +
-            "border-[0.625vmin] border-black space-y-[.5vmin] " +
-            "snap-center snap-always w-full h-[40vmin] sm:h-[35vmin] "
+            "border-[0.625vmin] border-black gap-y-[.5vmin] " +
+            "snap-center snap-always h-[40vmin] sm:h-[35vmin] lg:h-[48vmin] "
           }
         >
           <p
@@ -145,13 +141,13 @@ const Profile = () => {
         <div className="w-fit h-full">
           <ul
             className={
-              "flex flex-col flex-wrap h-[90%] " +
-              "pl-[2vmin] gap-x-[2vmin] list-inside list-disc "
+              "flex flex-col flex-wrap h-[90%] w-[70vmin] " +
+              "list-none gap-x-[3vmin] "
             }
           >
             {skills.map((skill, i) => (
               <li key={i}>
-                <span aria-label={`${skill},`}>{skill}</span>
+                <span aria-label={`${skill},`}>&bull; {skill}</span>
               </li>
             ))}
           </ul>

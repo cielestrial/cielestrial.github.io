@@ -113,14 +113,11 @@ const ProjectView = (props: projectType) => {
             {props.title}
           </p>
           <ul
-            className={
-              "flex flex-row flex-wrap justify-evenly " +
-              "text-[3vmin] list-inside list-disc "
-            }
+            className={"flex flex-wrap gap-x-[3vmin] text-[3vmin] list-none "}
           >
             {props.technologies.map((tech, i) => (
               <li key={i}>
-                <span>{tech}</span>
+                <span>&bull; {tech}</span>
               </li>
             ))}
           </ul>

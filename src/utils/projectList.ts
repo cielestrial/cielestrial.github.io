@@ -84,18 +84,3 @@ export const projects: Omit<
     status: "Completed",
   },
 ];
-
-/*
-  {
-    title: "EV-Dashboard",
-    technologies: ["Figma", "React", "TypeScript", "SCSS"],
-    description:[
-      "A web app that functions as a dashboard for electric vehicles.",
-      "Engineered a modular system to support up to 20 smaller apps as widgets, contributing to the platform's flexibility and scalability.",
-      "Collaborated closely with cross-functional teams, participating in agile development sprints, and ensuring the alignment of technical solutions with project goals.",
-    ],
-      image: ev_dashboard,
-    link: "https://ev-dashboard.onrender.com",
-    status: "Hiatus",
-  },
-  */

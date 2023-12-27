@@ -31,11 +31,6 @@
     font-family: var(--text-font);
   }
 
-  li span {
-    position: relative;
-    left: -0.625rem;
-  }
-
   blockquote.quote:before {
     content: "\201C";
   }

@@ -1,16 +1,9 @@
 [Done] 
-- Add: bucket position dependent on device type
-- Add: project summary to project descriptions
-- Add: skills to skillsList
-- Style: About's Profile tab layout changed to allow more skills
-- Style: ProjectView better space utilization on portrait screens
 
 [ToDo]
-
+- Manual Carousel Navbar at top
 
 [Upcoming]
-- Manual Carousel Navbar at top
-- Clean up projectList
 
 
 [Other Sites]

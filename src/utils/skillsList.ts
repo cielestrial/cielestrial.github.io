@@ -21,7 +21,6 @@ export const skills: string[] = [
   "Spring Boot",
   "Vitest",
   "Serverless",
-  "React Testing Library",
   "Pytest",
   "GitHub",
   "NPM",

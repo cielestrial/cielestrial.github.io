@@ -1,6 +1,6 @@
 // About Section
 import myLogo from "~/assets/general/my-logo.png";
-import myPic from "~/assets/general/profile1.jpg";
+import myPic from "~/assets/general/selfie.png";
 // Projects section
 import junkyard from "~/assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.jpg";
 import rightdrive from "~/assets/rightdrive-dev-test/rightdrive-dev-test_page1.jpg";

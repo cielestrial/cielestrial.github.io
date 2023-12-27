@@ -17,24 +17,17 @@ const Bio = () => {
     >
       <div
         className={
-          "w-fit h-fit ml-[5vmin] flex flex-col lg:snap-center lg:ml-0 "
+          "w-[48vmin] h-[48vmin] shadow-xl rounded-full mx-auto lg:snap-center " +
+          "border-solid border-black border-[1vmin] overflow-clip "
         }
       >
-        <div
-          className={
-            "border-solid border-black border-[1vmin] overflow-clip " +
-            "w-[48vmin] h-[48vmin] shadow-xl rounded-full "
-          }
-        >
-          <div className={"w-full translate-y-[-15%] "}>
-            <img
-              src={myPic}
-              aria-label="A selfie."
-              alt="Me"
-              draggable="false"
-            />
-          </div>
-        </div>
+        <img
+          className="translate-y-[-15%]"
+          src={myPic}
+          aria-label="A selfie."
+          alt="Me"
+          draggable="false"
+        />
       </div>
 
       <div

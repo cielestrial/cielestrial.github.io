@@ -1,5 +1,5 @@
 import { useState } from "react";
-import myPic from "~/assets/general/profile1.jpg";
+import myPic from "~/assets/general/selfie.png";
 
 const Bio = () => {
   const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
@@ -15,20 +15,16 @@ const Bio = () => {
       }
       onAnimationEnd={() => setEffect("none")}
     >
-      <div
+      <img
         className={
-          "w-[48vmin] h-[48vmin] shadow-xl rounded-full mx-auto lg:snap-center " +
-          "border-solid border-black border-[1vmin] overflow-clip "
+          "w-[48vmin] h-[48vmin] shadow-xl rounded-full ml-[5vmin] sm:mx-auto " +
+          "border-solid border-black border-[1vmin] overflow-clip snap-center "
         }
-      >
-        <img
-          className="translate-y-[-15%]"
-          src={myPic}
-          aria-label="A selfie."
-          alt="Me"
-          draggable="false"
-        />
-      </div>
+        src={myPic}
+        aria-label="A selfie."
+        alt="Me"
+        draggable="false"
+      />
 
       <div
         className={

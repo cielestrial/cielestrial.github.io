@@ -23,8 +23,7 @@ const ProjectGrid = (props: propsType) => {
     <div className="h-full w-full flex flex-col ">
       <p
         className={
-          "text-center text-[5.175vmin] sm:text-[3.88vmin] font-semibold " +
-          "mx-auto pt-[8vh] pb-[4vh] " +
+          "text-[5.175vmin] sm:text-[3.88vmin] font-semibold mx-auto pb-4 " +
           (effect === "fade-out" ? "animate-fade-out " : "")
         }
         onAnimationEnd={() => {
@@ -53,7 +52,7 @@ const ProjectGrid = (props: propsType) => {
       >
         <div
           className={
-            "h-max w-max flex flex-row flex-wrap m-auto place-content-center " +
+            "h-max w-max flex flex-row flex-wrap m-auto pb-8 place-content-center " +
             (effect === "fade-out" ? "animate-fade-out " : "")
           }
         >

@@ -2,7 +2,9 @@ import { useContext, useRef, useState } from "react";
 import Bio from "~/components/about/Bio";
 import Philosophy from "~/components/about/Philosophy";
 import Profile from "~/components/about/Profile";
+import GameButton from "~/components/background/GameButton";
 import { aboutTabs, StateContext } from "~/utils/ContextProvider";
+import { transitionClass } from "~/utils/gradientSelector";
 import { trapScroll } from "~/utils/helperFunctions";
 
 const About = () => {
@@ -15,8 +17,8 @@ const About = () => {
   const scrollBoundHit = useRef(false);
 
   const btnClasses =
-    "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom " +
-    "shadow-md transition duration-75 custom-ease-out ";
+    "w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom shadow-md " +
+    transitionClass;
 
   /**
    * Sets which about section tab is opened.
@@ -46,11 +48,13 @@ const About = () => {
 
   return (
     <div className={"h-full w-full overflow-clip flex flex-col content-start "}>
+      <GameButton />
+
       <div
         role="tablist"
         aria-label="Profile. Bio. Philosophy."
         aria-orientation="horizontal"
-        className={"flex flex-row mx-auto py-[4vh] divide-x-[0.5vmin] "}
+        className={"flex flex-row mx-auto pb-8 divide-x-[0.5vmin] "}
       >
         <button
           id="profileButton"
@@ -122,7 +126,7 @@ const About = () => {
         ref={scrollPos}
         tabIndex={0}
         className={
-          "w-full flex flex-col overflow-auto scroll-smooth pb-[    3vh] " +
+          "w-full flex flex-col overflow-auto scroll-smooth pb-[3vh] " +
           (snap ? "snap-x snap-mandatory " : "")
         }
         onAnimationEnd={() => setSnap(true)}

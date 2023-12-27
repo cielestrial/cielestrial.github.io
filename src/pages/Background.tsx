@@ -131,7 +131,10 @@ const Background = (props: propsType) => {
         id="mouse-hitbox"
         className={
           "fixed w-fit h-fit text-[13.466vmin] sm:text-[10.125vmin] " +
-          "translate-x-[-50%] translate-y-[-50%] transform-gpu " +
+          "translate-x-[-50%] transform-gpu " +
+          (context.touchDevice.current
+            ? "translate-y-[-100%] "
+            : "translate-y-[-50%] ") +
           (context.score < context.maxScore
             ? "fill-slate-400 "
             : "fill-amber-300 ") +

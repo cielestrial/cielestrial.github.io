@@ -1,6 +1,8 @@
 import { useContext } from "react";
+import GameButton from "~/components/background/GameButton";
 import MyFooter from "~/components/footer/MyFooter";
 import { StateContext } from "~/utils/ContextProvider";
+import { transitionClass } from "~/utils/gradientSelector";
 
 const Contact = () => {
   const context = useContext(StateContext);
@@ -21,8 +23,10 @@ const Contact = () => {
 
   return (
     <div className={"h-full full flex flex-col " + seasonBG}>
+      <GameButton />
+
       <form
-        className="flex flex-col space-y-[5vmin] sm:space-y-[4vmin] pt-[1.33vmin] m-auto "
+        className="flex flex-col space-y-[5vmin] sm:space-y-[4vmin] m-auto "
         action="https://formspree.io/f/myyaynln"
         method="POST"
       >
@@ -63,15 +67,16 @@ const Contact = () => {
         <button
           type="submit"
           className={
-            "mx-auto font-medium shadow-lg bg-slate-200 " +
-            "transition duration-75 custom-ease-out origin-bottom " +
+            "mx-auto font-medium shadow-lg bg-slate-200 origin-bottom " +
             "hover:bg-slate-300 active:scale-95 active:bg-slate-400 " +
-            "w-[26vmin] sm:w-[24vmin] py-[1.25vmin] "
+            "w-[26vmin] sm:w-[24vmin] py-[1.25vmin] " +
+            transitionClass
           }
         >
           Submit
         </button>
       </form>
+
       <MyFooter />
     </div>
   );

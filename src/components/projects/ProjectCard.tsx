@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { StateContext } from "~/utils/ContextProvider";
 import ProjectView, { projectType } from "./ProjectView";
+import { transitionClass } from "~/utils/gradientSelector";
 
 type statusType = "Completed" | "Work In Progress" | "Hiatus";
 export type cardType = projectType & {
@@ -42,10 +43,10 @@ const ProjectCard = (props: cardType) => {
         );
       }}
       className={
-        "flex flex-col flex-nowrap w-[35.56vmin] sm:w-[28.45vmin] " +
-        "shadow-md transition duration-75 custom-ease-out m-[5vmin] " +
+        "flex flex-col flex-nowrap w-[35.56vmin] sm:w-[28.45vmin] shadow-md m-[5vmin] " +
         "saturate-[.75] active:scale-95 outline-none outline-[0.4vmin] " +
         "focus-visible:saturate-150 focus-visible:outline-amber-500 " +
+        +transitionClass +
         (!context.touchDevice.current
           ? "hover:saturate-150 hover:outline-amber-500 "
           : "") +

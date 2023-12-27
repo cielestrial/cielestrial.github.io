@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GameButton from "~/components/background/GameButton";
 import ProjectGrid from "~/components/projects/ProjectGrid";
 
 const Projects = () => {
@@ -7,14 +8,20 @@ const Projects = () => {
     JSX.Element | undefined
   >(undefined);
 
-  if (showProjectView && selectedProject !== undefined) return selectedProject;
-  else
-    return (
-      <ProjectGrid
-        setShowProjectView={setShowProjectView}
-        setSelectedProject={setSelectedProject}
-      />
-    );
+  return (
+    <>
+      <GameButton />
+
+      {showProjectView && selectedProject !== undefined ? (
+        selectedProject
+      ) : (
+        <ProjectGrid
+          setShowProjectView={setShowProjectView}
+          setSelectedProject={setSelectedProject}
+        />
+      )}
+    </>
+  );
 };
 
 export default Projects;

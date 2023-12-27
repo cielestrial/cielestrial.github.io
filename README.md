@@ -8,8 +8,8 @@
 
 ## Extras
 
-- Theme will change with the seasons
 - Query search "reset" will reset the high score.
 - Query search "debug" will run the game in debug mode.
+- Theme will change with the seasons
 
 #### _Author: cielestrial_

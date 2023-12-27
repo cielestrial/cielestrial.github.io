@@ -1,5 +1,7 @@
 import { sections } from "~/pages/Portfolio";
 
+export const transitionClass = "transition duration-75 custom-ease-out ";
+
 /**
  * Display Winter gradient colors
  * @param label current section label

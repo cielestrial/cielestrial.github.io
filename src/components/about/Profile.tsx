@@ -23,10 +23,7 @@ const Profile = () => {
       }
       onAnimationEnd={() => setEffect("none")}
     >
-      <div
-        className={"space-y-[2vmin] " + height}
-        onClick={(event) => console.log(event.currentTarget.clientHeight)}
-      >
+      <div className={"space-y-[2vmin] " + height}>
         <div
           className={
             "border-solid border-black border-[1vmin] rounded-full mx-auto " +

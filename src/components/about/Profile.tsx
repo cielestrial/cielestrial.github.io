@@ -86,7 +86,7 @@ const Profile = () => {
               aria-label="GitHub profile,"
               href="https://github.com/cielestrial"
               target="_blank"
-              rel="noopener"
+              rel="noopener author"
               referrerPolicy="strict-origin-when-cross-origin"
               className={iconLink}
             >
@@ -98,7 +98,7 @@ const Profile = () => {
               aria-label="LinkedIn profile,"
               href="https://www.linkedin.com/in/boladale-ogunleye-089937186/"
               target="_blank"
-              rel="noopener"
+              rel="noopener author"
               referrerPolicy="strict-origin-when-cross-origin"
               className={iconLink}
             >
@@ -110,7 +110,7 @@ const Profile = () => {
               aria-label="Codechef profile,"
               href="https://www.codechef.com/users/cielestrial"
               target="_blank"
-              rel="noopener"
+              rel="noopener author"
               referrerPolicy="strict-origin-when-cross-origin"
               className={iconLink}
             >

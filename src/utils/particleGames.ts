@@ -12,7 +12,7 @@ export const particleValue = 100;
  */
 export async function catchParticles(
   mouseBoundaries: DOMRect,
-  context: stateContextType
+  context: stateContextType,
 ) {
   for (let i = 7; i > 0; i--) {
     const particle = document.getElementById("particle" + i);
@@ -31,7 +31,7 @@ export async function catchParticles(
 async function checkCollision(
   mouse: DOMRect,
   particleElement: HTMLElement,
-  context: stateContextType
+  context: stateContextType,
 ) {
   const particle = particleElement.getBoundingClientRect();
   if (particleElement.style.opacity === "1") {
@@ -68,7 +68,7 @@ async function checkCollision(
         displayHitbox(
           mouseBottomCenter,
           upperXBound - lowerXBound,
-          upperYBound - lowerYBound
+          upperYBound - lowerYBound,
         );
         // Particle Focal Point
         displayFocalPoint(particleBottomCenter);
@@ -125,7 +125,7 @@ function displayPoints(coord: coordinate) {
       points.onanimationcancel = null;
       points.remove();
     },
-    { once: true }
+    { once: true },
   );
   points.addEventListener(
     "animationend",
@@ -134,7 +134,7 @@ function displayPoints(coord: coordinate) {
       points.onanimationcancel = null;
       points.remove();
     },
-    { once: true }
+    { once: true },
   );
 
   document.getElementById("theBackground")?.appendChild(points);

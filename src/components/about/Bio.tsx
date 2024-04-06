@@ -9,15 +9,15 @@ const Bio = () => {
       id="bioTab"
       role="tabpanel"
       className={
-        "flex flex-col px-[4vmin] space-x-0 space-y-[3vmin] " +
-        "m-auto lg:flex-row lg:space-x-[4vmin] lg:space-y-0 " +
+        "flex flex-col px-[4vmin] space-x-0 space-y-[3vmin] m-auto " +
+        "lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}
     >
       <img
         className={
-          "w-[48vmin] h-[48vmin] shadow-xl rounded-full ml-[5vmin] sm:mx-auto " +
+          "w-[48vmin] h-[48vmin] shadow-xl rounded-full ml-[5vmin] sm:mx-auto select-none " +
           "border-solid border-black border-[1vmin] overflow-clip snap-center "
         }
         src={myPic}

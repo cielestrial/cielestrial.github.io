@@ -23,10 +23,10 @@ const TestimonialSideView = (props: propsType) => {
           (props.side === "left"
             ? "animate-left-testimonial "
             : props.side === "right"
-            ? "animate-right-testimonial "
-            : props.side === "far-right"
-            ? "animate-far-right-testimonial "
-            : "invisible")
+              ? "animate-right-testimonial "
+              : props.side === "far-right"
+                ? "animate-far-right-testimonial "
+                : "invisible")
         }
       >
         <img

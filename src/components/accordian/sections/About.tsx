@@ -10,7 +10,7 @@ import { trapScroll } from "~/utils/helperFunctions";
 const About = () => {
   const context = useContext(StateContext);
   const [opened, setOpenedState] = useState<aboutTabs>(
-    context.aboutOpenedRef.current
+    context.aboutOpenedRef.current,
   );
   const [snap, setSnap] = useState(false);
   const scrollPos = useRef<HTMLDivElement>(null);

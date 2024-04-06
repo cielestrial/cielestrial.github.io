@@ -17,7 +17,7 @@ const MyFooter = () => {
             aria-label="My LinkedIn profile"
             href="https://www.linkedin.com/in/boladale-ogunleye-089937186"
             target="_blank"
-            rel="noopener"
+            rel="noopener author"
             referrerPolicy="strict-origin-when-cross-origin"
             className={link}
           >
@@ -30,7 +30,7 @@ const MyFooter = () => {
             aria-label="My Github profile"
             href="https://github.com/cielestrial"
             target="_blank"
-            rel="noopener"
+            rel="noopener author"
             referrerPolicy="strict-origin-when-cross-origin"
             className={link}
           >
@@ -42,7 +42,7 @@ const MyFooter = () => {
           <a
             href="https://www.termsfeed.com/live/91af4718-4dfa-4687-b1ba-ff85be757264"
             target="_blank"
-            rel="noopener"
+            rel="noopener terms-of-service"
             referrerPolicy="strict-origin-when-cross-origin"
             className={link}
           >
@@ -52,7 +52,7 @@ const MyFooter = () => {
             id="finalTab"
             href="https://www.termsfeed.com/live/8e058f94-0ced-4abb-a59d-94ae2f7f2337"
             target="_blank"
-            rel="noopener"
+            rel="noopener privacy-policy"
             referrerPolicy="strict-origin-when-cross-origin"
             className={link}
           >

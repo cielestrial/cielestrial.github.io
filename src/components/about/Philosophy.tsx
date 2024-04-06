@@ -8,8 +8,8 @@ const Philosophy = () => {
       id="philosophyTab"
       role="tabpanel"
       className={
-        "flex px-[4vmin] flex-col space-x-0 space-y-[4vmin] " +
-        "m-auto lg:flex-row lg:space-x-[4vmin] lg:space-y-0 " +
+        "flex px-[4vmin] flex-col space-x-0 space-y-[4vmin] m-auto " +
+        "lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text " +
         (effect === "fade-in" ? "animate-fade-in " : "")
       }
       onAnimationEnd={() => setEffect("none")}

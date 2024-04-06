@@ -6,7 +6,6 @@ import {
   displayWinterGradient,
 } from "~/utils/gradientSelector";
 import { preloadImages } from "~/utils/imagePreloader";
-import GameButton from "../background/GameButton";
 
 type propsType = {
   label: sections;

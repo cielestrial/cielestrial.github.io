@@ -10,7 +10,7 @@ import { stateContextType } from "./ContextProvider";
 export function exitProjectView(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>,
-  context: stateContextType
+  context: stateContextType,
 ) {
   if (event.key === "Escape") {
     event.stopPropagation(); // Prevents modal not found error.
@@ -27,7 +27,7 @@ export function exitProjectView(
  */
 export function trapFocus(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<sections>
+  openedRef: React.MutableRefObject<sections>,
 ) {
   if (event.shiftKey && event.key === "Tab") {
     if (openedRef.current !== "Home") {
@@ -69,7 +69,7 @@ export function trapFocus(
  */
 export function trapScroll(
   event: React.WheelEvent<HTMLElement>,
-  scrollBoundHit: React.MutableRefObject<boolean>
+  scrollBoundHit: React.MutableRefObject<boolean>,
 ) {
   if (
     !(
@@ -97,7 +97,7 @@ export function trapScroll(
 export function navigateSections(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>,
-  setOpened: (section: sections) => void
+  setOpened: (section: sections) => void,
 ) {
   switch (openedRef.current) {
     case "Home":
@@ -147,7 +147,7 @@ export function navigateSections(
 export function navigateAboutTabs(
   event: KeyboardEvent,
   openedRef: React.MutableRefObject<sections>,
-  context: stateContextType
+  context: stateContextType,
 ) {
   if (openedRef.current === "About") {
     switch (context.aboutOpenedRef.current) {

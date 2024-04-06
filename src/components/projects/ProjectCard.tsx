@@ -3,7 +3,7 @@ import { StateContext } from "~/utils/ContextProvider";
 import ProjectView, { projectType } from "./ProjectView";
 import { transitionClass } from "~/utils/gradientSelector";
 
-type statusType = "Completed" | "Work In Progress" | "Hiatus";
+type statusType = "Release" | "Prerelease" | "Development" | "Hiatus";
 export type cardType = projectType & {
   image: string;
   status: statusType;
@@ -39,7 +39,7 @@ const ProjectCard = (props: cardType) => {
             description={props.description}
             link={props.link}
             setShowProjectView={props.setShowProjectView}
-          />
+          />,
         );
       }}
       className={
@@ -55,12 +55,12 @@ const ProjectCard = (props: cardType) => {
           ? props.order === 0
             ? "animate-[fade-in-right_0.7s_cubic-bezier(.38,0,.64,1)_both] "
             : props.order === 1
-            ? "animate-[fade-in-right_0.7s_.35s_cubic-bezier(.38,0,.64,1)_both] "
-            : props.order === 2
-            ? "animate-[fade-in-right_0.7s_.7s_cubic-bezier(.38,0,.64,1)_both] "
-            : props.order === 3
-            ? "animate-[fade-in-right_0.7s_1.05s_cubic-bezier(.38,0,.64,1)_both] "
-            : "animate-[fade-in-right_0.7s_1.4s_cubic-bezier(.38,0,.64,1)_both] "
+              ? "animate-[fade-in-right_0.7s_.35s_cubic-bezier(.38,0,.64,1)_both] "
+              : props.order === 2
+                ? "animate-[fade-in-right_0.7s_.7s_cubic-bezier(.38,0,.64,1)_both] "
+                : props.order === 3
+                  ? "animate-[fade-in-right_0.7s_1.05s_cubic-bezier(.38,0,.64,1)_both] "
+                  : "animate-[fade-in-right_0.7s_1.4s_cubic-bezier(.38,0,.64,1)_both] "
           : "")
       }
       onAnimationEnd={() => {

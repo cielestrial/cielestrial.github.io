@@ -14,17 +14,17 @@ export const projects: Omit<
     technologies: [
       "Python",
       "FastAPI",
+      "Redis",
       "Nuxt",
       "Vue",
       "TypeScript",
       "Tailwind",
-      "Web Accessibility",
     ],
     description: [
       "A website that displays content from an online bookstore while providing additional functionality.",
       "Developed a robust backend with Python, FastAPI and Redis, to facilitate efficient web scraping for products within an online bookstore.",
-      "Designed succinct frontend with Vue, Nuxt, TypeScript and Tailwind, that prioritizes accessibility.",
-      "Includes comprehensive support for screen readers and keyboard navigation, providing an inclusive experience for a wide range of users.",
+      "Designed succinct frontend with Vue, Nuxt, TypeScript and Tailwind.",
+      "Provided an inclusive experience for a wide range of users through comprehensive support for screen readers and keyboard navigation.",
     ],
     image: junkyard,
     link: "https://junkyard-of-shangri-la.onrender.com",
@@ -56,7 +56,6 @@ export const projects: Omit<
       "Redis",
       "Vitest",
       "React Testing Library",
-      "Web Accessibility",
     ],
     description: [
       "A website that provides comprehensive information on the top 40 cryptocurrencies.",

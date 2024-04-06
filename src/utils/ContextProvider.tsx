@@ -48,7 +48,7 @@ export type aboutTabs = "Profile" | "Bio" | "Philosophy";
 export type coordinate = { x: number; y: number };
 
 const seasons = ["Winter", "Spring", "Summer", "Fall"] as const;
-export type seasonT = (typeof seasons)[number];
+type seasonT = (typeof seasons)[number];
 
 type StateProviderProps = {
   children: React.ReactNode;
@@ -66,7 +66,7 @@ export function StateProvider({ children }: StateProviderProps) {
   else season = "Spring";
 
   const [theme, setTheme] = useState<"light" | "dark">(
-    "light"
+    "light",
     /*
     window.localStorage.getItem("theme") === "dark" ||
     (window.localStorage.getItem("theme") === null &&
@@ -93,7 +93,7 @@ export function StateProvider({ children }: StateProviderProps) {
   const [score, setScore] = useState(0);
   const localScore = window.localStorage.getItem("highScore");
   const [highScore, setHighScore] = useState(
-    localScore === null ? 0 : +localScore
+    localScore === null ? 0 : +localScore,
   );
 
   const clickEvent = new MouseEvent("click", { bubbles: true });
@@ -141,7 +141,7 @@ export function StateProvider({ children }: StateProviderProps) {
       else document.documentElement.classList.remove("dark");
       window.localStorage.setItem("theme", selectedTheme);
     },
-    [theme]
+    [theme],
   );
 
   useEffect(() => {

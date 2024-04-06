@@ -58,9 +58,9 @@ export function displaySpringGradient(label: sections, opened: sections) {
       opened === "Contact" || opened === "Testimonials"
         ? (gradient = " bg-gradient-to-b from-slate-200 to-slate-300 ")
         : opened === "Home"
-        ? (gradient =
-            "bg-gradient-to-b from-slate-200 via-slate-200/75 to-slate-300/50 ")
-        : (gradient = "bg-gradient-to-b from-slate-200/50 to-slate-300/50 ");
+          ? (gradient =
+              "bg-gradient-to-b from-slate-200 via-slate-200/75 to-slate-300/50 ")
+          : (gradient = "bg-gradient-to-b from-slate-200/50 to-slate-300/50 ");
       break;
     case "Testimonials":
       opened === "Contact"

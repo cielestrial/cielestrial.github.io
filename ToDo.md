@@ -1,18 +1,20 @@
 [Done] 
+- Add: update rel links with "author", "terms-of-service", and "privacy-policy" where applicable
+- Chore: updated dependencies
 
 [ToDo]
 - Manual Carousel Navbar at top
+- Switch from useContext to use-context-selector
 
 [Upcoming]
+- Mobile vs Desktop site (ex m.twitch)
 
-
-[Other Sites]
+[External]
 - Create loading animation svg with my-logo & figma
-- Update CV with new project view format and descriptions
-- Update Linkedin with Featured projects
-- Update rel links to noopener and terms of service/others where applicable
-- Add referrer policies to links
-- Clean up EV-Dashboard project
+- Update rel links to: 
+          rel="noopener"
+          referrerPolicy="strict-origin-when-cross-origin"
+- Add: Update rel links with "author", "terms-of-service", and "privacy-policy" where applicable
 
 
 Part 4:

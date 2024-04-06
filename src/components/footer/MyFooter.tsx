@@ -15,7 +15,7 @@ const MyFooter = () => {
         <div className="flex my-auto gap-y-[1.25vmin] gap-x-[4vmin]">
           <a
             aria-label="My LinkedIn profile"
-            href="https://www.linkedin.com/in/boladale-ogunleye-089937186"
+            href="https://www.linkedin.com/in/cielestrial"
             target="_blank"
             rel="noopener author"
             referrerPolicy="strict-origin-when-cross-origin"

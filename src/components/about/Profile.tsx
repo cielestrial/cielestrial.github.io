@@ -122,7 +122,7 @@ const Profile = () => {
 
       <div
         className={
-          "snap-center py-[2vmin] px-[3vmin] w-fit " +
+          "snap-center py-[2vmin] pl-[3vmin] w-fit " +
           "border-[0.625vmin] border-black bg-image " +
           height
         }
@@ -140,10 +140,7 @@ const Profile = () => {
 
         <div className="w-fit h-full">
           <ul
-            className={
-              "flex flex-col flex-wrap h-[90%] w-[70vmin] " +
-              "list-none gap-x-[3vmin] "
-            }
+            className={"flex flex-col flex-wrap h-[90%] w-[75vmin] list-none "}
           >
             {skills.map((skill, i) => (
               <li key={i}>

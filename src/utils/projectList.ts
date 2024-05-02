@@ -33,12 +33,20 @@ export const projects: Omit<
 
   {
     title: "YSPM",
-    technologies: ["React Native", "Expo", "TypeScript", "Figma"],
+    technologies: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Figma",
+      "SQLite",
+      "PostgreSQL",
+    ],
     description: [
       "A universal app that allows users to manage Spotify playlists, view genres, and subscribe a playlist to genres or even other playlists.",
       "Developed a cross-platform application with Expo and React Native that is available as both a website and an Android app, with plans for an iOS release in the future.",
       "Designed an intuitive user interface that supports key features such as the creation of genre-based playlists, providing users with a personalized and curated listening experience.",
       "Innovated functionality for playlist subscriptions, allowing users to follow and stay updated on their favorite playlists effortlessly.",
+      "Provided users with cross-platform access to their data through Supabase's PostgreSQL database alongside a local cache with WatermelonDB's SQLite database.",
     ],
     image: yspm,
     link: "https://yspm.netlify.app",

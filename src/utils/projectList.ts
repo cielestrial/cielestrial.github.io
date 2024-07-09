@@ -49,8 +49,8 @@ export const projects: Omit<
       "Provided users with cross-platform access to their data through Supabase's PostgreSQL database alongside a local cache with WatermelonDB's SQLite database.",
     ],
     image: yspm,
-    link: "https://yspm.netlify.app",
-    status: "Prerelease",
+    link: "https://yspm.app",
+    status: "Release",
   },
 
   {

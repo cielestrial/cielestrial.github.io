@@ -18,12 +18,6 @@
 
 [External]
 
-- Create loading animation svg with my-logo & figma
-- Update rel links to:
-  rel="noopener"
-  referrerPolicy="strict-origin-when-cross-origin"
-- Add: Update rel links with "author", "terms-of-service", and "privacy-policy" where applicable
-
 Part 4:
 
 - Google Analytics integration

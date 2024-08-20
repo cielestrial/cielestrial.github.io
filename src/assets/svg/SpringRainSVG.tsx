@@ -8,14 +8,14 @@ const SpringRainSVG = () => {
         id="particle1"
         aria-hidden="true"
         className={
-          "order-1 " +
-          "fill-red-400 " +
+          'order-1 ' +
+          'fill-red-400 ' +
           //"fill-sky-400 " +
-          "w-[4vmin] sm:w-[3vmin] rounded-full " +
-          "animate-[fall-down_1.33s_1.33s_linear_infinite_backwards] blur-[2px] "
+          'w-[4vmin] sm:w-[3vmin] rounded-full ' +
+          'animate-[fall-down_1.33s_1.33s_linear_infinite_backwards] blur-[2px] '
         }
-        onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
-        onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
+        onAnimationStart={(e) => (e.currentTarget.style.opacity = '1')}
+        onAnimationIteration={(e) => (e.currentTarget.style.opacity = '1')}
         viewBox="0 0 34 70"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -31,14 +31,14 @@ const SpringRainSVG = () => {
         id="particle2"
         aria-hidden="true"
         className={
-          "order-2 " +
-          "fill-yellow-400 " +
+          'order-2 ' +
+          'fill-yellow-400 ' +
           //"fill-sky-400 " +
-          "w-[4vmin] sm:w-[3vmin] rounded-full " +
-          "animate-[fall-down_1.33s_.95s_linear_infinite_backwards] blur-[2px] "
+          'w-[4vmin] sm:w-[3vmin] rounded-full ' +
+          'animate-[fall-down_1.33s_.95s_linear_infinite_backwards] blur-[2px] '
         }
-        onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
-        onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
+        onAnimationStart={(e) => (e.currentTarget.style.opacity = '1')}
+        onAnimationIteration={(e) => (e.currentTarget.style.opacity = '1')}
         viewBox="0 0 34 70"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -54,14 +54,14 @@ const SpringRainSVG = () => {
         id="particle3"
         aria-hidden="true"
         className={
-          "order-3 " +
-          "fill-blue-400 " +
+          'order-3 ' +
+          'fill-blue-400 ' +
           //"fill-sky-400 " +
-          "w-[4vmin] sm:w-[3vmin] rounded-full " +
-          "animate-[fall-down_1.33s_.57s_linear_infinite_backwards] blur-[2px] "
+          'w-[4vmin] sm:w-[3vmin] rounded-full ' +
+          'animate-[fall-down_1.33s_.57s_linear_infinite_backwards] blur-[2px] '
         }
-        onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
-        onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
+        onAnimationStart={(e) => (e.currentTarget.style.opacity = '1')}
+        onAnimationIteration={(e) => (e.currentTarget.style.opacity = '1')}
         viewBox="0 0 34 70"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -77,14 +77,14 @@ const SpringRainSVG = () => {
         id="particle4"
         aria-hidden="true"
         className={
-          "order-4 " +
-          "fill-violet-400 " +
+          'order-4 ' +
+          'fill-violet-400 ' +
           //"fill-sky-400 " +
-          "w-[4vmin] sm:w-[3vmin] rounded-full " +
-          "animate-[fall-down_1.33s_.19s_linear_infinite_backwards] blur-[2px] "
+          'w-[4vmin] sm:w-[3vmin] rounded-full ' +
+          'animate-[fall-down_1.33s_.19s_linear_infinite_backwards] blur-[2px] '
         }
-        onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
-        onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
+        onAnimationStart={(e) => (e.currentTarget.style.opacity = '1')}
+        onAnimationIteration={(e) => (e.currentTarget.style.opacity = '1')}
         viewBox="0 0 34 70"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -100,14 +100,14 @@ const SpringRainSVG = () => {
         id="particle5"
         aria-hidden="true"
         className={
-          "order-5 " +
-          "fill-orange-400 " +
+          'order-5 ' +
+          'fill-orange-400 ' +
           //"fill-sky-400 " +
-          "w-[4vmin] sm:w-[3vmin] rounded-full " +
-          "animate-[fall-down_1.33s_1.14s_linear_infinite_backwards] blur-[2px] "
+          'w-[4vmin] sm:w-[3vmin] rounded-full ' +
+          'animate-[fall-down_1.33s_1.14s_linear_infinite_backwards] blur-[2px] '
         }
-        onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
-        onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
+        onAnimationStart={(e) => (e.currentTarget.style.opacity = '1')}
+        onAnimationIteration={(e) => (e.currentTarget.style.opacity = '1')}
         viewBox="0 0 34 70"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -123,14 +123,14 @@ const SpringRainSVG = () => {
         id="particle6"
         aria-hidden="true"
         className={
-          "order-6 " +
-          "fill-green-400 " +
+          'order-6 ' +
+          'fill-green-400 ' +
           //"fill-sky-400 " +
-          "w-[4vmin] sm:w-[3vmin] rounded-full " +
-          "animate-[fall-down_1.33s_.76s_linear_infinite_backwards] blur-[2px] "
+          'w-[4vmin] sm:w-[3vmin] rounded-full ' +
+          'animate-[fall-down_1.33s_.76s_linear_infinite_backwards] blur-[2px] '
         }
-        onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
-        onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
+        onAnimationStart={(e) => (e.currentTarget.style.opacity = '1')}
+        onAnimationIteration={(e) => (e.currentTarget.style.opacity = '1')}
         viewBox="0 0 34 70"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -146,14 +146,14 @@ const SpringRainSVG = () => {
         id="particle7"
         aria-hidden="true"
         className={
-          "order-7 " +
-          "fill-indigo-400 " +
+          'order-7 ' +
+          'fill-indigo-400 ' +
           //"fill-sky-400 " +
-          "w-[4vmin] sm:w-[3vmin] rounded-full " +
-          "animate-[fall-down_1.33s_.38s_linear_infinite_backwards] blur-[2px] "
+          'w-[4vmin] sm:w-[3vmin] rounded-full ' +
+          'animate-[fall-down_1.33s_.38s_linear_infinite_backwards] blur-[2px] '
         }
-        onAnimationStart={(e) => (e.currentTarget.style.opacity = "1")}
-        onAnimationIteration={(e) => (e.currentTarget.style.opacity = "1")}
+        onAnimationStart={(e) => (e.currentTarget.style.opacity = '1')}
+        onAnimationIteration={(e) => (e.currentTarget.style.opacity = '1')}
         viewBox="0 0 34 70"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"

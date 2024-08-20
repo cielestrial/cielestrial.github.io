@@ -29,6 +29,12 @@ module.exports = {
         "fade-out-right":
           "fade-in-right .7s cubic-bezier(.38,0,.64,1) reverse both",
 
+        "fade-in-up": "fade-in-up .5s cubic-bezier(.38,0,.64,1) both",
+        "fade-in-down": "fade-in-down .5s cubic-bezier(.38,0,.64,1) both",
+        "fade-out-up": "fade-in-up .5s cubic-bezier(.38,0,.64,1) reverse both",
+        "fade-out-down":
+          "fade-in-down .5s cubic-bezier(.38,0,.64,1) reverse both",
+
         "fade-in-out": "fade-in-out 5s cubic-bezier(.38,0,.64,1) infinite both",
 
         "center-testimonial":
@@ -130,6 +136,18 @@ module.exports = {
           "100%": {
             opacity: 0,
           },
+        },
+
+        "fade-in-up": {
+          "0%": { opacity: 0, transform: "translateY(-100%)" },
+          "67%": { opacity: 1 },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+
+        "fade-in-down": {
+          "0%": { opacity: 0, transform: "translateY(100%)" },
+          "67%": { opacity: 1 },
+          "100%": { opacity: 1, transform: "translateY(0)" },
         },
 
         "fade-in-left": {

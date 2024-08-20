@@ -1,31 +1,33 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-const Philosophy = () => {
-  const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
+type propsType = { effect: 'fade-in' | 'none' };
+
+const Philosophy = (props: propsType) => {
+  const [effect, setEffect] = useState<'fade-in' | 'none'>(props.effect);
 
   return (
     <div
       id="philosophyTab"
       role="tabpanel"
       className={
-        "flex px-[4vmin] flex-col space-x-0 space-y-[4vmin] m-auto " +
-        "lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text " +
-        (effect === "fade-in" ? "animate-fade-in " : "")
+        'flex px-[4vmin] flex-col space-x-0 space-y-[4vmin] m-auto ' +
+        'lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text ' +
+        (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
-      onAnimationEnd={() => setEffect("none")}
+      onAnimationEnd={() => setEffect('none')}
     >
       <div
         className={
-          "flex flex-col bg-image " +
-          "border-[0.625vmin] border-black py-[1.5vmin] px-[4vmin] "
+          'flex flex-col bg-image ' +
+          'border-[0.625vmin] border-black py-[1.5vmin] px-[4vmin] '
         }
       >
         <p
           aria-label="Philosophy:"
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
-            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
-            "decoration-from-font font-bold "
+            'text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] ' +
+            'underline underline-offset-[0.25vmin] -indent-[0.5vmin] ' +
+            'decoration-from-font font-bold '
           }
         >
           Philosophy
@@ -74,16 +76,16 @@ const Philosophy = () => {
 
       <div
         className={
-          "flex flex-col bg-image " +
-          "border-[0.625vmin] border-black py-[1.5vmin] px-[4vmin] "
+          'flex flex-col bg-image ' +
+          'border-[0.625vmin] border-black py-[1.5vmin] px-[4vmin] '
         }
       >
         <p
           aria-label="Methodology:"
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] " +
-            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
-            "decoration-from-font font-bold "
+            'text-[4.5vmin] sm:text-[3.375vmin] pb-[0.5vmin] ' +
+            'underline underline-offset-[0.25vmin] -indent-[0.5vmin] ' +
+            'decoration-from-font font-bold '
           }
         >
           Methodology

@@ -1,41 +1,66 @@
-import { useContext, useEffect, useRef } from "react";
-import { BsFillBucketFill } from "react-icons/bs";
-import DarkModeSVG from "../assets/svg/DarkModeSVG";
-import LightModeSVG from "../assets/svg/LightModeSVG";
-import { coordinate, StateContext } from "../utils/ContextProvider";
-import { catchParticles } from "~/utils/particleGames";
+import { useContextSelector } from '@fluentui/react-context-selector';
+import { useCallback, useEffect, useRef } from 'react';
+import { BsFillBucketFill } from 'react-icons/bs';
 
-type propsType = {
-  children: React.ReactNode;
-};
+import DarkModeSVG from '../assets/svg/DarkModeSVG';
+import LightModeSVG from '../assets/svg/LightModeSVG';
+import { StateContext } from '../utils/ContextProvider';
+
+import { maxScore, touchDevice } from '~/utils/constants';
+import { catchParticles } from '~/utils/particleGames';
+import { coordinate } from '~/utils/types';
+
+type propsType = { children: React.ReactNode };
 
 const Background = (props: propsType) => {
-  const context = useContext(StateContext);
+  const theme = useContextSelector(StateContext, (state) => state.theme);
+  const hideCursor = useContextSelector(
+    StateContext,
+    (state) => state.hideCursor
+  );
+  const score = useContextSelector(StateContext, (state) => state.score);
+  const scoreRef = useContextSelector(StateContext, (state) => state.scoreRef);
+  const highScore = useContextSelector(
+    StateContext,
+    (state) => state.highScore
+  );
+  const setScore = useContextSelector(StateContext, (state) => state.setScore);
+  const setAndSaveHighScore = useContextSelector(
+    StateContext,
+    (state) => state.setAndSaveHighScore
+  );
+
   const canRun = useRef(true);
   // const targetFPS = 60;
   // const timestep = 1000 / targetFPS;
 
-  const mouse = useRef(document.getElementById("mouse-hitbox"));
+  const mouse = useRef(document.getElementById('mouse-hitbox'));
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
   const lastKnownPos = useRef<coordinate>({ x: 0, y: 0 });
+
+  const gameloop = useCallback(() => {
+    requestAnimationFrame(gameloop);
+    if (boundaries.current !== undefined)
+      catchParticles(
+        boundaries.current,
+        scoreRef,
+        highScore,
+        setScore,
+        setAndSaveHighScore
+      );
+  }, [highScore, scoreRef, setAndSaveHighScore, setScore]);
 
   useEffect(() => {
     gameloop();
     return () => {
       canRun.current = true;
     };
-  }, []);
+  }, [gameloop]);
 
   useEffect(() => {
-    if (context.hideCursor) initializeAt();
+    if (hideCursor) initializeAt();
     else cleanUp();
-  }, [context.hideCursor]);
-
-  function gameloop() {
-    requestAnimationFrame(gameloop);
-    if (boundaries.current !== undefined)
-      catchParticles(boundaries.current, context);
-  }
+  }, [hideCursor]);
 
   /**
    * Tracks the mouse position.
@@ -47,13 +72,13 @@ const Background = (props: propsType) => {
   async function trackMouse(event: React.MouseEvent) {
     lastKnownPos.current = { x: event.pageX, y: event.pageY };
 
-    if (!canRun.current || context.touchDevice.current) return;
+    if (!canRun.current || touchDevice) return;
     canRun.current = false;
     requestAnimationFrame(() => {
-      mouse.current = document.getElementById("mouse-hitbox");
+      mouse.current = document.getElementById('mouse-hitbox');
       if (mouse.current !== null) {
-        mouse.current.style.left = event.pageX + "px";
-        mouse.current.style.top = event.pageY + "px";
+        mouse.current.style.left = event.pageX + 'px';
+        mouse.current.style.top = event.pageY + 'px';
         boundaries.current = mouse.current.getBoundingClientRect();
       }
       canRun.current = true;
@@ -70,16 +95,16 @@ const Background = (props: propsType) => {
   async function trackTouch(event: React.TouchEvent) {
     lastKnownPos.current = {
       x: event.changedTouches[0].pageX,
-      y: event.changedTouches[0].pageY,
+      y: event.changedTouches[0].pageY
     };
 
     if (!canRun.current) return;
     canRun.current = false;
     requestAnimationFrame(() => {
-      mouse.current = document.getElementById("mouse-hitbox");
+      mouse.current = document.getElementById('mouse-hitbox');
       if (mouse.current !== null) {
-        mouse.current.style.left = event.changedTouches[0].pageX + "px";
-        mouse.current.style.top = event.changedTouches[0].pageY + "px";
+        mouse.current.style.left = event.changedTouches[0].pageX + 'px';
+        mouse.current.style.top = event.changedTouches[0].pageY + 'px';
         boundaries.current = mouse.current.getBoundingClientRect();
       }
       canRun.current = true;
@@ -91,10 +116,10 @@ const Background = (props: propsType) => {
    *  or touch location.
    */
   function initializeAt() {
-    mouse.current = document.getElementById("mouse-hitbox");
+    mouse.current = document.getElementById('mouse-hitbox');
     if (mouse.current !== null) {
-      mouse.current.style.left = lastKnownPos.current.x + "px";
-      mouse.current.style.top = lastKnownPos.current.y + "px";
+      mouse.current.style.left = lastKnownPos.current.x + 'px';
+      mouse.current.style.top = lastKnownPos.current.y + 'px';
       boundaries.current = mouse.current.getBoundingClientRect();
     }
   }
@@ -107,11 +132,11 @@ const Background = (props: propsType) => {
     mouse.current = null;
     boundaries.current = undefined;
 
-    let yetToClean = document.getElementsByClassName("dirt");
+    let yetToClean = document.getElementsByClassName('dirt');
     const totalStragglers = yetToClean.length;
     for (let i = 0; i < totalStragglers; i++) {
       yetToClean.item(0)?.remove();
-      yetToClean = document.getElementsByClassName("dirt");
+      yetToClean = document.getElementsByClassName('dirt');
     }
   }
 
@@ -119,9 +144,9 @@ const Background = (props: propsType) => {
     <div
       id="theBackground"
       className={
-        "view-width view-height flex flex-col overflow-clip " +
-        "bg-gradient-to-b from-[#F0FBFF] from-35% via-[#E7F5FF] via-65% to-[#A8B0BF] to-95% " +
-        (context.hideCursor ? "cursor-none " : "cursor-default ")
+        'view-width view-height flex flex-col overflow-clip ' +
+        'bg-gradient-to-b from-[#F0FBFF] from-35% via-[#E7F5FF] via-65% to-[#A8B0BF] to-95% ' +
+        (hideCursor ? 'cursor-none ' : 'cursor-default ')
       }
       onMouseMove={(event) => trackMouse(event)}
       onTouchMove={(event) => trackTouch(event)}
@@ -130,18 +155,14 @@ const Background = (props: propsType) => {
       <BsFillBucketFill
         id="mouse-hitbox"
         className={
-          "fixed w-fit h-fit text-[13.466vmin] sm:text-[10.125vmin] " +
-          "translate-x-[-50%] transform-gpu " +
-          (context.touchDevice.current
-            ? "translate-y-[-100%] "
-            : "translate-y-[-50%] ") +
-          (context.score < context.maxScore
-            ? "fill-slate-400 "
-            : "fill-amber-300 ") +
-          (!context.hideCursor ? "hidden " : "")
+          'fixed w-fit h-fit text-[13.466vmin] sm:text-[10.125vmin] ' +
+          'translate-x-[-50%] transform-gpu ' +
+          (touchDevice ? 'translate-y-[-100%] ' : 'translate-y-[-50%] ') +
+          (score < maxScore ? 'fill-slate-400 ' : 'fill-amber-300 ') +
+          (!hideCursor ? 'hidden ' : '')
         }
       />
-      {context.theme === "dark" ? <DarkModeSVG /> : <LightModeSVG />}
+      {theme === 'dark' ? <DarkModeSVG /> : <LightModeSVG />}
       {props.children}
     </div>
   );

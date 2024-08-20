@@ -1,8 +1,10 @@
-import { useState } from "react";
-import GameButton from "~/components/background/GameButton";
-import ProjectGrid from "~/components/projects/ProjectGrid";
+import { useState } from 'react';
 
-const Projects = () => {
+import ProjectGrid from '~/components/projects/ProjectGrid';
+
+type propsType = { withEffect: boolean };
+
+const Projects = ({ withEffect }: propsType) => {
   const [showProjectView, setShowProjectView] = useState(false);
   const [selectedProject, setSelectedProject] = useState<
     JSX.Element | undefined
@@ -10,14 +12,13 @@ const Projects = () => {
 
   return (
     <>
-      <GameButton />
-
       {showProjectView && selectedProject !== undefined ? (
         selectedProject
       ) : (
         <ProjectGrid
           setShowProjectView={setShowProjectView}
           setSelectedProject={setSelectedProject}
+          withEffect={withEffect}
         />
       )}
     </>

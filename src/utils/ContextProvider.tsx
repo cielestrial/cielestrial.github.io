@@ -1,111 +1,101 @@
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
-import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
+import { createContext } from '@fluentui/react-context-selector';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
+
+import { maxScore, season, setDebugMode } from './constants';
+import { aboutTabs, coordinate, themeType } from './types';
 
 export const StateContext = createContext({} as stateContextType);
 
-export type stateContextType = {
-  navigate: React.MutableRefObject<NavigateFunction>;
+export type stateContextType = Readonly<{
+  navigate: Readonly<React.MutableRefObject<NavigateFunction>>;
   aboutOpenedRef: React.MutableRefObject<aboutTabs>;
-  /**Displays hitbox during game mode.*/
-  debugMode: React.MutableRefObject<boolean>;
-  theme: "light" | "dark";
-  setAndSaveTheme: (selectedTheme: "light" | "dark") => void;
-  season: seasonT;
+  theme: Readonly<themeType>;
+  setAndSaveTheme: (selectedTheme: themeType) => void;
 
-  hideCursor: boolean;
+  hideCursor: Readonly<boolean>;
   setHideCursor: React.Dispatch<React.SetStateAction<boolean>>;
-  hideContent: boolean;
-  setHideContent: React.Dispatch<React.SetStateAction<boolean>>;
-  scrollable: boolean;
+  hideContent: Readonly<boolean>;
+  setHideContent: (hide: boolean) => void;
+  scrollable: Readonly<boolean>;
   setScrollable: React.Dispatch<React.SetStateAction<boolean>>;
   switchToBackground: () => void;
   switchToForeground: () => void;
 
   touchStart: React.MutableRefObject<coordinate>;
-  touchEnd: React.MutableRefObject<coordinate>;
   /**Resets touchStart variable to default values.*/
-  touchStartReset(): void;
-  deadzoneX: number;
-  deadzoneY: number;
-  vmax: number;
-  vmin: number;
+  touchStartReset: () => void;
 
-  scoreRef: React.MutableRefObject<number>;
-  score: number;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
-  highScore: number;
-  maxScore: 99999;
+  scoreRef: Readonly<React.MutableRefObject<number>>;
+  score: Readonly<number>;
+  highScore: Readonly<number>;
+  setScore: (newScore: number) => void;
   setAndSaveHighScore: (newScore: number) => void;
+}>;
 
-  clickEvent: MouseEvent;
-  leftArrowEvent: KeyboardEvent;
-  rightArrowEvent: KeyboardEvent;
-  /**Whether the current device being used is a touch device.*/
-  touchDevice: React.MutableRefObject<boolean>;
-};
-
-export type aboutTabs = "Profile" | "Bio" | "Philosophy";
-export type coordinate = { x: number; y: number };
-
-const seasons = ["Winter", "Spring", "Summer", "Fall"] as const;
-type seasonT = (typeof seasons)[number];
-
-type StateProviderProps = {
-  children: React.ReactNode;
-};
+type StateProviderProps = { children: React.ReactNode };
 
 export function StateProvider({ children }: StateProviderProps) {
   const navigate = useRef(useNavigate());
   const params = useLocation();
-  const aboutOpenedRef = useRef<aboutTabs>("Profile");
+  const aboutOpenedRef = useRef<aboutTabs>('Profile');
 
-  let season: seasonT;
-  const envSeason: any = import.meta.env.VITE_SEASON;
-  if (envSeason !== undefined && seasons.includes(envSeason))
-    season = envSeason;
-  else season = "Spring";
+  function readTheme(): themeType {
+    let localTheme: any = undefined;
+    try {
+      localTheme = window.localStorage.getItem('theme');
+      return localTheme === 'dark' ||
+        (!localTheme &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ? 'dark'
+        : 'light';
+    } catch (err) {
+      console.error('Failed to read theme.', localTheme, err);
+      return 'light';
+    }
+  }
+  const [theme, setTheme] = useState<themeType>(readTheme());
 
-  const [theme, setTheme] = useState<"light" | "dark">(
-    "light",
-    /*
-    window.localStorage.getItem("theme") === "dark" ||
-    (window.localStorage.getItem("theme") === null &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ? "dark"
-    : "light"
-    */
-  );
-
-  const debugMode = useRef(false);
   const [hideCursor, setHideCursor] = useState(false);
-  const [hideContent, setHideContent] = useState(false);
+  const [hideContent, _setHideContent] = useState(false);
   const [scrollable, setScrollable] = useState(false);
 
   const touchStart = useRef<coordinate>({ x: -1, y: -1 });
-  const touchEnd = useRef<coordinate>({ x: -1, y: -1 });
-  const deadzoneX = 0.05;
-  const deadzoneY = 0.1;
-  const vmax = Math.max(window.outerHeight, window.outerWidth);
-  const vmin = Math.min(window.outerHeight, window.outerWidth);
 
-  const maxScore = 99999;
-  const scoreRef = useRef(0);
-  const [score, setScore] = useState(0);
-  const localScore = window.localStorage.getItem("highScore");
-  const [highScore, setHighScore] = useState(
-    localScore === null ? 0 : +localScore,
+  const touchStartReset = useCallback(() => {
+    touchStart.current = { x: -1, y: -1 };
+  }, []);
+
+  const setHideContent = useCallback(
+    (hide: boolean) => {
+      _setHideContent(hide);
+      touchStartReset();
+    },
+    [touchStartReset]
   );
 
-  const clickEvent = new MouseEvent("click", { bubbles: true });
-  const leftArrowEvent = new KeyboardEvent("keydown", {
-    key: "ArrowLeft",
-    bubbles: true,
-  });
-  const rightArrowEvent = new KeyboardEvent("keydown", {
-    key: "ArrowRight",
-    bubbles: true,
-  });
-  const touchDevice = useRef(false);
+  const scoreRef = useRef(0);
+  const [score, _setScore] = useState(0);
+  const setScore = useCallback((newScore: number) => {
+    scoreRef.current = newScore;
+    _setScore(scoreRef.current);
+  }, []);
+
+  function readHighScore(): number {
+    let localHighScore: any = undefined;
+    try {
+      localHighScore = window.localStorage.getItem('highScore');
+      return Number(localHighScore ?? 0);
+    } catch (err) {
+      console.error(
+        'Failed to read and convert highScore',
+        localHighScore,
+        err
+      );
+      return 0;
+    }
+  }
+  const [highScore, setHighScore] = useState<number>(readHighScore());
 
   /**
    * Switches to game mode from portfolio mode.
@@ -115,7 +105,7 @@ export function StateProvider({ children }: StateProviderProps) {
   const switchToBackground = useCallback(() => {
     setHideCursor(true);
     setHideContent(true);
-  }, []);
+  }, [setHideContent]);
 
   /**
    * Switches away from game mode back to portfolio mode.
@@ -125,108 +115,99 @@ export function StateProvider({ children }: StateProviderProps) {
   const switchToForeground = useCallback(() => {
     setHideCursor(false);
     setHideContent(false);
-  }, []);
+  }, [setHideContent]);
 
+  const highScoreTimer = useRef<NodeJS.Timeout>();
   const setAndSaveHighScore = useCallback((newScore: number) => {
     if (newScore > maxScore) newScore = maxScore;
     setHighScore(newScore);
-    window.localStorage.setItem("highScore", "" + newScore);
+
+    clearTimeout(highScoreTimer.current);
+    highScoreTimer.current = setTimeout(() => {
+      window.localStorage.setItem('highScore', newScore.toString());
+    }, 300);
   }, []);
 
-  const setAndSaveTheme = useCallback(
-    (selectedTheme: "light" | "dark") => {
-      setTheme(selectedTheme);
-      if (selectedTheme === "dark")
-        document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
-      window.localStorage.setItem("theme", selectedTheme);
+  const themeTimer = useRef<NodeJS.Timeout>();
+  const setAndSaveTheme = useCallback((selectedTheme: themeType) => {
+    setTheme(selectedTheme);
+    if (selectedTheme === 'dark')
+      document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+
+    clearTimeout(themeTimer.current);
+    themeTimer.current = setTimeout(() => {
+      window.localStorage.setItem('theme', selectedTheme);
+    }, 300);
+  }, []);
+
+  useEffect(
+    () => () => {
+      clearTimeout(themeTimer.current);
+      clearTimeout(highScoreTimer.current);
     },
-    [theme],
+    []
   );
 
   useEffect(() => {
     // Reset hi-score
-    if (params.search.includes("?reset")) {
+    if (params.search.includes('?reset')) {
       setAndSaveHighScore(0);
-      navigate.current("/");
+      navigate.current('/');
     }
-    if (params.search.includes("?debug")) debugMode.current = true;
-    else debugMode.current = false;
+    setDebugMode(params.search.includes('?debug'));
 
     // Set theme on page load
     if (
-      window.localStorage.getItem("theme") === "dark" ||
-      (window.localStorage.getItem("theme") === null &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+      window.localStorage.getItem('theme') === 'dark' ||
+      (window.localStorage.getItem('theme') === null &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
     )
-      document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-  }, []);
+      document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [params.search, setAndSaveHighScore]);
 
   useEffect(() => {
     if (score > 0) {
       switch (season) {
-        case "Winter":
-          console.info("Plink.");
+        case 'Winter':
+          console.info('Plink.');
           break;
-        case "Spring":
-          console.info("Splat!");
+        case 'Spring':
+          console.info('Splat!');
           break;
         default:
-          console.error("Invalid season");
+          console.error('Invalid season');
       }
     }
   }, [score]);
 
-  useEffect(() => {
-    touchStartReset();
-  }, [hideContent]);
+  const value: stateContextType = {
+    navigate,
+    aboutOpenedRef,
+    theme,
 
-  function touchStartReset() {
-    touchStart.current = { x: -1, y: -1 };
-  }
+    hideCursor,
+    setHideCursor,
+    hideContent,
+    setHideContent,
+    scrollable,
+    setScrollable,
+    switchToBackground,
+    switchToForeground,
+
+    touchStart,
+    touchStartReset,
+
+    score,
+    setScore,
+    setAndSaveTheme,
+    scoreRef,
+    highScore,
+    setAndSaveHighScore
+  };
 
   return (
-    <StateContext.Provider
-      value={{
-        debugMode,
-        navigate,
-        aboutOpenedRef,
-        theme,
-        season,
-
-        hideCursor,
-        setHideCursor,
-        hideContent,
-        setHideContent,
-        scrollable,
-        setScrollable,
-        switchToBackground,
-        switchToForeground,
-
-        touchStart,
-        touchEnd,
-        touchStartReset,
-        deadzoneX,
-        deadzoneY,
-        vmax,
-        vmin,
-
-        score,
-        setScore,
-        setAndSaveTheme,
-        scoreRef,
-        highScore,
-        maxScore,
-        setAndSaveHighScore,
-
-        clickEvent,
-        leftArrowEvent,
-        rightArrowEvent,
-        touchDevice,
-      }}
-    >
-      {children}
-    </StateContext.Provider>
+    <StateContext.Provider value={value}>{children}</StateContext.Provider>
   );
 }

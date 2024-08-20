@@ -1,24 +1,27 @@
-import { useState } from "react";
-import myPic from "~/assets/general/selfie.png";
+import { useState } from 'react';
 
-const Bio = () => {
-  const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
+import myPic from '~/assets/general/selfie.png';
+
+type propsType = { effect: 'fade-in' | 'none' };
+
+const Bio = (props: propsType) => {
+  const [effect, setEffect] = useState<'fade-in' | 'none'>(props.effect);
 
   return (
     <div
       id="bioTab"
       role="tabpanel"
       className={
-        "flex flex-col px-[4vmin] space-x-0 space-y-[3vmin] m-auto " +
-        "lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text " +
-        (effect === "fade-in" ? "animate-fade-in " : "")
+        'flex flex-col px-[4vmin] space-x-0 space-y-[3vmin] m-auto ' +
+        'lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text ' +
+        (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
-      onAnimationEnd={() => setEffect("none")}
+      onAnimationEnd={() => setEffect('none')}
     >
       <img
         className={
-          "w-[48vmin] h-[48vmin] shadow-xl rounded-full ml-[5vmin] sm:mx-auto select-none " +
-          "border-solid border-black border-[1vmin] overflow-clip snap-center "
+          'w-[48vmin] h-[48vmin] shadow-xl rounded-full ml-[5vmin] sm:mx-auto select-none ' +
+          'border-solid border-black border-[1vmin] bg-black overflow-clip snap-center '
         }
         src={myPic}
         aria-label="A selfie."
@@ -28,16 +31,16 @@ const Bio = () => {
 
       <div
         className={
-          "flex flex-col bg-image " +
-          "border-[0.625vmin] border-black py-[2vmin] px-[4vmin] "
+          'flex flex-col bg-image ' +
+          'border-[0.625vmin] border-black py-[2vmin] px-[4vmin] '
         }
       >
         <p
           aria-label="About Me:"
           className={
-            "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
-            "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
-            "decoration-from-font font-bold "
+            'text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] ' +
+            'underline underline-offset-[0.25vmin] -indent-[0.5vmin] ' +
+            'decoration-from-font font-bold '
           }
         >
           About Me

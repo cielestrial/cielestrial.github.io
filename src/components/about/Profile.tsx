@@ -1,33 +1,36 @@
-import { useState } from "react";
-import { SiCodechef, SiGithub, SiLinkedin } from "react-icons/si";
-import myLogo from "~/assets/general/my-logo.png";
-import { transitionClass } from "~/utils/gradientSelector";
-import { skills } from "~/utils/skillsList";
+import { useState } from 'react';
+import { SiCodechef, SiGithub, SiLinkedin } from 'react-icons/si';
 
-const Profile = () => {
-  const [effect, setEffect] = useState<"fade-in" | "none">("fade-in");
+import myLogo from '~/assets/general/my-logo.png';
+import { transitionClass } from '~/utils/gradientSelector';
+import { skills } from '~/utils/skillsList';
+
+type propsType = { effect: 'fade-in' | 'none' };
+
+const Profile = (props: propsType) => {
+  const [effect, setEffect] = useState<'fade-in' | 'none'>(props.effect);
   const iconLink =
-    "text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end " +
-    "hover:text-sky-500 active:text-sky-600 " +
+    'text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end ' +
+    'hover:text-sky-500 active:text-sky-600 ' +
     transitionClass;
-  const height = "h-[92vmin] sm:h-[82vmin] lg:h-[48vmin] ";
+  const height = 'h-[92vmin] sm:h-[82vmin] lg:h-[48vmin] ';
 
   return (
     <div
       id="profileTab"
       role="tabpanel"
       className={
-        "flex h-fit px-[4vmin] w-max mx-auto gap-x-[4vmin] " +
-        "select-text justify-center " +
-        (effect === "fade-in" ? "animate-fade-in " : "")
+        'flex h-fit px-[4vmin] w-max m-auto gap-x-[4vmin] ' +
+        'select-text justify-center ' +
+        (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
-      onAnimationEnd={() => setEffect("none")}
+      onAnimationEnd={() => setEffect('none')}
     >
-      <div className={"flex flex-col gap-[4vmin] lg:flex-row " + height}>
+      <div className={'flex flex-col gap-[4vmin] lg:flex-row ' + height}>
         <img
           className={
-            "border-solid border-black border-[1vmin] rounded-full mx-auto " +
-            "w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip select-none "
+            'border-solid border-black border-[1vmin] bg-black rounded-full mx-auto ' +
+            'w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip select-none '
           }
           src={myLogo}
           aria-label="My Logo."
@@ -37,17 +40,17 @@ const Profile = () => {
 
         <div
           className={
-            "flex flex-col py-[2vmin] px-[4vmin] bg-image " +
-            "border-[0.625vmin] border-black gap-y-[.5vmin] " +
-            "snap-center snap-always h-[40vmin] sm:h-[35vmin] lg:h-[48vmin] "
+            'flex flex-col py-[2vmin] px-[4vmin] bg-image ' +
+            'border-[0.625vmin] border-black gap-y-[.5vmin] ' +
+            'snap-center snap-always h-[40vmin] sm:h-[35vmin] lg:h-[48vmin] '
           }
         >
           <p
             aria-label="Name & Links:"
             className={
-              "text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
-              "underline underline-offset-[0.25vmin] -indent-[0.5vmin] " +
-              "decoration-from-font font-bold "
+              'text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] ' +
+              'underline underline-offset-[0.25vmin] -indent-[0.5vmin] ' +
+              'decoration-from-font font-bold '
             }
           >
             Names & Links
@@ -122,26 +125,24 @@ const Profile = () => {
 
       <div
         className={
-          "snap-center py-[2vmin] pl-[3vmin] w-fit " +
-          "border-[0.625vmin] border-black bg-image " +
+          'snap-center py-[2vmin] pl-[3vmin] w-fit ' +
+          'border-[0.625vmin] border-black bg-image ' +
           height
         }
       >
         <p
           aria-label="Skills:"
           className={
-            "w-fit h-fit text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] " +
-            "underline underline-offset-[0.25vmin] indent-[1vmin] " +
-            "decoration-from-font font-bold "
+            'w-fit h-fit text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] ' +
+            'underline underline-offset-[0.25vmin] indent-[1vmin] ' +
+            'decoration-from-font font-bold '
           }
         >
           Skills
         </p>
 
         <div className="w-fit h-full">
-          <ul
-            className={"flex flex-col flex-wrap h-[90%] w-[75vmin] list-none "}
-          >
+          <ul className="flex flex-col flex-wrap h-[90%] w-[75vmin] list-none ">
             {skills.map((skill, i) => (
               <li key={i}>
                 <span aria-label={`${skill},`}>&bull; {skill}</span>

@@ -1,18 +1,16 @@
-import WinterWonderSVG from "./WinterWonderSVG";
-import SpringRainSVG from "./SpringRainSVG";
-import { useContext } from "react";
-import { StateContext } from "~/utils/ContextProvider";
+import SpringRainSVG from './SpringRainSVG';
+import WinterWonderSVG from './WinterWonderSVG';
+
+import { season } from '~/utils/constants';
 
 const LightModeSVG = () => {
-  const context = useContext(StateContext);
-
-  switch (context.season) {
-    case "Winter":
+  switch (season) {
+    case 'Winter':
       return <WinterWonderSVG />;
-    case "Spring":
+    case 'Spring':
       return <SpringRainSVG />;
     default:
-      console.error("Invalid season");
+      console.error('Invalid season');
       return null;
   }
 };

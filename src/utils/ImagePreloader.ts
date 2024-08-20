@@ -1,11 +1,11 @@
 // About Section
-import myLogo from "~/assets/general/my-logo.png";
-import myPic from "~/assets/general/selfie.png";
+import myLogo from '~/assets/general/my-logo.png';
+import myPic from '~/assets/general/selfie.png';
 // Projects section
-import junkyard from "~/assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.jpg";
-import rightdrive from "~/assets/rightdrive-dev-test/rightdrive-dev-test_page1.jpg";
-import wbtracker from "~/assets/wbtracker/wbtracker_home.png";
-import yspm from "~/assets/yspm/yspm_landing_page_light_mode.png";
+import junkyard from '~/assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.jpg';
+import rightdrive from '~/assets/rightdrive-dev-test/rightdrive-dev-test_page1.jpg';
+import wbtracker from '~/assets/wbtracker/wbtracker_home.png';
+import yspm from '~/assets/yspm/yspm_landing_page_light_mode.png';
 
 export function preloadImages() {
   const images = [myPic, myLogo, junkyard, rightdrive, yspm, wbtracker];

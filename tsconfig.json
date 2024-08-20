@@ -29,6 +29,7 @@
   },
   "include": [
     "src",
+    "tailwind.config.cjs",
     "vite.config.ts"
   ]
 }

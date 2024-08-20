@@ -54,7 +54,8 @@ export function StateProvider({ children }: StateProviderProps) {
       return 'light';
     }
   }
-  const [theme, setTheme] = useState<themeType>(readTheme());
+  // read theme
+  const [theme, setTheme] = useState<themeType>('light');
 
   const [hideCursor, setHideCursor] = useState(false);
   const [hideContent, _setHideContent] = useState(false);
@@ -156,15 +157,6 @@ export function StateProvider({ children }: StateProviderProps) {
       navigate.current('/');
     }
     setDebugMode(params.search.includes('?debug'));
-
-    // Set theme on page load
-    if (
-      window.localStorage.getItem('theme') === 'dark' ||
-      (window.localStorage.getItem('theme') === null &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    )
-      document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
   }, [params.search, setAndSaveHighScore]);
 
   useEffect(() => {

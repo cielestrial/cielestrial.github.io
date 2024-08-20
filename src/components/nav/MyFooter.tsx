@@ -47,8 +47,7 @@ const MyFooter = ({ opened }: propsType) => {
     <footer
       id="footer"
       className={
-        'h-fit w-full select-none pt-[0.6em] pb-[0.4em] px-[4vmin] ' +
-        'z-10 transition duration-500 ease-custom-ease-in-out ' +
+        'h-fit w-full select-none pt-[0.6em] pb-[0.4em] px-[4vmin] z-10 ' +
         seasonBg
       }
     >

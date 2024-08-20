@@ -1,5 +1,5 @@
 import { useContextSelector } from '@fluentui/react-context-selector';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback } from 'react';
 import { BsCloudSun, BsFillMoonStarsFill } from 'react-icons/bs';
 
 import { StateContext } from '~/utils/ContextProvider';
@@ -13,15 +13,12 @@ const MySwitch = ({ visible = true }: propsType) => {
     StateContext,
     (state) => state.setAndSaveTheme
   );
-  const [checked, setChecked] = useState(theme === 'dark');
+  const checked = theme === 'dark';
 
   const toggle = useCallback(() => {
-    setChecked((prev) => {
-      if (!prev) setAndSaveTheme('dark');
-      else setAndSaveTheme('light');
-      return !prev;
-    });
-  }, [setAndSaveTheme]);
+    if (checked) setAndSaveTheme('light');
+    else setAndSaveTheme('dark');
+  }, [checked, setAndSaveTheme]);
 
   return (
     <button

@@ -7,6 +7,10 @@
 [ToDo]
 
 - Update accessibility for new layout
+- night theme & read theme in context provider
+- summer & spring theme
+- night game
+- summer game
 
 [Upcoming]
 

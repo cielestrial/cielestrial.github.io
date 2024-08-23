@@ -7,11 +7,11 @@ import {
 } from 'react-icons/bs';
 
 import { StateContext } from '~/utils/ContextProvider';
-import { clickEvent } from '~/utils/constants';
+import { clickEvent } from '~/utils/dataConstants';
 import { transitionClass } from '~/utils/gradientSelector';
 import { trapScroll } from '~/utils/helperFunctions';
 
-export type projectType = {
+export type ProjectType = {
   title: string;
   technologies: string[];
   description: string[];
@@ -19,7 +19,10 @@ export type projectType = {
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ProjectView = ({ setShowProjectView, ...props }: projectType) => {
+export default function ProjectView({
+  setShowProjectView,
+  ...project
+}: ProjectType) {
   const touchStartReset = useContextSelector(
     StateContext,
     (state) => state.touchStartReset
@@ -109,23 +112,23 @@ const ProjectView = ({ setShowProjectView, ...props }: projectType) => {
           onWheel={(event) => trapScroll(event, scrollBoundHit)}
         >
           <p
-            aria-label={props.title + ':'}
+            aria-label={project.title + ':'}
             className={
               'text-[3.375vmin] ' +
               'underline underline-offset-[0.25vmin] text-center ' +
               'decoration-from-font font-bold '
             }
           >
-            {props.title}
+            {project.title}
           </p>
           <ul className="flex flex-wrap gap-x-[3vmin] text-[3vmin] list-none ">
-            {props.technologies.map((tech, i) => (
+            {project.technologies.map((tech, i) => (
               <li key={i}>
                 <span>&bull; {tech}</span>
               </li>
             ))}
           </ul>
-          {props.description.map((segment, i) => (
+          {project.description.map((segment, i) => (
             <p key={i} className="text-[3vmin] indent-[4vmin] ">
               - {segment}
             </p>
@@ -139,7 +142,7 @@ const ProjectView = ({ setShowProjectView, ...props }: projectType) => {
     <div
       id="projectView"
       role="dialog"
-      aria-label={props.title}
+      aria-label={project.title}
       className="flex flex-col mx-auto w-[85vmin] h-full py-8 "
     >
       <div className="w-full h-fit ">
@@ -182,7 +185,7 @@ const ProjectView = ({ setShowProjectView, ...props }: projectType) => {
           }
         >
           <a
-            href={props.link}
+            href={project.link}
             target="_blank"
             rel="noopener"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -192,7 +195,7 @@ const ProjectView = ({ setShowProjectView, ...props }: projectType) => {
               transitionClass
             }
           >
-            {props.link}
+            {project.link}
           </a>
         </div>
       </div>
@@ -240,8 +243,8 @@ const ProjectView = ({ setShowProjectView, ...props }: projectType) => {
         >
           <iframe
             className="shadow-md w-full h-full "
-            src={props.link}
-            title={props.title}
+            src={project.link}
+            title={project.title}
             loading="eager"
             sandbox="allow-same-origin allow-scripts"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -307,6 +310,4 @@ const ProjectView = ({ setShowProjectView, ...props }: projectType) => {
       </div>
     </div>
   );
-};
-
-export default ProjectView;
+}

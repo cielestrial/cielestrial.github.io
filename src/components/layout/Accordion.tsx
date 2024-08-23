@@ -2,21 +2,17 @@ import { useContextSelector } from '@fluentui/react-context-selector';
 import { useEffect, useRef, useState } from 'react';
 
 import { StateContext } from '~/utils/ContextProvider';
-import { clickEvent, season } from '~/utils/constants';
-import {
-  displaySpringGradient,
-  displayWinterGradient
-} from '~/utils/gradientSelector';
-import { getContent } from '~/utils/helperFunctions';
-import { sections } from '~/utils/types';
+import { getSection } from '~/utils/SectionsManager';
+import { clickEvent, season } from '~/utils/dataConstants';
+import { SectionsType } from '~/utils/dataTypes';
 
-type propsType = {
-  label: sections;
-  opened: sections;
-  setOpened: (section: sections) => void;
+type PropsType = {
+  label: SectionsType;
+  opened: SectionsType;
+  setOpened: (section: SectionsType) => void;
 };
 
-const Accordion = (props: propsType) => {
+export default function Accordion({ label, opened, setOpened }: PropsType) {
   const score = useContextSelector(StateContext, (state) => state.score);
   const highScore = useContextSelector(
     StateContext,
@@ -36,19 +32,18 @@ const Accordion = (props: propsType) => {
     (state) => state.setScrollable
   );
 
-  const openedRef = useRef(props.opened);
+  const openedRef = useRef(opened);
   const [effect, setEffect] = useState<
     'slide-up' | 'fade-in' | 'half-fade' | 'none'
   >('none');
 
   useEffect(() => {
     setScrollable(false);
-    if (props.label === 'Home') setEffect('none');
-    else if (props.label === 'About' || props.label === 'Contact')
-      setEffect('slide-up');
+    if (label === 'Home') setEffect('none');
+    else if (label === 'About' || label === 'Contact') setEffect('slide-up');
     else setEffect('fade-in');
-    openedRef.current = props.opened;
-  }, [props.label, props.opened, setScrollable]);
+    openedRef.current = opened;
+  }, [label, opened, setScrollable]);
 
   /**
    * Sets focus to a nearby element when a section is opened.
@@ -82,10 +77,10 @@ const Accordion = (props: propsType) => {
 
     switch (season) {
       case 'Winter':
-        gradient = displayWinterGradient(props.label, props.opened);
+        gradient = ''; // displayWinterGradient(label, opened);
         break;
       case 'Spring':
-        gradient = displaySpringGradient(props.label, props.opened);
+        gradient = ''; // displaySpringGradient(label, opened);
         break;
       default:
         console.error('Invalid season');
@@ -99,14 +94,14 @@ const Accordion = (props: propsType) => {
    * @returns JSX Element, label to be displayed.
    */
   function displayLabel() {
-    if (props.label === props.opened) return null;
+    if (label === opened) return null;
     const gradient = displayGradient();
     return (
       <div
-        id={props.label}
+        id={label}
         role="button"
-        aria-expanded={props.opened === props.label}
-        aria-controls={props.label + 'Content'}
+        aria-expanded={opened === label}
+        aria-controls={label + 'Content'}
         tabIndex={0}
         className={
           'view-width font-bold drop-shadow-lg ' +
@@ -119,10 +114,10 @@ const Accordion = (props: propsType) => {
         }}
         onClick={(event) => {
           event.currentTarget.blur();
-          props.setOpened(props.label);
+          setOpened(label);
         }}
       >
-        <h1 className="m-auto ">{props.label}</h1>
+        <h1 className="m-auto ">{label}</h1>
       </div>
     );
   }
@@ -133,12 +128,12 @@ const Accordion = (props: propsType) => {
    * @returns JSX Element, content to be displayed.
    */
   function displayContent() {
-    if (props.opened === props.label)
+    if (opened === label)
       return (
         <div
-          id={props.label + 'Content'}
+          id={label + 'Content'}
           role="region"
-          aria-label={props.label}
+          aria-label={label}
           tabIndex={-1}
           className={
             'flex h-3/4 flex-col flex-nowrap scroll-smooth ' +
@@ -152,7 +147,7 @@ const Accordion = (props: propsType) => {
           }}
           onAnimationEnd={() => {
             setEffect('none');
-            if (props.opened !== 'About' && props.opened !== 'Projects')
+            if (opened !== 'About' && opened !== 'Projects')
               setScrollable(true);
           }}
         >
@@ -169,7 +164,7 @@ const Accordion = (props: propsType) => {
             <p className="inline text-slate-600 ">Score:&#32;</p>
             <p className="inline text-sky-500 ">{score}</p>
           </div>
-          {getContent(props.label, true)}
+          {getSection(label, true)}
         </div>
       );
     else return null;
@@ -181,6 +176,4 @@ const Accordion = (props: propsType) => {
       {displayContent()}
     </>
   );
-};
-
-export default Accordion;
+}

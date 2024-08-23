@@ -1,4 +1,4 @@
-const SpringRainSVG = () => {
+export default function SpringRainSvg() {
   return (
     <div
       aria-hidden="true"
@@ -166,6 +166,4 @@ const SpringRainSVG = () => {
       </svg>
     </div>
   );
-};
-
-export default SpringRainSVG;
+}

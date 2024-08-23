@@ -1,26 +1,26 @@
 import { useState } from 'react';
 
-import { season } from '~/utils/constants';
+import { season } from '~/utils/dataConstants';
 
-type propsType = { withEffect: boolean };
+function getSeasonBg() {
+  switch (season) {
+    case 'Winter':
+      return 'bg-gradient-to-b from-[#E1F5FF]/95 from-60% via-[#F0FBFF]/95 to-[#F0FBFF]/25 ';
+    case 'Spring':
+      return 'bg-gradient-to-bl from-amber-200 to-slate-200 ';
+    default:
+      console.error('Invalid season');
+      return '';
+  }
+}
+const seasonBG = getSeasonBg();
 
-const Home = (props: propsType) => {
+type PropsType = { withEffect: boolean };
+
+export default function Home(props: PropsType) {
   const [effect, setEffect] = useState<'fade-in' | 'none'>(
     props.withEffect ? 'fade-in' : 'none'
   );
-  let seasonBG = '';
-
-  switch (season) {
-    case 'Winter':
-      seasonBG =
-        'bg-gradient-to-b from-[#E1F5FF]/95 from-60% via-[#F0FBFF]/95 to-[#F0FBFF]/25 ';
-      break;
-    case 'Spring':
-      seasonBG = 'bg-gradient-to-bl from-amber-200 to-slate-200 ';
-      break;
-    default:
-      console.error('Invalid season');
-  }
 
   return (
     <div
@@ -38,8 +38,8 @@ const Home = (props: propsType) => {
         <div
           id="GraceHopperQuote"
           className={
-            'w-fit h-fit p-[8vmin] place-self-center font-bold focus:outline-none ' +
-            'title text-start text-[6vmin] tracking-wider text-[#4d5258] -indent-[3vmin] '
+            'w-fit h-fit p-[8vmin] font-bold title tracking-wider ' +
+            'text-[6vmin] text-[#4d5258] -indent-[3vmin] '
           }
         >
           <blockquote className="quote ">
@@ -61,6 +61,4 @@ const Home = (props: propsType) => {
       </div>
     </div>
   );
-};
-
-export default Home;
+}

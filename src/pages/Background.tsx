@@ -2,17 +2,17 @@ import { useContextSelector } from '@fluentui/react-context-selector';
 import { useCallback, useEffect, useRef } from 'react';
 import { BsFillBucketFill } from 'react-icons/bs';
 
-import DarkModeSVG from '../assets/svg/DarkModeSVG';
-import LightModeSVG from '../assets/svg/LightModeSVG';
+import DarkModeSvg from '../assets/svg/DarkModeSvg';
+import LightModeSvg from '../assets/svg/LightModeSvg';
 import { StateContext } from '../utils/ContextProvider';
 
-import { maxScore, touchDevice } from '~/utils/constants';
+import { maxScore, touchDevice } from '~/utils/dataConstants';
+import { CoordinateType } from '~/utils/dataTypes';
 import { catchParticles } from '~/utils/particleGames';
-import { coordinate } from '~/utils/types';
 
-type propsType = { children: React.ReactNode };
+type PropsType = { children: React.ReactNode };
 
-const Background = (props: propsType) => {
+export default function Background({ children }: PropsType) {
   const theme = useContextSelector(StateContext, (state) => state.theme);
   const hideCursor = useContextSelector(
     StateContext,
@@ -36,7 +36,7 @@ const Background = (props: propsType) => {
 
   const mouse = useRef(document.getElementById('mouse-hitbox'));
   const boundaries = useRef(mouse.current?.getBoundingClientRect());
-  const lastKnownPos = useRef<coordinate>({ x: 0, y: 0 });
+  const lastKnownPos = useRef<CoordinateType>({ x: 0, y: 0 });
 
   const gameloop = useCallback(() => {
     requestAnimationFrame(gameloop);
@@ -49,18 +49,6 @@ const Background = (props: propsType) => {
         setAndSaveHighScore
       );
   }, [highScore, scoreRef, setAndSaveHighScore, setScore]);
-
-  useEffect(() => {
-    gameloop();
-    return () => {
-      canRun.current = true;
-    };
-  }, [gameloop]);
-
-  useEffect(() => {
-    if (hideCursor) initializeAt();
-    else cleanUp();
-  }, [hideCursor]);
 
   /**
    * Tracks the mouse position.
@@ -115,20 +103,20 @@ const Background = (props: propsType) => {
    * Initializes the bucket at the last known mouse position
    *  or touch location.
    */
-  function initializeAt() {
+  const initializeAt = useCallback(() => {
     mouse.current = document.getElementById('mouse-hitbox');
     if (mouse.current !== null) {
       mouse.current.style.left = lastKnownPos.current.x + 'px';
       mouse.current.style.top = lastKnownPos.current.y + 'px';
       boundaries.current = mouse.current.getBoundingClientRect();
     }
-  }
+  }, []);
 
   /**
    * Removes all visual effects and leftovers from the game mode,
    *  when switching back to the portfolio mode.
    */
-  function cleanUp() {
+  const cleanUp = useCallback(() => {
     mouse.current = null;
     boundaries.current = undefined;
 
@@ -138,7 +126,19 @@ const Background = (props: propsType) => {
       yetToClean.item(0)?.remove();
       yetToClean = document.getElementsByClassName('dirt');
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    gameloop();
+    return () => {
+      canRun.current = true;
+    };
+  }, [gameloop]);
+
+  useEffect(() => {
+    if (hideCursor) initializeAt();
+    else cleanUp();
+  }, [cleanUp, hideCursor, initializeAt]);
 
   return (
     <div
@@ -162,10 +162,8 @@ const Background = (props: propsType) => {
           (!hideCursor ? 'hidden ' : '')
         }
       />
-      {theme === 'dark' ? <DarkModeSVG /> : <LightModeSVG />}
-      {props.children}
+      {theme === 'dark' ? <DarkModeSvg /> : <LightModeSvg />}
+      {children}
     </div>
   );
-};
-
-export default Background;
+}

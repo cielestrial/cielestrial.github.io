@@ -1,5 +1,5 @@
-import { debugMode, maxScore } from './constants';
-import { coordinate } from './types';
+import { debugMode, maxScore } from './dataConstants';
+import { CoordinateType } from './dataTypes';
 
 /**
  * Amount of points gained for catching a particle.
@@ -48,11 +48,11 @@ async function checkCollision(
 ) {
   const particle = particleElement.getBoundingClientRect();
   if (particleElement.style.opacity === '1') {
-    const mouseBottomCenter: coordinate = {
+    const mouseBottomCenter: CoordinateType = {
       x: mouse.x + mouse.width / 2,
       y: mouse.y + mouse.height
     };
-    const particleBottomCenter: coordinate = {
+    const particleBottomCenter: CoordinateType = {
       x: particle.x + particle.width / 2,
       y: particle.y + particle.height
     };
@@ -115,7 +115,7 @@ function within(point: number, lowerBound: number, upperBound: number) {
  * Displays a visual effect when points are gained.
  * @param coord The coordinates the effect will be displayed at.
  */
-function displayPoints(coord: coordinate) {
+function displayPoints(coord: CoordinateType) {
   const points = document.createElement('div');
 
   points.className =
@@ -156,7 +156,7 @@ function displayPoints(coord: coordinate) {
  * @param w The width of the hitbox.
  * @param h The height of the hitbox.
  */
-function displayHitbox(coord: coordinate, w: number, h: number) {
+function displayHitbox(coord: CoordinateType, w: number, h: number) {
   let hitbox = document.getElementById('hitbox');
   if (hitbox !== null) hitbox.remove();
 
@@ -174,7 +174,7 @@ function displayHitbox(coord: coordinate, w: number, h: number) {
   document.getElementById('theBackground')?.appendChild(hitbox);
 }
 
-function displayFocalPoint(coord: coordinate) {
+function displayFocalPoint(coord: CoordinateType) {
   let focalPoint = document.getElementById('focalPoint');
   if (focalPoint !== null) focalPoint.remove();
 

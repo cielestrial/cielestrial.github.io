@@ -1,7 +1,7 @@
 import { FaRegSnowflake } from 'react-icons/fa';
 import { TbSnowflake } from 'react-icons/tb';
 
-const WinterWonderSVG = () => {
+export default function WinterWonderSvg() {
   return (
     <div className="view-width view-height flex flex-row justify-around items-start ">
       <div
@@ -165,6 +165,4 @@ const WinterWonderSVG = () => {
       </div>
     </div>
   );
-};
-
-export default WinterWonderSVG;
+}

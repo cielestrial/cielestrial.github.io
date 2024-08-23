@@ -3,6 +3,7 @@
 - Switched from Accordion layout to Carousel layout
 - Switch from useContext to use-context-selector
 - Implement toggle switch from YSPM
+- Refactor code
 
 [ToDo]
 
@@ -14,7 +15,7 @@
 
 [Upcoming]
 
-- Get cielestrial.com
+- Get domain name
 
 [External]
 

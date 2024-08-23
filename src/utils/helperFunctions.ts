@@ -1,11 +1,5 @@
-import { clickEvent } from './constants';
-import { aboutTabs, sections } from './types';
-
-import About from '~/components/layout/sections/About';
-import Contact from '~/components/layout/sections/Contact';
-import Home from '~/components/layout/sections/Home';
-import Projects from '~/components/layout/sections/Projects';
-import Testimonials from '~/components/layout/sections/Testimonials';
+import { clickEvent } from './dataConstants';
+import { AboutTabsType, SectionsType } from './dataTypes';
 
 /**
  * Turns the array into a circle buffer.
@@ -18,22 +12,6 @@ export function circularize(i: number, length: number): number {
   else return i;
 }
 
-export function getContent(section: sections | null, withEffect: boolean) {
-  switch (section) {
-    case 'Contact':
-      return <Contact />;
-    case 'Testimonials':
-      return <Testimonials />;
-    case 'Projects':
-      return <Projects withEffect={withEffect} />;
-    case 'About':
-      return <About withEffect={withEffect} />;
-    case 'Home':
-    default:
-      return <Home withEffect={withEffect} />;
-  }
-}
-
 /**
  * Adds keyboard interaction for project view.
  * @param event Keyboard event.
@@ -41,7 +19,7 @@ export function getContent(section: sections | null, withEffect: boolean) {
  */
 export function exitProjectView(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<sections>
+  openedRef: React.MutableRefObject<SectionsType>
 ) {
   if (event.key === 'Escape') {
     event.stopPropagation(); // Prevents modal not found error.
@@ -58,7 +36,7 @@ export function exitProjectView(
  */
 export function trapFocus(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<sections>
+  openedRef: React.MutableRefObject<SectionsType>
 ) {
   if (event.shiftKey && event.key === 'Tab') {
     if (openedRef.current !== 'Home') {
@@ -127,8 +105,8 @@ export function trapScroll(
  */
 export function navigateSections(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<sections>,
-  setOpened: (section: sections) => void
+  openedRef: React.MutableRefObject<SectionsType>,
+  setOpened: (section: SectionsType) => void
 ) {
   switch (openedRef.current) {
     case 'Home':
@@ -177,8 +155,8 @@ export function navigateSections(
  */
 export function navigateAboutTabs(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<sections>,
-  aboutOpenedRef: React.MutableRefObject<aboutTabs>
+  openedRef: React.MutableRefObject<SectionsType>,
+  aboutOpenedRef: React.MutableRefObject<AboutTabsType>
 ) {
   if (openedRef.current === 'About') {
     switch (aboutOpenedRef.current) {

@@ -30,8 +30,9 @@ export const testimonies: testimonyType[] = [
   }
 ];
 
-const Testimonials = () => {
-  const showTemplate = false;
+type PropsType = { showTemplate: boolean };
+
+export default function Testimonials({ showTemplate }: PropsType) {
   const [index, setIndex] = useState(0);
   const timer = useRef<NodeJS.Timeout>();
   const waitTime = 5000;
@@ -84,6 +85,4 @@ const Testimonials = () => {
       )}
     </div>
   );
-};
-
-export default Testimonials;
+}

@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import myPic from '~/assets/general/selfie.png';
 
-type propsType = { effect: 'fade-in' | 'none' };
+type PropsType = { initialEffect: 'fade-in' | 'none' };
 
-const Bio = (props: propsType) => {
-  const [effect, setEffect] = useState<'fade-in' | 'none'>(props.effect);
+export default function Bio({ initialEffect }: PropsType) {
+  const [effect, setEffect] = useState<'fade-in' | 'none'>(initialEffect);
 
   return (
     <div
@@ -77,6 +77,4 @@ const Bio = (props: propsType) => {
       </div>
     </div>
   );
-};
-
-export default Bio;
+}

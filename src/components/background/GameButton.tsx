@@ -4,7 +4,7 @@ import { BsPlayFill, BsStopFill } from 'react-icons/bs';
 import { StateContext } from '~/utils/ContextProvider';
 import { transitionClass } from '~/utils/gradientSelector';
 
-const GameButton = () => {
+export default function GameButton() {
   const hideContent = useContextSelector(
     StateContext,
     (state) => state.hideContent
@@ -44,6 +44,4 @@ const GameButton = () => {
       )}
     </button>
   );
-};
-
-export default GameButton;
+}

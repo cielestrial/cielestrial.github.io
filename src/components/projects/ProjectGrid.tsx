@@ -7,7 +7,7 @@ import { StateContext } from '~/utils/ContextProvider';
 import { trapScroll } from '~/utils/helperFunctions';
 import { projects } from '~/utils/projectList';
 
-type propsType = {
+type PropsType = {
   setShowProjectView: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedProject: React.Dispatch<
     React.SetStateAction<JSX.Element | undefined>
@@ -15,7 +15,11 @@ type propsType = {
   withEffect: boolean;
 };
 
-const ProjectGrid = (props: propsType) => {
+export default function ProjectGrid({
+  setSelectedProject,
+  setShowProjectView,
+  withEffect
+}: PropsType) {
   const touchStartReset = useContextSelector(
     StateContext,
     (state) => state.touchStartReset
@@ -33,7 +37,7 @@ const ProjectGrid = (props: propsType) => {
           (effect === 'fade-out' ? 'animate-fade-out ' : '')
         }
         onAnimationEnd={() => {
-          props.setShowProjectView(true);
+          setShowProjectView(true);
           setEffect('none');
         }}
       >
@@ -73,15 +77,13 @@ const ProjectGrid = (props: propsType) => {
               status={project.status}
               order={i}
               setGridEffect={setEffect}
-              setShowProjectView={props.setShowProjectView}
-              setSelectedProject={props.setSelectedProject}
-              withEffect={props.withEffect}
+              setShowProjectView={setShowProjectView}
+              setSelectedProject={setSelectedProject}
+              withEffect={withEffect}
             />
           ))}
         </div>
       </div>
     </div>
   );
-};
-
-export default ProjectGrid;
+}

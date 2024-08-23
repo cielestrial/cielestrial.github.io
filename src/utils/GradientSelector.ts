@@ -1,8 +1,8 @@
-import { sections } from './types';
+import { SectionsType } from './dataTypes';
 
 export const transitionClass = 'transition duration-75 custom-ease-out ';
 
-export function getWinterNavGradient(opened: sections) {
+export function getWinterNavGradient(opened: SectionsType) {
   let gradient = '';
   switch (opened) {
     case 'Home':
@@ -27,7 +27,7 @@ export function getWinterNavGradient(opened: sections) {
   return gradient;
 }
 
-export function getWinterFootGradient(opened: sections) {
+export function getWinterFootGradient(opened: SectionsType) {
   let gradient = '';
   switch (opened) {
     case 'Home':
@@ -47,8 +47,10 @@ export function getWinterFootGradient(opened: sections) {
  * @param label current section label
  * @param opened currently opened section
  * @returns string, tailwind gradient
- */
-export function displayWinterGradient(label: sections, opened: sections) {
+ * 
+export function displayWinterGradient(
+  opened: SectionsType
+) {
   let gradient = '';
   switch (label) {
     case 'Home':
@@ -82,14 +84,15 @@ export function displayWinterGradient(label: sections, opened: sections) {
   }
   return gradient;
 }
+  */
 
 /**
  * Display Spring gradient colors
  * @param label current section label
  * @param opened currently opened section
  * @returns string, tailwind gradient
- */
-export function displaySpringGradient(label: sections, opened: sections) {
+ 
+export function displaySpringGradient(label: SectionsType, opened: SectionsType) {
   let gradient = '';
   switch (label) {
     case 'Home':
@@ -122,3 +125,4 @@ export function displaySpringGradient(label: sections, opened: sections) {
   }
   return gradient;
 }
+*/

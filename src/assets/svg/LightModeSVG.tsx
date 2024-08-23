@@ -1,18 +1,16 @@
-import SpringRainSVG from './SpringRainSVG';
-import WinterWonderSVG from './WinterWonderSVG';
+import SpringRainSvg from './SpringRainSvg';
+import WinterWonderSvg from './WinterWonderSvg';
 
-import { season } from '~/utils/constants';
+import { season } from '~/utils/dataConstants';
 
-const LightModeSVG = () => {
+export default function LightModeSvg() {
   switch (season) {
     case 'Winter':
-      return <WinterWonderSVG />;
+      return <WinterWonderSvg />;
     case 'Spring':
-      return <SpringRainSVG />;
+      return <SpringRainSvg />;
     default:
       console.error('Invalid season');
       return null;
   }
-};
-
-export default LightModeSVG;
+}

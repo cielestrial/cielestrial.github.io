@@ -2,16 +2,14 @@ import { createContext } from '@fluentui/react-context-selector';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 
-import { maxScore, season, setDebugMode } from './constants';
-import { aboutTabs, coordinate, themeType } from './types';
+import { maxScore, season, setDebugMode } from './dataConstants';
+import { AboutTabsType, CoordinateType, ThemeType } from './dataTypes';
 
-export const StateContext = createContext({} as stateContextType);
-
-export type stateContextType = Readonly<{
+type StateContextType = Readonly<{
   navigate: Readonly<React.MutableRefObject<NavigateFunction>>;
-  aboutOpenedRef: React.MutableRefObject<aboutTabs>;
-  theme: Readonly<themeType>;
-  setAndSaveTheme: (selectedTheme: themeType) => void;
+  aboutOpenedRef: React.MutableRefObject<AboutTabsType>;
+  theme: Readonly<ThemeType>;
+  setAndSaveTheme: (selectedTheme: ThemeType) => void;
 
   hideCursor: Readonly<boolean>;
   setHideCursor: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +20,7 @@ export type stateContextType = Readonly<{
   switchToBackground: () => void;
   switchToForeground: () => void;
 
-  touchStart: React.MutableRefObject<coordinate>;
+  touchStart: React.MutableRefObject<CoordinateType>;
   /**Resets touchStart variable to default values.*/
   touchStartReset: () => void;
 
@@ -33,14 +31,16 @@ export type stateContextType = Readonly<{
   setAndSaveHighScore: (newScore: number) => void;
 }>;
 
+export const StateContext = createContext({} as StateContextType);
+
 type StateProviderProps = { children: React.ReactNode };
 
 export function StateProvider({ children }: StateProviderProps) {
   const navigate = useRef(useNavigate());
   const params = useLocation();
-  const aboutOpenedRef = useRef<aboutTabs>('Profile');
+  const aboutOpenedRef = useRef<AboutTabsType>('Profile');
 
-  function readTheme(): themeType {
+  function readTheme(): ThemeType {
     let localTheme: any = undefined;
     try {
       localTheme = window.localStorage.getItem('theme');
@@ -55,13 +55,13 @@ export function StateProvider({ children }: StateProviderProps) {
     }
   }
   // read theme
-  const [theme, setTheme] = useState<themeType>('light');
+  const [theme, setTheme] = useState<ThemeType>('light');
 
   const [hideCursor, setHideCursor] = useState(false);
   const [hideContent, _setHideContent] = useState(false);
   const [scrollable, setScrollable] = useState(false);
 
-  const touchStart = useRef<coordinate>({ x: -1, y: -1 });
+  const touchStart = useRef<CoordinateType>({ x: -1, y: -1 });
 
   const touchStartReset = useCallback(() => {
     touchStart.current = { x: -1, y: -1 };
@@ -130,7 +130,7 @@ export function StateProvider({ children }: StateProviderProps) {
   }, []);
 
   const themeTimer = useRef<NodeJS.Timeout>();
-  const setAndSaveTheme = useCallback((selectedTheme: themeType) => {
+  const setAndSaveTheme = useCallback((selectedTheme: ThemeType) => {
     setTheme(selectedTheme);
     if (selectedTheme === 'dark')
       document.documentElement.classList.add('dark');
@@ -174,7 +174,7 @@ export function StateProvider({ children }: StateProviderProps) {
     }
   }, [score]);
 
-  const value: stateContextType = {
+  const value: StateContextType = {
     navigate,
     aboutOpenedRef,
     theme,
@@ -199,7 +199,5 @@ export function StateProvider({ children }: StateProviderProps) {
     setAndSaveHighScore
   };
 
-  return (
-    <StateContext.Provider value={value}>{children}</StateContext.Provider>
-  );
+  return <StateContext.Provider value={value} children={children} />;
 }

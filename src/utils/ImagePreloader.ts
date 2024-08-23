@@ -7,9 +7,9 @@ import rightdrive from '~/assets/rightdrive-dev-test/rightdrive-dev-test_page1.j
 import wbtracker from '~/assets/wbtracker/wbtracker_home.png';
 import yspm from '~/assets/yspm/yspm_landing_page_light_mode.png';
 
-export function preloadImages() {
-  const images = [myPic, myLogo, junkyard, rightdrive, yspm, wbtracker];
+const images = [myPic, myLogo, junkyard, rightdrive, yspm, wbtracker];
 
+export function preloadImages() {
   for (let i = 0, len = images.length; i < len; i++) {
     const dummyImg = new Image();
     dummyImg.src = images[i];

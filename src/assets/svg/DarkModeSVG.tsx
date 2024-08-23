@@ -1,5 +1,3 @@
-const DarkModeSVG = () => {
+export default function DarkModeSvg() {
   return <svg>DarkModeSVG</svg>;
-};
-
-export default DarkModeSVG;
+}

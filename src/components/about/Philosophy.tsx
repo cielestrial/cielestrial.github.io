@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-type propsType = { effect: 'fade-in' | 'none' };
+type PropsType = { initialEffect: 'fade-in' | 'none' };
 
-const Philosophy = (props: propsType) => {
-  const [effect, setEffect] = useState<'fade-in' | 'none'>(props.effect);
+export default function Philosophy({ initialEffect }: PropsType) {
+  const [effect, setEffect] = useState<'fade-in' | 'none'>(initialEffect);
 
   return (
     <div
@@ -107,6 +107,4 @@ const Philosophy = (props: propsType) => {
       </div>
     </div>
   );
-};
-
-export default Philosophy;
+}

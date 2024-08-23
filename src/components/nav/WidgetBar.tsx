@@ -13,7 +13,7 @@ export default function WidgetBar() {
       <Score />
       <div className="flex flex-row gap-[0.7em] items-center ">
         <GameButton />
-        <MySwitch visible={false} />
+        <MySwitch hide />
       </div>
     </div>
   );

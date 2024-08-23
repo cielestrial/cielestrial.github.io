@@ -21,21 +21,22 @@ import {
   setTouchDevice,
   vMax,
   vMin
-} from '~/utils/constants';
+} from '~/utils/dataConstants';
+import { CoordinateType, SectionsType } from '~/utils/dataTypes';
 import { preloadImages } from '~/utils/imagePreloader';
-import { coordinate, sections } from '~/utils/types';
 
-type propsType = { section: sections };
 const arrowDownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
 const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
 
-const Portfolio = (props: propsType) => {
-  const [, _setOpened] = useState<sections>(props.section);
-  const prevOpened = useRef<sections | null>(null);
-  const openedRef = useRef<sections>(props.section);
+type PropsType = { section: SectionsType };
+
+export default function Portfolio(props: PropsType) {
+  const [, _setOpened] = useState<SectionsType>(props.section);
+  const prevOpened = useRef<SectionsType | null>(null);
+  const openedRef = useRef<SectionsType>(props.section);
   const timeout = useRef<NodeJS.Timeout>();
   const leading = useRef(true);
-  const touchEnd = useRef<coordinate>({ x: -1, y: -1 });
+  const touchEnd = useRef<CoordinateType>({ x: -1, y: -1 });
 
   const hideContent = useContextSelector(
     StateContext,
@@ -62,7 +63,7 @@ const Portfolio = (props: propsType) => {
    * Sets which accordion section is opened.
    * @param section The section label.
    */
-  const setOpened = useCallback((section: sections) => {
+  const setOpened = useCallback((section: SectionsType) => {
     prevOpened.current = openedRef.current;
     openedRef.current = section;
     _setOpened(section);
@@ -220,6 +221,4 @@ const Portfolio = (props: propsType) => {
       <MyFooter opened={openedRef.current} />
     </div>
   );
-};
-
-export default Portfolio;
+}

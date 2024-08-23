@@ -1,23 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 
-import { season } from '~/utils/constants';
+import { season } from '~/utils/dataConstants';
+import { SectionsType } from '~/utils/dataTypes';
 import {
   getWinterFootGradient,
   transitionClass
 } from '~/utils/gradientSelector';
-import { sections } from '~/utils/types';
 
-type propsType = { opened: sections };
+type PropsType = { opened: SectionsType };
 
-const MyFooter = ({ opened }: propsType) => {
+export default function MyFooter({ opened }: PropsType) {
   const iconSize = '1.5em';
   const link =
     'p-0.5 rounded active:scale-95 hover:animate-pulse ' + transitionClass;
 
   const [seasonBg, setSeasonBg] = useState(getWinterFootGradient('Home'));
   const timer = useRef<NodeJS.Timeout>();
-  const prevOpened = useRef<sections | null>(null);
+  const prevOpened = useRef<SectionsType | null>(null);
 
   if (opened !== prevOpened.current) {
     clearTimeout(timer.current);
@@ -116,6 +116,4 @@ const MyFooter = ({ opened }: propsType) => {
       </div>
     </footer>
   );
-};
-
-export default MyFooter;
+}

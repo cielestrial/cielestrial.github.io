@@ -5,15 +5,16 @@ import { BsCloudSun, BsFillMoonStarsFill } from 'react-icons/bs';
 import { StateContext } from '~/utils/ContextProvider';
 import { transitionClass } from '~/utils/gradientSelector';
 
-type propsType = { visible?: boolean };
+type PropsType = { hide?: boolean };
 
-const MySwitch = ({ visible = true }: propsType) => {
+export default function MySwitch({ hide = false }: PropsType) {
   const theme = useContextSelector(StateContext, (state) => state.theme);
   const setAndSaveTheme = useContextSelector(
     StateContext,
     (state) => state.setAndSaveTheme
   );
   const checked = theme === 'dark';
+  const hidden = hide ? 'hidden ' : '';
 
   const toggle = useCallback(() => {
     if (checked) setAndSaveTheme('light');
@@ -30,7 +31,7 @@ const MySwitch = ({ visible = true }: propsType) => {
         'items-center justify-center bg-sky-300 border-gray-600 ' +
         'active:scale-95 dark:bg-gray-900 dark:border-gray-400' +
         transitionClass +
-        (visible ? '' : 'hidden ')
+        hidden
       }
       onClick={toggle}
       onKeyDown={(event) => {
@@ -58,5 +59,4 @@ const MySwitch = ({ visible = true }: propsType) => {
       </div>
     </button>
   );
-};
-export default MySwitch;
+}

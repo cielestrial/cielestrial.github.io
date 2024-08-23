@@ -1,43 +1,39 @@
 import { testimonyType } from '../layout/sections/Testimonials';
 
-type propsType = {
+type PropsType = {
   side: 'left' | 'right' | 'far-left' | 'far-right';
   testimony: testimonyType;
 };
 
-const TestimonialSideView = (props: propsType) => {
+export default function TestimonialSideView({ side, testimony }: PropsType) {
   return (
     <div
       className={
         'grid self-center ' +
-        (props.side === 'far-left' || props.side === 'far-right'
-          ? 'absolute '
-          : '')
+        (side === 'far-left' || side === 'far-right' ? 'absolute ' : '')
       }
     >
       <div
-        id={'testimonial' + props.side}
+        id={'testimonial' + side}
         className={
           'grid border-solid border-[3px] rounded-full overflow-clip ' +
           'w-24 h-24 items-center justify-center justify-self-center origin-bottom-left ' +
-          (props.side === 'left'
+          (side === 'left'
             ? 'animate-left-testimonial '
-            : props.side === 'right'
+            : side === 'right'
               ? 'animate-right-testimonial '
-              : props.side === 'far-right'
+              : side === 'far-right'
                 ? 'animate-far-right-testimonial '
                 : 'invisible')
         }
       >
         <img
-          src={props.testimony.image}
-          alt={props.testimony.name}
+          src={testimony.image}
+          alt={testimony.name}
           className="rotate-0"
           draggable="false"
         />
       </div>
     </div>
   );
-};
-
-export default TestimonialSideView;
+}

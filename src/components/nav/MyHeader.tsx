@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 
-import MyNavBar, { navType } from './MyNavBar';
+import MyNavBar, { NavType } from './MyNavBar';
 import WidgetBar from './WidgetBar';
 
-import { season } from '~/utils/constants';
+import { season } from '~/utils/dataConstants';
+import { SectionsType } from '~/utils/dataTypes';
 import { getWinterNavGradient } from '~/utils/gradientSelector';
-import { sections } from '~/utils/types';
 
-export default function MyHeader({ opened, setOpened }: navType) {
+export default function MyHeader({ opened, setOpened }: NavType) {
   const [seasonBg, setSeasonBg] = useState(getWinterNavGradient('Home'));
   const timer = useRef<NodeJS.Timeout>();
-  const prevOpened = useRef<sections | null>(null);
+  const prevOpened = useRef<SectionsType | null>(null);
 
   if (opened !== prevOpened.current) {
     clearTimeout(timer.current);

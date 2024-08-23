@@ -1,8 +1,8 @@
 import { testimonyType } from '../layout/sections/Testimonials';
 
-type propsType = { testimony: testimonyType };
+type PropsType = { testimony: testimonyType };
 
-const TestimonialView = (props: propsType) => {
+export default function TestimonialView({ testimony }: PropsType) {
   return (
     <div className="grid w-max ">
       <div
@@ -13,8 +13,8 @@ const TestimonialView = (props: propsType) => {
         }
       >
         <img
-          src={props.testimony.image}
-          alt={props.testimony.name}
+          src={testimony.image}
+          alt={testimony.name}
           className="rotate-0"
           draggable="false"
         />
@@ -25,12 +25,10 @@ const TestimonialView = (props: propsType) => {
           'justify-self-center animate-fade-in-out '
         }
       >
-        {props.testimony.testimony}
+        {testimony.testimony}
         {' - '}
-        {props.testimony.name}
+        {testimony.name}
       </p>
     </div>
   );
-};
-
-export default TestimonialView;
+}

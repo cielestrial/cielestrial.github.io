@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import ProjectGrid from '~/components/projects/ProjectGrid';
 
-type propsType = { withEffect: boolean };
+type PropsType = { withEffect: boolean };
 
-const Projects = ({ withEffect }: propsType) => {
+export default function Projects({ withEffect }: PropsType) {
   const [showProjectView, setShowProjectView] = useState(false);
   const [selectedProject, setSelectedProject] = useState<
     JSX.Element | undefined
@@ -23,6 +23,4 @@ const Projects = ({ withEffect }: propsType) => {
       )}
     </>
   );
-};
-
-export default Projects;
+}

@@ -1,16 +1,16 @@
 import { useRef } from 'react';
 
-import { sectionsArray } from '~/utils/constants';
+import { sectionsArray } from '~/utils/dataConstants';
+import { SectionsType } from '~/utils/dataTypes';
 import { transitionClass } from '~/utils/gradientSelector';
-import { sections } from '~/utils/types';
 
-export type navType = {
-  opened: sections;
-  setOpened: (section: sections) => void;
+export type NavType = {
+  opened: SectionsType;
+  setOpened: (section: SectionsType) => void;
 };
 
-export default function MyNavBar({ opened, setOpened }: navType) {
-  const prevOpened = useRef<sections | null>(null);
+export default function MyNavBar({ opened, setOpened }: NavType) {
+  const prevOpened = useRef<SectionsType | null>(null);
   if (opened !== prevOpened.current) {
     document.getElementById(`${opened}Button`)?.focus();
     prevOpened.current = opened;

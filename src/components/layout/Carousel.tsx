@@ -1,16 +1,17 @@
 import { useContextSelector } from '@fluentui/react-context-selector';
 import { useEffect, useRef, useState } from 'react';
 
+import { getSection } from '../../utils/SectionsManager';
+
 import { StateContext } from '~/utils/ContextProvider';
-import { sectionsArray } from '~/utils/constants';
-import { getContent } from '~/utils/helperFunctions';
-import { sections } from '~/utils/types';
+import { sectionsArray } from '~/utils/dataConstants';
+import { SectionsType } from '~/utils/dataTypes';
 
-export type effectType = 'next' | 'prev' | 'none';
+type EffectType = 'next' | 'prev' | 'none';
 
-type propsType = { pageIn: sections; pageOut: sections | null };
+type PropsType = { pageIn: SectionsType; pageOut: SectionsType | null };
 
-export default function Carousel({ pageIn, pageOut }: propsType) {
+export default function Carousel({ pageIn, pageOut }: PropsType) {
   const hideContent = useContextSelector(
     StateContext,
     (state) => state.hideContent
@@ -32,7 +33,7 @@ export default function Carousel({ pageIn, pageOut }: propsType) {
     setScrollable(false);
   }, [setScrollable]);
 
-  function getEffect(): effectType {
+  function getEffect(): EffectType {
     if (!pageOut) return 'none';
     const pageInIndex = sectionsArray.findIndex(
       (section) => section === pageIn
@@ -43,7 +44,7 @@ export default function Carousel({ pageIn, pageOut }: propsType) {
     return pageInIndex > pageOutIndex ? 'next' : 'prev';
   }
 
-  const [effect, setEffect] = useState<effectType>(getEffect());
+  const [effect, setEffect] = useState<EffectType>(getEffect());
   if (pageIn !== prevPageIn) {
     if (pageInRef.current) {
       pageInRef.current.style.animation = 'none';
@@ -87,7 +88,7 @@ export default function Carousel({ pageIn, pageOut }: propsType) {
           }
         }}
       >
-        {getContent(pageOut, false)}
+        {getSection(pageOut, false)}
       </div>
 
       <div
@@ -110,7 +111,7 @@ export default function Carousel({ pageIn, pageOut }: propsType) {
           }
         }}
       >
-        {getContent(pageIn, true)}
+        {getSection(pageIn, true)}
       </div>
     </div>
   );

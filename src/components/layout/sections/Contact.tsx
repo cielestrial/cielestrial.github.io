@@ -1,22 +1,20 @@
-import { season } from '~/utils/constants';
+import { season } from '~/utils/dataConstants';
 import { transitionClass } from '~/utils/gradientSelector';
 
-const Contact = () => {
-  let seasonBG = '';
-
+function getSeasonBg() {
   switch (season) {
     case 'Winter':
-      seasonBG =
-        'bg-gradient-to-b from-transparent from-60% to-[#a7afbe]/50 to-90% ';
-      break;
+      return 'bg-gradient-to-b from-transparent from-60% to-[#a7afbe]/50 to-90% ';
     case 'Spring':
-      seasonBG =
-        'bg-gradient-to-b from-transparent via-transparent to-sky-400 ';
-      break;
+      return 'bg-gradient-to-b from-transparent via-transparent to-sky-400 ';
     default:
       console.error('Invalid season');
+      return '';
   }
+}
+const seasonBG = getSeasonBg();
 
+export default function Contact() {
   return (
     <div className={'h-full w-full flex flex-col ' + seasonBG}>
       <form
@@ -72,6 +70,4 @@ const Contact = () => {
       </form>
     </div>
   );
-};
-
-export default Contact;
+}

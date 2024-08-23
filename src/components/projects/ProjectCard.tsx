@@ -1,14 +1,15 @@
 import { useState } from 'react';
 
-import ProjectView, { projectType } from './ProjectView';
+import ProjectView, { ProjectType } from './ProjectView';
 
-import { clickEvent, touchDevice } from '~/utils/constants';
+import { clickEvent, touchDevice } from '~/utils/dataConstants';
 import { transitionClass } from '~/utils/gradientSelector';
 
-type statusType = 'Release' | 'Prerelease' | 'Development' | 'Hiatus';
-export type cardType = projectType & {
+type StatusType = 'Release' | 'Prerelease' | 'Development' | 'Hiatus';
+
+export type CardType = ProjectType & {
   image: string;
-  status: statusType;
+  status: StatusType;
   order: number;
   setSelectedProject: React.Dispatch<
     React.SetStateAction<JSX.Element | undefined>
@@ -17,9 +18,16 @@ export type cardType = projectType & {
   withEffect: boolean;
 };
 
-const ProjectCard = (props: cardType) => {
+export default function ProjectCard({
+  order,
+  setGridEffect,
+  setSelectedProject,
+  withEffect,
+  setShowProjectView,
+  ...project
+}: CardType) {
   const [effect, setEffect] = useState<'slide-in' | 'none'>(
-    props.withEffect ? 'slide-in' : 'none'
+    withEffect ? 'slide-in' : 'none'
   );
   const label =
     'text-center font-semibold bg-slate-200 border-[0.625vmin] border-solid border-black ' +
@@ -27,7 +35,7 @@ const ProjectCard = (props: cardType) => {
 
   return (
     <div
-      id={'projectCard' + props.order}
+      id={'projectCard' + order}
       tabIndex={0}
       onKeyUp={(event) => {
         if (event.key === 'Enter' || event.key === ' ')
@@ -35,14 +43,14 @@ const ProjectCard = (props: cardType) => {
       }}
       onClick={(event) => {
         event.currentTarget.blur();
-        props.setGridEffect('fade-out');
-        props.setSelectedProject(
+        setGridEffect('fade-out');
+        setSelectedProject(
           <ProjectView
-            title={props.title}
-            technologies={props.technologies}
-            description={props.description}
-            link={props.link}
-            setShowProjectView={props.setShowProjectView}
+            title={project.title}
+            technologies={project.technologies}
+            description={project.description}
+            link={project.link}
+            setShowProjectView={setShowProjectView}
           />
         );
       }}
@@ -54,13 +62,13 @@ const ProjectCard = (props: cardType) => {
         (!touchDevice ? 'hover:saturate-150 hover:outline-amber-500 ' : '') +
         'cursor-pointer ' +
         (effect === 'slide-in'
-          ? props.order === 0
+          ? order === 0
             ? 'animate-[fade-in-right_0.7s_cubic-bezier(.38,0,.64,1)_both] '
-            : props.order === 1
+            : order === 1
               ? 'animate-[fade-in-right_0.7s_.35s_cubic-bezier(.38,0,.64,1)_both] '
-              : props.order === 2
+              : order === 2
                 ? 'animate-[fade-in-right_0.7s_.7s_cubic-bezier(.38,0,.64,1)_both] '
-                : props.order === 3
+                : order === 3
                   ? 'animate-[fade-in-right_0.7s_1.05s_cubic-bezier(.38,0,.64,1)_both] '
                   : 'animate-[fade-in-right_0.7s_1.4s_cubic-bezier(.38,0,.64,1)_both] '
           : '')
@@ -69,23 +77,21 @@ const ProjectCard = (props: cardType) => {
         setEffect('none');
       }}
     >
-      <p aria-label={props.title + '.'} className={label}>
-        {props.title}
+      <p aria-label={project.title + '.'} className={label}>
+        {project.title}
       </p>
       <img
-        id={props.title}
+        id={project.title}
         aria-label="preview image."
-        src={props.image}
+        src={project.image}
         loading="eager"
-        alt={props.title + ' preview image'}
+        alt={project.title + ' preview image'}
         className="origin-top aspect-video border-x-[0.625vmin] border-solid border-black "
         draggable="false"
       />
-      <p aria-label={props.status + '.'} className={label}>
-        {props.status}
+      <p aria-label={project.status + '.'} className={label}>
+        {project.status}
       </p>
     </div>
   );
-};
-
-export default ProjectCard;
+}

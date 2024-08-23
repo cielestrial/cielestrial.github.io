@@ -5,10 +5,10 @@ import myLogo from '~/assets/general/my-logo.png';
 import { transitionClass } from '~/utils/gradientSelector';
 import { skills } from '~/utils/skillsList';
 
-type propsType = { effect: 'fade-in' | 'none' };
+type PropsType = { initialEffect: 'fade-in' | 'none' };
 
-const Profile = (props: propsType) => {
-  const [effect, setEffect] = useState<'fade-in' | 'none'>(props.effect);
+export default function Profile({ initialEffect }: PropsType) {
+  const [effect, setEffect] = useState<'fade-in' | 'none'>(initialEffect);
   const iconLink =
     'text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end ' +
     'hover:text-sky-500 active:text-sky-600 ' +
@@ -153,6 +153,4 @@ const Profile = (props: propsType) => {
       </div>
     </div>
   );
-};
-
-export default Profile;
+}

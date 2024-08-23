@@ -5,13 +5,13 @@ import Bio from '~/components/about/Bio';
 import Philosophy from '~/components/about/Philosophy';
 import Profile from '~/components/about/Profile';
 import { StateContext } from '~/utils/ContextProvider';
+import { AboutTabsType } from '~/utils/dataTypes';
 import { transitionClass } from '~/utils/gradientSelector';
 import { trapScroll } from '~/utils/helperFunctions';
-import { aboutTabs } from '~/utils/types';
 
-type propsType = { withEffect: boolean };
+type PropsType = { withEffect: boolean };
 
-const About = ({ withEffect }: propsType) => {
+export default function About({ withEffect }: PropsType) {
   const aboutOpenedRef = useContextSelector(
     StateContext,
     (state) => state.aboutOpenedRef
@@ -20,7 +20,9 @@ const About = ({ withEffect }: propsType) => {
     StateContext,
     (state) => state.touchStartReset
   );
-  const [opened, setOpenedState] = useState<aboutTabs>(aboutOpenedRef.current);
+  const [opened, setOpenedState] = useState<AboutTabsType>(
+    aboutOpenedRef.current
+  );
   const [snap, setSnap] = useState(false);
   const scrollPos = useRef<HTMLDivElement>(null);
   const scrollBoundHit = useRef(false);
@@ -33,7 +35,7 @@ const About = ({ withEffect }: propsType) => {
    * Sets which about section tab is opened.
    * @param tab The tab label.
    */
-  function setOpened(tab: aboutTabs) {
+  function setOpened(tab: AboutTabsType) {
     requestAnimationFrame(() => {
       aboutOpenedRef.current = tab;
       setOpenedState(tab);
@@ -47,11 +49,11 @@ const About = ({ withEffect }: propsType) => {
   function displaySection() {
     switch (aboutOpenedRef.current) {
       case 'Profile':
-        return <Profile effect={withEffect ? 'fade-in' : 'none'} />;
+        return <Profile initialEffect={withEffect ? 'fade-in' : 'none'} />;
       case 'Bio':
-        return <Bio effect={withEffect ? 'fade-in' : 'none'} />;
+        return <Bio initialEffect={withEffect ? 'fade-in' : 'none'} />;
       case 'Philosophy':
-        return <Philosophy effect={withEffect ? 'fade-in' : 'none'} />;
+        return <Philosophy initialEffect={withEffect ? 'fade-in' : 'none'} />;
     }
   }
 
@@ -143,6 +145,4 @@ const About = ({ withEffect }: propsType) => {
       </div>
     </div>
   );
-};
-
-export default About;
+}

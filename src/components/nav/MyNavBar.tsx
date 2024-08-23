@@ -11,10 +11,13 @@ export type NavType = {
 
 export default function MyNavBar({ opened, setOpened }: NavType) {
   const prevOpened = useRef<SectionsType | null>(null);
+
+  /*
   if (opened !== prevOpened.current) {
     document.getElementById(`${opened}Button`)?.focus();
     prevOpened.current = opened;
   }
+  */
 
   return (
     <nav

@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@fluentui/react-context-selector": "^9.1.65",
-    "portfolio": "file:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",

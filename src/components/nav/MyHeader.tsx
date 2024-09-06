@@ -8,7 +8,7 @@ import { SectionsType } from '~/utils/dataTypes';
 import { getWinterNavGradient } from '~/utils/gradientSelector';
 
 export default function MyHeader({ opened, setOpened }: NavType) {
-  const [seasonBg, setSeasonBg] = useState(getWinterNavGradient('Home'));
+  const [seasonBg, setSeasonBg] = useState(() => getWinterNavGradient('Home'));
   const timer = useRef<NodeJS.Timeout>();
   const prevOpened = useRef<SectionsType | null>(null);
 

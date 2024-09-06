@@ -15,7 +15,7 @@ export default function MyFooter({ opened }: PropsType) {
   const link =
     'p-0.5 rounded active:scale-95 hover:animate-pulse ' + transitionClass;
 
-  const [seasonBg, setSeasonBg] = useState(getWinterFootGradient('Home'));
+  const [seasonBg, setSeasonBg] = useState(() => getWinterFootGradient('Home'));
   const timer = useRef<NodeJS.Timeout>();
   const prevOpened = useRef<SectionsType | null>(null);
 

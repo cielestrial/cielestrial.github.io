@@ -29,7 +29,7 @@ export default function MySwitch({ hide = false }: PropsType) {
       className={
         'flex border-4 rounded-full aspect-[1/1] overflow-clip ' +
         'items-center justify-center bg-sky-300 border-gray-600 ' +
-        'active:scale-95 dark:bg-gray-900 dark:border-gray-400' +
+        'active:scale-95 dark:bg-gray-900 dark:border-gray-400 ' +
         transitionClass +
         hidden
       }

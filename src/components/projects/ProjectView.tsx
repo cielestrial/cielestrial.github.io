@@ -246,7 +246,7 @@ export default function ProjectView({
             src={project.link}
             title={project.title}
             loading="eager"
-            sandbox="allow-same-origin allow-scripts"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             referrerPolicy="strict-origin-when-cross-origin"
             onLoad={(e) => (e.currentTarget.style.background = 'none')}
           />

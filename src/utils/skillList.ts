@@ -8,6 +8,8 @@ export const skills: string[] = [
   'SCSS',
   'SQL',
   'PL/pgSQL',
+  'XPath',
+  'JMESPath',
   'Tailwind',
   'Bootstrap',
   'React',

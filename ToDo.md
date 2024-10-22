@@ -5,6 +5,11 @@
 - Implement toggle switch from YSPM
 - Refactor code
 
+- Update project list with Junkyard of Shangri-La
+- Update skill list with new skills
+- Update frame restrictions
+- Update preview images for Junkyard of Shangri-La
+
 [ToDo]
 
 - Update accessibility for new layout

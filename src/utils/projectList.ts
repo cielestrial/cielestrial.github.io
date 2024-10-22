@@ -1,6 +1,6 @@
 import { CardType } from '../components/projects/ProjectCard';
 
-import junkyard from '~/assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.jpg';
+import junkyard from '~/assets/junkyard-of-shangri-la/junkyard-of-shangri-la_light_mode.png';
 import rightdrive from '~/assets/rightdrive-dev-test/rightdrive-dev-test_page1.jpg';
 import wbtracker from '~/assets/wbtracker/wbtracker_home.png';
 import yspm from '~/assets/yspm/yspm_landing_page_light_mode.png';
@@ -19,19 +19,26 @@ export const projects: Omit<
       'Python',
       'FastAPI',
       'Redis',
+      'AIOHTTP',
+      'Parsel',
       'Nuxt',
+      'h3',
       'Vue',
       'TypeScript',
       'Tailwind'
     ],
     description: [
-      'A website that displays content from an online bookstore while providing additional functionality.',
-      'Developed a robust backend with Python, FastAPI and Redis, to facilitate efficient web scraping for products within an online bookstore.',
-      'Designed succinct frontend with Vue, Nuxt, TypeScript and Tailwind.',
-      'Provided an inclusive experience for a wide range of users through comprehensive support for screen readers and keyboard navigation.'
+      'A website that provides up-to-date availability and price comparison from top online retailers, assisting hobbyists in finding in-stock and pre-orderable products.',
+      'Built a robust backend using Python, FastAPI, and AIOHTTP for asynchronous web scraping, ensuring efficient data retrieval across multiple online shops.',
+      'Leveraged Redis for caching, AIOHTTP for async requests and Parsel for parsing the responses with XPath and JMESPath selectors.',
+      'Designed a responsive and accessible frontend with Vue, Nuxt, TypeScript, and Tailwind, with SSR for faster initial page loads and enhance SEO.',
+      'Developed an image proxy server using h3 to handle cross-origin image requests and improve image loading performance.',
+      'Provided comprehensive support for screen readers and keyboard navigation, creating an inclusive experience for all users.',
+      'Implemented security best practices, including rate limiting, logging, HSTS, CSP, and CORS to safeguard the platform.',
+      'Adhered to OWASP guidelines, implementing protections against CSRF, SSRF, and XSS vulnerabilities.'
     ],
     image: junkyard,
-    link: 'https://junkyard-of-shangri-la.onrender.com',
+    link: 'https://junkyardsl.com',
     status: 'Release'
   },
 

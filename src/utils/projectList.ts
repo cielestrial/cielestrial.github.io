@@ -28,7 +28,7 @@ export const projects: Omit<
       'Tailwind'
     ],
     description: [
-      'A website that provides up-to-date availability and price comparison from top online retailers, assisting hobbyists in finding in-stock and pre-orderable products.',
+      'A website that provides up-to-date availability and price comparison from top online Gunpla retailers, assisting hobbyists in finding in-stock and pre-orderable products.',
       'Built a robust backend using Python, FastAPI, and AIOHTTP for asynchronous web scraping, ensuring efficient data retrieval across multiple online shops.',
       'Leveraged Redis for caching, AIOHTTP for async requests and Parsel for parsing the responses with XPath and JMESPath selectors.',
       'Designed a responsive and accessible frontend with Vue, Nuxt, TypeScript, and Tailwind, with SSR for faster initial page loads and enhance SEO.',

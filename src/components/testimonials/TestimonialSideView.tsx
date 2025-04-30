@@ -17,7 +17,7 @@ export default function TestimonialSideView({ side, testimony }: PropsType) {
         id={'testimonial' + side}
         className={
           'grid border-solid border-[3px] rounded-full overflow-clip ' +
-          'w-24 h-24 items-center justify-center justify-self-center origin-bottom-left ' +
+          'w-24 h-24 items-center justify-center-safe justify-self-center origin-bottom-left ' +
           (side === 'left'
             ? 'animate-left-testimonial '
             : side === 'right'

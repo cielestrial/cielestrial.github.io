@@ -47,7 +47,7 @@ export default function ProjectGrid({
       <div
         className={
           'px-[4vmin] scroll-smooth flex flex-row overflow-y-auto ' +
-          'h-full items-center justify-center pb-[3vh]  ' +
+          'h-full items-center justify-center-safe pb-[3vh]  ' +
           (scrollable ? 'overflow-x-auto ' : 'overflow-x-hidden ')
         }
         onAnimationEnd={(event) => {
@@ -62,7 +62,7 @@ export default function ProjectGrid({
       >
         <div
           className={
-            'h-max w-max flex flex-row flex-wrap m-auto pb-8 items-center justify-center ' +
+            'h-max w-max flex flex-row flex-wrap m-auto pb-8 items-center justify-center-safe ' +
             (effect === 'fade-out' ? 'animate-fade-out ' : '')
           }
         >

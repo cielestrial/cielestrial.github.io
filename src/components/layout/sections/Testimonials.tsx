@@ -59,8 +59,8 @@ export default function Testimonials({ showTemplate }: PropsType) {
           Coming Soon!
         </p>
       ) : (
-        <div className="h-full grid grid-flow-col-dense auto-cols-min justify-center ">
-          <div className="grid order-1 h-full content-center justify-end ">
+        <div className="h-full grid grid-flow-col-dense auto-cols-min justify-center-safe ">
+          <div className="grid order-1 h-full content-center justify-end-safe ">
             <TestimonialSideView
               side="left"
               testimony={testimonies[circularize(index - 1, length.current)]}

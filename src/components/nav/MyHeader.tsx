@@ -20,7 +20,7 @@ export default function MyHeader({ opened, setOpened }: NavType) {
           setSeasonBg(getWinterNavGradient(opened));
           break;
         case 'Spring':
-          setSeasonBg('bg-gradient-to-bl from-amber-200 to-slate-200 ');
+          setSeasonBg('bg-linear-to-bl from-amber-200 to-slate-200 ');
           break;
         default:
           console.error('Invalid season');

@@ -159,9 +159,9 @@ export default function Portfolio(props: PropsType) {
       aria-hidden="false"
       id="portfolio"
       className={
-        'fixed flex flex-col justify-content-center content-start flex-nowrap ' +
+        'fixed flex flex-col justify-center-safe content-start flex-nowrap ' +
         'text-black dark:text-white select-none view-width view-height ' +
-        'text-[4vmin] sm:text-[3vmin] leading-snug '
+        'text-[4vmin] sm:text-[3vmin] leading-[1.375] '
       }
       onWheel={(event) => onScroll(event)}
       onTouchStart={(event) => {

@@ -20,7 +20,7 @@ export default function Bio({ initialEffect }: PropsType) {
     >
       <img
         className={
-          'w-[48vmin] h-[48vmin] shadow-xl rounded-full ml-[5vmin] sm:mx-auto select-none ' +
+          'w-[48vmin] h-[48vmin] shadow-xl rounded-full ml-[5vmin] select-none ' +
           'border-solid border-black border-[1vmin] bg-black overflow-clip snap-center '
         }
         src={myPic}

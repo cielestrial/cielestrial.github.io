@@ -5,7 +5,9 @@ import { StateProvider } from './utils/ContextProvider';
 
 export default function AppWrapper() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
       <StateProvider>
         <App />
       </StateProvider>

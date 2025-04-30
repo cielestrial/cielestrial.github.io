@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ProjectView, { ProjectType } from './ProjectView';
 
 import { clickEvent, touchDevice } from '~/utils/dataConstants';
-import { transitionClass } from '~/utils/gradientSelectors';
+import { transitionClass } from '~/utils/gradientSelector';
 
 type StatusType = 'Release' | 'Prerelease' | 'Development' | 'Hiatus';
 

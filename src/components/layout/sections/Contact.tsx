@@ -1,5 +1,5 @@
 import { season } from '~/utils/dataConstants';
-import { transitionClass } from '~/utils/gradientSelectors';
+import { transitionClass } from '~/utils/gradientSelector';
 
 function getSeasonBg() {
   switch (season) {

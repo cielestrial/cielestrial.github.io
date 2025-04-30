@@ -21,7 +21,7 @@ export default function Profile({ initialEffect }: PropsType) {
       role="tabpanel"
       className={
         'flex h-fit px-[4vmin] w-max m-auto gap-x-[4vmin] ' +
-        'select-text justify-center ' +
+        'select-text justify-center-safe ' +
         (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
       onAnimationEnd={() => setEffect('none')}
@@ -29,7 +29,7 @@ export default function Profile({ initialEffect }: PropsType) {
       <div className={'flex flex-col gap-[4vmin] lg:flex-row ' + height}>
         <img
           className={
-            'border-solid border-black border-[1vmin] bg-black rounded-full mx-auto ' +
+            'border-solid border-black border-[1vmin] bg-black rounded-full ' +
             'w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip select-none '
           }
           src={myLogo}

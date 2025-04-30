@@ -28,7 +28,7 @@ export default function About({ withEffect }: PropsType) {
   const scrollBoundHit = useRef(false);
 
   const btnClasses =
-    'w-[28vmin] h-fit p-[2vmin] title font-medium origin-bottom shadow-md ' +
+    'w-[27vmin] h-fit p-[2vmin] title font-medium origin-bottom shadow-md ' +
     transitionClass;
 
   /**
@@ -63,7 +63,7 @@ export default function About({ withEffect }: PropsType) {
         role="tablist"
         aria-label="Profile. Bio. Philosophy."
         aria-orientation="horizontal"
-        className="flex flex-row mx-auto pb-8 divide-x-[0.5vmin] "
+        className="flex flex-row mx-auto pb-8 gap-x-[0.5vmin] "
       >
         <button
           id="profileButton"

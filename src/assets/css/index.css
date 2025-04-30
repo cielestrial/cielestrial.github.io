@@ -1,10 +1,288 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --animate-float-up: float-up 0.55s cubic-bezier(0.38, 0, 0.64, 1) both;
+
+  --animate-slide-up: slide-up 0.5s ease-out both;
+
+  --animate-slide-down: slide-down 0.5s ease-out both;
+
+  --animate-scale-up: scale-down 0.34s cubic-bezier(0.38, 0, 0.64, 1) reverse
+    both;
+
+  --animate-scale-down: scale-down 0.5s cubic-bezier(0.38, 0, 0.64, 1) both;
+
+  --animate-fade-in: fade-in 0.67s cubic-bezier(0.38, 0, 0.64, 1) both;
+
+  --animate-fade-out: fade-in 0.5s cubic-bezier(0.38, 0, 0.64, 1) reverse both;
+
+  --animate-fade-in-left: fade-in-left 0.7s cubic-bezier(0.38, 0, 0.64, 1) both;
+
+  --animate-fade-in-right: fade-in-right 0.7s cubic-bezier(0.38, 0, 0.64, 1)
+    both;
+
+  --animate-fade-out-left: fade-in-left 0.7s cubic-bezier(0.38, 0, 0.64, 1)
+    reverse both;
+
+  --animate-fade-out-right: fade-in-right 0.7s cubic-bezier(0.38, 0, 0.64, 1)
+    reverse both;
+
+  --animate-fade-in-up: fade-in-up 0.5s cubic-bezier(0.38, 0, 0.64, 1) both;
+  --animate-fade-in-down: fade-in-down 0.5s cubic-bezier(0.38, 0, 0.64, 1) both;
+  --animate-fade-out-up: fade-in-up 0.5s cubic-bezier(0.38, 0, 0.64, 1) reverse
+    both;
+  --animate-fade-out-down: fade-in-down 0.5s cubic-bezier(0.38, 0, 0.64, 1)
+    reverse both;
+
+  --animate-fade-in-out: fade-in-out 5s cubic-bezier(0.38, 0, 0.64, 1) infinite
+    both;
+
+  --animate-center-testimonial: center-testimonial 5s
+    cubic-bezier(0.38, 0, 0.64, 1) infinite both;
+
+  --animate-far-right-testimonial: far-right-testimonial 5s
+    cubic-bezier(0.38, 0, 0.64, 1) infinite both;
+
+  --animate-left-testimonial: left-testimonial 5s cubic-bezier(0.38, 0, 0.64, 1)
+    infinite both;
+
+  --animate-right-testimonial: right-testimonial 5s
+    cubic-bezier(0.38, 0, 0.64, 1) infinite both;
+
+  --animate-feather-spin: feather-spin 2s linear infinite;
+
+  --animate-switch-in: fade-in 9ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-switch-out: fade-in 9ms cubic-bezier(0.4, 0, 0.2, 1) reverse;
+
+  --ease-custom-ease-in-out: cubic-bezier(0.38, 0, 0.64, 1);
+  --ease-custom-ease-out: cubic-bezier(0, 0.7, 1, 1);
+
+  @keyframes float-up {
+    0% {
+      opacity: 1;
+      transform: translateY(-75%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-225%);
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(25%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-25%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fall-down {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+
+  @keyframes feather-down {
+    0% {
+      transform: rotate(0deg) translateX(6vw) rotate(0deg) translateY(0vh);
+    }
+    25% {
+      transform: rotate(144deg) translateX(6vw) rotate(-144deg) translateY(25vh);
+    }
+    50% {
+      transform: rotate(0deg) translateX(6vw) rotate(0deg) translateY(50vh);
+    }
+    75% {
+      transform: rotate(144deg) translateX(6vw) rotate(-144deg) translateY(75vh);
+    }
+    100% {
+      transform: rotate(0deg) translateX(6vw) rotate(0deg) translateY(100vh);
+    }
+  }
+
+  @keyframes feather-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes scale-down {
+    0% {
+      opacity: 1;
+      transform: scale(100%);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(50%);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    5%,
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    67% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-down {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    67% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    67% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    67% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes center-testimonial {
+    0%,
+    80% {
+      filter: blur(0);
+      transform: scale(1) translate(0, 0);
+    }
+    95% {
+      filter: blur(6px);
+    }
+    100% {
+      filter: blur(6px);
+      transform: scale(0.65) translate(-17.6rem, 4.5rem);
+    }
+  }
+
+  @keyframes right-testimonial {
+    0%,
+    80% {
+      filter: blur(4px);
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    95% {
+      filter: blur(0px);
+    }
+    100% {
+      filter: blur(0);
+      transform: scale(1.516) translate(-9.6rem, -1.95rem);
+    }
+  }
+
+  @keyframes left-testimonial {
+    0%,
+    80% {
+      filter: blur(4px);
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-11.5rem);
+    }
+  }
+
+  @keyframes far-right-testimonial {
+    0%,
+    80% {
+      filter: blur(4px);
+      opacity: 0;
+      transform: translateX(13.5rem);
+    }
+    100% {
+      filter: blur(4px);
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
 
 :root {
-  --text-font: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", system-ui,
-    sans-serif;
+  --text-font:
+    'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', system-ui, sans-serif;
   --title-font: Tahoma, sans-serif;
 
   font-family: var(--text-font);
@@ -32,7 +310,7 @@
   }
 
   blockquote.quote:before {
-    content: "\201C";
+    content: '\201C';
   }
 
   /*
@@ -42,7 +320,12 @@
   */
 
   q {
-    quotes: "\2018""\2019""\201C""\201D";
+    quotes: '\2018' '\2019' '\201C' '\201D';
+  }
+
+  input,
+  textarea {
+    background-color: white;
   }
 
   .blue-highlight:focus-visible {
@@ -74,25 +357,23 @@
   }
 }
 
-@layer utilities {
-  .bg-image {
-    background-image: url("../general/so-white.png");
-    background-size: cover;
-  }
+@utility bg-image {
+  background-image: url('../general/so-white.png');
+  background-size: cover;
+}
 
-  .bg-fog {
-    background: radial-gradient(
-      73.98% 73.98% at 50% 50%,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(0, 0, 0, 0.1) 100%
-    );
-    background-size: cover;
-  }
+@utility bg-fog {
+  background: radial-gradient(
+    73.98% 73.98% at 50% 50%,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  background-size: cover;
+}
 
-  #projectPage2 {
-    background-image: url("../general/my-logo.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
+@utility projectPage2 {
+  background-image: url('../general/my-logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }

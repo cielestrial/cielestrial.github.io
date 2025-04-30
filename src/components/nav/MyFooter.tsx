@@ -27,7 +27,7 @@ export default function MyFooter({ opened }: PropsType) {
           setSeasonBg(getWinterFootGradient(opened));
           break;
         case 'Spring':
-          setSeasonBg('bg-gradient-to-bl from-amber-200 to-slate-200 ');
+          setSeasonBg('bg-linear-to-bl from-amber-200 to-slate-200 ');
           break;
         default:
           console.error('Invalid season');
@@ -85,7 +85,7 @@ export default function MyFooter({ opened }: PropsType) {
 
         <div
           className={
-            'flex flex-wrap my-auto justify-center underline ' +
+            'flex flex-wrap my-auto justify-center-safe underline ' +
             'gap-y-[0.2em] gap-x-[0.7em] '
           }
         >

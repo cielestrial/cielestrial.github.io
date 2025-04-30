@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { SiCodechef, SiGithub, SiLinkedin } from 'react-icons/si';
 
 import myLogo from '~/assets/general/my-logo.png';
-import { transitionClass } from '~/utils/gradientSelector';
+import { transitionClass } from '~/utils/gradientSelectors';
 import { skills } from '~/utils/skillList';
 
 type PropsType = { initialEffect: 'fade-in' | 'none' };

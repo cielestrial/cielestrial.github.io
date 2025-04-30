@@ -8,7 +8,7 @@ import {
 
 import { StateContext } from '~/utils/ContextProvider';
 import { clickEvent } from '~/utils/dataConstants';
-import { transitionClass } from '~/utils/gradientSelector';
+import { transitionClass } from '~/utils/gradientSelectors';
 import { trapScroll } from '~/utils/helperFunctions';
 
 export type ProjectType = {

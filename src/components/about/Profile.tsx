@@ -10,7 +10,7 @@ type PropsType = { initialEffect: 'fade-in' | 'none' };
 export default function Profile({ initialEffect }: PropsType) {
   const [effect, setEffect] = useState<'fade-in' | 'none'>(initialEffect);
   const iconLink =
-    'text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end ' +
+    'text-[4.5vmin] sm:text-[3.375vmin] shadow-md self-end-safe ' +
     'hover:text-sky-500 active:text-sky-600 ' +
     transitionClass;
   const height = 'h-[92vmin] sm:h-[82vmin] lg:h-[48vmin] ';
@@ -21,7 +21,7 @@ export default function Profile({ initialEffect }: PropsType) {
       role="tabpanel"
       className={
         'flex h-fit px-[4vmin] w-max m-auto gap-x-[4vmin] ' +
-        'select-text justify-center ' +
+        'select-text justify-center-safe ' +
         (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
       onAnimationEnd={() => setEffect('none')}

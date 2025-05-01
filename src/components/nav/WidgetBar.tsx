@@ -7,11 +7,11 @@ export default function WidgetBar() {
     <div
       className={
         'flex flex-row view-width gap-[0.7em] px-[4vmin] ' +
-        'items-center justify-between '
+        'items-center-safe justify-between '
       }
     >
       <Score />
-      <div className="flex flex-row gap-[0.7em] items-center ">
+      <div className="flex flex-row gap-[0.7em] items-center-safe ">
         <GameButton />
         <MySwitch hide />
       </div>

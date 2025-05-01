@@ -28,7 +28,7 @@ export default function MySwitch({ hide = false }: PropsType) {
       aria-checked={checked}
       className={
         'flex border-4 rounded-full aspect-1/1 overflow-clip ' +
-        'items-center justify-center bg-sky-300 border-gray-600 ' +
+        'items-center-safe justify-center-safe bg-sky-300 border-gray-600 ' +
         'active:scale-95 dark:bg-gray-900 dark:border-gray-400 ' +
         transitionClass +
         hidden
@@ -42,7 +42,7 @@ export default function MySwitch({ hide = false }: PropsType) {
       <div
         className={
           'flex rounded-full w-[1.5em] aspect-1/1 m-[0.15em] ' +
-          'overflow-clip items-center justify-center ' +
+          'overflow-clip items-center-safe justify-center-safe ' +
           'border-2 border-gray-700 bg-white ' +
           'dark:border-gray-300 dark:bg-sky-700 ' +
           transitionClass

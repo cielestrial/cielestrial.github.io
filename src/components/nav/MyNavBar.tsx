@@ -27,7 +27,7 @@ export default function MyNavBar({ opened, setOpened }: NavType) {
       // aria-orientation="horizontal"
       className={
         'flex flex-row view-width gap-[0.7em] pt-[0.6em] px-[4vmin] ' +
-        'items-center justify-center font-semibold drop-shadow-lg '
+        'items-center-safe justify-center-safe font-semibold drop-shadow-lg '
       }
     >
       {sectionsArray.map((section) => (

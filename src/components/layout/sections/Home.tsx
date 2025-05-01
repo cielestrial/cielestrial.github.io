@@ -28,7 +28,7 @@ export default function Home(props: PropsType) {
     >
       <div
         className={
-          'flex h-full flex-col items-center justify-center ' +
+          'flex h-full flex-col items-center-safe justify-center-safe ' +
           (effect === 'fade-in' ? 'animate-fade-in  ' : '')
         }
         onAnimationEnd={(event) => {

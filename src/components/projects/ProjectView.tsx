@@ -151,7 +151,7 @@ export default function ProjectView({
           type="button"
           aria-label="Close"
           className={
-            'rounded-full origin-bottom-left text-[5vh] shadow-3 relative z-10 ' +
+            'rounded-full origin-bottom-left text-[5vh] shadow-sm relative z-10 ' +
             'hover:bg-red-400/75 active:bg-red-500/75 active:scale-95 ' +
             'float-right ' +
             transitionClass +
@@ -232,7 +232,7 @@ export default function ProjectView({
         <div
           id="projectPage2"
           className={
-            'projectPage2 absolute w-full h-full ' +
+            'absolute w-full h-full ' +
             (!projectPage2Ref.current ? 'invisible ' : '') +
             (effect === 'left'
               ? 'animate-fade-out-right '
@@ -260,7 +260,7 @@ export default function ProjectView({
           aria-label="previous"
           disabled={projectPage1Ref.current}
           className={
-            'rounded-full text-[6vh] origin-left shadow-3 relative z-10 ' +
+            'rounded-full text-[6vh] origin-left shadow-sm relative z-10 ' +
             'hover:bg-amber-200/75 active:bg-amber-300/75 active:scale-95 ' +
             transitionClass +
             (projectPage1Ref.current && effect ? 'invisible ' : '') +
@@ -287,7 +287,7 @@ export default function ProjectView({
           aria-label="next"
           disabled={projectPage2Ref.current}
           className={
-            'rounded-full text-[6vh] origin-right shadow-3 relative z-10 ' +
+            'rounded-full text-[6vh] origin-right shadow-sm relative z-10 ' +
             'hover:bg-sky-300/75 active:bg-sky-400/75 active:scale-95 ' +
             transitionClass +
             (projectPage2Ref.current && effect ? 'invisible ' : '') +

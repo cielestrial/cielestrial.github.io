@@ -73,7 +73,7 @@ export default function Carousel({ pageIn, pageOut }: PropsType) {
         className={
           'absolute w-full h-full ' +
           // "bg-red-500 " +
-          (!showPageOut ? 'invisible ' : '') +
+          (!showPageOut ? 'hidden ' : '') +
           (scrollable ? 'overflow-auto ' : 'overflow-clip ') +
           (effect === 'prev'
             ? 'animate-fade-out-down '

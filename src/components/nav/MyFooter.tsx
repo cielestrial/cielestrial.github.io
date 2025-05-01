@@ -13,7 +13,7 @@ type PropsType = { opened: SectionsType };
 export default function MyFooter({ opened }: PropsType) {
   const iconSize = '1.5em';
   const link =
-    'p-0.5 rounded active:scale-95 hover:animate-pulse ' + transitionClass;
+    'p-0.5 rounded-sm active:scale-95 hover:animate-pulse ' + transitionClass;
 
   const [seasonBg, setSeasonBg] = useState(() => getWinterFootGradient('Home'));
   const timer = useRef<NodeJS.Timeout>();
@@ -67,7 +67,7 @@ export default function MyFooter({ opened }: PropsType) {
             className={link}
           >
             <SiLinkedin
-              className="rounded text-[#0864c0] dark:text-white/90 transition"
+              className="rounded-sm text-[#0864c0] dark:text-white/90 transition"
               size={iconSize}
             />
           </a>

@@ -8,7 +8,7 @@ export default function TestimonialView({ testimony }: PropsType) {
       <div
         className={
           'grid border-solid border-[3px] rounded-full overflow-clip ' +
-          'w-36 h-36 place-self-center origin-bottom-left ' +
+          'w-36 h-36 place-self-center-safe origin-bottom-left ' +
           'animate-center-testimonial '
         }
       >
@@ -22,7 +22,7 @@ export default function TestimonialView({ testimony }: PropsType) {
       <p
         className={
           'h-36 w-80 text-center pt-10 ' +
-          'justify-self-center animate-fade-in-out '
+          'justify-self-center-safe animate-fade-in-out '
         }
       >
         {testimony.testimony}

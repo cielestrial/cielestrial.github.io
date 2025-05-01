@@ -9,7 +9,7 @@ export default function TestimonialSideView({ side, testimony }: PropsType) {
   return (
     <div
       className={
-        'grid self-center ' +
+        'grid self-center-safe ' +
         (side === 'far-left' || side === 'far-right' ? 'absolute ' : '')
       }
     >
@@ -17,7 +17,7 @@ export default function TestimonialSideView({ side, testimony }: PropsType) {
         id={'testimonial' + side}
         className={
           'grid border-solid border-[3px] rounded-full overflow-clip ' +
-          'w-24 h-24 items-center justify-center-safe justify-self-center origin-bottom-left ' +
+          'w-24 h-24 items-center-safe justify-center-safe justify-self-center-safe origin-bottom-left ' +
           (side === 'left'
             ? 'animate-left-testimonial '
             : side === 'right'

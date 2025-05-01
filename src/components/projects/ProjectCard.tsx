@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ProjectView, { ProjectType } from './ProjectView';
 
 import { clickEvent, touchDevice } from '~/utils/dataConstants';
-import { transitionClass } from '~/utils/gradientSelector';
+import { transitionClass } from '~/utils/gradientSelectors';
 
 type StatusType = 'Release' | 'Prerelease' | 'Development' | 'Hiatus';
 
@@ -56,7 +56,7 @@ export default function ProjectCard({
       }}
       className={
         'flex flex-col flex-nowrap w-[35.56vmin] sm:w-[28.45vmin] shadow-md m-[5vmin] ' +
-        'saturate-[.75] active:scale-95 outline-none outline-[0.4vmin] ' +
+        'saturate-[.75] active:scale-95 outline-hidden outline-[0.4vmin] ' +
         'focus-visible:saturate-150 focus-visible:outline-amber-500 ' +
         transitionClass +
         (!touchDevice ? 'hover:saturate-150 hover:outline-amber-500 ' : '') +

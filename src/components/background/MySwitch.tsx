@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { BsCloudSun, BsFillMoonStarsFill } from 'react-icons/bs';
 
 import { StateContext } from '~/utils/ContextProvider';
-import { transitionClass } from '~/utils/gradientSelector';
+import { transitionClass } from '~/utils/gradientSelectors';
 
 type PropsType = { hide?: boolean };
 
@@ -27,7 +27,7 @@ export default function MySwitch({ hide = false }: PropsType) {
       aria-label="Theme"
       aria-checked={checked}
       className={
-        'flex border-4 rounded-full aspect-[1/1] overflow-clip ' +
+        'flex border-4 rounded-full aspect-1/1 overflow-clip ' +
         'items-center justify-center bg-sky-300 border-gray-600 ' +
         'active:scale-95 dark:bg-gray-900 dark:border-gray-400 ' +
         transitionClass +
@@ -41,7 +41,7 @@ export default function MySwitch({ hide = false }: PropsType) {
     >
       <div
         className={
-          'flex rounded-full w-[1.5em] aspect-[1/1] m-[0.15em] ' +
+          'flex rounded-full w-[1.5em] aspect-1/1 m-[0.15em] ' +
           'overflow-clip items-center justify-center ' +
           'border-2 border-gray-700 bg-white ' +
           'dark:border-gray-300 dark:bg-sky-700 ' +

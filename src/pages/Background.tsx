@@ -145,7 +145,7 @@ export default function Background({ children }: PropsType) {
       id="theBackground"
       className={
         'view-width view-height flex flex-col overflow-clip ' +
-        'bg-gradient-to-b from-[#F0FBFF] from-35% via-[#E7F5FF] via-65% to-[#A8B0BF] to-95% ' +
+        'bg-linear-to-b from-[#F0FBFF] from-35% via-[#E7F5FF] via-65% to-[#A8B0BF] to-95% ' +
         (hideCursor ? 'cursor-none ' : 'cursor-default ')
       }
       onMouseMove={(event) => trackMouse(event)}

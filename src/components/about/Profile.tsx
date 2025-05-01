@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { SiCodechef, SiGithub, SiLinkedin } from 'react-icons/si';
 
 import myLogo from '~/assets/general/my-logo.png';
-import { transitionClass } from '~/utils/gradientSelector';
+import { transitionClass } from '~/utils/gradientSelectors';
 import { skills } from '~/utils/skillList';
 
 type PropsType = { initialEffect: 'fade-in' | 'none' };
@@ -29,7 +29,7 @@ export default function Profile({ initialEffect }: PropsType) {
       <div className={'flex flex-col gap-[4vmin] lg:flex-row ' + height}>
         <img
           className={
-            'border-solid border-black border-[1vmin] bg-black rounded-full mx-auto ' +
+            'border-solid border-black border-[1vmin] bg-black rounded-full ' +
             'w-[48vmin] h-[48vmin] shadow-xl snap-center overflow-clip select-none '
           }
           src={myLogo}

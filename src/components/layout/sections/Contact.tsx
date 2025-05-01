@@ -1,12 +1,12 @@
 import { season } from '~/utils/dataConstants';
-import { transitionClass } from '~/utils/gradientSelector';
+import { transitionClass } from '~/utils/gradientSelectors';
 
 function getSeasonBg() {
   switch (season) {
     case 'Winter':
-      return 'bg-gradient-to-b from-transparent from-60% to-[#a7afbe]/50 to-90% ';
+      return 'bg-linear-to-b from-transparent from-60% to-[#a7afbe]/50 to-90% ';
     case 'Spring':
-      return 'bg-gradient-to-b from-transparent via-transparent to-sky-400 ';
+      return 'bg-linear-to-b from-transparent via-transparent to-sky-400 ';
     default:
       console.error('Invalid season');
       return '';

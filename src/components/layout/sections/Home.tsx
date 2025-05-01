@@ -5,9 +5,9 @@ import { season } from '~/utils/dataConstants';
 function getSeasonBg() {
   switch (season) {
     case 'Winter':
-      return 'bg-gradient-to-b from-[#E1F5FF]/95 from-60% via-[#F0FBFF]/95 to-[#F0FBFF]/25 ';
+      return 'bg-linear-to-b from-[#E1F5FF]/95 from-60% via-[#F0FBFF]/95 via-80% to-[#F0FBFF]/25 ';
     case 'Spring':
-      return 'bg-gradient-to-bl from-amber-200 to-slate-200 ';
+      return 'bg-linear-to-bl from-amber-200 to-slate-200 ';
     default:
       console.error('Invalid season');
       return '';

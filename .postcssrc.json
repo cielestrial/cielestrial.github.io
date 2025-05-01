@@ -1,7 +1,6 @@
 {
   "map": true,
   "plugins": {
-    "autoprefixer": {},
-    "tailwindcss": {}
+    "@tailwindcss/postcss": {}
   }
 }

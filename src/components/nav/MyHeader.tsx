@@ -5,7 +5,7 @@ import WidgetBar from './WidgetBar';
 
 import { season } from '~/utils/dataConstants';
 import { SectionsType } from '~/utils/dataTypes';
-import { getWinterNavGradient } from '~/utils/gradientSelector';
+import { getWinterNavGradient } from '~/utils/gradientSelectors';
 
 export default function MyHeader({ opened, setOpened }: NavType) {
   const [seasonBg, setSeasonBg] = useState(() => getWinterNavGradient('Home'));
@@ -20,7 +20,7 @@ export default function MyHeader({ opened, setOpened }: NavType) {
           setSeasonBg(getWinterNavGradient(opened));
           break;
         case 'Spring':
-          setSeasonBg('bg-gradient-to-bl from-amber-200 to-slate-200 ');
+          setSeasonBg('bg-linear-to-bl from-amber-200 to-slate-200 ');
           break;
         default:
           console.error('Invalid season');

@@ -137,7 +137,7 @@ export default function Accordion({ label, opened, setOpened }: PropsType) {
           tabIndex={-1}
           className={
             'flex h-3/4 flex-col flex-nowrap scroll-smooth ' +
-            'blue-highlight focus:outline-none ' +
+            'blue-highlight focus:outline-hidden ' +
             (effect !== 'none' ? `animate-${effect} ` : '') +
             (scrollable ? 'overflow-auto ' : 'overflow-clip ') +
             (hideContent ? 'invisible ' : '')

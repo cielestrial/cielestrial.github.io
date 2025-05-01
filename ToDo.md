@@ -12,6 +12,7 @@
 
 [ToDo]
 
+- Update to Tailwind 4 and React 19
 - Update accessibility for new layout
 - night theme & read theme in context provider
 - summer & spring theme

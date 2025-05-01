@@ -6,7 +6,7 @@ import { SectionsType } from '~/utils/dataTypes';
 import {
   getWinterFootGradient,
   transitionClass
-} from '~/utils/gradientSelectors';
+} from '~/utils/gradientSelector';
 
 type PropsType = { opened: SectionsType };
 

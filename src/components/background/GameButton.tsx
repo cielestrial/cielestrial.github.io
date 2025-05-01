@@ -2,7 +2,7 @@ import { useContextSelector } from '@fluentui/react-context-selector';
 import { BsPlayFill, BsStopFill } from 'react-icons/bs';
 
 import { StateContext } from '~/utils/ContextProvider';
-import { transitionClass } from '~/utils/gradientSelectors';
+import { transitionClass } from '~/utils/gradientSelector';
 
 export default function GameButton() {
   const hideContent = useContextSelector(

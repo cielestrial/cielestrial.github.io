@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { BsCloudSun, BsFillMoonStarsFill } from 'react-icons/bs';
 
 import { StateContext } from '~/utils/ContextProvider';
-import { transitionClass } from '~/utils/gradientSelectors';
+import { transitionClass } from '~/utils/gradientSelector';
 
 type PropsType = { hide?: boolean };
 

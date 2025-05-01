@@ -6,7 +6,7 @@ import Philosophy from '~/components/about/Philosophy';
 import Profile from '~/components/about/Profile';
 import { StateContext } from '~/utils/ContextProvider';
 import { AboutTabsType } from '~/utils/dataTypes';
-import { transitionClass } from '~/utils/gradientSelectors';
+import { transitionClass } from '~/utils/gradientSelector';
 import { trapScroll } from '~/utils/helperFunctions';
 
 type PropsType = { withEffect: boolean };

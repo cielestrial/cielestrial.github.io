@@ -109,7 +109,9 @@ export default function ProjectView({
             'scroll-smooth overflow-x-hidden overflow-y-auto '
           }
           onScroll={touchStartReset}
-          onWheel={(event) => trapScroll(event, scrollBoundHit)}
+          onWheel={(event) => {
+            trapScroll(event, scrollBoundHit);
+          }}
         >
           <p
             aria-label={project.title + ':'}

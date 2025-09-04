@@ -40,14 +40,15 @@ export default function Background({ children }: PropsType) {
 
   const gameloop = useCallback(() => {
     requestAnimationFrame(gameloop);
-    if (boundaries.current !== undefined)
-      catchParticles(
+    if (boundaries.current !== undefined) {
+      void catchParticles(
         boundaries.current,
         scoreRef,
         highScore,
         setScore,
         setAndSaveHighScore
       );
+    }
   }, [highScore, scoreRef, setAndSaveHighScore, setScore]);
 
   /**

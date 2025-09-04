@@ -58,7 +58,9 @@ export default function ProjectGrid({
           }
         }}
         onScroll={touchStartReset}
-        onWheel={(event) => trapScroll(event, scrollBoundHit)}
+        onWheel={(event) => {
+          trapScroll(event, scrollBoundHit);
+        }}
       >
         <div
           className={

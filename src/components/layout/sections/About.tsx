@@ -137,9 +137,13 @@ export default function About({ withEffect }: PropsType) {
           'w-full flex flex-col overflow-auto scroll-smooth pb-[3vh] h-full ' +
           (snap ? 'snap-x snap-mandatory ' : '')
         }
-        onAnimationEnd={() => setSnap(true)}
+        onAnimationEnd={() => {
+          setSnap(true);
+        }}
         onScroll={touchStartReset}
-        onWheel={(event) => trapScroll(event, scrollBoundHit)}
+        onWheel={(event) => {
+          trapScroll(event, scrollBoundHit);
+        }}
       >
         {displaySection()}
       </div>

@@ -24,7 +24,9 @@ export default function Profile({ initialEffect }: PropsType) {
         'select-text justify-center-safe ' +
         (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
-      onAnimationEnd={() => setEffect('none')}
+      onAnimationEnd={() => {
+        setEffect('none');
+      }}
     >
       <div className={'flex flex-col gap-[4vmin] lg:flex-row ' + height}>
         <img

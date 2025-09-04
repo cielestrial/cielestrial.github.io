@@ -163,7 +163,9 @@ export default function Portfolio(props: PropsType) {
         'text-black dark:text-white select-none view-width view-height ' +
         'text-[4vmin] sm:text-[3vmin] leading-[1.375] '
       }
-      onWheel={(event) => onScroll(event)}
+      onWheel={(event) => {
+        onScroll(event);
+      }}
       onTouchStart={(event) => {
         setTouchDevice(true);
         if (!hideContent)

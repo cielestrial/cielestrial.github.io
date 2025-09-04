@@ -16,7 +16,9 @@ export default function Bio({ initialEffect }: PropsType) {
         'lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text ' +
         (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
-      onAnimationEnd={() => setEffect('none')}
+      onAnimationEnd={() => {
+        setEffect('none');
+      }}
     >
       <img
         className={

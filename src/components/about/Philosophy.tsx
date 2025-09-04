@@ -14,7 +14,9 @@ export default function Philosophy({ initialEffect }: PropsType) {
         'lg:flex-row lg:space-x-[4vmin] lg:space-y-0 select-text ' +
         (effect === 'fade-in' ? 'animate-fade-in ' : '')
       }
-      onAnimationEnd={() => setEffect('none')}
+      onAnimationEnd={() => {
+        setEffect('none');
+      }}
     >
       <div
         className={

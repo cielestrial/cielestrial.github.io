@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 
 import Background from './pages/Background';
 import Portfolio from './pages/Portfolio';

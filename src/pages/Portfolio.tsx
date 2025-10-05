@@ -1,5 +1,5 @@
-import { useContextSelector } from '@fluentui/react-context-selector';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import useContextSelector from '~/hooks/useContextSelector';
 
 import { StateContext } from '../utils/ContextProvider';
 import {
@@ -34,7 +34,7 @@ export default function Portfolio(props: PropsType) {
   const [, _setOpened] = useState<SectionsType>(props.section);
   const prevOpened = useRef<SectionsType | null>(null);
   const openedRef = useRef<SectionsType>(props.section);
-  const timeout = useRef<NodeJS.Timeout>();
+  const timeout = useRef<NodeJS.Timeout>(undefined);
   const leading = useRef(true);
   const touchEnd = useRef<CoordinateType>({ x: -1, y: -1 });
 

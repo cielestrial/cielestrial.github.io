@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom/client';
 import AppWrapper from './AppWrapper';
 import './assets/css/index.css';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const root = document.getElementById('root') as HTMLElement;
+
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <AppWrapper />
   </React.StrictMode>

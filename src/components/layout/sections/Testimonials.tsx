@@ -34,7 +34,7 @@ type PropsType = { showTemplate: boolean };
 
 export default function Testimonials({ showTemplate }: PropsType) {
   const [index, setIndex] = useState(0);
-  const timer = useRef<NodeJS.Timeout>();
+  const timer = useRef<NodeJS.Timeout>(undefined);
   const waitTime = 5000;
   const length = useRef(testimonies.length);
 

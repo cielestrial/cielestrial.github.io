@@ -1,4 +1,5 @@
 // About Section
+import { preload } from 'react-dom';
 import myLogo from '~/assets/general/my-logo.png';
 import myPic from '~/assets/general/selfie.png';
 // Projects section
@@ -10,8 +11,9 @@ import yspm from '~/assets/yspm/yspm_landing_page_light_mode.png';
 const images = [myPic, myLogo, junkyard, rightdrive, yspm, wbtracker];
 
 export function preloadImages() {
-  for (let i = 0, len = images.length; i < len; i++) {
-    const dummyImg = new Image();
-    dummyImg.src = images[i];
+  for (let i = 0, len = images.length; i < len; ++i) {
+    // const dummyImg = new Image();
+    // dummyImg.src = images[i];
+    preload(images[i], { as: 'image' });
   }
 }

@@ -1,5 +1,5 @@
-import { useContextSelector } from '@fluentui/react-context-selector';
 import { useEffect, useRef, useState } from 'react';
+import useContextSelector from '~/hooks/useContextSelector';
 
 import { StateContext } from '~/utils/ContextProvider';
 import { getSection } from '~/utils/SectionsManager';

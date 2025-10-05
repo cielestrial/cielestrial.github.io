@@ -1,4 +1,3 @@
-import { useContextSelector } from '@fluentui/react-context-selector';
 import { useCallback, useEffect, useRef } from 'react';
 import { BsFillBucketFill } from 'react-icons/bs';
 
@@ -6,6 +5,7 @@ import DarkModeSvg from '../assets/svg/DarkModeSvg';
 import LightModeSvg from '../assets/svg/LightModeSvg';
 import { StateContext } from '../utils/ContextProvider';
 
+import useContextSelector from '~/hooks/useContextSelector';
 import { maxScore, touchDevice } from '~/utils/dataConstants';
 import { CoordinateType } from '~/utils/dataTypes';
 import { catchParticles } from '~/utils/particleGames';

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { JSX } from 'react/jsx-runtime';
 
 import ProjectGrid from '~/components/projects/ProjectGrid';
 

@@ -12,7 +12,7 @@ export const particleValue = 100;
  */
 export async function catchParticles(
   mouseBoundaries: DOMRect,
-  scoreRef: Readonly<React.MutableRefObject<number>>,
+  scoreRef: Readonly<React.RefObject<number>>,
   highScore: Readonly<number>,
   setScore: (newScore: number) => void,
   setAndSaveHighScore: (newScore: number) => void
@@ -41,7 +41,7 @@ export async function catchParticles(
 async function checkCollision(
   mouse: DOMRect,
   particleElement: HTMLElement,
-  scoreRef: Readonly<React.MutableRefObject<number>>,
+  scoreRef: Readonly<React.RefObject<number>>,
   highScore: Readonly<number>,
   setScore: (newScore: number) => void,
   setAndSaveHighScore: (newScore: number) => void

@@ -1,8 +1,9 @@
-import { useContextSelector } from '@fluentui/react-context-selector';
 import { useRef, useState } from 'react';
+import useContextSelector from '~/hooks/useContextSelector';
 
 import ProjectCard from './ProjectCard';
 
+import { JSX } from 'react/jsx-runtime';
 import { StateContext } from '~/utils/ContextProvider';
 import { trapScroll } from '~/utils/helperFunctions';
 import { projects } from '~/utils/projectList';

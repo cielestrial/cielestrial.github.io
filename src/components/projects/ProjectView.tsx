@@ -1,10 +1,10 @@
-import { useContextSelector } from '@fluentui/react-context-selector';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   BsArrowLeftCircle,
   BsArrowRightCircle,
   BsXCircle
 } from 'react-icons/bs';
+import useContextSelector from '~/hooks/useContextSelector';
 
 import { StateContext } from '~/utils/ContextProvider';
 import { clickEvent } from '~/utils/dataConstants';
@@ -35,7 +35,7 @@ export default function ProjectView({
   );
   const projectPage1Ref = useRef(true);
   const projectPage2Ref = useRef(false);
-  const timeout = useRef<NodeJS.Timeout>();
+  const timeout = useRef<NodeJS.Timeout>(undefined);
   const scrollBoundHit = useRef(false);
 
   // const size = "w-[85vmin] ";

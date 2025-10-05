@@ -1,4 +1,4 @@
-import { useContextSelector } from '@fluentui/react-context-selector';
+import useContextSelector from '~/hooks/useContextSelector';
 
 import { StateContext } from '~/utils/ContextProvider';
 

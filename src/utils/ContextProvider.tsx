@@ -1,13 +1,13 @@
-import { createContext } from '@fluentui/react-context-selector';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
+import { createContext, useCallback, useEffect, useRef, useState } from 'react';
+import { NavigateFunction, useLocation, useNavigate } from 'react-router';
 
+import { createStore } from '~/hooks/useContextSelector';
 import { maxScore, season, setDebugMode } from './dataConstants';
 import { AboutTabsType, CoordinateType, ThemeType } from './dataTypes';
 
 type StateContextType = Readonly<{
-  navigate: Readonly<React.MutableRefObject<NavigateFunction>>;
-  aboutOpenedRef: React.MutableRefObject<AboutTabsType>;
+  navigate: Readonly<React.RefObject<NavigateFunction>>;
+  aboutOpenedRef: React.RefObject<AboutTabsType>;
   theme: Readonly<ThemeType>;
   setAndSaveTheme: (selectedTheme: ThemeType) => void;
 
@@ -20,18 +20,18 @@ type StateContextType = Readonly<{
   switchToBackground: () => void;
   switchToForeground: () => void;
 
-  touchStart: React.MutableRefObject<CoordinateType>;
+  touchStart: React.RefObject<CoordinateType>;
   /**Resets touchStart variable to default values.*/
   touchStartReset: () => void;
 
-  scoreRef: Readonly<React.MutableRefObject<number>>;
+  scoreRef: Readonly<React.RefObject<number>>;
   score: Readonly<number>;
   highScore: Readonly<number>;
   setScore: (newScore: number) => void;
   setAndSaveHighScore: (newScore: number) => void;
 }>;
 
-export const StateContext = createContext({} as StateContextType);
+export const StateContext = createContext(createStore({} as StateContextType));
 
 type StateProviderProps = { children: React.ReactNode };
 
@@ -118,7 +118,7 @@ export function StateProvider({ children }: StateProviderProps) {
     setHideContent(false);
   }, [setHideContent]);
 
-  const highScoreTimer = useRef<NodeJS.Timeout>();
+  const highScoreTimer = useRef<NodeJS.Timeout>(undefined);
   const setAndSaveHighScore = useCallback((newScore: number) => {
     if (newScore > maxScore) newScore = maxScore;
     setHighScore(newScore);
@@ -129,7 +129,7 @@ export function StateProvider({ children }: StateProviderProps) {
     }, 300);
   }, []);
 
-  const themeTimer = useRef<NodeJS.Timeout>();
+  const themeTimer = useRef<NodeJS.Timeout>(undefined);
   const setAndSaveTheme = useCallback((selectedTheme: ThemeType) => {
     setTheme(selectedTheme);
     if (selectedTheme === 'dark')
@@ -174,7 +174,7 @@ export function StateProvider({ children }: StateProviderProps) {
     }
   }, [score]);
 
-  const value: StateContextType = {
+  const store = createStore<StateContextType>({
     navigate,
     aboutOpenedRef,
     theme,
@@ -197,7 +197,7 @@ export function StateProvider({ children }: StateProviderProps) {
     scoreRef,
     highScore,
     setAndSaveHighScore
-  };
+  });
 
-  return <StateContext.Provider value={value} children={children} />;
+  return <StateContext value={store}>{children}</StateContext>;
 }

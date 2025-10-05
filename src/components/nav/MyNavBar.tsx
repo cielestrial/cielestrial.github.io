@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-
 import { sectionsArray } from '~/utils/dataConstants';
 import { SectionsType } from '~/utils/dataTypes';
 import { transitionClass } from '~/utils/gradientSelector';

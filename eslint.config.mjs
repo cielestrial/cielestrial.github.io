@@ -1,18 +1,6 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
-import { fixupConfigRules } from '@eslint/compat';
 import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-});
+import reactHooks from 'eslint-plugin-react-hooks';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
   globalIgnores([
@@ -79,14 +67,8 @@ export default defineConfig([
     '**/.metro-health-check\\*'
   ]),
   {
-    extends: fixupConfigRules(
-      compat.extends(
-        'universe/web',
-        'universe/shared/typescript-analysis',
-        'plugin:react-hooks/recommended',
-        'plugin:prettier/recommended'
-      )
-    ),
+    plugins: { 'react-hooks': reactHooks },
+    extends: ['react-hooks/recommended'],
 
     languageOptions: {
       parser: tsParser,
@@ -113,6 +95,6 @@ export default defineConfig([
     }
   },
   {
-    files: ['src/**/*.tsx', 'src/**/*.ts']
+    files: ['src/**/*.{ts, tsx}']
   }
 ]);

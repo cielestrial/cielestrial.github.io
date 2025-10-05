@@ -19,7 +19,7 @@ export function circularize(i: number, length: number): number {
  */
 export function exitProjectView(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<SectionsType>
+  openedRef: React.RefObject<SectionsType>
 ) {
   if (event.key === 'Escape') {
     event.stopPropagation(); // Prevents modal not found error.
@@ -36,7 +36,7 @@ export function exitProjectView(
  */
 export function trapFocus(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<SectionsType>
+  openedRef: React.RefObject<SectionsType>
 ) {
   if (event.shiftKey && event.key === 'Tab') {
     if (openedRef.current !== 'Home') {
@@ -78,7 +78,7 @@ export function trapFocus(
  */
 export function trapScroll(
   event: React.WheelEvent<HTMLElement>,
-  scrollBoundHit: React.MutableRefObject<boolean>
+  scrollBoundHit: React.RefObject<boolean>
 ) {
   if (
     !(
@@ -105,7 +105,7 @@ export function trapScroll(
  */
 export function navigateSections(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<SectionsType>,
+  openedRef: React.RefObject<SectionsType>,
   setOpened: (section: SectionsType) => void
 ) {
   switch (openedRef.current) {
@@ -155,8 +155,8 @@ export function navigateSections(
  */
 export function navigateAboutTabs(
   event: KeyboardEvent,
-  openedRef: React.MutableRefObject<SectionsType>,
-  aboutOpenedRef: React.MutableRefObject<AboutTabsType>
+  openedRef: React.RefObject<SectionsType>,
+  aboutOpenedRef: React.RefObject<AboutTabsType>
 ) {
   if (openedRef.current === 'About') {
     switch (aboutOpenedRef.current) {

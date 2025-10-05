@@ -1,13 +1,11 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 
 import App from './App';
 import { StateProvider } from './utils/ContextProvider';
 
 export default function AppWrapper() {
   return (
-    <BrowserRouter
-      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-    >
+    <BrowserRouter>
       <StateProvider>
         <App />
       </StateProvider>

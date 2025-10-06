@@ -1,4 +1,7 @@
 import tsParser from '@typescript-eslint/parser';
+import prettierConfig from 'eslint-config-prettier';
+import prettierPlugin from 'eslint-plugin-prettier';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactHooks from 'eslint-plugin-react-hooks';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
@@ -67,21 +70,15 @@ export default defineConfig([
     '**/.metro-health-check\\*'
   ]),
   {
-    plugins: { 'react-hooks': reactHooks },
-    extends: ['react-hooks/recommended'],
-
+    plugins: { 'react-hooks': reactHooks, prettier: prettierPlugin },
+    extends: ['react-hooks/recommended', prettierRecommended, prettierConfig],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 5,
       sourceType: 'script',
-
       parserOptions: {
         allowAutomaticSingleRunInference: true,
-
-        cacheLifetime: {
-          glob: 'Infinity'
-        },
-
+        cacheLifetime: { glob: 'Infinity' },
         project: './tsconfig.json'
       }
     },

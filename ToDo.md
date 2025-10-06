@@ -11,11 +11,9 @@
 - Update preview images for Junkyard of Shangri-La
 
 - Update to Tailwind 4 and React 19
+- Finish domain setup for cielestrial.dev and update references
 
 [ToDo]
-
-- Finish domain setup for cielestrial.dev and update references
-  - Update domain references in other projects
 
 - Update accessibility for new layout
 - night theme & read theme in context provider
@@ -24,8 +22,6 @@
 - summer game
 
 [Upcoming]
-
-- Get domain name
 
 [External]
 

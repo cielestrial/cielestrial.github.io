@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "version": "5.1.0",
-  "homepage": "https://cielestrial.github.io",
+  "homepage": "https://cielestrial.dev",
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 3000",
@@ -28,6 +28,8 @@
     "@typescript-eslint/parser": "^8.45.0",
     "@vitejs/plugin-react": "^5.0.4",
     "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react-hooks": "^6.1.1",
     "gh-pages": "^6.1.1",
     "postcss": "^8.5.3",

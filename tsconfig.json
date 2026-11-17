@@ -9,7 +9,6 @@
     ],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,16 +19,15 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "composite": true,
-    "baseUrl": ".",
     "paths": {
       "~/*": [
-        "src/*"
+        "./src/*"
       ]
     }
   },
   "include": [
-    "src",
-    "tailwind.config.js",
-    "vite.config.ts"
+    "./src",
+    "./tailwind.config.js",
+    "./vite.config.ts"
   ]
 }

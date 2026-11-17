@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { SiGithub, SiLinkedin } from 'react-icons/si';
+import { BsLinkedin } from 'react-icons/bs';
+import { SiGithub } from 'react-icons/si';
 
 import { season } from '~/utils/dataConstants';
 import { SectionsType } from '~/utils/dataTypes';
@@ -66,7 +67,7 @@ export default function MyFooter({ opened }: PropsType) {
             referrerPolicy="strict-origin-when-cross-origin"
             className={link}
           >
-            <SiLinkedin
+            <BsLinkedin
               className="rounded-sm text-[#0864c0] dark:text-white/90 transition"
               size={iconSize}
             />

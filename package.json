@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "private": true,
-  "version": "5.1.0",
+  "version": "5.1.1",
   "homepage": "https://cielestrial.dev",
   "type": "module",
   "scripts": {
@@ -17,28 +17,28 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "react-router": "^7.9.3"
+    "react-router": "^8.5.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/vite": "^4.1.5",
-    "@types/node": "^24.6.2",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
-    "@typescript-eslint/parser": "^8.45.0",
-    "@vitejs/plugin-react": "^5.0.4",
-    "eslint": "^9.34.0",
+    "@typescript-eslint/parser": "^8.73.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-react-hooks": "^6.1.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "gh-pages": "^6.1.1",
     "postcss": "^8.5.3",
     "prettier": "^3.1.1",
     "tailwindcss": "^4.1.5",
-    "typescript": "^5.3.3",
-    "vite": "^7.1.9"
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8"
   },
   "engines": {
-    "node": "22.14.0"
+    "node": "24.22.3"
   }
 }

@@ -80,15 +80,13 @@ export function trapScroll(
   event: React.WheelEvent<HTMLElement>,
   scrollBoundHit: React.RefObject<boolean>
 ) {
-  if (
-    !(
-      (Math.round(event.currentTarget.scrollTop) === 0 && event.deltaY < 0) ||
-      (Math.round(event.currentTarget.scrollTop + 1) +
-        event.currentTarget.offsetHeight >=
-        event.currentTarget.scrollHeight &&
-        event.deltaY > 0)
-    )
-  ) {
+  if (!(
+    (Math.round(event.currentTarget.scrollTop) === 0 && event.deltaY < 0) ||
+    (Math.round(event.currentTarget.scrollTop + 1) +
+      event.currentTarget.offsetHeight >=
+      event.currentTarget.scrollHeight &&
+      event.deltaY > 0)
+  )) {
     scrollBoundHit.current = false;
     event.stopPropagation();
   } else if (!scrollBoundHit.current) {

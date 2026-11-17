@@ -69,9 +69,10 @@ export default defineConfig([
     '**/\\*.mobileprovision',
     '**/.metro-health-check\\*'
   ]),
+  reactHooks.configs.flat.recommended,
   {
-    plugins: { 'react-hooks': reactHooks, prettier: prettierPlugin },
-    extends: ['react-hooks/recommended', prettierRecommended, prettierConfig],
+    plugins: { prettier: prettierPlugin },
+    extends: [prettierRecommended, prettierConfig],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 5,

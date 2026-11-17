@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SiCodechef, SiGithub, SiLinkedin } from 'react-icons/si';
+import { BsLinkedin } from 'react-icons/bs';
+import { SiCodechef, SiGithub } from 'react-icons/si';
 
 import myLogo from '~/assets/general/my-logo.png';
 import { transitionClass } from '~/utils/gradientSelector';
@@ -51,7 +52,7 @@ export default function Profile({ initialEffect }: PropsType) {
             aria-label="Name & Links:"
             className={
               'text-[4.5vmin] sm:text-[3.375vmin] pb-[1vmin] ' +
-              'underline underline-offset-[0.25vmin] -indent-[0.5vmin] ' +
+              'underline underline-offset-[0.25vmin] indent-[-0.5vmin] ' +
               'decoration-from-font font-bold '
             }
           >
@@ -107,7 +108,7 @@ export default function Profile({ initialEffect }: PropsType) {
               referrerPolicy="strict-origin-when-cross-origin"
               className={iconLink}
             >
-              <SiLinkedin />
+              <BsLinkedin />
             </a>
 
             <a

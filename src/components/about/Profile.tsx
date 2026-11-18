@@ -60,20 +60,11 @@ export default function Profile({ initialEffect }: PropsType) {
           </p>
 
           <div className="whitespace-nowrap">
-            <p aria-label="Full Name:" className="inline">
-              Full:&#32;
+            <p aria-label="Name:" className="inline">
+              Name:&#32;
             </p>
-            <p aria-label="Boladale Ogunleye," className="inline font-semibold">
-              Boladale Ogunleye
-            </p>
-          </div>
-
-          <div className="whitespace-nowrap">
-            <p aria-label="Preferred:" className="inline">
-              Preferred:&#32;
-            </p>
-            <p aria-label="Shaun," className="inline font-semibold">
-              Seun (Shaun)
+            <p aria-label="Sheun Ogunleye," className="inline font-semibold">
+              Sheun Ogunleye
             </p>
           </div>
 
